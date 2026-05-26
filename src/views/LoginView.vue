@@ -96,8 +96,10 @@ const signOut = () => {
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:400px;
+  max-width:400px;
+  width:50%;
   height:auto;
+  outline:1px solid red;
   .btCont {
     margin-top:-10px;
     gap:10px;
