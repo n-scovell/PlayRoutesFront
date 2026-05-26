@@ -21,6 +21,36 @@ export const useAuthStore = defineStore('auth', () => {
   const userName = computed(() => user.value?.name || null)
   const teamName = computed(() => user.value?.team || null)
 
+  async function createUser(
+  email: string,
+  password: string,
+  name: string,
+  sport: string,
+  team: string
+) {
+  const res = await fetch('https://play-route-back.vercel.app/api/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      password,
+      name,
+      sport,
+      team,
+    }),
+  })
+  // Handle bad responses
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Failed to create user')
+  }
+  // Parse returned data
+  const data = await res.json()
+  return data
+}
+
   async function login(email: any, password: any) {
     
   const res = await fetch('https://play-route-back.vercel.app/api/auth/login', {
@@ -33,8 +63,6 @@ export const useAuthStore = defineStore('auth', () => {
     password,
   }),
 })
-
-  
   
 
   const data = await res.json()
@@ -75,6 +103,7 @@ export const useAuthStore = defineStore('auth', () => {
     userName,
     teamName,
 
+    createUser,
     login,
     logout
   }
