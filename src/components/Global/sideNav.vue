@@ -23,9 +23,10 @@ const routes = computed(() => {
         <div v-if="showNav">
             <button class="icoBt" v-for="route in routes" :key="route.path">
                 <RouterLink :to="route.path">
-                    <div class="ico" :class="route.meta.icon"></div>
+                    <div class="ico" :class="String(route.meta.icon)"></div>
                 </RouterLink>
             </button>
         </div>
     </nav>
 </template>
+
