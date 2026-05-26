@@ -1,0 +1,270 @@
+.icon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.icon.update {
+  border-radius: 50%;
+}
+.icon.update .doc {
+  width: 60%;
+  height: 75%;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  clip-path: polygon(-5% 0%, 70% 0%, 100% 30%, 100% 100%, 0% 100%);
+  border-left: 2px solid rgba(0, 0, 0, 0.7);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+}
+.icon.update .doc.a {
+  z-index: 1;
+  left: 40%;
+  top: 55%;
+  border: none;
+}
+.icon.last, .icon.redo {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: relative;
+}
+.icon.last:before, .icon.redo:before {
+  content: " ";
+  width: 80%;
+  height: 100%;
+  border-top: 5px solid white;
+  border-left: 5px solid white;
+  border-right: 5px solid white;
+  box-sizing: border-box;
+  border-radius: 30px 30px 0px 0px;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.icon.last:after, .icon.redo:after {
+  content: " ";
+  width: 30%;
+  height: 30%;
+  background: white;
+  position: absolute;
+  bottom: -5px;
+  left: 0px;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+.icon.redo {
+  transform: scaleX(-1);
+}
+.icon.thin, .icon.thick, .icon.faint {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.icon.thin:before, .icon.thick:before, .icon.faint:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  background: white;
+}
+.icon.thin.thin:before, .icon.thick.thin:before, .icon.faint.thin:before {
+  height: 3px;
+  background: white;
+}
+.icon.thin.thick:before, .icon.thick.thick:before, .icon.faint.thick:before {
+  height: 5px;
+  background: white;
+}
+.icon.thin.faint:before, .icon.thick.faint:before, .icon.faint.faint:before {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.4);
+}
+.icon.colors {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.icon.colors div {
+  flex: 0 0 50%;
+  height: 50%;
+  background: blue;
+}
+.icon.colors div:nth-child(1) {
+  background: blue;
+}
+.icon.colors div:nth-child(2) {
+  background: red;
+}
+.icon.colors div:nth-child(3) {
+  background: yellow;
+}
+.icon.colors div:nth-child(4) {
+  background: green;
+}
+.icon.pen {
+  width: 100%;
+  height: 100%;
+  background: white;
+  clip-path: polygon(0% 35%, 80% 35%, 100% 50%, 80% 65%, 0% 65%);
+  transform: rotate(130deg);
+}
+.icon.firstdown .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: orange;
+  position: relative;
+  scale: 3;
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-20%, 0%);
+}
+.icon.firstdown .circle:before {
+  content: " ";
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px inset black;
+}
+.icon.clear {
+  position: relative;
+}
+.icon.clear .axe {
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1;
+}
+.icon.clear .tool {
+  width: 100%;
+  height: 100%;
+  background: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 30%, 60% 50%, 60% 100%, 40% 100%, 40% 50%, 0% 30%);
+}
+.icon.fullscreen {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 3px solid white;
+  position: relative;
+}
+.icon.fullscreen div {
+  width: 25%;
+  height: 25%;
+  background: white;
+  position: absolute;
+}
+.icon.fullscreen div:nth-child(1) {
+  left: 3px;
+  top: 3px;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 0%);
+}
+.icon.fullscreen div:nth-child(2) {
+  top: 3px;
+  right: 3px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+}
+.icon.fullscreen div:nth-child(3) {
+  left: 3px;
+  bottom: 3px;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%);
+}
+.icon.fullscreen div:nth-child(4) {
+  right: 3px;
+  bottom: 3px;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
+}
+.icon.trash .lid {
+  width: 70%;
+  height: 12%;
+  position: absolute;
+  bottom: 69%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background: rgb(104, 104, 104);
+}
+.icon.trash .lid:before {
+  content: " ";
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 100%;
+  background: inherit;
+}
+.icon.trash .can {
+  height: 65%;
+  width: 60%;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background: rgb(104, 104, 104);
+}
+.icon.home {
+  background: red;
+  clip-path: polygon(50% 0%, 100% 55%, 80% 55%, 80% 100%, 60% 100%, 60% 65%, 40% 65%, 40% 100%, 20% 100%, 20% 55%, 0% 55%);
+}
+.icon.error, .icon.success {
+  position: relative;
+  background: red;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding-top: 2px;
+}
+.icon.success {
+  background: green;
+  font-size: 0.7rem;
+}
+.icon.alert {
+  position: relative;
+}
+.icon.alert:before {
+  content: " ";
+  width: 40%;
+  height: 60%;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: red;
+  clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+}
+.icon.alert:after {
+  content: " ";
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-radius: 50%;
+  background: red;
+}/*# sourceMappingURL=icons.css.map */

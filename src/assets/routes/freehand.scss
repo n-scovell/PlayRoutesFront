@@ -1,0 +1,191 @@
+:root {
+  --linething: 60%;
+}
+$plySze: 35px;
+$plySzeF: 31%;
+$line: 60%;
+$slight: $line + 5%;
+$under: $line + 10%;
+$shotgun: $line + 20%;
+$deep: $line + 30%;
+$amt: 25%;
+$fiveLine: $line - $amt;
+$tenLine: $fiveLine - $amt;
+main {
+  &.freehand {
+    position:relative;
+    .firstDownMarker {
+      background:blue;
+      width:50px;
+      height:100px;
+    }
+    .board {
+      outline:5px solid rgba(255,255,255,.3);
+      width:800px;
+      height:450px;
+      position:relative;
+      background-image:url('@/assets/images/bck_chalkboard.jpg');
+      background-size:cover;
+      background-repeat:no-repeat;
+      // &:fullscreen {
+       
+      // }
+      canvas {
+        position: absolute;
+        inset: 0;
+        touch-action: none;
+        z-index:2;
+      }
+      hr {
+        position:absolute;
+        top:$line;
+        left:0px;
+        width:100%;
+        height:10px;
+        background-image:url('@/assets/maker/line.png');
+        background-size:contain;
+        background-position:center -5px;
+        background-repeat:repeat-x;
+        opacity:.6;
+      }
+    }
+    .toolbar {
+      position:absolute;
+      left:101%;
+      width:auto;
+      height:auto;
+      background:rgba(0,0,0,.5);
+      &.full {
+        top:0px;
+        left:0px;
+        width:100%;
+        height:auto;
+        display:flex;
+        flex-direction:row;
+        padding:10px 0px;
+        z-index:3;
+        // button {
+          
+        // }
+      }
+      .dropTools {
+        button {
+          padding:5px 10px;
+          background:transparent;
+          outline:1px solid black;
+          margin-bottom:0px;
+          &.active {
+            outline:1px solid red;
+          }
+        }
+      }
+      button {
+        width:40px;
+        height:40px;
+        background:transparent;
+        padding:5px;
+        color:white;
+        margin-bottom:10px;
+      }
+    }
+    .yardMarker {
+      width:100%;
+      height:1px;
+      border-top:1px dashed white;
+      position:absolute;
+      top:$fiveLine;
+      left:0px;
+      &:before {
+        content:'5 yrds';
+        position:absolute;
+        top:-20px;
+        right:5px;
+        font-size:12px;
+        color:white;
+      }
+      &.long {
+        top:$tenLine;
+        border-top:2px solid rgba(255,255,255,.8);
+        &:before {
+          content:'10 yrds';
+        }
+      }
+    }
+    .gridCont {
+      position:absolute;
+      top:0px;
+      width:100%;
+      height:100%;
+      display:flex;
+      z-index:0;
+      .grids {
+        flex:1;
+        border-right:3px dashed rgba(255,255,255,.1);
+        position:relative;
+        &:last-child {
+          border-right:none;
+        }
+        .player {
+          width:$plySze;
+          height:$plySze;
+          background:white;
+          border-radius:50%;
+          position:absolute;
+          transform:translate(-50%,-50%);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-weight:500;
+          box-shadow:1px 2px 1px rgba(0,0,0,1);
+          &.full {
+            width:$plySzeF;
+            height:$plySzeF;
+            max-height:60px;
+          }
+          &.C, &.G, &.T {
+            background:blue;
+          }
+          &.QB {
+            background:red;
+          }
+          &.RB {
+            background:yellow;
+            color:#333;
+          }
+          &.FB {
+            background:rgb(255, 111, 15);
+            color:#333;
+          }
+          &.SL {
+            background:orange;
+            color:#333;
+          }
+          &.TE {
+            background:rgb(3, 175, 12);
+            color:#fff;
+          }
+          &.WR {
+            background:rgb(175, 3, 118);
+            color:#fff;
+          }
+          &.Y_Line { top:$line; }
+          &.Y_Slight { top:$slight; }
+          &.Y_Under { top:$under; }
+          &.Y_Shotgun { top:$shotgun; }
+          &.Y_Deep { top:$deep; }
+          &.X_Left {
+            left:0px;
+            transform:translate(0%,-50%);
+          }
+          &.X_Right {
+            right:0px;
+            transform:translate(0%,-50%);
+          }
+          &.X_Center {
+            left:50%;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,778 @@
+.fjalla-one-regular {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0px;
+  background-image: url("@/assets/images/bck_blackGrain.png");
+  background-size: contain fill;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+header {
+  width: 100%;
+  height: 70px;
+  background-image: url("@/assets/images/bck_blackGrain.png");
+  background-repeat: no-repeat;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+header h4 {
+  color: #F2F2F2;
+  font-size: 32px;
+  text-transform: uppercase;
+  position: relative;
+  top: 50%;
+  margin-left: 20px;
+  transform: translateY(-50%);
+  text-shadow: 0 2px 3px rgba(255, 255, 255, 0.9);
+}
+header button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(0%, -50%);
+}
+header button div {
+  width: 15px;
+  height: 15px;
+  position: relative;
+  top: -2px;
+  margin-right: 15px;
+}
+header button div:before, header button div:after {
+  content: " ";
+  width: 100%;
+  height: 3px;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+header button div:after {
+  height: 100%;
+  width: 3px;
+}
+header:before {
+  content: " ";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.page {
+  display: flex;
+}
+.page main {
+  flex: 1;
+  padding: 0px 0px 0px 0px;
+  color: #F2F2F2;
+}
+.page main h1 {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  color: #F2F2F2;
+  padding: 12px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+.page main.login {
+  position: relative;
+  height: 500px;
+  outline: 1px solid red;
+}
+.page main.create section {
+  display: flex;
+}
+.page main.create section .createForm {
+  width: 500px;
+  height: auto;
+  overflow: hidden;
+  padding: 20px 40px 0px 0px;
+  position: relative;
+}
+.page main.create section .createForm:before {
+  content: " ";
+  width: 2px;
+  background: rgba(158, 158, 158, 0.5);
+  height: 100%;
+  max-height: 280px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+.page main.create section .createDisplay {
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 0px;
+  height: 380px;
+}
+.page main.plays {
+  padding-bottom: 50px;
+}
+.page main.plays .btList {
+  width: 100%;
+  height: 142px;
+  margin: 15px 0px;
+}
+.page main.plays .btList button {
+  padding: 5px 10px;
+  margin-right: 10px;
+  background: rgb(255, 255, 255);
+}
+.page main.plays .btList button.active {
+  background: rgba(255, 255, 255, 0.5);
+}
+.page main.plays ul {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+.page main.plays ul li {
+  width: 25%;
+  min-width: 200px;
+  max-width: 267px;
+  height: 255px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  outline: 2px solid transparent;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.9);
+  position: relative;
+  top: 0px;
+  transition: all 0.2s;
+}
+.page main.plays ul li:hover {
+  cursor: pointer;
+  top: -5px;
+  box-shadow: 0 2px 30px rgba(173, 155, 29, 0.2);
+  outline: 1px solid rgba(173, 155, 29, 0.3);
+  transition: all 0.5s;
+}
+.page main.plays ul li .playSrc {
+  width: 100%;
+  height: 48%;
+  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+}
+.page main.plays ul li .playSrc hr {
+  position: absolute;
+  top: 55%;
+  left: 0px;
+  width: 100%;
+  height: 10px;
+  background-image: url("@/assets/maker/line.png");
+  background-size: contain;
+  background-position: center -5px;
+  background-repeat: repeat-x;
+  opacity: 0.6;
+}
+.page main.plays ul li .playSrc:after {
+  display: none;
+  content: " ";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: #000000;
+  mix-blend-mode: saturation;
+  opacity: 0.7;
+}
+.page main.plays ul li .playInfo {
+  width: 100%;
+  height: 52%;
+  background: #2D2F33;
+  padding: 10px;
+}
+.page main.plays ul li .playInfo h3 {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.page nav {
+  flex: 0 0 80px;
+  background: rgba(0, 0, 0, 0);
+  border-right: 3px solid rgba(158, 158, 158, 0.1);
+  height: 100%;
+}
+.page nav button {
+  width: 100%;
+  padding: 20px 0px;
+  margin: auto;
+  position: relative;
+  background: transparent;
+}
+.page nav button .ico {
+  width: 35px;
+  height: 30px;
+  margin: auto;
+  opacity: 0.7;
+}
+.page nav button .ico:hover {
+  opacity: 1;
+}
+.page nav button .ico.about {
+  height: 35px;
+  border-radius: 50%;
+  border: 3px solid rgb(158, 158, 158);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.page nav button .ico.about:before {
+  content: "i";
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: rgb(158, 158, 158);
+  font-size: 25px;
+  font-weight: bold;
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
+}
+.page nav button .ico.plays {
+  background: rgb(158, 158, 158);
+  width: 25px;
+  border-radius: 4px;
+}
+.page nav button .ico.free {
+  background: red;
+}
+.page nav button .ico.create {
+  position: relative;
+}
+.page nav button .ico.create:before {
+  content: " ";
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgb(158, 158, 158);
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 100% 50%, 100% 100%, 0% 100%);
+}
+.page nav button .ico.create:after {
+  content: " ";
+  width: 25px;
+  height: 10px;
+  background: rgb(158, 158, 158);
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0px 3px 3px 0px;
+  clip-path: polygon(0% 50%, 30% 0%, 100% 0%, 100% 100%, 30% 100%);
+  transform: rotate(-35deg);
+}
+.page nav button .ico.login {
+  background: rgb(158, 158, 158);
+}
+.page nav button .ico.home {
+  background: rgb(158, 158, 158);
+  clip-path: polygon(50% 0%, 100% 55%, 80% 55%, 80% 100%, 60% 100%, 60% 65%, 40% 65%, 40% 100%, 20% 100%, 20% 55%, 0% 55%);
+}
+.page nav button.menuTog {
+  border-bottom: 3px solid rgba(158, 158, 158, 0.2);
+}
+.page nav button.menuTog .bar {
+  margin: auto;
+  width: 25px;
+  margin-bottom: 4px;
+  height: 3px;
+  display: flex;
+  gap: 2px;
+}
+.page nav button.menuTog .bar div {
+  background: rgba(158, 158, 158, 0.5);
+}
+.page nav button.menuTog .bar div:nth-child(1) {
+  flex: 0 0 5px;
+}
+.page nav button.menuTog .bar div:nth-child(2) {
+  flex: 1;
+}
+.page nav button.menuTog:hover {
+  cursor: pointer;
+}
+.page nav button.menuTog:hover .bar div {
+  background: rgba(158, 158, 158, 0.8);
+}
+
+.playBuild {
+  outline: 3px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 700px;
+  min-width: 650px;
+  height: 100%;
+  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  position: relative;
+  z-index: 9999;
+}
+.playBuild h2 {
+  position: absolute;
+  top: -5px;
+  left: 0px;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  font-size: 22px;
+  padding: 15px 0px;
+}
+.playBuild hr {
+  position: absolute;
+  top: 55%;
+  left: 0px;
+  width: 100%;
+  height: 10px;
+  background-image: url("@/assets/maker/line.png");
+  background-size: contain;
+  background-position: center -5px;
+  background-repeat: repeat-x;
+}
+.playBuild .addPlayerBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 5;
+}
+.playBuild .addPlayerBox .close {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  z-index: 100;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.playBuild .grid {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+}
+.playBuild .grid:after {
+  content: " ";
+  outline: 1px solid rgba(158, 158, 158, 0.3);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+.playBuild .grid .box {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+.playBuild .grid .player {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  outline: 3px solid transparent;
+  color: #333;
+  font-size: 9px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  box-shadow: 0 2px 5px black;
+  -webkit-user-select: none; /* Safari */ /* IE 10 and IE 11 */
+  -moz-user-select: none;
+       user-select: none; /* Standard syntax */
+  cursor: pointer;
+  z-index: 0;
+}
+.playBuild .grid .player.active {
+  z-index: 3;
+}
+.playBuild .grid .player .popMenu {
+  width: 85px;
+  height: auto;
+  padding: 7px 5px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.playBuild .grid .player .popMenu .ico {
+  width: 30px;
+  height: 28px;
+  background: transparent;
+}
+.playBuild .grid .player .popMenu .ico.a {
+  height: 30px;
+}
+.playBuild .grid .player .popMenu .ico {
+  cursor: pointer;
+}
+.playBuild .grid .player .popMenu .ico div div {
+  background: white;
+}
+.playBuild .grid .player .popMenu.active {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.playBuild .grid .player.QB {
+  color: white;
+  background: red;
+}
+.playBuild .grid .player.C {
+  color: white;
+  background: blue;
+}
+.playBuild .grid .player.WR {
+  color: white;
+  background: purple;
+}
+.playBuild .grid .player.WR1 {
+  color: white;
+  background: purple;
+}
+.playBuild .grid .player.WR2 {
+  color: white;
+  background: orange;
+}
+.playBuild .grid .player.WR3 {
+  color: #333;
+  background: rgb(0, 238, 255);
+}
+.playBuild .grid .player.WR4 {
+  color: #333;
+  background: rgb(21, 255, 0);
+}
+.playBuild .grid .player.WR5 {
+  color: #333;
+  background: rgb(221, 255, 30);
+}
+.playBuild .grid .player.RB {
+  color: #333;
+  background: yellow;
+}
+.playBuild .grid .player.Y_Line {
+  top: 55%;
+  transform: translate(-50%, -50%);
+}
+.playBuild .grid .player.Y_UnderCenter {
+  top: 65%;
+  transform: translate(-50%, -50%);
+}
+.playBuild .grid .player.Y_Shotgun {
+  top: 75%;
+  transform: translate(-50%, -50%);
+}
+.playBuild .grid .player.Y_Deep {
+  top: 85%;
+  transform: translate(-50%, -50%);
+}
+.playBuild .grid .player.X_Left {
+  left: 6%;
+  transform: translate(0%, -50%);
+}
+.playBuild .grid .player.X_Right {
+  left: 94%;
+  transform: translate(-100%, -50%);
+}
+.playBuild .grid .player.R_Fly:before, .playBuild .grid .player.R_PostL:before, .playBuild .grid .player.R_PostR:before, .playBuild .grid .player.R_HookR:before, .playBuild .grid .player.R_HookL:before, .playBuild .grid .player.R_DigL:before, .playBuild .grid .player.R_DigR:before, .playBuild .grid .player.R_FlatL:before, .playBuild .grid .player.R_FlatR:before, .playBuild .grid .player.R_FlagL:before, .playBuild .grid .player.R_FlagR:before, .playBuild .grid .player.R_HookR:before, .playBuild .grid .player.R_HookR:before {
+  content: " ";
+  cursor: auto;
+  width: 50px;
+  height: 120px;
+  position: absolute;
+  top: -125px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background-image: url("@/assets/routes/Fly.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.playBuild .grid .player.R_Fly:before:hover, .playBuild .grid .player.R_PostL:before:hover, .playBuild .grid .player.R_PostR:before:hover, .playBuild .grid .player.R_HookR:before:hover, .playBuild .grid .player.R_HookL:before:hover, .playBuild .grid .player.R_DigL:before:hover, .playBuild .grid .player.R_DigR:before:hover, .playBuild .grid .player.R_FlatL:before:hover, .playBuild .grid .player.R_FlatR:before:hover, .playBuild .grid .player.R_FlagL:before:hover, .playBuild .grid .player.R_FlagR:before:hover, .playBuild .grid .player.R_HookR:before:hover, .playBuild .grid .player.R_HookR:before:hover {
+  box-shadow: 0 0 10px red;
+}
+.playBuild .grid .player.R_Fly:before {
+  background-size: contain;
+  background-size: 40% 100%;
+  height: 160px;
+  width: 100px;
+  top: -150px;
+}
+.playBuild .grid .player.R_HookL:before, .playBuild .grid .player.R_HookR:before {
+  width: 40px;
+  height: 90px;
+  top: -90px;
+  left: 8px;
+  background-image: url("@/assets/routes/HookL.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.playBuild .grid .player.R_HookR:before {
+  left: 19px;
+  background-image: url("@/assets/routes/HookR.png");
+}
+.playBuild .grid .player.R_FlagL:before, .playBuild .grid .player.R_FlagR:before {
+  width: 50px;
+  height: 125px;
+  top: -120px;
+  left: -5px;
+  background-image: url("@/assets/routes/FlagL.png");
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+}
+.playBuild .grid .player.R_FlagR:before {
+  left: 30px;
+  background-image: url("@/assets/routes/FlagR.png");
+}
+.playBuild .grid .player.R_FlatL:before, .playBuild .grid .player.R_FlatR:before {
+  width: 110px;
+  height: 80px;
+  top: -80%;
+  left: -55px;
+  background-image: url("@/assets/routes/FlatL.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.playBuild .grid .player.R_FlatR:before {
+  left: 85px;
+  background-image: url("@/assets/routes/FlatR.png");
+}
+.playBuild .grid .player.R_DigL:before, .playBuild .grid .player.R_DigR:before {
+  width: 90px;
+  height: 60px;
+  top: -65px;
+  left: -25px;
+  background-image: url("@/assets/routes/DigL.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.playBuild .grid .player.R_DigR:before {
+  left: 50px;
+  background-image: url("@/assets/routes/DigR.png");
+}
+.playBuild .grid .player.R_PostL:before, .playBuild .grid .player.R_PostR:before {
+  width: 100px;
+  height: 100px;
+  background-image: url("@/assets/routes/PostL.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: -18px;
+  top: -100px;
+}
+.playBuild .grid .player.R_PostR:before {
+  left: -5px;
+  transform: scaleX(-1);
+}
+.playBuild .grid .addPlayer {
+  width: 40px;
+  height: 40px;
+  background: rgb(158, 158, 158);
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.playBuild .grid .addPlayer:before {
+  content: " ";
+  width: 50%;
+  height: 15px;
+  background: white;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+
+.smallGrid {
+  flex: 1;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+.smallGrid:last-child {
+  border-right: none;
+}
+.smallGrid .gridPlayer {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  color: black;
+  position: absolute;
+  font-size: 6px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.smallGrid .gridPlayer.Y_Line {
+  top: 55%;
+  transform: translate(-50%, -50%);
+}
+.smallGrid .gridPlayer.Y_UnderCenter {
+  top: 65%;
+  transform: translate(-50%, -50%);
+}
+.smallGrid .gridPlayer.Y_Shotgun {
+  top: 75%;
+  transform: translate(-50%, -50%);
+}
+.smallGrid .gridPlayer.Y_Deep {
+  top: 85%;
+  transform: translate(-50%, -50%);
+}
+.smallGrid .gridPlayer.X_Center {
+  left: 50%;
+}
+.smallGrid .gridPlayer.X_Left {
+  left: 0px;
+  transform: translate(0%, -50%);
+}
+.smallGrid .gridPlayer.X_Right {
+  right: 0px;
+  transform: translate(0%, -50%);
+}
+.smallGrid .gridPlayer.R_Fly:before, .smallGrid .gridPlayer.R_PostL:before, .smallGrid .gridPlayer.R_PostR:before, .smallGrid .gridPlayer.R_HookR:before, .smallGrid .gridPlayer.R_HookL:before, .smallGrid .gridPlayer.R_DigL:before, .smallGrid .gridPlayer.R_DigR:before, .smallGrid .gridPlayer.R_FlatL:before, .smallGrid .gridPlayer.R_FlatR:before, .smallGrid .gridPlayer.R_FlagL:before, .smallGrid .gridPlayer.R_FlagR:before, .smallGrid .gridPlayer.R_HookR:before, .smallGrid .gridPlayer.R_HookR:before {
+  content: " ";
+  cursor: auto;
+  width: 40px;
+  height: 50px;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background-image: url("@/assets/routes/Fly.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.smallGrid .gridPlayer.R_PostL:before, .smallGrid .gridPlayer.R_PostR:before {
+  width: 50px;
+  height: 40px;
+  background-image: url("@/assets/routes/PostL.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: -7px;
+  top: -40px;
+}
+.smallGrid .gridPlayer.R_PostR:before {
+  left: -7px;
+  transform: scaleX(-1);
+}
+.smallGrid .gridPlayer.R_HookL:before, .smallGrid .gridPlayer.R_HookR:before {
+  width: 50px;
+  height: 40px;
+  background-image: url("@/assets/routes/HookL.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: 3px;
+  top: -40px;
+}
+.smallGrid .gridPlayer.R_HookR:before {
+  left: -17px;
+  transform: scaleX(-1);
+}
+.smallGrid .gridPlayer.R_FlagL:before, .smallGrid .gridPlayer.R_FlagR:before {
+  width: 50px;
+  height: 40px;
+  background-image: url("@/assets/routes/FlagL.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: -3px;
+  top: -40px;
+}
+.smallGrid .gridPlayer.R_FlagR:before {
+  left: -12px;
+  transform: scaleX(-1);
+}
+.smallGrid .gridPlayer.R_FlatL:before, .smallGrid .gridPlayer.R_FlatR:before {
+  width: 50px;
+  height: 40px;
+  background-image: url("@/assets/routes/FlatL.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: -26px;
+  top: -15px;
+}
+.smallGrid .gridPlayer.R_FlatR:before {
+  left: 12px;
+  transform: scaleX(-1);
+}
+.smallGrid .gridPlayer.R_DigL:before, .smallGrid .gridPlayer.R_DigR:before {
+  width: 35px;
+  height: 40px;
+  background-image: url("@/assets/routes/DigL.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: -9px;
+  top: -35px;
+}
+.smallGrid .gridPlayer.R_DigR:before {
+  left: 1px;
+  transform: scaleX(-1);
+}/*# sourceMappingURL=main.css.map */

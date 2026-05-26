@@ -1,0 +1,256 @@
+form {
+  width: 100%;
+  height: 100%;
+  padding-left: 5px;
+}
+form.sorter {
+  padding: 10px 0px 0px 0px;
+  height: 50px;
+}
+form.sorter .inputCont {
+  display: flex;
+  gap: 10px;
+}
+form.sorter .inputCont .selectHolder {
+  flex: 1;
+}
+form.addPlayerCont {
+  padding: 30px 30px;
+}
+form .messageOutput {
+  width: 100%;
+  padding: 0px;
+  margin: 10px auto 0px;
+  position: relative;
+  left: 0px;
+  z-index: -1;
+}
+form .messageOutput h3 {
+  margin-bottom: 15px;
+}
+form .messageOutput .mess {
+  width: 100%;
+  padding-left: 10px;
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px 0px;
+  border-radius: 20px;
+  opacity: 1;
+}
+form .messageOutput .mess .ico {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin-right: 5px;
+}
+form .messageOutput .mess.success {
+  font-weight: bold;
+  padding-left: 0px;
+  color: green;
+}
+form .messageOutput .mess.error {
+  color: red;
+}
+form .btCont {
+  display: flex;
+  margin-top: -30px;
+}
+form .btCont button.formButton {
+  width: 100%;
+  margin: 10px 0px 10px 0px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  font-weight: 300;
+  padding: 10px 15px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+}
+form .btCont button.formButton:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+form .btCont button.formButton.active {
+  opacity: 0.2;
+}
+form .btCont.b button.formButton {
+  position: relative;
+  margin-top: 20px;
+}
+form .inputCont {
+  margin-bottom: 20px;
+}
+form .inputCont p {
+  margin-bottom: 10px;
+}
+form .inputCont.error {
+  position: relative;
+  overflow: show;
+}
+form .inputCont.error:before {
+  content: "!";
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  top: 15px;
+  transform: translateY(-50%);
+  right: -15px;
+}
+form .inputCont label {
+  display: none;
+}
+form .inputCont input, form .inputCont .dropDownInd, form .inputCont textarea {
+  width: 100%;
+  padding: 10px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  color: white;
+  caret-color: rgba(255, 255, 255, 0.5);
+  caret-animation: revert;
+  margin: 0px;
+}
+form .inputCont input::-moz-placeholder, form .inputCont .dropDownInd::-moz-placeholder, form .inputCont textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+form .inputCont input::placeholder, form .inputCont .dropDownInd::placeholder, form .inputCont textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+form .inputCont textarea {
+  position: relative;
+  top: -10px;
+  max-height: 150px;
+  min-width: 100%;
+  max-width: 100%;
+}
+form .inputCont input:focus {
+  background: rgba(255, 255, 255, 0.4);
+}
+form .inputCont select {
+  visibility: hidden;
+  position: absolute;
+  z-index: 0;
+}
+form .inputCont .selectHolder {
+  width: 100%;
+  position: relative;
+  z-index: 0;
+}
+form .inputCont .selectHolder.active {
+  z-index: 1;
+}
+form .inputCont .selectHolder.error:after {
+  content: "!";
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  top: 15px;
+  transform: translateY(-50%);
+  right: -15px;
+}
+form .inputCont .selectHolder .dropDownInd {
+  z-index: 1;
+  text-align: left;
+  position: relative;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+form .inputCont .selectHolder .dropDownInd:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(-50%, -50%);
+  width: 13px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  clip-path: polygon(0% 0%, 0% 25%, 50% 100%, 100% 25%, 100% 0%, 50% 75%, 0% 0%);
+}
+form .inputCont .selectHolder .dropDownInd.active {
+  background: red;
+  z-index: 1;
+}
+form .inputCont .selectHolder .dropDownInd.active:before {
+  clip-path: polygon(0% 75%, 50% 0%, 100% 75%, 100% 100%, 50% 25%, 0% 100%);
+}
+form .inputCont .selectHolder .dropDownInd.inactive {
+  background: rgba(255, 255, 255, 0);
+}
+form .inputCont .selectHolder .dropDownInd.hidden {
+  background: rgba(255, 255, 255, 0);
+}
+form .inputCont .selectHolder .dropDownCase {
+  background: rgb(97, 97, 97);
+  border-radius: 20px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+form .inputCont .selectHolder .dropDownCase.active {
+  background: red;
+}
+form .inputCont .selectHolder .dropDownCase .short {
+  max-height: 150px;
+  overflow-y: scroll;
+}
+form .inputCont .selectHolder .dropDownCase.inactive {
+  background: red;
+  display: none;
+}
+form .inputCont .selectHolder .dropDownCase button {
+  background: none;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  cursor: pointer;
+}
+form .inputCont .selectHolder .dropDownCase button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase {
+  border-radius: 20px 20px 0px 0px;
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase .routeSel {
+  border-radius: 1px;
+  height: 200px;
+  overflow-y: scroll;
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase .routeSel::-webkit-scrollbar {
+  width: 5px;
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase .routeSel {
+  /* Track */
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase .routeSel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase .routeSel {
+  /* Handle */
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase .routeSel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase .routeSel {
+  /* Handle on hover */
+}
+form .inputCont .selectHolder:has(> .dropDownCase.a) .dropDownCase .routeSel::-webkit-scrollbar-thumb:hover {
+  background: blue;
+}/*# sourceMappingURL=forms.css.map */

@@ -1,0 +1,449 @@
+
+// // Variables
+$green             :   #0EB056;
+$brdEdge           :   rgba(255,255,255,.3);
+$maxW              :    300px;
+
+@mixin hdrFont {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+form {
+    width:100%;
+    height:100%;
+    padding-left:5px;
+    &.sorter {
+        padding:10px 0px 0px 0px;
+        height:50px;
+        
+        .inputCont {
+            display:flex;
+            gap:10px;
+            .selectHolder {
+                flex:1;
+            }
+        }
+    }
+    &.addPlayerCont {
+        padding:30px 30px;
+    }
+    .messageOutput {
+        width:100%;
+        padding:0px;
+        margin:10px auto 0px;
+        position:relative;
+        left:0px;
+        z-index:-1;
+        h3 {
+            margin-bottom:15px;
+        }
+        .mess {
+            width:100%;
+            padding-left:10px;
+            display:flex;
+            margin-bottom:10px;
+            align-items:center;
+            justify-content:center;
+            font-size:14px;
+            font-weight:bold;
+            background:rgba(255,255,255,.8);
+            padding:8px 0px;
+            border-radius:20px;
+            opacity:1;
+            .ico {
+                width:20px;
+                height:20px;
+                position:relative;
+                margin-right:5px;
+            }
+            &.success {
+                font-weight:bold;
+                padding-left:0px;
+                color:green;
+            }
+            &.error {
+                color:red;
+            }
+        }
+    }
+    .btCont {
+        display:flex;
+        margin-top:-30px;
+        button {
+            &.formButton {
+                width:100%;
+                margin:10px 0px 10px 0px;
+                background:rgba(255,255,255,.5);
+                font-size:18px;
+                font-weight:300;
+                padding:10px 15px;
+                border-radius:30px;
+                box-sizing:border-box;
+                @include hdrFont;
+                cursor:pointer;
+                &:hover {
+                    background:rgba(255,255,255,.7);
+                }
+                &.active {
+                    opacity:.2;
+                }
+            }
+        }
+        &.b {
+            button {
+                &.formButton {
+                position:relative;
+                    // top:10px;
+                    margin-top:20px;
+                }
+            }
+        }
+    }
+    .inputCont {
+        margin-bottom:20px;
+        p {
+            margin-bottom:10px;
+        }
+        &.error {
+            position:relative;
+            overflow:show;
+            &:before {
+                content:'!';
+                color:red;
+                font-size:25px;
+                font-weight:bold;
+                position:absolute;
+                top:15px;
+                transform:translateY(-50%);
+                right:-15px;
+            }
+            
+        }
+        label {
+            display:none;
+        }
+        input, .dropDownInd, textarea {
+            width:100%;
+            padding:10px;
+            position:relative;
+            background:rgba(255,255,255,.1);
+            border-bottom:1px solid $brdEdge;
+            border-right:1px solid $brdEdge;
+            border-left:1px solid $brdEdge;
+            border-radius:20px;
+            color:white;
+            caret-color: rgba(255,255,255,.5);
+            caret-animation: revert;
+            margin:0px;
+            &::placeholder {
+                color:rgba(255,255,255,.8);
+            }
+        }
+        textarea {
+            position:relative;
+            top:-10px;
+            max-height:150px;
+            min-width:100%;
+            max-width:100%;
+        }
+        input {
+            &:focus {
+                background:rgba(255,255,255,.4);
+                // color:rgba(255,255,255,.8);
+                // box-shadow:0 0 10px white;
+            }
+        }
+        select {
+            visibility: hidden;
+            position:absolute;
+            z-index:0;
+        }
+        .selectHolder {
+            width:100%;
+            position:relative;
+            z-index:0;
+            &.active {
+                z-index:1;
+            }
+            &.error {
+                
+                &:after {
+                    content:'!';
+                    color:red;
+                    font-size:25px;
+                    font-weight:bold;
+                    position:absolute;
+                    top:15px;
+                    transform:translateY(-50%);
+                    right:-15px;
+                }
+            }
+            .dropDownInd {
+                z-index:1;
+                text-align:left;
+                position:relative;
+                margin-bottom:20px;
+                z-index:1;
+                &:before {
+                    content:' ';
+                    position:absolute;
+                    top:50%;
+                    right:10px;
+                    transform:translate(-50%,-50%);
+                    $depth: 25%;
+                    $depthB: 100% - $depth;
+                    width:13px;
+                    height:10px;
+                    background:rgba(255,255,255,.7);
+                    clip-path:polygon(
+                    0% 0%, 0% $depth, 50% 100%, 100% $depth, 100% 0%, 50% $depthB, 0% 0%,
+                    );
+                }
+                &.active {
+                    background:red;
+                    z-index:1;
+                    &:before {
+                        $depth: 25%;
+                        $depthB: 100% - $depth;
+                        clip-path:polygon(
+                            0% $depthB, 50% 0%, 100% $depthB, 100% 100%, 50% $depth, 0% 100%
+                        );
+                    }
+                }
+                &.inactive {
+                    background:rgba(255,255,255,0);
+                }
+                &.hidden {
+                    background:rgba(255,255,255,0);
+                }
+            }
+            .dropDownCase {
+                background:rgb(97, 97, 97);
+                border-radius:20px;
+                padding-top:40px;
+                padding-bottom:10px;
+                position:absolute;
+                top:-0px;
+                width:100%; 
+                &.active {
+                    background:red;
+                    
+                }
+                .short {
+                    max-height:150px;
+                    overflow-y:scroll;
+                }
+                &.inactive {
+                    background:red;
+                    display:none;
+                }
+                button {
+                    background:none;
+                    border:none;
+                    outline:none;
+                    font-weight:bold;
+                    width:100%;
+                    text-align:left;
+                    color:rgba(255,255,255,1);
+                    padding:10px;
+                    cursor:pointer;
+                    &:hover {
+                        background:rgba(255,255,255,.3);
+                    }
+                }
+            }
+            &:has(> .dropDownCase.a) {
+
+                .dropDownCase { 
+                    border-radius:20px 20px 0px 0px;
+                    .routeSel {
+                        border-radius:1px;
+                        height:200px;
+                        overflow-y: scroll;
+                        &::-webkit-scrollbar {
+                            width: 5px;
+                        }
+                        /* Track */
+                        &::-webkit-scrollbar-track {
+                            background: rgba(255,255,255,.1); 
+                        }
+                        /* Handle */
+                        &::-webkit-scrollbar-thumb {
+                            background: rgba(255,255,255,.5);
+                        }
+                        /* Handle on hover */
+                        &::-webkit-scrollbar-thumb:hover {
+                        background: blue; 
+                        }
+
+                   }
+                }
+            }
+        }
+    }
+}
+
+// // FORM RELATIONS
+// form {
+//     padding:30px 0px;
+//     div {
+//         position:relative;
+//         padding:5px 10px;
+//         display:flex;
+//         label {
+//             display:none;
+//         }
+//         input, select {
+//             width:100%;
+//             padding:10px;
+//             background:rgba(158,158,158,.2);
+//             background:rgba(255,255,255,.1);
+//             border-bottom:1px solid $brdEdge;
+//             border-right:1px solid $brdEdge;
+//             border-left:1px solid $brdEdge;
+//             border-radius:20px;
+//             color:white;
+//             caret-color: rgba(255,255,255,.5);
+//             caret-animation: revert;
+//             margin:0px;
+//             // caret-shape: block;
+//             &::cursor {
+//                 color:red;
+//                 width:5px;
+//             }
+//             &::placeholder {
+//                 color:rgba(255,255,255,.8);
+//             }
+//         }
+//         select {
+//             option {
+//                 color:black;
+//             }
+//         }
+//     }
+// }
+
+
+// // label {
+// //   margin-bottom:20px;
+// //   outline:1px solid red;
+// //   height:80px;
+// //   p {
+// //     margin-bottom:10px;
+// //   }
+// // }
+
+
+
+
+
+
+// @mixin hdrFont {
+//   font-family: "Fjalla One", sans-serif;
+//   font-weight: 400;
+//   font-style: normal;
+// }
+
+
+
+
+
+
+// //BUTTONS
+// button {
+//   background:transparent;
+//   cursor:pointer;
+//   &.icoBt {
+//     background:transparent;
+//     &:hover {
+//         background:rgba(20,31,21, .5);
+//     }
+//   }
+//   &.formButton {
+//     width:100%;
+//     margin:0px;
+//     background:rgba(255,255,255,.5);
+//     font-size:18px;
+//     font-weight:300;
+//     padding:10px 15px;
+//     border-radius:30px;
+//     box-sizing:border-box;
+//     @include hdrFont;
+//     &:hover {
+//         background:rgba(255,255,255,.7);
+//     }
+//   }
+//   &.togglePassword {
+//     $w:20px;
+//     width: $w;
+//     height: $w;
+//     background:rgba(158,158,158,1);
+//     font-size:17px;
+//     font-weight:bold;
+//     border-radius:5px;
+//     position:relative;
+//     left:-35px;
+//     top:8px;
+//     opacity:.8;
+//     &.text, &.pass {
+//         background:transparent;
+//         border: 2px solid #ccc;
+//         border-radius:  75% 15%;
+//         position: relative;
+//         transform: skew(-3deg) rotate(47deg);
+//         &:before {
+//             content:' ';
+//             $w:5px;
+//             width:$w;
+//             height:$w;
+//             border-radius:50%;
+//             background:#ccc;
+//             position:absolute;
+//             top:50%;
+//             left:50%;
+//             transform:translate(-50%,-50%);
+//         }
+//     }
+//     &.pass {
+//         &:after {
+//             content:' ';
+//             width:120%;
+//             height:3px;
+//             background:#ccc;
+//             position:absolute;
+//             top:50%;
+//             left:50%;
+//             transform:translate(-50%,-50%);
+//         }
+//     }
+//   }
+//   &.green-bt {
+//     width:auto;
+//     height:40px;
+//     padding:0px 20px;
+//     display:flex;
+//     align-items:center;
+//     justify-content:center;
+//     background:$green;
+//     background: linear-gradient(180deg,rgba(12, 82, 42, 1) 0%, rgba(18, 99, 53, 1) 55%, rgba(16, 110, 52, 1) 100%);
+//     border-radius:7px;
+//     color:white;
+//     font-size:15px;
+//     font-weight:500;
+//     letter-spacing:0.05em;
+//     text-shadow:0 1px 3px rgba(0,0,0,.4);
+//     font-family: "Fjalla One", sans-serif;
+//     position:absolute;
+//     top:50%;
+//     right:10px;
+//     transform:translate(0%, -50%);
+//     border-top:1px solid rgba(255,255,255,.5);
+//     border-right:1px solid rgba(255,255,255,.5);
+//     border-left:1px solid rgba(255,255,255,.3);
+//     box-shadow:0 3px 5px rgba(0,0,0,.9);
+//   }
+// }

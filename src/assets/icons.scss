@@ -1,0 +1,323 @@
+
+
+.icon {
+    width:100%;
+    height:100%;
+    position:relative;
+    &.update {
+        // border:2px solid white;
+        border-radius:50%;
+        .doc {
+            $w:60%;
+            $edgeA:30%;
+            $edgeB:100% - $edgeA;
+            width:$w;
+            height:$w + 15%;
+            background:white;
+            
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            z-index:2;
+            clip-path:polygon(
+                -5% 0%, $edgeB 0%, 100% $edgeA, 100% 100%, 0% 100%
+            );
+            border-left:2px solid rgba(0,0,0,.7);
+            border-bottom:2px solid rgba(0,0,0,.7);
+            &.a {
+                z-index:1;
+                left:40%; 
+                top:55%;
+                
+                border:none;
+            }
+        }
+    }
+    &.last, &.redo {
+        width:100%;
+        height:100%;
+        background:transparent;
+        position:relative;
+        &:before {
+            $r:30px;
+            $b:5px;
+            content:' ';
+            width:80%;
+            height:100%;
+            border-top:$b solid white;
+            border-left:$b solid white;
+            border-right:$b solid white;
+            box-sizing:border-box;
+            border-radius:$r $r 0px 0px;
+            position:absolute;
+            top:0px;
+            left:50%;
+            transform:translateX(-50%);
+        }
+        &:after {
+            content:' ';
+            width:30%;
+            height:30%;
+            background:white;
+            position:absolute;
+            bottom:-5px;
+            left:0px;
+            clip-path:polygon(0% 0%, 100% 0%, 50% 100%);
+        }
+    }
+    &.redo {
+        transform: scaleX(-1);
+    }
+    &.thin, &.thick, &.faint {
+        width:100%;
+        height:100%;
+        position:relative;
+        // outline:1px solid red;
+        &:before {
+            content:' ';
+            position:absolute;
+            top:50%;
+            left:50%;
+            width:100%;
+            transform:translate(-50%,-50%);
+            background:white;
+        }
+        &.thin {
+            &:before {
+                height:3px;
+                background:white;
+            }
+        }
+        &.thick {
+            &:before {
+                height:5px;
+                background:white;
+            }
+        }
+        &.faint {
+            &:before {
+                height:5px;
+                background:rgba(255,255,255,.4);
+            }
+        }
+    }
+    &.colors {
+        width:100%;
+        height:100%;
+        display:flex;
+        flex-wrap:wrap;
+        flex-direction:row;
+        div {
+            flex: 0 0 50%;
+            height:50%;
+            background:blue;
+            &:nth-child(1) {background:blue;}
+            &:nth-child(2) {background:red;}
+            &:nth-child(3) {background:yellow;}
+            &:nth-child(4) {background:green;}
+        }
+    }
+    &.pen {
+        $a: 35%;
+        $b: 100% - $a;
+        $c: 80%;
+        $d: 100% - $c;
+        width:100%;
+        height:100%;
+        background:white;
+        clip-path:polygon(
+            0% $a, 80% $a, 100% 50%, $c $b, 0% $b
+        );
+        transform:rotate(130deg);
+    }
+    &.firstdown {
+        $c: orange;
+        $w:20%;
+        .circle {
+            width:10px;
+            height:10px;
+            border-radius:50%;
+            background:$c;
+            position:relative;
+            scale: 3;
+            position:absolute;
+            top:8%;
+            left:50%;
+            transform:translate(-20%,0%);
+            &:before {
+                content:' ';
+                width:30%;
+                height:30%;
+                border-radius:50%;
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%);
+                border:2px inset black;
+            }
+        }
+    }
+    &.clear {
+        position:relative;
+        .axe {
+            font-size:15px;
+            color:white;
+            font-weight:bold;
+            position:absolute;
+            bottom:0px;
+            left:0px;
+            z-index:1;
+        }
+        .tool {
+            $a:30%;
+            $mid:40%;
+            $midB: 100% - $mid;
+            $hand: 50%;
+            width:100%;
+            height:100%;
+            background:white;
+            position:absolute;
+            top:0px;
+            left:0px;
+            z-index:0;
+            clip-path:polygon(
+                0% 0%, 100% 0%, 100% $a, $midB $hand, $midB 100%, $mid 100%, $mid $hand, 0% $a
+            );
+        }
+    }
+    &.fullscreen {
+        width:100%;
+        height:100%;
+        background:transparent;
+        border:3px solid white;
+        position:relative;
+        div {
+            $w:25%;
+            $dis:3px;
+            width:$w;
+            height:$w;
+            background:white;
+            position:absolute;
+            &:nth-child(1) {
+                left:$dis;
+                top:$dis;
+                clip-path:polygon(0% 0%, 0% 100%, 100% 0%);
+            }
+            &:nth-child(2) {
+                top:$dis;
+                right:$dis;
+                clip-path:polygon(0% 0%, 100% 0%, 100% 100%);
+            }
+            &:nth-child(3) {
+                left:$dis;
+                bottom:$dis;
+                clip-path:polygon(0% 0%, 0% 100%, 100% 100%);
+            }
+            &:nth-child(4) {
+                right:$dis;
+                bottom:$dis;
+                clip-path:polygon(0% 100%, 100% 100%, 100% 0%);
+            }
+        }
+    }
+    &.trash {
+        .lid {
+            width:70%;
+            height:12%;
+            position:absolute;
+            bottom:69%;
+            left:50%;
+            transform:translate(-50%,0%);
+            background:rgb(104, 104, 104);
+            &:before {
+                content:' ';
+                position:absolute;
+                top:-100%;
+                left:50%;
+                transform:translateX(-50%);
+                width:30%;
+                height:100%;
+                background:inherit;
+            }
+        }
+        .can {
+            height:65%;
+            width:60%;
+            position:absolute;
+            bottom:0%;
+            left:50%;
+            transform:translate(-50%,0%);
+            background:rgb(104, 104, 104);
+        }
+    }
+    &.home {
+        background:red;
+        $h:55%;
+        $w:20%;
+        $ww:100% - $w;
+        $dh:65%;
+        clip-path:polygon(
+            50% 0%, 
+            100% $h, 
+            $ww $h, 
+            $ww 100%, 
+            60% 100%,
+            60% $dh,
+            40% $dh,
+            40% 100%,
+            $w 100%, 
+            $w $h, 
+            0% $h
+        );
+    }
+    &.error, &.success {
+        position:relative;
+        background:red;
+        width:100%;
+        height:100%;
+        clip-path:polygon(0% 100%, 50% 0%, 100% 100%);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:white;
+        font-weight:bold;
+        font-size:.9rem;
+        padding-top:2px;
+    }
+    &.success {
+        background:green;
+        font-size:.7rem;
+    }
+    &.alert {
+        position:relative;
+        &:before {
+            content:' ';
+            width:40%;
+            height:60%;
+            position:absolute;
+            top:0px;
+            left:50%;
+            transform:translateX(-50%);
+            background:red;
+            clip-path: polygon(
+                0% 0%,   /* top-left */
+                100% 0%, /* top-right */
+                80% 100%,/* bottom-right */
+                20% 100% /* bottom-left */
+            );
+        }
+        &:after {
+            $w:30%;
+            content:' ';
+            width:$w;
+            height:$w;
+            position:absolute;
+            bottom:0px;
+            left:50%;
+            transform:translate(-50%,0%);
+            border-radius:50%;
+            background:red;
+        }
+    }
+}
