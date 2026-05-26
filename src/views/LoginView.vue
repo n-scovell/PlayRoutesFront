@@ -76,7 +76,8 @@ const signOut = () => {
   position:fixed;
   top:80px;
   right:10px;
-  width:350px;
+  max-width:350px;
+  width:70%;
   background:rgba(236, 24, 24, 0.541);
   color:white;
   font-size:12px;
