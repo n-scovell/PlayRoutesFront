@@ -3,8 +3,6 @@ import { ref, watch } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
 
 const auth = useAuthStore()
-
-
 const email = ref('')
 const password = ref('')
 const error = ref<string | null>(null)
@@ -21,17 +19,8 @@ const signIn = async () => {
     error.value = err.message || 'Login failed'
   } finally {
     loading.value = false
-  }
-  
+  }  
 }
-
-// watch(charged.value, (val: boolean) => {
-//   if (val) {
-//     setTimeout(() => {
-//       charged.value = false
-//     }, 0)
-//   }
-// })
 const signOut = () => {
   auth.logout()
   email.value = ''
@@ -41,7 +30,6 @@ const signOut = () => {
 
 <template>
   <main class="login">
-
     <h1>Sign In:</h1>
     <form class="signIn" @submit.prevent>
       <div class="inputCont">
