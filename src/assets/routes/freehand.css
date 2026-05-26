@@ -1,0 +1,182 @@
+:root {
+  --linething: 60%;
+}
+
+main.freehand {
+  position: relative;
+}
+main.freehand .firstDownMarker {
+  background: blue;
+  width: 50px;
+  height: 100px;
+}
+main.freehand .board {
+  outline: 5px solid rgba(255, 255, 255, 0.3);
+  width: 800px;
+  height: 450px;
+  position: relative;
+  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+main.freehand .board canvas {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+  z-index: 2;
+}
+main.freehand .board hr {
+  position: absolute;
+  top: 60%;
+  left: 0px;
+  width: 100%;
+  height: 10px;
+  background-image: url("@/assets/maker/line.png");
+  background-size: contain;
+  background-position: center -5px;
+  background-repeat: repeat-x;
+  opacity: 0.6;
+}
+main.freehand .toolbar {
+  position: absolute;
+  left: 101%;
+  width: auto;
+  height: auto;
+  background: rgba(0, 0, 0, 0.5);
+}
+main.freehand .toolbar.full {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0px;
+  z-index: 3;
+}
+main.freehand .toolbar .dropTools button {
+  padding: 5px 10px;
+  background: transparent;
+  outline: 1px solid black;
+  margin-bottom: 0px;
+}
+main.freehand .toolbar .dropTools button.active {
+  outline: 1px solid red;
+}
+main.freehand .toolbar button {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  padding: 5px;
+  color: white;
+  margin-bottom: 10px;
+}
+main.freehand .yardMarker {
+  width: 100%;
+  height: 1px;
+  border-top: 1px dashed white;
+  position: absolute;
+  top: 35%;
+  left: 0px;
+}
+main.freehand .yardMarker:before {
+  content: "5 yrds";
+  position: absolute;
+  top: -20px;
+  right: 5px;
+  font-size: 12px;
+  color: white;
+}
+main.freehand .yardMarker.long {
+  top: 10%;
+  border-top: 2px solid rgba(255, 255, 255, 0.8);
+}
+main.freehand .yardMarker.long:before {
+  content: "10 yrds";
+}
+main.freehand .gridCont {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 0;
+}
+main.freehand .gridCont .grids {
+  flex: 1;
+  border-right: 3px dashed rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+main.freehand .gridCont .grids:last-child {
+  border-right: none;
+}
+main.freehand .gridCont .grids .player {
+  width: 35px;
+  height: 35px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  box-shadow: 1px 2px 1px rgb(0, 0, 0);
+}
+main.freehand .gridCont .grids .player.full {
+  width: 31%;
+  height: 31%;
+  max-height: 60px;
+}
+main.freehand .gridCont .grids .player.C, main.freehand .gridCont .grids .player.G, main.freehand .gridCont .grids .player.T {
+  background: blue;
+}
+main.freehand .gridCont .grids .player.QB {
+  background: red;
+}
+main.freehand .gridCont .grids .player.RB {
+  background: yellow;
+  color: #333;
+}
+main.freehand .gridCont .grids .player.FB {
+  background: rgb(255, 111, 15);
+  color: #333;
+}
+main.freehand .gridCont .grids .player.SL {
+  background: orange;
+  color: #333;
+}
+main.freehand .gridCont .grids .player.TE {
+  background: rgb(3, 175, 12);
+  color: #fff;
+}
+main.freehand .gridCont .grids .player.WR {
+  background: rgb(175, 3, 118);
+  color: #fff;
+}
+main.freehand .gridCont .grids .player.Y_Line {
+  top: 60%;
+}
+main.freehand .gridCont .grids .player.Y_Slight {
+  top: 65%;
+}
+main.freehand .gridCont .grids .player.Y_Under {
+  top: 70%;
+}
+main.freehand .gridCont .grids .player.Y_Shotgun {
+  top: 80%;
+}
+main.freehand .gridCont .grids .player.Y_Deep {
+  top: 90%;
+}
+main.freehand .gridCont .grids .player.X_Left {
+  left: 0px;
+  transform: translate(0%, -50%);
+}
+main.freehand .gridCont .grids .player.X_Right {
+  right: 0px;
+  transform: translate(0%, -50%);
+}
+main.freehand .gridCont .grids .player.X_Center {
+  left: 50%;
+}/*# sourceMappingURL=freehand.css.map */
