@@ -87,7 +87,7 @@ const signOut = () => {
   max-width:400px;
   width:50%;
   height:auto;
-  outline:1px solid red;
+  /* outline:1px solid red; */
   .btCont {
     margin-top:-10px;
     gap:10px;

@@ -136,14 +136,11 @@ header {
       font-size:30px;
       color:$headerColor;
       padding:12px;
-      // background:green;
       border-bottom:2px solid rgba(255,255,255,.2);
     }
     &.login {
       position:relative;
       height:500px;
-      // background:red;
-      // outline:1px solid red;
     }
     &.create {
       section {

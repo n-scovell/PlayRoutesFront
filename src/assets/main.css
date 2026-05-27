@@ -99,7 +99,6 @@ header:before {
 .page main.login {
   position: relative;
   height: 500px;
-  background: red;
 }
 .page main.create section {
   display: flex;
