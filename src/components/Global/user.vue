@@ -2,16 +2,16 @@
   // import { ref } from 'vue'
   import { useAuthStore } from '@/stores/userAuth'
   // defineProps<{ axis: string }>()
-  const auth = useAuthStore()
-  const info = {
-    team: auth.teamName!.toUpperCase()
-  }
-  console.log(auth)
+  // const auth = useAuthStore()
+  // const info = {
+  //   team: auth.teamName!.toUpperCase()
+  // }
+  // console.log(auth)
 </script>
 <template>
   <div class="avatarCont">
     <div class="avatar"></div>
-    <h3>{{ info.team }} PLAY BOOK</h3>
+    <h3>PLAY BOOK</h3>
   </div>
 </template>
 <style lang="scss">
