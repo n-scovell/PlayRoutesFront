@@ -2,10 +2,11 @@
 import Avatar from '@/components/Global/user.vue'
 import { useAuthStore } from '@/stores/userAuth'
 const auth = useAuthStore()
+
 </script>
 <template>
     <header>
-        <RouterLink to="/create">
+        <RouterLink to="/create" v-if="auth.user">
             <button class="green-bt"><div></div>Create New Play</button>
         </RouterLink>
         <Avatar />
@@ -29,7 +30,7 @@ header {
   position:relative;
   @include hdrFont;
   display:flex;
-  
+
 }
 
 
