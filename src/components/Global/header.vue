@@ -1,18 +1,38 @@
 <script setup lang="ts">
+import Avatar from '@/components/Global/user.vue'
 import { useAuthStore } from '@/stores/userAuth'
 const auth = useAuthStore()
 </script>
 <template>
     <header>
-        <h4>{{ auth.teamName }} PLAY BOOK</h4>
         <RouterLink to="/create">
-        <button class="green-bt"><div></div>Create New Play</button>
+            <button class="green-bt"><div></div>Create New Play</button>
         </RouterLink>
+        <Avatar />
     </header>
 </template>
 
 <style lang="scss">
-$green             :   #0EB056;
+$green:#0EB056;
+@mixin hdrFont {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+header {
+  width:100%;
+  height:70px;
+  background-image:url('@/assets/images/bck_blackGrain.png');
+  background-repeat:no-repeat;
+  border-bottom:2px solid rgba(0,0,0,.7);
+  box-shadow:0 5px 15px rgba(0,0,0,.5);
+  position:relative;
+  @include hdrFont;
+  display:flex;
+  
+}
+
+
 .green-bt {
     width:auto;
     height:40px;
