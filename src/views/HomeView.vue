@@ -86,7 +86,7 @@ const clearMe = () => {
         </form>
       </div>
     </div>
-    <h1>Want to join?</h1>
+    <h1>Want to join Play Routes?</h1>
     <div class="myCont">
       <div class="welcome">
         <p>
