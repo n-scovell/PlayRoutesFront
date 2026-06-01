@@ -33,10 +33,10 @@
     </div>
     <h3>
       <span v-if="auth.user" style="margin-right:5px;">{{auth.teamName}}</span> 
-      <span v-else style="margin-right:5px;">SIGN UP WITH</span> 
-       PLAY BOOK
+      <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink> WITH</span> 
+       PLAY ROUTES
     </h3>
-    <!-- <div class="drop" v-if="showDrop">
+    <div class="drop" v-if="showDrop">
       <div v-if="auth.user">
         <button v-for="route in routes" :key="route.path">
             <RouterLink :to="route.path">
@@ -47,7 +47,7 @@
         <button @pointerdown="signOut">Log Out</button>
       </div>
       <button v-if="!auth.user">Create Account</button>
-    </div> -->
+    </div>
   </div>
 </template>
 <style lang="scss">
@@ -55,8 +55,8 @@
   .userCont {
     height:100%;
     display:flex;
-    position:relative;
-    left:0px;
+    position:absolute;
+    right:10px;
     gap:10px;
     .avatarCont {
       width:$w;
@@ -75,6 +75,10 @@
       justify-content:center;
       align-items:center;
       color:white;
+      a {
+        color:inherit;
+        text-decoration:underline;
+      }
     }
     // .drop {
     //   width:300px;
