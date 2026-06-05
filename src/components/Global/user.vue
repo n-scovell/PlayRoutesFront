@@ -8,6 +8,11 @@
   const route = useRoute()
   const showDrop = ref<boolean>(false)
   const auth = useAuthStore()
+
+  const imgSrc = computed(() => {
+    return new URL(`../../assets/icons/alph/${auth.teamName![0]}.png`, import.meta.url).href
+  })
+
   const revealDrop = () => {
     showDrop.value = !showDrop.value
   }
@@ -29,12 +34,13 @@
 <template>
   <div class="userCont">
     <div class="avatarCont" v-if="auth.user">
-      <button class="avatar" @pointerdown="revealDrop"></button>
+      <button class="avatar" @pointerdown="revealDrop">
+        <img :src="imgSrc" />
+      </button>
     </div>
     <h3>
       <span v-if="auth.user" style="margin-right:5px;">{{auth.teamName}}</span> 
-      <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink> WITH</span> 
-       PLAY ROUTES
+      <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink></span> 
     </h3>
     <div class="drop" v-if="showDrop">
       <div v-if="auth.user">
@@ -43,7 +49,7 @@
                 <div>{{ route.name }}</div>
             </RouterLink>
         </button>
-        <RouterLink to="/profile"></RouterLink>
+        <!-- <RouterLink to="/profile"></RouterLink> -->
         <button @pointerdown="signOut">Log Out</button>
       </div>
       <button v-if="!auth.user">Create Account</button>
@@ -56,8 +62,9 @@
     height:100%;
     display:flex;
     position:absolute;
-    right:10px;
+    right:0px;
     gap:10px;
+    padding-right:10px;
     .avatarCont {
       width:$w;
       display:flex;
@@ -66,12 +73,36 @@
       .avatar {
         width:$w;
         height:$w;
-        background:purple;
+        background:transparent;
         border-radius:50%;
+        position:relative;
+        overflow:hidden;
+        cursor:pointer;
+        img {
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+          z-index:1;
+        }
+        &:after {
+          $w:80%;
+          content:' ';
+          width:$w;
+          height:$w;
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+          background:rgb(60, 55, 134);
+          border-radius:50%;
+          border:3px solid white;
+        }
       }
     }
     h3 {
       display:flex;
+      display:none;
       justify-content:center;
       align-items:center;
       color:white;
@@ -80,45 +111,24 @@
         text-decoration:underline;
       }
     }
-    // .drop {
-    //   width:300px;
-    //   padding:20px;
-    //   background:rgba(0,0,0,.9);
-    //   position:absolute;
-    //   top:0px;
-    //   left:0px;
-    //   z-index:9;
-    //   padding-top:60px;
-    //   button {
-    //     width:100%;
-    //     text-align:left;
-    //     background:transparent;
-    //     color:white;
-    //     padding:10px;
-    //     margin:5px 0px;
-    //     font-size:15px;
-    //     font-weight:bold;
-    //     cursor:pointer;
-    //   }
-    // }
-    // .avatar {
-    //   width:$w;
-    //   height:$w;
-    //   border-radius:50%;
-    //   background:rgba(255,255,255,.5);
-    //   position:relative;
-    //   top:50%;
-    //   left:30px;
-    //   transform:translate(0%, -50%);
-    //   z-index:10;
-    // }
-    // h3 {
-    //   color:white;
-    //   position:absolute;
-    //   top:50%;
-    //   left:$w + 35px;
-    //   z-index:10;
-    //   transform:translate(0%, -50%);
-    // }
+    .drop {
+      width:300px;
+      background:rgba(0,0,0,.5);
+      position:absolute;
+      top:100%;
+      right:0px;
+      z-index:555;
+      display:flex;
+      flex-wrap:wrap;
+      flex-direction:column;
+      padding:20px;
+      button {
+        display:block;
+        background:transparent;
+        color:white;
+        padding:5px 10px;
+      }
+    }
+    
   }
 </style>

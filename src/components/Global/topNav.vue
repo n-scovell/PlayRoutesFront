@@ -10,7 +10,8 @@ const togNav = () => {
 }
 const routes = computed(() => {
     return router.getRoutes().filter(route => {
-        if (route.meta.active === 'sideNav') {
+        if (route.name === 'Home' || route.name === 'Login' && !auth.user) return true
+        if (route.meta.active === 'topNav' && auth.user) {
             return true
         }
     })
