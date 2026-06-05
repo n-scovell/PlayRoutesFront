@@ -10,15 +10,21 @@ const routes: RouteRecordRaw[] = [
   },
    {
     path: '/plays',
-    name: 'Plays',
+    name: 'Playbook',
     meta: { icon: 'plays',  transition: 'slide-left', active: 'sideNav' },
     component: () => import('../views/PlaysView.vue')
   },
   {
     path: '/create',
-    name: 'Create Play',
+    name: 'Create',
     meta: { icon: 'create',  transition: 'slide-left', active: 'sideNav' },
     component: () => import('../views/MakeView.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    meta: { icon: 'create',  transition: 'slide-left', active: 'sideNav' },
+    component: () => import('../views/RegisterView.vue')
   },
   {
     path: '/login',
@@ -32,7 +38,7 @@ const routes: RouteRecordRaw[] = [
     meta: { icon: 'login',  transition: 'slide-left', active: 'avatar' },
     component: () => import('../views/ProfileView.vue')
   }, 
-    {
+  {
     path: '/formations',
     name: 'Formations',
     meta: { icon: 'login',  transition: 'slide-left', active: 'avatar' },

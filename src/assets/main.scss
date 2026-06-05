@@ -51,7 +51,7 @@ body {
   background-image:url('@/assets/images/bck_blackGrain.png');
   background-size:contain fill;
   // background-repeat:no-repeat;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:"Fjalla One", sans-serif;
 }
 * {
   box-sizing:border-box;
@@ -136,7 +136,7 @@ body {
       font-size:30px;
       color:$headerColor;
       padding:12px;
-      border-bottom:2px solid rgba(255,255,255,.2);
+      // border-bottom:2px solid rgba(255,255,255,.2);
     }
     &.login {
       position:relative;
