@@ -1,78 +1,83 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
-const auth = useAuthStore()
-const showModal = ref<boolean>(false)
-const name = ref('')
-const email = ref('')
-const sport = ref('')
-const team = ref('')
-const password = ref('')
-const code = ref("")
-async function checkSignUp() {
-  try {
-    const formData = {
-      email: email.value,
-      password: password.value,
-      name: name.value,
-      sport: sport.value,
-      team: team.value,
-    }
-    const res = await fetch(
-      "https://play-route-back.vercel.app/api/auth/request-verification",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    )
-    const data = await res.json()
-    if (!res.ok) {
-      throw new Error(data.error || "Request failed")
-    }
-    showModal.value = true
-  } catch (err: any) {
-    console.log(err.message)
-  }
-}
-async function verifyCode() {
-  const res = await fetch(
-    "https://play-route-back.vercel.app/api/auth/verify-code",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email.value,
-        code: code.value,
-      }),
-    }
-  )
-  const data = await res.json()
-  if (!res.ok) {
-    alert(data.error)
-    return
-  }
-  showModal.value = false
-  auth.login(email.value, password.value)
-}
-const cancelcode = () => {
-  showModal.value = false
-}
+import { Image } from '@unpic/vue'
+import fieldImage from '@/assets/images/field.jpg'
+import { RouterLink } from 'vue-router'
 
-const clearMe = () => {
-  name.value = ''
-  email.value = ''
-  sport.value = ''
-  password.value = ''
-  team.value = ''
-}
+const auth = useAuthStore()
+
+// const showModal = ref<boolean>(false)
+// const name = ref('')
+// const email = ref('')
+// const sport = ref('')
+// const team = ref('')
+// const password = ref('')
+// const code = ref("")
+// async function checkSignUp() {
+//   try {
+//     const formData = {
+//       email: email.value,
+//       password: password.value,
+//       name: name.value,
+//       sport: sport.value,
+//       team: team.value,
+//     }
+//     const res = await fetch(
+//       "https://play-route-back.vercel.app/api/auth/request-verification",
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(formData),
+//       }
+//     )
+//     const data = await res.json()
+//     if (!res.ok) {
+//       throw new Error(data.error || "Request failed")
+//     }
+//     showModal.value = true
+//   } catch (err: any) {
+//     console.log(err.message)
+//   }
+// }
+// async function verifyCode() {
+//   const res = await fetch(
+//     "https://play-route-back.vercel.app/api/auth/verify-code",
+//     {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         email: email.value,
+//         code: code.value,
+//       }),
+//     }
+//   )
+//   const data = await res.json()
+//   if (!res.ok) {
+//     alert(data.error)
+//     return
+//   }
+//   showModal.value = false
+//   auth.login(email.value, password.value)
+// }
+// const cancelcode = () => {
+//   showModal.value = false
+// }
+
+// const clearMe = () => {
+//   name.value = ''
+//   email.value = ''
+//   sport.value = ''
+//   password.value = ''
+//   team.value = ''
+// }
 </script>
 <template>
   <main class="home">
     
-    <div v-if="showModal" class="loginCreds">
+    <!-- <div v-if="showModal" class="loginCreds">
       <div class="content">
         <h3>INPUT SENT CODE TO VERIFY</h3>
         <form class="verify" @submit.prevent>
@@ -85,15 +90,35 @@ const clearMe = () => {
           </div>
         </form>
       </div>
-    </div>
-    <h1>Want to join Play Routes?</h1>
+    </div> -->
+    <!-- <h1>Want to join Play Routes?</h1> -->
     <div class="myCont">
-      <div class="welcome">
-        <p>
-          Welcome to Play Routes! The digital playbook for coaches that want an edge.
-        </p>
-      </div>
-      <form class="signUp" @submit.prevent>
+      <section class="top">
+        <div class="mid">
+          <img src="@/assets/images/PlayRoutesBW.png" />
+          <h3>PLAY <span class="navy">ROUTES</span></h3>
+          <h4>PLAN, PREPARE, PERFORM</h4>
+          <div class="btCont" v-if="!auth.user">
+            <RouterLink to="/register">
+              <button>REGISTER</button>
+            </RouterLink>
+            <RouterLink to="/login">
+            <button>LOGIN</button>
+            </RouterLink>
+          </div>
+        </div>
+        <Image
+          :src="fieldImage"
+          alt="Play Routes"
+          layout="fullWidth"
+          priority               
+          :sizes="'(max-width: 768px) 100vw, 1200px'"
+        />
+      </section>
+      <section class="instruction">
+        Hello there
+      </section>
+      <!-- <form class="signUp" @submit.prevent>
         <h3>Want to join?</h3>
         <div class="inputCont">
             <label>Email:</label><input placeholder="Email" type="email" v-model="email" />
@@ -114,7 +139,7 @@ const clearMe = () => {
           <button class="formButton" type="button" @click="checkSignUp">NEW USER</button>
           <button class="formButton" type="button" @click="clearMe">CLEAR</button>
         </div>
-      </form>
+      </form> -->
     </div>
   </main>
 </template>
@@ -152,38 +177,111 @@ const clearMe = () => {
 .myCont {
   position:relative;
   width:100%;
-  height:560px;
+  height:auto;
   background:rgba(255,255,255,.0);
   display:flex;
-  gap:20px;
-  .welcome {
-    padding:20px;
-    position:relative;
-    &:before {
-      content:' ';
-      width:2px;
-      height: 83%;
-      background:rgba(255,255,255,.2);
-      position:absolute;
-      right:0px;
-      top:50%;
-      transform:translate(0%,-50%);
-    }
-  }
-  .signUp {
-    flex:1;
-    max-width:400px;
-    width:50%;
+  flex-wrap:wrap;
+  gap:0px;
+  section {
+    width:100%;
     height:auto;
-    padding-top:30px;
-    h3 {
-        margin-bottom:10px;
-        // outline:1px solid red;
+    &.instruction {
+      height:350px;
+      background:red;
+    }
+    &.top {
+      position:relative;
+      .mid {
+        width:80%;
+        height:400px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        .btCont {
+          padding:30px 0px 0px;
+          text-align:center;
+          display:flex;
+          gap:10px;
+          align-items:center;
+          justify-content:center;
+          button {
+            background:rgba(255,255,255,.7);
+            padding:20px 30px;
+            font-size:20px;
+            font-weight:bold;
+            cursor:pointer;
+          }
+        }
+        img {
+          height:55%;
+          position:relative;
+          top:0px;
+          left:50%;
+          transform:translateX(-50%);
+        }
+        h3, h4 {
+          margin:0px;
+          text-align:center;
+          color:white;
+          font-size:64px;
+          font-weight:bold;
+          font-style:italic;
+          letter-spacing:0.01em;
+          .navy {
+            color:#0b4370;
+            color:#a3a3a3;
+          }
+        }
+        h4 {
+          // outline:1px solid red;
+          font-size:32px;
+          letter-spacing:0.1em;
+          display:flex;
+          gap:20px;
+          &:before, &:after {
+            content:' ';
+            flex:1;
+            height:2px;
+            background:#a3a3a3;
+            position:relative;
+            top:17px;
+          }
+        }
       }
-    .btCont {
-      margin-top:-10px;
-      gap:10px;
     }
   }
+  // .welcome {
+  //   padding:20px;
+  //   position:relative;
+  //   width:300px;
+  //   height:100%;
+  //   outline:1px solid red;
+  //   &:before {
+  //     content:' ';
+  //     width:2px;
+  //     height: 83%;
+  //     background:rgba(255,255,255,.2);
+  //     position:absolute;
+  //     right:0px;
+  //     top:50%;
+  //     transform:translate(0%,-50%);
+  //   }
+  // }
+  // .signUp {
+  //   flex:1;
+  //   max-width:400px;
+  //   width:50%;
+  //   height:auto;
+  //   padding-top:30px;
+  //   h3 {
+  //       margin-bottom:10px;
+  //       // outline:1px solid red;
+  //     }
+  //   .btCont {
+  //     margin-top:-10px;
+  //     gap:10px;
+  //   }
+  // }
 }
 </style>

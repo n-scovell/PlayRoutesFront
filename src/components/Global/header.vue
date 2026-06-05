@@ -2,12 +2,15 @@
 import Avatar from '@/components/Global/user.vue'
 import NewMenu from '@/components/Global/topNav.vue'
 import { useAuthStore } from '@/stores/userAuth'
+import { RouterLink } from 'vue-router'
 const auth = useAuthStore()
 
 </script>
 <template>
     <header>
-        <img src="@/assets/images/PlayRoutesBW.png" style="opacity:1;"/>
+        <RouterLink to="/" v-if="auth.user">
+          <img src="@/assets/images/PlayRoutesBW.png" style="opacity:1;"/>
+        </RouterLink>
         <NewMenu />
         <!-- <RouterLink to="/create" v-if="auth.user">
             <button class="green-bt"><div></div>Create New Play</button>
