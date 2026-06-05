@@ -8,7 +8,7 @@ const auth = useAuthStore()
 </script>
 <template>
     <header>
-        <RouterLink to="/" v-if="auth.user">
+        <RouterLink to="/">
           <img src="@/assets/images/PlayRoutesBW.png" style="opacity:1;"/>
         </RouterLink>
         <NewMenu />
