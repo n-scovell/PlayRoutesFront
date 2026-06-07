@@ -91,6 +91,43 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.removeItem('token')
   }
 
+  async function updateUser(updates: {
+  id?: string
+  name?: string
+  sport?: string
+  team?: string
+  password?: string
+}) {
+  if (!user.value) return
+
+  const res = await fetch(
+    'https://play-route-back.vercel.app/api/users',
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: user.value.id,
+        ...updates,
+      }),
+    }
+  )
+
+  const data = await res.json()
+
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to update user')
+  }
+
+  user.value = {
+    ...user.value,
+    ...data,
+  }
+
+  return data
+}
+
  
 
   return {
@@ -105,7 +142,8 @@ export const useAuthStore = defineStore('auth', () => {
 
     createUser,
     login,
-    logout
+    logout,
+    updateUser
   }
 }, {
   persist: true
