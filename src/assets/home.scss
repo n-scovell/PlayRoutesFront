@@ -1,0 +1,130 @@
+.myCont {
+  position:relative;
+  width:100%;
+  height:auto;
+  background:rgba(255,255,255,.0);
+  display:flex;
+  flex-wrap:wrap;
+  gap:0px;
+  section {
+    width:100%;
+    height:auto;
+    &.createAccount {
+      position:relative;
+      height:700px;
+      overflow:hidden;
+      transition: all .5s;
+      .fieldImage {
+        opacity:1;
+        min-width:1800px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        z-index:0;
+      }
+      .mid {
+        width:90%;
+        max-width:1200px;
+        height:500px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        z-index:1;
+        .btCont {
+          padding:30px 0px 0px;
+          text-align:center;
+          display:flex;
+          gap:10px;
+          flex-direction:row;
+          align-items:center;
+          justify-content:center;
+          button {
+            background:rgba(255,255,255,.7);
+            padding:20px 30px;
+            font-size:20px;
+            font-weight:bold;
+            cursor:pointer;
+          }
+        }
+        img {
+          height:55%;
+          position:relative;
+          top:0px;
+          left:50%;
+          transform:translateX(-50%);
+          transition:height .2s;
+        }
+        h3, h4 {
+          margin:0px;
+          text-align:center;
+          color:white;
+          font-size:64px;
+          font-weight:bold;
+          font-style:italic;
+          letter-spacing:0.01em;
+          transition:font-size .2s;
+          .navy {
+            color:#0b4370;
+            color:#a3a3a3;
+          }
+        }
+        h4 {
+          font-size:32px;
+          letter-spacing:0.1em;
+          display:flex;
+          gap:20px;
+          transition:font-size .2s;
+          &:before, &:after {
+            content:' ';
+            flex:1;
+            height:2px;
+            background:#a3a3a3;
+            position:relative;
+            top:17px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .myCont {
+    section {
+      &.createAccount {
+        
+        height:420px;
+        opacity:1;
+        transition: all .5s;
+        .mid {
+          height:90%;
+          max-height:350px;
+
+          .btCont {
+            flex-direction:column;
+            button {
+              width:200px;
+            }
+          }
+          img {
+            height:30%;
+            transition:height .2s;
+          }
+          h3, h4 {
+            font-size:34px;
+            letter-spacing:0.01em;
+            transition:font-size .2s;
+          }
+          h4 {
+            font-size:22px;
+            &:before, &:after {
+              top:14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { useAuthStore } from '../stores/userAuth'
 import { Image } from '@unpic/vue'
 import fieldImage from '@/assets/images/field.jpg'
 import { RouterLink } from 'vue-router'
-
+import '../assets/home.css'
 const auth = useAuthStore()
 
 // const showModal = ref<boolean>(false)
@@ -93,7 +93,7 @@ const auth = useAuthStore()
     </div> -->
     <!-- <h1>Want to join Play Routes?</h1> -->
     <div class="myCont">
-      <section class="top">
+      <section class="createAccount">
         <div class="mid">
           <img src="@/assets/images/PlayRoutesBW.png" />
           <h3>PLAY <span class="navy">ROUTES</span></h3>
@@ -107,13 +107,7 @@ const auth = useAuthStore()
             </RouterLink>
           </div>
         </div>
-        <Image
-          :src="fieldImage"
-          alt="Play Routes"
-          layout="fullWidth"
-          priority               
-          :sizes="'(max-width: 768px) 100vw, 1200px'"
-        />
+        <img src="@/assets/images/field.jpg" width="100%" className="fieldImage" />
       </section>
       <section class="instruction">
         Hello there
@@ -144,144 +138,5 @@ const auth = useAuthStore()
   </main>
 </template>
 <style lang="scss">
-.loginCreds {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999; 
-  backdrop-filter: blur(13px);
-  .content {
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    z-index:99999;
-    width:300px;
-    color:white;
-    h3 {
-      text-align:center;
-      margin-bottom:20px;
-    }
-    .verify {
-      .inputCont {
-        margin-bottom:30px;
-      }
-    }
-  }
-}
-.myCont {
-  position:relative;
-  width:100%;
-  height:auto;
-  background:rgba(255,255,255,.0);
-  display:flex;
-  flex-wrap:wrap;
-  gap:0px;
-  section {
-    width:100%;
-    height:auto;
-    &.instruction {
-      height:350px;
-      background:red;
-    }
-    &.top {
-      position:relative;
-      .mid {
-        width:80%;
-        height:400px;
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        .btCont {
-          padding:30px 0px 0px;
-          text-align:center;
-          display:flex;
-          gap:10px;
-          align-items:center;
-          justify-content:center;
-          button {
-            background:rgba(255,255,255,.7);
-            padding:20px 30px;
-            font-size:20px;
-            font-weight:bold;
-            cursor:pointer;
-          }
-        }
-        img {
-          height:55%;
-          position:relative;
-          top:0px;
-          left:50%;
-          transform:translateX(-50%);
-        }
-        h3, h4 {
-          margin:0px;
-          text-align:center;
-          color:white;
-          font-size:64px;
-          font-weight:bold;
-          font-style:italic;
-          letter-spacing:0.01em;
-          .navy {
-            color:#0b4370;
-            color:#a3a3a3;
-          }
-        }
-        h4 {
-          // outline:1px solid red;
-          font-size:32px;
-          letter-spacing:0.1em;
-          display:flex;
-          gap:20px;
-          &:before, &:after {
-            content:' ';
-            flex:1;
-            height:2px;
-            background:#a3a3a3;
-            position:relative;
-            top:17px;
-          }
-        }
-      }
-    }
-  }
-  // .welcome {
-  //   padding:20px;
-  //   position:relative;
-  //   width:300px;
-  //   height:100%;
-  //   outline:1px solid red;
-  //   &:before {
-  //     content:' ';
-  //     width:2px;
-  //     height: 83%;
-  //     background:rgba(255,255,255,.2);
-  //     position:absolute;
-  //     right:0px;
-  //     top:50%;
-  //     transform:translate(0%,-50%);
-  //   }
-  // }
-  // .signUp {
-  //   flex:1;
-  //   max-width:400px;
-  //   width:50%;
-  //   height:auto;
-  //   padding-top:30px;
-  //   h3 {
-  //       margin-bottom:10px;
-  //       // outline:1px solid red;
-  //     }
-  //   .btCont {
-  //     margin-top:-10px;
-  //     gap:10px;
-  //   }
-  // }
-}
+
 </style>
