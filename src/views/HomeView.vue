@@ -106,6 +106,11 @@ const auth = useAuthStore()
             <button>LOGIN</button>
             </RouterLink>
           </div>
+          <div class="btCont" v-else>
+            <RouterLink to="/create">
+              <button>CREATE PLAY</button>
+            </RouterLink>
+          </div>
         </div>
         <img src="@/assets/images/field.jpg" width="100%" className="fieldImage" />
       </section>

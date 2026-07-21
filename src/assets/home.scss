@@ -94,18 +94,17 @@
   .myCont {
     section {
       &.createAccount {
-        
-        height:420px;
+        height:270px;
         opacity:1;
         transition: all .5s;
         .mid {
-          height:90%;
-          max-height:350px;
-
+          height:100%;
+          padding:20px 0px; 
           .btCont {
             flex-direction:column;
             button {
               width:200px;
+              padding:12px 0px;
             }
           }
           img {

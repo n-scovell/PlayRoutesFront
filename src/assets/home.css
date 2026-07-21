@@ -92,19 +92,20 @@
 
 @media only screen and (max-width: 600px) {
   .myCont section.createAccount {
-    height: 420px;
+    height: 270px;
     opacity: 1;
     transition: all 0.5s;
   }
   .myCont section.createAccount .mid {
-    height: 90%;
-    max-height: 350px;
+    height: 100%;
+    padding: 20px 0px;
   }
   .myCont section.createAccount .mid .btCont {
     flex-direction: column;
   }
   .myCont section.createAccount .mid .btCont button {
     width: 200px;
+    padding: 12px 0px;
   }
   .myCont section.createAccount .mid img {
     height: 30%;
