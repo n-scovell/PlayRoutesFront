@@ -7,7 +7,7 @@
 body {
   margin: 0px;
   background-image: url("@/assets/images/bck_blackGrain.png");
-  background-size: cover;
+  background-size: 100% fill;
   background-repeat: no-repeat;
   font-family: "Fjalla One", sans-serif;
 }
