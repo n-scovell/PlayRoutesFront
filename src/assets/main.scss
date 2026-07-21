@@ -69,68 +69,6 @@ body {
 }
 // -------------------------------------------------------------------------------------
 
-
-// HEADER
-// header {
-//   width:100%;
-//   height:70px;
-//   background-image:url('@/assets/images/bck_blackGrain.png');
-//   background-repeat:no-repeat;
-//   border-bottom:2px solid rgba(0,0,0,.7);
-//   box-shadow:0 5px 15px rgba(0,0,0,.5);
-//   position:relative;
-//   @include hdrFont;
-  // h4 {
-  //   color: $headerColor;
-  //   font-size:32px;
-  //   text-transform:uppercase;
-  //   position:relative;
-  //   top:50%;
-  //   margin-left:20px;
-  //   transform:translateY(-50%);
-  //   text-shadow:0 2px 3px rgba(255,255,255,.9);
-  // }
-  // button {
-  //   position:absolute;
-  //   top:50%;
-  //   right:10px;
-  //   transform:translate(0%, -50%);
-  //   div {
-  //     $sz:15px;
-  //     width:$sz;
-  //     height:$sz;
-  //     position:relative;
-  //     top:-2px;
-  //     margin-right:15px;
-  //     &:before, &:after {
-  //       content:' ';
-  //       width:100%;
-  //       height:3px;
-  //       background:white;
-  //       position:absolute;
-  //       top:50%;
-  //       left:50%;
-  //       transform:translate(-50%,-50%);
-  //     }
-  //     &:after {
-  //       height:100%;
-  //       width:3px;
-  //     }
-  //   }
-  // }
-  // &:before {
-  //   content:' ';
-  //   width:100%;
-  //   height:100%;
-  //   position:absolute;
-  //   top:0px;
-  //   left:0px;
-  //   background:rgba(0,0,0,.1);
-  // }
-// }
-//////////////////////////////////////////////
-    
-
 .page {
   display:flex;
   main {
@@ -139,10 +77,25 @@ body {
     color:$headerColor;
     h1 {
       @include hdrFont;
-      font-size:30px;
+      font-size:20px;
       color:$headerColor;
       padding:12px;
-      // border-bottom:2px solid rgba(255,255,255,.2);
+      background:rgba(0,0,0,.5);
+      display:flex;
+      position:relative;
+      &:before {
+        content:' ';
+        width:130px;
+        height:3px;
+        background-image:url('@/assets/images/h1hr.png');
+        background-repeat:no-repeat;
+        background-position:left center;
+        background-size:cover;
+        position:absolute;
+        left:10px;
+        bottom:10px;
+      }
+      
     }
     &.login {
       position:relative;

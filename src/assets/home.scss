@@ -9,9 +9,35 @@
   section {
     width:100%;
     height:auto;
+    &.instruction {
+      height:400px;
+      background:rgba(0,0,0,.8);
+      position:relative;
+      margin-bottom:100px;
+      .textBox {
+       position:absolute;
+       top:50%;
+       left:10%;
+       transform:translateY(-50%);
+
+       font-size:15px;
+       h3, p {
+        max-width:440px;
+       }
+       h3 {
+        font-size:30px;
+        text-transform:uppercase;
+        margin-bottom:2px;
+       }
+       p {
+        font-size:21px;
+        letter-spacing:0.01em;
+       }
+      }
+    }
     &.createAccount {
       position:relative;
-      height:700px;
+      height:400px;
       overflow:hidden;
       transition: all .5s;
       .fieldImage {
@@ -25,8 +51,9 @@
       }
       .mid {
         width:90%;
+        padding-top:20px;
         max-width:1200px;
-        height:500px;
+        height:90%;
         position:absolute;
         top:50%;
         left:50%;
@@ -42,14 +69,14 @@
           justify-content:center;
           button {
             background:rgba(255,255,255,.7);
-            padding:20px 30px;
+            padding:10px 30px;
             font-size:20px;
             font-weight:bold;
             cursor:pointer;
           }
         }
         img {
-          height:55%;
+          height:35%;
           position:relative;
           top:0px;
           left:50%;
@@ -94,11 +121,12 @@
   .myCont {
     section {
       &.createAccount {
-        height:270px;
+
+        height:410px;
         opacity:1;
         transition: all .5s;
         .mid {
-          height:100%;
+          height:80%;
           padding:20px 0px; 
           .btCont {
             flex-direction:column;

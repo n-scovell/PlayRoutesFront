@@ -36,7 +36,6 @@ const submitPlay = () => {
     ownerId: auth.user.id
   }
   console.log('SUBMITTED PLAY')
-  
   plays.createPlay(payload) 
   clearPlayers()
   title.value = ''
@@ -268,12 +267,13 @@ onMounted(async () => {
 <template>
   <main class="make">
 
-    <h1>Create Your Play</h1>
+    <h1>Your Play - {{ title }}</h1>
+    <div class="boardCont">
     <div class="board" ref="fuller">
       <div class="loading" :class="{active: plays.loading}"></div>
       <!-- FIELD STRATEGY -->
       <div class="field" >
-        <h3>{{ title }}</h3>
+        <!-- <h3>{{ title }}</h3> -->
         <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
         <div ref="container" class="playerLand">
           <div
@@ -360,12 +360,12 @@ onMounted(async () => {
         </li>
       </ul> 
     </div>
+    </div>
   </main>
 </template>
 <style lang="scss">
 
 * {touch-action: none;}
-
 $player:35px;
 @keyframes shrinkDown {
   0% {width:50%;height:50%;}
@@ -393,7 +393,7 @@ $player:35px;
     padding:5px 10px;
     cursor:pointer;
     &.active {
-      background:red;
+      background:rgb(24, 69, 192);
       color:white;
     }
   }
@@ -410,18 +410,23 @@ $player:35px;
     --progress: 100%;   /* Change this to whatever % you want */
   }
 }
-
+.boardCont {
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
 .board {
   display:flex;
-  border:2px solid rgba(255,255,255,.5);
+  // border:2px solid rgba(255,255,255,.5);
   width:100%;
-  height:450px;
-  max-width:98%;
-  min-width:350px;
+  flex:1;
+  // max-width:100%;
+  min-width:850px;
   position:relative;
   overflow:hidden;
-  margin-bottom:120px;
-  margin-left:10px;
+  margin-bottom:0px;
+  margin-left:0px;
   .loading {
     $w:100px;
     width: $w;

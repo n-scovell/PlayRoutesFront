@@ -115,30 +115,16 @@ const auth = useAuthStore()
         <img src="@/assets/images/field.jpg" width="100%" className="fieldImage" />
       </section>
       <section class="instruction">
-        Hello there
+        <div class="textBox">
+          <h3>
+            Play Routes is an online football playbook builder designed for coaches at every level.
+          </h3>
+          <p>
+            Create custom offensive and defensive plays, organize your formations, and build a playbook 
+            that's always available whenever inspiration strikes.
+          </p>
+        </div>
       </section>
-      <!-- <form class="signUp" @submit.prevent>
-        <h3>Want to join?</h3>
-        <div class="inputCont">
-            <label>Email:</label><input placeholder="Email" type="email" v-model="email" />
-        </div>
-        <div class="inputCont">
-            <label>Name:</label><input placeholder="Coach Name" type="text" v-model="name" />
-        </div>
-        <div class="inputCont">
-            <label>Sport:</label><input placeholder="Sport" type="text" v-model="sport" />
-        </div>
-        <div class="inputCont">
-            <label>Team Name:</label><input placeholder="Team Name" type="text" v-model="team" />
-        </div>
-        <div class="inputCont">
-            <label>Pasword:</label><input placeholder="Password" type="text" v-model="password" />
-        </div>
-        <div class="btCont">
-          <button class="formButton" type="button" @click="checkSignUp">NEW USER</button>
-          <button class="formButton" type="button" @click="clearMe">CLEAR</button>
-        </div>
-      </form> -->
     </div>
   </main>
 </template>

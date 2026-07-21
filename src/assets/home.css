@@ -11,9 +11,34 @@
   width: 100%;
   height: auto;
 }
+.myCont section.instruction {
+  height: 400px;
+  background: rgba(0, 0, 0, 0.8);
+  position: relative;
+  margin-bottom: 100px;
+}
+.myCont section.instruction .textBox {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  font-size: 15px;
+}
+.myCont section.instruction .textBox h3, .myCont section.instruction .textBox p {
+  max-width: 440px;
+}
+.myCont section.instruction .textBox h3 {
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.myCont section.instruction .textBox p {
+  font-size: 21px;
+  letter-spacing: 0.01em;
+}
 .myCont section.createAccount {
   position: relative;
-  height: 700px;
+  height: 400px;
   overflow: hidden;
   transition: all 0.5s;
 }
@@ -28,8 +53,9 @@
 }
 .myCont section.createAccount .mid {
   width: 90%;
+  padding-top: 20px;
   max-width: 1200px;
-  height: 500px;
+  height: 90%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -47,13 +73,13 @@
 }
 .myCont section.createAccount .mid .btCont button {
   background: rgba(255, 255, 255, 0.7);
-  padding: 20px 30px;
+  padding: 10px 30px;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 }
 .myCont section.createAccount .mid img {
-  height: 55%;
+  height: 35%;
   position: relative;
   top: 0px;
   left: 50%;
@@ -92,12 +118,12 @@
 
 @media only screen and (max-width: 600px) {
   .myCont section.createAccount {
-    height: 270px;
+    height: 410px;
     opacity: 1;
     transition: all 0.5s;
   }
   .myCont section.createAccount .mid {
-    height: 100%;
+    height: 80%;
     padding: 20px 0px;
   }
   .myCont section.createAccount .mid .btCont {
