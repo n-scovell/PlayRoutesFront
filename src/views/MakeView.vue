@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted  } from 'vue'
 import { useFormation } from '@/stores/formStore'
-import { useAuthStore } from '@/stores/userAuth'
+import { useAuthStore } from '@/stores/userAuth' 
 import { usePlayStore } from '@/stores/playStore'
 
 const forms = useFormation()
@@ -267,10 +267,10 @@ onMounted(async () => {
 <template>
   <main class="make">
 
-    <h1>Your Play - {{ title }}</h1>
+    <h1>Your Play {{ title }}</h1>
     <div class="boardCont">
     <div class="board" ref="fuller">
-      <div class="loading" :class="{active: plays.loading}"></div>
+      <!-- <div class="loading" :class="{active: plays.loading}"></div> -->
       <!-- FIELD STRATEGY -->
       <div class="field" >
         <!-- <h3>{{ title }}</h3> -->
@@ -331,8 +331,11 @@ onMounted(async () => {
               </div>
             </div>
           </div>
+          <!-- :disabled="plays.loading" :class="{active: plays.loading}"  -->
           <div class="btCont">
-            <button class="formButton" :disabled="plays.loading" :class="{active: plays.loading}" @click="submitPlay">Submit Play</button>
+            <button class="formButton" 
+            
+            @click="submitPlay">Submit Play</button>
           </div>
           <div class="inputCont">
             <p>Create formation:</p>

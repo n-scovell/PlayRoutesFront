@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, reactive, watch, computed, onMounted} from 'vue'
-// import { useAuthStore } from '@/stores/userAuth'
 import { usePlayStore } from '@/stores/playStore'
 import PlayCanvas from '@/components/PlayCanvas.vue'
 import type { ColorType, ToolType } from '@/composables/usePlayCanvasB'
@@ -19,7 +18,7 @@ const deleteMe = (id: string) => {
 </script>
 <template>
   <main class="plays">
-    <h1>Your playbook rules</h1>
+    <h1>Your playbook</h1>
     <section class="playsContainer" > 
       <div class="deleting" :class="{active: playsStore.deleting}">
         <p>LOADING</p>
