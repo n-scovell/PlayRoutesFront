@@ -498,7 +498,7 @@ $player:35px;
       width:100%;
       height:100%;
       background:rgba(0,0,0,.5);
-      transition:all .5s;
+      //transition:all .5s;
       padding:2% 10px 10px;
       li {
         width:90%;
@@ -511,7 +511,7 @@ $player:35px;
       &.active {
         width:200px;
         right:$toolWidth;
-        transition:all .5s;
+        // transition:all .5s;
       }
     }
     &.pop {
@@ -520,11 +520,11 @@ $player:35px;
       width:$toolWidth;
       height:100%;
       background:rgba(0,0,0,.5);
-      transition:all .5s;
+      // transition:all .5s;
       z-index:900;
       &.active {
         right:$toolWidth;
-        transition:all .5s;
+        // transition:all .5s;
       }
       &.deactive {
         opacity:.8;
