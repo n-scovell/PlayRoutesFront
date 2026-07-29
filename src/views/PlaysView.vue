@@ -50,11 +50,6 @@ const deleteMe = (id: string) => {
 
 
 
-const showMe = (p) => {
-  selectedPlay.value = p
-  showPlay.value = !showPlay.value
-}
-
 </script>
 <template>
 
