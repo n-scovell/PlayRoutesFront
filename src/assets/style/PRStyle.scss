@@ -19,6 +19,8 @@ $blueB: rgb(1, 121, 190);
   @include initials();
 }
 
+
+
 body {
   margin: 0px;
   @include back(transparent, '@/assets/images/bck_blackGrain.png', cover, auto, no-repeat);

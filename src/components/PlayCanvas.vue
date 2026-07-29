@@ -81,7 +81,6 @@ onMounted(() => {
   window.addEventListener('resize', resizeMe)
 })
 
-
 </script>
 
 <template>

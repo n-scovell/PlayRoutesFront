@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { ref, watch, onMounted  } from 'vue'
+import { ref, watch, onMounted, onUnmounted  } from 'vue'
 import { useFormation } from '@/stores/formStore'
 import { useAuthStore } from '@/stores/userAuth' 
 import { usePlayStore } from '@/stores/playStore'
 
-import { useRouter } from 'vue-router'
+onUnmounted(() => {
+  console.log('Maker unmounted')
+})
 
+import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const forms = useFormation()
@@ -74,6 +77,7 @@ const myPositionList = ref<PosType[]>([
   {id:0, pos:'qb', x:.5, y:.74, name:'quarterback'},
   {id:0, pos:'fb', x:.5, y:.83, name:'fullback'},
   {id:0, pos:'rb', x:.5, y:.92, name:'runningback'},
+  {id:0, pos:'tb', x:.5, y:.88, name:'tailback'},
   {id:0, pos:'wr', x:.7, y:.65, name:'wide reciever'},
   {id:0, pos:'sl', x:.65, y:.75, name:'slot reciever'},
   {id:0, pos:'te', x:.35, y:.7, name:'tight end'},

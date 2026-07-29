@@ -48,8 +48,8 @@ const signOut = () => {
       
     </form>
 
-    <Teleport to="body" v-if="showMessage">
-      <div class="messageOutput" :class="{green: auth.user}">
+    <Teleport to="body" >
+      <div class="messageOutput" :class="{green: auth.user}" v-if="showMessage">
         <p v-if="error" style="color:red">
         {{ error }}
         </p>

@@ -1,9 +1,18 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { usePlayStore } from '@/stores/playStore'
 import PlayCanvas from '@/components/PlayCanvas.vue'
 import type { ColorType, ToolType } from '@/composables/usePlayCanvasB'
 import { useFormation } from '@/stores/formStore'
+
+
+onMounted(() => {
+  console.log('Maker mounted')
+})
+
+onUnmounted(() => {
+  console.log('Maker unmounted')
+})
 
 const playsStore = usePlayStore()
 const formationStore = useFormation()
@@ -11,7 +20,7 @@ const formationStore = useFormation()
 const selectedColor = ref<ColorType>('white')
 const selectedTool = ref<ToolType>('pen')
 
-
+const showPlay =  ref<boolean>(false)
 
 
 const sortBy = ref<'title' | 'formation' | 'playType'>('title')
@@ -39,8 +48,23 @@ const deleteMe = (id: string) => {
   playsStore.deletePlay(id)
 }
 
+const showMe = () => {
+  showPlay.value = !showPlay.value
+}
+
 </script>
 <template>
+
+
+<!-- <Teleport to="body">
+  <div v-if="showPlay"class="selectedPlay" @pointerdown="showMe()">
+    <div class="modalContainer" @click.stop>
+      <button @pointerdown="showMe()">CLOSE</button>
+    </div>
+  </div>
+</Teleport> -->
+
+
   <main class="plays">
     <h1>Your playbook</h1>
     <div class="sorters">
@@ -69,6 +93,7 @@ const deleteMe = (id: string) => {
         v-for="p in sortedPlays"
         :key="p.id"
         class="indPlays"
+        @click="showMe()"
       >
         <div  class="field"> 
           <div class="addedPlayers">
@@ -102,3 +127,20 @@ const deleteMe = (id: string) => {
     </section>
   </main>
 </template>
+
+<style scoped lang="scss">
+.selectedPlay {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.5);
+  inset: 0;
+  z-index: 9999;
+  button {
+    background:white;
+    color:blue;
+  }
+}
+</style>
