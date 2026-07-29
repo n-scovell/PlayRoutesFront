@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
-import { Image } from '@unpic/vue'
-import fieldImage from '@/assets/images/field.jpg'
 const auth = useAuthStore()
 const showModal = ref<boolean>(false)
 const name = ref('')
