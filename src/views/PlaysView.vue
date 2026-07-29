@@ -8,7 +8,7 @@ import { useFormation } from '@/stores/formStore'
 const playsStore = usePlayStore()
 const formationStore = useFormation()
 
-const selectedPlay = ref<any>([])
+
 
 const selectedColor = ref<ColorType>('white')
 const selectedTool = ref<ToolType>('pen')
@@ -88,7 +88,7 @@ const showMe = (p) => {
         v-for="p in sortedPlays"
         :key="p.id"
         class="indPlays"
-        @pointerdown="openPlay()"
+        
       >
         <div  class="field"> 
           <div class="addedPlayers">
