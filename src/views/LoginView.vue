@@ -8,6 +8,7 @@ const password = ref('')
 const error = ref<string | null>(null)
 const loading = ref(false)
 const charged = ref(false)
+const showMessage = ref(false)
 
 const signIn = async () => {
   loading.value = true
@@ -15,10 +16,12 @@ const signIn = async () => {
   try {
     await auth.login(email.value, password.value)
     charged.value = true
+    showMessage.value = true
   } catch (err: any) {
     error.value = err.message || 'Login failed'
   } finally {
     loading.value = false
+    
   }  
 }
 const signOut = () => {
@@ -45,52 +48,20 @@ const signOut = () => {
       
     </form>
 
-    <Teleport to="body">
+    <Teleport to="body" v-if="showMessage">
       <div class="messageOutput" :class="{green: auth.user}">
         <p v-if="error" style="color:red">
         {{ error }}
         </p>
         <p v-if="auth.user">
-        Welcome back coach: {{ auth.user.name }}
+        Welcome back coach: <strong>{{ auth.user.name }}</strong>
         </p>
+        <div class="btCont">
+          <RouterLink to="/create"><button>CREATE PLAYS</button></RouterLink>
+          <RouterLink to="/plays"><button>CREATE PLAYS</button></RouterLink>
+        </div>
       </div>
     </Teleport>
     
   </main>
 </template>
-
-<style lang="scss">
-.messageOutput {
-  position:fixed;
-  top:80px;
-  right:10px;
-  max-width:350px;
-  width:70%;
-  background:rgba(236, 24, 24, 0.541);
-  color:white;
-  font-size:12px;
-  font-weight:bold;
-  font-family:sans-serif;
-  line-height:18px;
-  padding:10px;
-  display:none;
-  &.green {
-    display:block;
-    background:rgba(24, 236, 70, 0.541);
-  }
-}
-.signIn {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  max-width:500px;
-  width:70%;
-  height:auto;
-  /* outline:1px solid red; */
-  .btCont {
-    margin-top:-10px;
-    gap:10px;
-  }
-}
-</style>

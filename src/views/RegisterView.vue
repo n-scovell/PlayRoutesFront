@@ -72,38 +72,38 @@ const clearMe = () => {
 }
 </script>
 <template>
-  <main class="login">
+  <main>
   <h1>Register Your Account Now</h1>
   <div v-if="showModal" class="loginCreds">
-      <div class="content">
-        <h3>INPUT SENT CODE TO VERIFY</h3>
-        <form class="verify" @submit.prevent>
-          <div class="inputCont">
-              <label>Verify:</label><input placeholder="Verify Code" type="text" v-model="code" />
-          </div>
-          <div class="btCont">
-            <button class="formButton" type="button" @click="verifyCode">VERIFY</button>
-            <button class="formButton" type="button" @click="cancelcode">CANCEL</button>
-          </div>
-        </form>
-      </div>
+    <div class="content">
+      <form class="verify" @submit.prevent>
+        <h3>SENT CODE TO VERIFY</h3>
+        <div class="inputCont">
+            <label>Verify:</label><input placeholder="Verify Code" type="text" v-model="code" />
+        </div>
+        <div class="btCont">
+          <button class="formButton" type="button" @click="verifyCode">VERIFY</button>
+          <button class="formButton" type="button" @click="cancelcode">CANCEL</button>
+        </div>
+      </form>
     </div>
+  </div>
   <form class="signUp" @submit.prevent>
         <h3>Want to join?</h3>
         <div class="inputCont">
-            <label>Email:</label><input placeholder="Email" type="email" v-model="email" />
+            <label>Email:<input placeholder="Email" type="email" v-model="email" /></label>
         </div>
         <div class="inputCont">
-            <label>Name:</label><input placeholder="Coach Name" type="text" v-model="name" />
+            <label>Name:<input placeholder="Coach Name" type="text" v-model="name" /></label>
         </div>
         <div class="inputCont">
-            <label>Sport:</label><input placeholder="Sport" type="text" v-model="sport" />
+            <label>Sport:<input placeholder="Sport" type="text" v-model="sport" /></label>
         </div>
         <div class="inputCont">
-            <label>Team Name:</label><input placeholder="Team Name" type="text" v-model="team" />
+            <label>Team Name:<input placeholder="Team Name" type="text" v-model="team" /></label>
         </div>
         <div class="inputCont">
-            <label>Pasword:</label><input placeholder="Password" type="text" v-model="password" />
+            <label>Pasword:<input placeholder="Password" type="text" v-model="password" /></label>
         </div>
         <div class="btCont">
           <button class="formButton" type="button" @click="checkSignUp">NEW USER</button>
@@ -112,19 +112,3 @@ const clearMe = () => {
       </form>
   </main>
 </template>
-<style lang="scss">
-.signUp {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  max-width:400px;
-  width:50%;
-  height:auto;
-  /* outline:1px solid red; */
-  .btCont {
-    margin-top:-10px;
-    gap:10px;
-  }
-}
-</style>

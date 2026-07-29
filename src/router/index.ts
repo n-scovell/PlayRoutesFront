@@ -36,9 +36,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/profile',
     name: 'Profile',
-    meta: { icon: 'login',  transition: 'slide-left', active: 'avatar' },
+    meta: { icon: 'user_ico',  transition: 'slide-left', active: 'avatar' },
     component: () => import('../views/ProfileView.vue')
-  }, 
+  },
+  
   // {
   //   path: '/formations',
   //   name: 'Formations',

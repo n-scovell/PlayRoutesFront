@@ -1,157 +1,166 @@
-.myCont {
-  position:relative;
-  width:100%;
-  height:auto;
-  background:rgba(255,255,255,.0);
-  display:flex;
-  flex-wrap:wrap;
-  gap:0px;
-  section {
-    width:100%;
-    height:auto;
-    &.instruction {
-      height:400px;
-      background:rgba(0,0,0,.8);
-      position:relative;
-      margin-bottom:100px;
-      .textBox {
-       position:absolute;
-       top:50%;
-       left:10%;
-       transform:translateY(-50%);
+// .myBanners {
+//   position:relative;
+//   width:100%;
+//   height:auto;
+//   background:rgba(255,255,255,.0);
+//   display:flex;
+//   flex-wrap:wrap;
+//   gap:0px;
+//   section {
+//     width:100%;
+//     height:auto;
+//     &.instruction {
+//       height:400px;
+//       background:rgba(22, 18, 29, 0.8);
+//       background: linear-gradient(90deg,rgb(23, 26, 31) 0%, rgb(40, 41, 43) 100%);
+//       position:relative;
+//       display:flex;
+//       flex-direction:row;
+//       gap:20px;
+//       align-items:center;
+//       justify-content:center;
+//       .arrowBox {
+//         order:0;
+//         width:100px;
+//         height:250px;
+//       }
+//       .textBox {
+//         order:1;
+//         font-size:15px;
+//         color:white;
+//         h3, p {
+//           max-width:780px;
+//         }
+//         h3 {
+//           font-size:40px;
+//           letter-spacing:0.02em;
+//           text-transform:uppercase;
+//           margin-bottom:2px;
+//           text-shadow:2px 1px 2px #1b1b1b;
+//         }
+//         p {
+//           font-size:25px;
+//           letter-spacing:0.01em;
+//         }
+//       }
+//     }
+//     &.createAccount {
+//       position:relative;
+//       height:400px;
+//       overflow:hidden;
+//       transition: all .5s;
+//       .fieldImage {
+//         opacity:1;
+//         min-width:1800px;
+//         position:absolute;
+//         top:50%;
+//         left:50%;
+//         transform:translate(-50%,-50%);
+//         z-index:0;
+//       }
+//       .mid {
+//         width:90%;
+//         padding-top:20px;
+//         max-width:1200px;
+//         height:90%;
+//         position:absolute;
+//         top:50%;
+//         left:50%;
+//         transform:translate(-50%,-50%);
+//         z-index:1;
+//         .btCont {
+//           padding:30px 0px 0px;
+//           text-align:center;
+//           display:flex;
+//           gap:10px;
+//           flex-direction:row;
+//           align-items:center;
+//           justify-content:center;
+//           button {
+//             background:rgba(255,255,255,.7);
+//             padding:10px 30px;
+//             font-size:20px;
+//             font-weight:bold;
+//             cursor:pointer;
+//           }
+//         }
+//         img {
+//           height:35%;
+//           position:relative;
+//           top:0px;
+//           left:50%;
+//           transform:translateX(-50%);
+//           transition:height .2s;
+//         }
+//         h3, h4 {
+//           margin:0px;
+//           text-align:center;
+//           color:white;
+//           font-size:64px;
+//           font-weight:bold;
+//           font-style:italic;
+//           letter-spacing:0.01em;
+//           transition:font-size .2s;
+//           .navy {
+//             color:#0b4370;
+//             color:#a3a3a3;
+//           }
+//         }
+//         h4 {
+//           font-size:32px;
+//           letter-spacing:0.1em;
+//           display:flex;
+//           gap:20px;
+//           transition:font-size .2s;
+//           &:before, &:after {
+//             content:' ';
+//             flex:1;
+//             height:2px;
+//             background:#a3a3a3;
+//             position:relative;
+//             top:17px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-       font-size:15px;
-       h3, p {
-        max-width:440px;
-       }
-       h3 {
-        font-size:30px;
-        text-transform:uppercase;
-        margin-bottom:2px;
-       }
-       p {
-        font-size:21px;
-        letter-spacing:0.01em;
-       }
-      }
-    }
-    &.createAccount {
-      position:relative;
-      height:400px;
-      overflow:hidden;
-      transition: all .5s;
-      .fieldImage {
-        opacity:1;
-        min-width:1800px;
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        z-index:0;
-      }
-      .mid {
-        width:90%;
-        padding-top:20px;
-        max-width:1200px;
-        height:90%;
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        z-index:1;
-        .btCont {
-          padding:30px 0px 0px;
-          text-align:center;
-          display:flex;
-          gap:10px;
-          flex-direction:row;
-          align-items:center;
-          justify-content:center;
-          button {
-            background:rgba(255,255,255,.7);
-            padding:10px 30px;
-            font-size:20px;
-            font-weight:bold;
-            cursor:pointer;
-          }
-        }
-        img {
-          height:35%;
-          position:relative;
-          top:0px;
-          left:50%;
-          transform:translateX(-50%);
-          transition:height .2s;
-        }
-        h3, h4 {
-          margin:0px;
-          text-align:center;
-          color:white;
-          font-size:64px;
-          font-weight:bold;
-          font-style:italic;
-          letter-spacing:0.01em;
-          transition:font-size .2s;
-          .navy {
-            color:#0b4370;
-            color:#a3a3a3;
-          }
-        }
-        h4 {
-          font-size:32px;
-          letter-spacing:0.1em;
-          display:flex;
-          gap:20px;
-          transition:font-size .2s;
-          &:before, &:after {
-            content:' ';
-            flex:1;
-            height:2px;
-            background:#a3a3a3;
-            position:relative;
-            top:17px;
-          }
-        }
-      }
-    }
-  }
-}
+// @media only screen and (max-width: 600px) {
+//   .myCont {
+//     section {
+//       &.createAccount {
 
-@media only screen and (max-width: 600px) {
-  .myCont {
-    section {
-      &.createAccount {
-
-        height:410px;
-        opacity:1;
-        transition: all .5s;
-        .mid {
-          height:80%;
-          padding:20px 0px; 
-          .btCont {
-            flex-direction:column;
-            button {
-              width:200px;
-              padding:12px 0px;
-            }
-          }
-          img {
-            height:30%;
-            transition:height .2s;
-          }
-          h3, h4 {
-            font-size:34px;
-            letter-spacing:0.01em;
-            transition:font-size .2s;
-          }
-          h4 {
-            font-size:22px;
-            &:before, &:after {
-              top:14px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+//         height:410px;
+//         opacity:1;
+//         transition: all .5s;
+//         .mid {
+//           height:80%;
+//           padding:20px 0px; 
+//           .btCont {
+//             flex-direction:column;
+//             button {
+//               width:200px;
+//               padding:12px 0px;
+//             }
+//           }
+//           img {
+//             height:30%;
+//             transition:height .2s;
+//           }
+//           h3, h4 {
+//             font-size:34px;
+//             letter-spacing:0.01em;
+//             transition:font-size .2s;
+//           }
+//           h4 {
+//             font-size:22px;
+//             &:before, &:after {
+//               top:14px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

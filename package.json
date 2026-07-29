@@ -11,7 +11,10 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@dnd-kit/vue": "^0.5.0",
     "@unpic/vue": "^1.0.0",
+    "@vue-dnd-kit/core": "^2.4.7",
+    "@vueuse/core": "^14.3.0",
     "html2canvas": "^1.4.1",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",

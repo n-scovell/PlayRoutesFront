@@ -16,58 +16,23 @@
 //   }
 // }
 
-@mixin hdrFont {
-  font-family: "Fjalla One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+// @mixin hdrFont {
+//   font-family: "Fjalla One", sans-serif;
+//   font-weight: 400;
+//   font-style: normal;
+// }
 
-$darkBlue          :   #1B2929;
-$darkPurple        :   #778F5E;
-$headerColor       :   #F2F2F2;
-$green             :   #0EB056;
-$grayA             :   #2D2F33;
+// $darkBlue          :   #1B2929;
+// $darkPurple        :   #778F5E;
+// $headerColor       :   #F2F2F2;
+// $green             :   #0EB056;
+// $grayA             :   #2D2F33;
 
-
-
-$line: 55%;
-$under: $line + 10%;
-$shotgun: $line + 20%;
-$deep: $line + 30%;
-$playerSize:28%;
-
-
-
-.fjalla-one-regular {
-  font-family: "Fjalla One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-
-// BODY RELATIONS
-body {
-  margin: 0px;
-  background-image:url('@/assets/images/bck_blackGrain.png');
-  background-size:100% fill;
-  background-repeat:no-repeat;
-  font-family:"Fjalla One", sans-serif;
-}
-@media only screen and (max-width: 600px) {
-  body {
-  background-size:fill;
-  background:#333;
-  }
-}
-* {
-  box-sizing:border-box;
-  border: none;
-  outline: none;
-  text-decoration:none;
-  margin:0px;
-  padding:0px;
-}
-// -------------------------------------------------------------------------------------
+// $line: 55%;
+// $under: $line + 10%;
+// $shotgun: $line + 20%;
+// $deep: $line + 30%;
+// $playerSize:28%;
 
 .page {
   display:flex;
@@ -75,28 +40,28 @@ body {
     flex:1;
     padding:0px 0px 0px 0px;
     color:$headerColor;
-    h1 {
-      @include hdrFont;
-      font-size:20px;
-      color:$headerColor;
-      padding:12px;
-      background:rgba(0,0,0,.5);
-      display:flex;
-      position:relative;
-      &:before {
-        content:' ';
-        width:130px;
-        height:3px;
-        background-image:url('@/assets/images/h1hr.png');
-        background-repeat:no-repeat;
-        background-position:left center;
-        background-size:cover;
-        position:absolute;
-        left:10px;
-        bottom:10px;
-      }
+    // h1 {
+    //   @include hdrFont;
+    //   font-size:20px;
+    //   color:$headerColor;
+    //   padding:12px;
+    //   background:rgba(0,0,0,.5);
+    //   display:flex;
+    //   position:relative;
+    //   &:before {
+    //     content:' ';
+    //     width:130px;
+    //     height:3px;
+    //     background-image:url('@/assets/images/h1hr.png');
+    //     background-repeat:no-repeat;
+    //     background-position:left center;
+    //     background-size:cover;
+    //     position:absolute;
+    //     left:10px;
+    //     bottom:10px;
+    //   }
       
-    }
+    // }
     &.login {
       position:relative;
       height:500px;

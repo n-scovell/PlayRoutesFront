@@ -1,11 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+// import { ref, useState } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
-import { Image } from '@unpic/vue'
-import fieldImage from '@/assets/images/field.jpg'
+// import { Image } from '@unpic/vue'
+// import fieldImage from '@/assets/images/field.jpg'
 import { RouterLink } from 'vue-router'
 import '../assets/home.css'
 const auth = useAuthStore()
+
+
+const hdrA = `
+Play Routes is an online football playbook builder 
+designed for coaches at every level.
+`
+const hdrB = `
+Create custom offensive plays, organize your formations, 
+and build a playbook that's always available whenever inspiration strikes.
+`
 
 // const showModal = ref<boolean>(false)
 // const name = ref('')
@@ -76,27 +86,11 @@ const auth = useAuthStore()
 </script>
 <template>
   <main class="home">
-    
-    <!-- <div v-if="showModal" class="loginCreds">
-      <div class="content">
-        <h3>INPUT SENT CODE TO VERIFY</h3>
-        <form class="verify" @submit.prevent>
-          <div class="inputCont">
-              <label>Verify:</label><input placeholder="Verify Code" type="text" v-model="code" />
-          </div>
-          <div class="btCont">
-            <button class="formButton" type="button" @click="verifyCode">VERIFY</button>
-            <button class="formButton" type="button" @click="cancelcode">CANCEL</button>
-          </div>
-        </form>
-      </div>
-    </div> -->
-    <!-- <h1>Want to join Play Routes?</h1> -->
-    <div class="myCont">
+    <div class="homePageBanners">
       <section class="createAccount">
         <div class="mid">
           <img src="@/assets/images/PlayRoutesBW.png" />
-          <h3>PLAY <span class="navy">ROUTES</span></h3>
+          <h3>PLAY <span class="alt">ROUTES</span></h3>
           <h4>PLAN, PREPARE, PERFORM</h4>
           <div class="btCont" v-if="!auth.user">
             <RouterLink to="/register">
@@ -115,19 +109,14 @@ const auth = useAuthStore()
         <img src="@/assets/images/field.jpg" width="100%" className="fieldImage" />
       </section>
       <section class="instruction">
-        <div class="textBox">
-          <h3>
-            Play Routes is an online football playbook builder designed for coaches at every level.
-          </h3>
-          <p>
-            Create custom offensive and defensive plays, organize your formations, and build a playbook 
-            that's always available whenever inspiration strikes.
-          </p>
-        </div>
+          <div class="arrowBox">
+            <img src="@/assets/images/circleArrow.png" />
+          </div>
+          <div class="textBox">
+            <h3>{{hdrA}}</h3>
+            <p>{{hdrB}}</p>
+          </div>
       </section>
     </div>
   </main>
 </template>
-<style lang="scss">
-
-</style>

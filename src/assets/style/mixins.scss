@@ -1,0 +1,84 @@
+//INDEX
+// 202 - FONTS
+
+// 201 - FONT FAMILIES
+$head: "Fjalla One", sans-serif;
+$par: "Inter", sans-serif;
+$spec: "Racing Sans One", sans-serif;
+
+@mixin initials() {
+    box-sizing:border-box;
+    border: none;
+    outline: none;
+    text-decoration:none;
+    margin:0px;
+    padding:0px;
+    list-style-type:none;
+}
+
+@mixin font($fam: $par, $color: #333, $size: 15px, $weight: 500, $kern: .01em, $lh:20px, $style: normal, $trans: none, $shadow: none, $align: left ) {
+    color: $color;
+    font-family: $fam;
+    font-optical-sizing: auto;
+    font-weight: $weight;
+    font-size: $size;
+    font-style: $style;
+    letter-spacing: $kern;
+    text-transform: $trans;
+    text-shadow: $shadow;
+    text-align: $align;
+}
+
+@mixin size($w: auto, $h: auto, $minW: 0, $maxW: auto, $minH: auto, $maxH: auto ) {
+    width: $w;
+    height: $h;
+    min-width: $minW;
+    max-width: $maxW;
+    min-height: $minH;
+    max-height: $maxH;
+}
+
+@mixin flex( $dis:flex, $dir: row, $wrap: nowrap, $align: stretch, $just: start, $gap: 0 ) {
+    display: $dis;
+    flex-direction: $dir;
+    flex-wrap: $wrap;
+    align-items: $align;
+    justify-content: $just;
+    gap: $gap;
+}
+
+@mixin pos($pos: relative, $top: none, $left: none, $bottom: none, $right: none, $trans: none ) {
+    position: $pos;
+    top: $top;
+    left: $left;
+    bottom: $bottom;
+    right: $right;
+    transform: $trans;
+}
+
+@mixin rel() {
+    position:relative;
+}
+
+@mixin back($color: transparent, $img: none, $size: contain, $pos: 0px 0px, $rep: no-repeat, $blur: 0px) {
+    background: $color;
+    background-image: url($img);
+    background-size: $size;
+    background-position: $pos;
+    background-repeat: $rep;
+    backdrop-filter: blur($blur);
+}
+
+@mixin pad($t:0px, $r:0px, $b:0px, $l:0px) {
+    padding:$t $r $b $l;
+}
+
+@mixin backColor($color: transparent) {
+    background: $color;
+}
+
+@mixin inpCaret($color: #000000, $animation: revert, $shape: bar ) {
+    caret-color: $color;
+    caret-animation: $animation;
+    caret-shape: $shape;
+}

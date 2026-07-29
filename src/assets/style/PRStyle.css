@@ -1,0 +1,1696 @@
+* {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+body {
+  margin: 0px;
+  background: transparent;
+  background-image: url("@/assets/images/bck_blackGrain.png");
+  background-size: cover;
+  background-position: auto;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(0px);
+}
+
+h1, h2, h3, h4, h5 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  margin: 0px;
+}
+
+button {
+  background: transparent;
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(0px);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+h1 {
+  background: rgba(15, 15, 15, 0.5);
+  font-size: 25px;
+  padding: 10px 10px;
+}
+
+header {
+  width: auto;
+  height: 80px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+  background: #333;
+  background-image: url("@/assets/images/bck_blackGrain.png");
+  background-size: cover;
+  background-position: auto;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(0px);
+  z-index: 9999;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+header img {
+  width: auto;
+  height: 70%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  top: 50%;
+  left: 5px;
+  bottom: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+header nav {
+  position: relative;
+  top: 0px;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 10px;
+  padding-left: 20px;
+}
+header nav button {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  header img {
+    position: relative;
+    top: 50%;
+    left: 10px;
+    bottom: 0;
+    right: 0;
+    transform: translateY(-50%);
+  }
+}
+.homePageBanners {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgba(255, 255, 255, 0);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+}
+.homePageBanners section {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+}
+.homePageBanners section.instruction {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(16, 15, 22);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px 0px;
+}
+.homePageBanners section.instruction .arrowBox {
+  width: 100px;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.homePageBanners section.instruction .arrowBox img {
+  width: 100%;
+  margin: 0px;
+}
+.homePageBanners section.instruction .textBox {
+  width: 50%;
+  height: auto;
+  min-width: 220px;
+  max-width: 850px;
+  min-height: auto;
+  max-height: auto;
+}
+.homePageBanners section.instruction .textBox h3 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 35px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+.homePageBanners section.instruction .textBox p {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 22px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+.homePageBanners section.createAccount {
+  position: relative;
+  width: auto;
+  height: 400px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+.homePageBanners section.createAccount .fieldImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  min-width: 1200px;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  z-index: 0;
+}
+.homePageBanners section.createAccount .mid {
+  width: 90%;
+  height: 90%;
+  min-width: 0;
+  max-width: 900px;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  padding-top: 20px;
+  z-index: 1;
+}
+.homePageBanners section.createAccount .mid .btCont {
+  padding: 30px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.homePageBanners section.createAccount .mid .btCont button {
+  background: #f5f5f5;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  padding: 9px 30px;
+}
+.homePageBanners section.createAccount .mid img {
+  width: auto;
+  height: 35%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  top: 0px;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translateX(-50%);
+  transition: height 0.2s;
+}
+.homePageBanners section.createAccount .mid h3, .homePageBanners section.createAccount .mid h4 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 64px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  margin: 0px;
+  transition: font-size 0.2s;
+}
+.homePageBanners section.createAccount .mid h3 .alt, .homePageBanners section.createAccount .mid h4 .alt {
+  color: #a3a3a3;
+}
+.homePageBanners section.createAccount .mid h4 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 32px;
+  font-style: italic;
+  letter-spacing: 0.09em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 20px;
+  transition: font-size 0.2s;
+}
+.homePageBanners section.createAccount .mid h4:before, .homePageBanners section.createAccount .mid h4:after {
+  content: " ";
+  width: auto;
+  height: 2px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #a3a3a3;
+  position: relative;
+  top: 17px;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  flex: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  .homePageBanners {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: start;
+    gap: 0px;
+  }
+  .homePageBanners section.instruction {
+    width: auto;
+    height: auto;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    color: #333;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 15px;
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: center;
+    transition: all 0.3s;
+    padding: 40px 20px;
+  }
+  .homePageBanners section.instruction .arrowBox {
+    display: none;
+  }
+  .homePageBanners section.instruction .textBox {
+    width: 90%;
+    height: auto;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    padding: 0px;
+  }
+  .homePageBanners section.instruction .textBox h3 {
+    font-size: 25px;
+    text-align: center;
+  }
+  .homePageBanners section.instruction .textBox p {
+    font-size: 15px;
+    text-align: center;
+  }
+  .homePageBanners section.createAccount {
+    width: auto;
+    height: 350px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    transition: all 0.5s;
+  }
+  .homePageBanners section.createAccount .mid {
+    width: auto;
+    height: 80%;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    padding: 0px 0px;
+  }
+  .homePageBanners section.createAccount .mid .btCont {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: start;
+    gap: 10px;
+    margin-top: -10px;
+  }
+  .homePageBanners section.createAccount .mid .btCont button {
+    width: 200px;
+    height: auto;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    font-size: 15px;
+    padding: 12px 0px;
+  }
+  .homePageBanners section.createAccount .mid img {
+    height: 40%;
+    transition: height 0.2s;
+  }
+  .homePageBanners section.createAccount .mid h3, .homePageBanners section.createAccount .mid h4 {
+    font-size: 30px;
+    letter-spacing: 0.01em;
+    transition: font-size 0.2s;
+  }
+  .homePageBanners section.createAccount .mid h4 {
+    font-size: 15px;
+  }
+  .homePageBanners section.createAccount .mid h4:before, .homePageBanners section.createAccount .mid h4:after {
+    top: 14px;
+  }
+}
+main {
+  position: relative;
+}
+
+form {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+form.signUp, form.signIn {
+  width: 80%;
+  height: auto;
+  min-width: 150px;
+  max-width: 350px;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  top: 0%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  padding-top: 20px;
+  margin-bottom: 50px;
+}
+form.signUp:before, form.signIn:before {
+  content: " ";
+  width: 200px;
+  height: 250px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/images/circleArrow.png");
+  background-size: auto 100%;
+  background-position: right center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(0px);
+  position: absolute;
+  top: 50%;
+  left: -230px;
+  bottom: none;
+  right: none;
+  transform: translate(0%, -50%);
+  opacity: 1;
+  transition: opacity 0.3s 0.5s;
+}
+form.signIn:before {
+  display: none;
+}
+form.signIn .btCont {
+  position: relative;
+  top: 20px;
+}
+form.submitPlay {
+  width: 90%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  padding: 20px;
+}
+form.submitPlay .inputCont h3 {
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+form.submitPlay .inputCont input, form.submitPlay .inputCont .dropDownInd {
+  background: rgba(255, 255, 255, 0.6);
+  color: black;
+}
+form.submitPlay .inputCont input:focus, form.submitPlay .inputCont .dropDownInd:focus {
+  background: rgba(255, 255, 255, 0.8);
+}
+form.submitPlay .btCont button {
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+form h3 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 25px;
+  font-style: italic;
+  letter-spacing: 0.09em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  margin: 10px 0px;
+}
+form .btCont {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0px;
+  transition: all 0.3s 0.1s;
+}
+form .btCont input, form .btCont .dropDownInd, form .btCont textarea {
+  background: rgba(255, 255, 255, 0.5);
+}
+form .btCont button {
+  background: #f5f5f5;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  padding: 10px 20px;
+  transition: all 0.3s 0.1s;
+}
+form .btCont button:hover {
+  background: #242222;
+  color: #f5f5f5;
+}
+form .inputCont {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+form .inputCont label {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 5px;
+  cursor: pointer;
+}
+form .inputCont .selectHolder {
+  position: relative;
+  margin: 10px 0px;
+}
+form .inputCont .selectHolder .dropDownCase {
+  position: absolute;
+  top: 24px;
+  left: 0%;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(161, 161, 161);
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  z-index: 10;
+}
+form .inputCont .selectHolder .dropDownCase div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 13px;
+  background: transparent;
+  padding: 20px 20px;
+}
+form .inputCont .selectHolder .dropDownCase div button {
+  color: #242222;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+form .inputCont .selectHolder .dropDownCase.active {
+  background: red;
+}
+form .inputCont .selectHolder .dropDownCase .short {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+form .inputCont .selectHolder .dropDownCase.inactive {
+  background: red;
+  display: none;
+}
+form .inputCont input, form .inputCont .dropDownInd, form .inputCont textarea {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 0.05em;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  caret-color: #242222;
+  caret-animation: revert;
+  caret-shape: underscore;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 10px 0px 10px 20px;
+}
+form .inputCont input::-moz-placeholder, form .inputCont .dropDownInd::-moz-placeholder, form .inputCont textarea::-moz-placeholder {
+  color: transparent;
+}
+form .inputCont input::placeholder, form .inputCont .dropDownInd::placeholder, form .inputCont textarea::placeholder {
+  color: transparent;
+}
+form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont textarea:focus {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@media only screen and (max-width: 600px) {
+  form.signUp:before {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  form .btCont {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transition: all 0.3s 0.1s;
+  }
+  form .btCont button {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    text-align: center;
+    transition: all 0.3s 0.1s;
+  }
+}
+.loginCreds {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2;
+}
+.loginCreds .content {
+  width: 650px;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: 0;
+  right: 0;
+  transform: translate(-50%, -50%);
+  border: 1px solid #a3a3a3;
+  padding: 20px;
+}
+.loginCreds .content form {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  margin-bottom: 10px;
+}
+.loginCreds .content form h3 {
+  color: #333;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  margin: 20px 0px;
+}
+.loginCreds .content form .inputCont label {
+  color: #333;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+}
+.loginCreds .content form .inputCont input {
+  width: 150px;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  margin: auto;
+  padding: 10px 0px;
+}
+
+* {
+  touch-action: none;
+}
+
+.boardCont {
+  width: auto;
+  height: 90vh;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+  overflow: hidden;
+}
+.boardCont .board {
+  width: auto;
+  height: auto;
+  min-width: 250px;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+.boardCont .board .player {
+  width: 40px;
+  height: 40px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  color: #242222;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 2px solid rgba(138, 137, 137, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: 8000;
+  cursor: grab;
+}
+.boardCont .board .player.remove:before, .boardCont .board .player.remove:after {
+  background: #dd1919;
+  color: white;
+  transition: all 0.5s;
+}
+.boardCont .board .player:before, .boardCont .board .player:after {
+  content: attr(myText);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: #242222;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.5s;
+}
+.boardCont .board .field {
+  flex: 1;
+  position: relative;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #242222;
+  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-size: cover;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(0px);
+}
+.boardCont .board .field .canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  touch-action: none;
+  z-index: 2;
+}
+.boardCont .board .field .gridBox {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+}
+.boardCont .board .field .gridBox .lineOfScrimmage {
+  position: absolute;
+  top: 65%;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 10px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/maker/line.png");
+  background-size: contain;
+  background-position: center -5px;
+  background-repeat: repeat-x;
+  backdrop-filter: blur(0px);
+}
+.boardCont .board .field .gridBox .gridLine {
+  flex: 1;
+  border-right: 1px dashed rgba(255, 255, 255, 0.9);
+}
+.boardCont .board .field .gridBox .gridLine:last-child {
+  border-right: none;
+}
+.boardCont .board .field .playerLand {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.boardCont .board .toolbox {
+  flex: 1;
+  width: auto;
+  height: auto;
+  min-width: 10px;
+  max-width: 50px;
+  min-height: auto;
+  max-height: auto;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
+  z-index: 3;
+}
+.boardCont .board .toolbox.toolInfo, .boardCont .board .toolbox.popTools {
+  background: rgba(0, 0, 0, 0.7);
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.5s 0.1s;
+}
+.boardCont .board .toolbox.toolInfo.active, .boardCont .board .toolbox.popTools.active {
+  opacity: 1;
+  z-index: 9999;
+  right: 50px;
+  transition: opacity 0.5s 0.2s;
+}
+.boardCont .board .toolbox li {
+  width: 38px;
+  height: 38px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  border: 3px solid #f5f5f5;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.boardCont .board .toolbox li.info button {
+  color: #f5f5f5;
+  font-family: serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 28px;
+  font-style: italic;
+  letter-spacing: 0em;
+  text-transform: lowercase;
+  text-shadow: none;
+  text-align: center;
+}
+.boardCont .board .toolbox li.pen button {
+  position: relative;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: rotate(-45deg);
+}
+.boardCont .board .toolbox li.pen button:after {
+  content: " ";
+  width: 70%;
+  height: 30%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(0% 50%, 30% 0%, 80% 0%, 80% 95%, 85% 95%, 85% 0%, 100% 0%, 100% 100%, 30% 100%);
+}
+.boardCont .board .toolbox li.color button {
+  font-weight: 400;
+}
+.boardCont .board .toolbox li.color.red button {
+  border: none;
+  background: #dd1919;
+}
+.boardCont .board .toolbox li.color.blue button {
+  border: none;
+  background: #301283;
+}
+.boardCont .board .toolbox li.color.white button {
+  border: none;
+  color: #242222;
+  background: #ffffff;
+}
+.boardCont .board .toolbox li.color.yellow button {
+  border: none;
+  color: black;
+  background: #f3ff44;
+}
+.boardCont .board .toolbox li.color button {
+  background: #242222;
+  position: relative;
+  overflow: hidden;
+}
+.boardCont .board .toolbox li.color button .colors {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+}
+.boardCont .board .toolbox li.color button .colors div {
+  flex: 0 0 50%;
+  height: 50%;
+}
+.boardCont .board .toolbox li.color button .colors div:nth-child(1) {
+  background: #ffffff;
+}
+.boardCont .board .toolbox li.color button .colors div:nth-child(2) {
+  background: #dd1919;
+}
+.boardCont .board .toolbox li.color button .colors div:nth-child(3) {
+  background: #301283;
+}
+.boardCont .board .toolbox li.color button .colors div:nth-child(4) {
+  background: #f3ff44;
+}
+.boardCont .board .toolbox li.select {
+  position: relative;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: rotate(-45deg);
+}
+.boardCont .board .toolbox li.select button {
+  background: #301283;
+}
+.boardCont .board .toolbox li.select button:before {
+  content: " ";
+  width: 70%;
+  height: 45%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(0% 50%, 50% 0%, 50% 25%, 100% 25%, 100% 75%, 50% 75%, 50% 100%);
+}
+.boardCont .board .toolbox li.erase {
+  position: relative;
+}
+.boardCont .board .toolbox li.erase button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+}
+.boardCont .board .toolbox li.erase button.erase {
+  background: #dd1919;
+  position: relative;
+}
+.boardCont .board .toolbox li.erase button.erase .lid {
+  width: 50%;
+  height: 10%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+}
+.boardCont .board .toolbox li.erase button.erase:after {
+  content: " ";
+  width: 48%;
+  height: 45%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+}
+.boardCont .board .toolbox li.erase button.erase:before {
+  content: " ";
+  width: 30%;
+  height: 15%;
+  background: white;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%, 70% 30%, 30% 30%, 30% 100%, 0% 100%);
+}
+.boardCont .board .toolbox li.erase button.select {
+  background: blue;
+}
+.boardCont .board .toolbox li.erase button.active {
+  display: block;
+}
+.boardCont .board .toolbox li button {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+.boardCont .board .toolbox.toolInfo {
+  position: absolute;
+  top: 0px;
+  left: none;
+  bottom: none;
+  right: -500px;
+  transform: 50px;
+  width: 100%;
+  height: 100%;
+  min-width: 100px;
+  max-width: 450px;
+  min-height: auto;
+  max-height: auto;
+}
+.boardCont .board .toolbox.popTools {
+  position: absolute;
+  top: 0px;
+  left: none;
+  bottom: none;
+  right: -500px;
+  transform: 50px;
+  width: 100%;
+  height: 100%;
+  min-width: 100px;
+  max-width: 280px;
+  min-height: auto;
+  max-height: auto;
+}
+.boardCont .board .toolbox.popTools h3 {
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+.boardCont .board .toolbox.popTools.positions {
+  gap: 8px;
+}
+.boardCont .board .toolbox.popTools.positions .popDisplay {
+  width: 70%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+.boardCont .board .toolbox.popTools.positions .popDisplay li {
+  font-size: 12px;
+}
+.boardCont .board .toolbox.popTools.positions .popDisplay p {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  left: 48px;
+  bottom: none;
+  right: none;
+  transform: translate(0%, -50%);
+}
+
+.sorters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+  padding: 20px 26px 10px;
+}
+.sorters h4 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  margin-right: 10px;
+}
+.sorters select {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+@supports ((-webkit-appearance: base-select) or (-moz-appearance: base-select) or (appearance: base-select)) {
+  .sorters select, .sorters select::picker(select) {
+    -webkit-appearance: base-select;
+       -moz-appearance: base-select;
+            appearance: base-select;
+  }
+}
+.sorters select::picker(select) {
+  position: relative;
+  top: -30px;
+  background-color: #f5f5f5;
+  width: 300px;
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.sorters select option {
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: #1f2937;
+  cursor: pointer;
+}
+.sorters select option:option-checked {
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.playsContainer {
+  position: relative;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  height: auto;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 300px;
+  max-height: 100vh;
+  padding: 30px 10px;
+  margin: 0px;
+}
+.playsContainer .indPlays {
+  flex: 1;
+  position: relative;
+  width: auto;
+  height: auto;
+  min-width: 280px;
+  max-width: 310px;
+  min-height: auto;
+  max-height: auto;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 10px black;
+  cursor: grab;
+}
+.playsContainer .indPlays.active {
+  outline: 3px solid rgba(255, 188, 62, 0.8);
+}
+.playsContainer .indPlays .field {
+  background: transparent;
+  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(0px);
+  position: relative;
+  width: 100%;
+  height: 150px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.playsContainer .indPlays .field .canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.playsContainer .indPlays .field .addedPlayers {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.playsContainer .indPlays .field .addedPlayers .player {
+  width: 10px;
+  height: 10px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: #f5f5f5;
+  border-radius: 50%;
+  margin: 3px;
+  z-index: 0;
+}
+.playsContainer .indPlays .playInfo {
+  background: rgb(18, 17, 43);
+  text-align: center;
+  border-top: 3px solid rgb(46, 45, 45);
+}
+.playsContainer .indPlays .playInfo h3 {
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  padding: 15px 0px;
+  background: rgba(255, 255, 255, 0);
+  background-image: url("@/assets/images/slash.png");
+  background-size: 60% 7px;
+  background-position: center 95%;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(1px);
+}
+.playsContainer .indPlays .playInfo h4 strong {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.playsContainer .indPlays .playInfo h4 {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.playsContainer .indPlays .playInfo button {
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  padding: 11px 20px;
+  margin: 20px 0px 0px;
+  background: #f5f5f5;
+}
+
+.messageOutput {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  width: auto;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgba(0, 0, 0, 0.9);
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(10px);
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 25px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 70px 150px;
+}
+.messageOutput strong {
+  display: block;
+  color: rgb(1, 121, 190);
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 65px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.messageOutput p {
+  color: white;
+}
+.messageOutput .btCont {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 10px;
+}
+.messageOutput .btCont button {
+  flex: 1;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  padding: 11px 20px;
+  margin: 20px 0px 0px;
+  background: #f5f5f5;
+}/*# sourceMappingURL=PRStyle.css.map */

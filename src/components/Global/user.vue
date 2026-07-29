@@ -13,6 +13,10 @@
     return new URL(`../../assets/icons/alph/${auth.teamName![0]}.png`, import.meta.url).href
   })
 
+  const avatarImg = computed(() => {
+    return new URL(`../../assets/icons/alph/${auth.teamName![0]}.png`, import.meta.url).href
+  })
+
   const revealDrop = () => {
     showDrop.value = !showDrop.value
   }
@@ -29,6 +33,11 @@
   watch(() => route.path, () => {
     showDrop.value = false
   })
+
+  const iconSrc = computed(() => {
+  if (!route.meta.icon) return ''
+  return new URL(`../assets/icons/${route.meta.icon}.png`, import.meta.url).href
+})
 
 </script>
 <template>
@@ -52,7 +61,7 @@
         <!-- <RouterLink to="/profile"></RouterLink> -->
         <button @pointerdown="signOut">Log Out</button>
       </div>
-      <button v-if="!auth.user">Create Account</button>
+      <button v-if="!auth.user"><RouterLink to="/register">Create Account</RouterLink></button>
     </div>
   </div>
 </template>
@@ -112,20 +121,25 @@
       }
     }
     .drop {
-      width:300px;
-      background:rgba(0,0,0,.5);
+      width:200px;
+      background:rgba(0,0,0,1);
       position:absolute;
       top:100%;
       right:0px;
-      z-index:555;
       display:flex;
       flex-wrap:wrap;
       flex-direction:column;
       padding:20px;
+      z-index:9999;
+      a {
+        color:inherit;
+      }
       button {
         display:block;
         background:transparent;
         color:white;
+        font-size:20px;
+        font-weight:bold;
         padding:5px 10px;
       }
     }

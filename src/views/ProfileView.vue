@@ -29,7 +29,6 @@ async function sendMe() {
   <main class="profile">
   <h1>YOUR PROFILE</h1>
     <form class="signIn" @submit.prevent>
-      <p>{{ auth.user!.id }}</p>
       <div class="inputCont">
         <label>Name:</label><input :placeholder="auth.user!.name" type="text" v-model="name" />
       </div>

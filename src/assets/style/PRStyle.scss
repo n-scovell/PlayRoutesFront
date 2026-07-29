@@ -1,0 +1,1217 @@
+// INDEX
+// 101 - HEADER
+// 102 - HOME BANNERS
+
+@import "./mixins";
+// @import "./vars";
+
+$white: #f5f5f5;
+$black: #242222;
+$blackB: rgba(0,0,0, .9);
+$gray: #a3a3a3;
+$grayB: rgba(255,255,255,.3);
+$grayC: rgba(255,255,255,.1);
+$blueA: rgba(22, 18, 29, 1);
+$blueB: rgb(1, 121, 190);
+
+//UNIVERSALS
+* {
+  @include initials();
+}
+
+body {
+  margin: 0px;
+  @include back(transparent, '@/assets/images/bck_blackGrain.png', cover, auto, no-repeat);
+}
+
+h1, h2, h3, h4, h5 {
+  @include font($head,$white, 15px, 500, .01em, 20px, italic, none);
+  margin:0px;
+}
+button {
+  @include back(transparent);
+  border:none;
+  outline:none;
+  cursor:pointer;
+}
+h1 {
+  @include backColor(rgba(15, 15, 15, 0.5));
+  font-size:25px;
+  padding:10px 10px;
+}
+
+
+/// 101 - HEADER
+header {
+  @include size(auto, 80px);
+  @include rel();
+  @include flex(flex, row, nowrap, stretch, start);
+  @include back(#333, '@/assets/images/bck_blackGrain.png', cover, auto, no-repeat);
+  z-index:9999;
+  border-bottom:2px solid rgba(0,0,0,.7);
+  box-shadow:0 5px 15px rgba(0,0,0,.5);
+  img {
+    @include size(auto, 70%);
+    @include pos(relative, 50%, 5px, 0, 0, translateY(-50%));
+  }
+  nav {
+    @include pos(relative, 0px);
+    @include flex(flex, row, nowrap, stretch, start, 10px);
+    padding-left:20px;
+    button {
+      @include font($par, $white, 15px, bold, .08em, 20px, normal, none);
+      @include backColor();
+      cursor:pointer;
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  header {
+    img {
+      @include pos(relative, 50%, 10px, 0, 0, translateY(-50%));
+    }
+  }
+}
+// 101 - END HEADER
+
+
+// 102 - HOME BANNERS
+.homePageBanners {
+  @include rel();
+  @include size(100%, auto);
+  @include backColor(rgba(255,255,255,.0));
+  @include flex(flex, column, wrap);
+  section {
+    @include size(auto, auto);
+    @include rel();
+    &.instruction {
+      @include size(auto, auto);
+      @include backColor(rgb(16, 15, 22));
+      @include rel();
+      @include flex($align: center, $just: center, $gap: 20px );
+      padding:50px 0px;
+      .arrowBox {
+        @include size(100px, auto);
+        img {
+          width:100%;
+          margin:0px;
+        }
+      }
+      .textBox {
+        @include size(50%, auto, 220px, 850px);
+        h3 {
+          @include font($head, $white, 35px, bold, .04em, 30px, normal, uppercase, $align:left);
+        }
+        p {
+          @include font($par, $white, 22px, bold, .05em, 20px, normal, none);
+        }
+      }
+    }
+    &.createAccount {
+      @include rel();
+      @include size(auto, 400px);
+      
+      transition: all .5s;
+      overflow:hidden;
+      .fieldImage {
+        @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+        @include size(100%, auto, 1200px);
+        z-index:0;
+      }
+      .mid {
+        @include size(90%, 90%, $maxW:900px);
+        @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+        padding-top:20px;
+        z-index:1;
+        .btCont {
+          padding:30px 0px 0px;
+          @include flex(flex, row, nowrap, center, center, 20px);
+          button {
+            @include backColor($white);
+            @include font($head, $black, 30px, bold, .02em, 20px, normal, uppercase, $align:center);
+            padding:9px 30px;
+          }
+        }
+        img {
+          @include size(auto, 35%);
+          @include pos(relative, 0px, 50%, $trans:translateX(-50%));
+          transition:height .2s;
+        }
+        h3, h4 {
+          @include font($head, $white, 64px, bold, .01em, 20px, italic, none, none, center);
+          margin:0px;
+          transition:font-size .2s;
+          .alt {
+            color: $gray;
+          }
+        }
+        h4 {
+          @include font($head, $white, 32px, bold, .09em, 20px, italic, none, none, center);
+          @include flex(flex, $gap: 20px);
+          transition:font-size .2s;
+          &:before, &:after {
+            content:' ';
+            @include size(auto, 2px);
+            @include backColor($gray);
+            @include pos(relative, 17px);
+            flex:1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .homePageBanners {
+    @include flex(flex, column, wrap, $gap: 0px);
+    section {
+      &.instruction {
+        @include size(auto, auto);
+        @include flex($dir:column, $align:center, $just: center);
+        @include font($align: center);
+        transition: all .3s;
+        padding:40px 20px;
+        .arrowBox {
+          display:none;
+        }
+        .textBox {
+          @include size(90%, auto);
+          padding:0px;
+          h3 {
+            font-size:25px;
+            text-align:center;
+          }
+          p {
+            font-size:15px;
+            text-align:center;
+          }
+        }
+      }
+      &.createAccount {
+        @include size(auto, 350px);
+        transition: all .5s;
+        .mid {
+          @include size(auto, 80%);
+          padding:0px 0px; 
+          .btCont {
+            @include flex($dir: column, $gap:10px);
+            margin-top:-10px;
+            button {
+              @include size(200px);
+              font-size:15px;
+              padding:12px 0px;
+            }
+          }
+          img {
+            height:40%;
+            transition:height .2s;
+          }
+          h3, h4 {
+            font-size:30px;
+            letter-spacing:0.01em;
+            transition:font-size .2s;
+          }
+          h4 {
+            font-size:15px;
+            &:before, &:after {
+              top:14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// 102 - END HOME BANNERS
+
+main {
+  @include rel();
+  // height:100vh - 15vh;
+  // background:gray;
+}
+
+// 103 - FORM
+form {
+  $br: 20px;
+  @include size(100%, 100%);
+  &.signUp, &.signIn {
+    @include size(80%, auto, 150px, 350px);
+    @include pos(relative, 0%, 50%, $trans: translate(-50%, 0%));
+    padding-top: 20px;
+    margin-bottom: 50px;
+    &:before {
+      content:' ';
+      @include size(200px, 250px);
+      @include back(transparent, '@/assets/images/circleArrow.png', auto 100%, right center, no-repeat);
+      @include pos(absolute, 50%, $left:-230px, $trans:translate(-0%,-50%));
+      opacity:1;
+      transition: opacity .3s .5s;
+    }
+  }
+  &.signIn {
+    &:before {
+      display:none;
+    }
+    .btCont {
+      position:relative;
+      top:20px;
+    }
+  }
+  &.submitPlay {
+    @include size(90%, auto);
+    padding:20px;
+    .inputCont {
+      h3 {
+        @include font($spec, $white, 30px);
+      }
+      input, .dropDownInd {
+        @include backColor(rgba(255,255,255,.6));
+        color:black;
+        &:focus {
+          @include backColor(rgba(255,255,255,.8));
+        }
+      }
+    }
+    .btCont {
+      button {
+        @include font($head, $black, 20px, bold, 0.01em, 20px, normal, uppercase, none, $align: left);
+      }
+    }
+  }
+  h3 {
+    @include font($head, $white, 25px, bold, .09em, 20px, italic, none, none, left);
+    margin:10px 0px;
+  }
+  .btCont {
+    @include flex(flex, row, nowrap, $align:center, $just: center, $gap: 10px);
+    margin:20px 0px;
+    transition: all .3s .1s;
+    input, .dropDownInd, textarea {
+      @include backColor(rgba(255,255,255,.5));
+    }
+    button {
+      @include backColor($white);
+      @include font($head, $black, 20px, bold, .01em, 20px);
+      padding:10px 20px;
+      transition: all .3s .1s;
+      &:hover {
+        background: $black;
+        color: $white;
+      }
+    }
+  }
+  .inputCont {
+    @include flex(flex, column, wrap, stretch, center, 5px);
+    margin-bottom:10px;
+    label {
+      @include font($par, $white, 15px, 500, .01em, 20px, normal, none, none, left);
+      @include flex(flex, column, $gap: 5px);
+      cursor:pointer;
+    }
+    .selectHolder {
+      @include rel();
+      margin:10px 0px;
+      .dropDownCase {
+        @include pos(absolute, 24px, 0%);
+        @include size(100%, auto);
+        @include back(rgb(161, 161, 161), $blur: 15px);
+        border-radius:$br;
+        z-index:10;
+        div {
+          @include flex(flex, column, $gap: 13px);
+          @include backColor(transparent);
+          padding:20px 20px;
+          button {
+            @include font($par, $black, 18px, bold, $align:left);
+          }
+        }
+        &.active {
+          background:red;
+        }
+        .short {
+          max-height:200px;
+          overflow-y:scroll;
+        }
+        &.inactive {
+          background:red;
+          display:none;
+        }
+        
+      }
+    }
+    input, .dropDownInd, textarea {
+      @include backColor($grayC);
+      @include font($par, $white, 12px, .05em);
+      @include size(100%, auto);
+      @include inpCaret($black, revert, underscore);
+      border-bottom:1px solid $grayB;
+      border-radius:$br;
+      padding:10px 0px 10px 20px;
+      &::placeholder {
+        color: transparent;
+      }
+      &:focus {
+        @include backColor(rgba(255,255,255,.4));
+      }
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  form {
+    &.signUp {
+      &:before {
+        opacity:0;
+        transition: opacity .3s;
+      }
+    }
+    .btCont {
+      @include flex(flex, column, nowrap, $align:center, $just: center, $gap: 20px);
+      transition: all .3s .1s;
+      button {
+        @include size(100%, auto);
+        text-align:center;
+        transition: all .3s .1s;
+      }
+    }
+  }
+}
+
+.loginCreds {
+  @include size(100%, 100%);
+  @include pos(fixed, 50%, 50%, $trans: translate(-50%,-50%));
+  @include backColor($blackB);
+  z-index:2;
+  .content {
+    @include size(650px, auto);
+    @include backColor($blackB);
+    @include pos(absolute, 50%, 50%, 0, 0, $trans: translate(-50%,-50%));
+    border: 1px solid $gray;
+    padding:20px;
+    form {
+      @include size(100%, auto);
+      margin-bottom: 10px;
+      h3 {
+        @include font($align:center);
+        margin: 20px 0px;
+      }
+      .inputCont {
+        label {
+          @include font($align:center);
+        }
+        input {
+          @include size(150px, auto);
+          @include font($color: $white, $align: center);
+          margin:auto;
+          padding:10px 0px;
+        }
+      }
+    }
+  }
+}
+
+
+//CREATE VARS
+$toolWidth: 50px;
+$toolBtSize: $toolWidth - 12px;
+$degreeSpin: -45deg;
+$playerSize:40px;
+
+//PEN COLORS
+$penRed: #dd1919;
+$penWhite: #ffffff;
+$penBlue: #301283;
+$penYellow: #f3ff44;
+$penGreen: #00e913;
+
+* {touch-action: none;}
+.boardCont {
+  @include size(auto, 90vh);
+  @include flex(flex, column);
+  overflow: hidden;
+  .board {
+    @include size(auto, auto, 250px);
+    @include rel();
+    @include flex(flex);
+    flex: 1;
+    overflow: hidden;
+    .player {
+      @include size($playerSize, $playerSize);
+      @include backColor(transparent);
+      @include font($spec, $black, 20px, bold);
+      @include pos(absolute, $trans: translate(-50%, -50%));
+      @include flex(flex, wrap, nowrap, center, center);
+      border:2px solid rgba(138, 137, 137, 0.5);
+      box-shadow:0 5px 5px rgba(0,0,0,.5);
+      border-radius:50%;
+      z-index:8000;
+      cursor: grab;
+      &.remove {
+        &:before, &:after {
+          @include backColor($penRed);
+          color:white;
+          transition:all .5s;
+        }
+      }
+      &:before, &:after {
+        content:attr(myText);
+        @include size(100%, 100%);
+        @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%) );
+        @include backColor($white);
+        @include flex(flex, row, nowrap, center, center);
+        @include font($spec, $black, 16px, 300, .01em, 15px,  normal, uppercase,  none,  center );
+        border-radius:50%;
+        z-index:1;
+        transition:all .5s;
+      }
+    }
+    .field {
+      flex:1;
+      @include rel();
+      @include size(auto, 100%);
+      @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
+      .canvas {
+        @include pos(absolute, 0px, 0px);
+        @include size(100%, 100%);
+        touch-action: none;
+        z-index:2;
+      }
+      .gridBox {
+        @include pos(absolute, 0%, 50%, $trans: translate(-50%,0%));
+        @include size(100%, 100%);
+        @include flex(flex);
+        .lineOfScrimmage {
+          @include pos(absolute, 65%);
+          @include size(100%, 10px);
+          @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
+        }
+        .gridLine {
+          flex:1;
+          border-right:1px dashed rgba(255,255,255,.9);
+          &:last-child {
+            border-right:none;
+          }
+        }
+      }
+      .playerLand {
+        @include pos(absolute, 0px, 0px);
+        @include size(100%, 100%);
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+    }
+    .toolbox {
+      flex:1;
+      @include size(auto, auto, 10px, $toolWidth);
+      @include backColor(black);
+      @include flex(flex, column, wrap, center, center, 10px);
+      list-style-type: none;
+      z-index: 3;
+      &.toolInfo, &.popTools {
+        @include back(rgba(0,0,0,.7), $blur: 2px);
+        @include flex(flex, column, wrap, center, center);
+        opacity: 0;
+        z-index:0;
+        transition: opacity .5s .1s;
+        &.active {
+          opacity: 1;
+          z-index: 9999;
+          right:$toolWidth;
+          transition: opacity .5s .2s;
+        }
+      }
+      li {
+        @include size($toolBtSize, $toolBtSize);
+        border: 3px solid $white;
+        border-radius: 50%;
+        overflow: hidden;
+        &.info {
+          button {
+            @include font(serif, $white, 28px, 600, 0em, 20px, italic, lowercase, none, center);
+          }
+        }
+        &.pen {
+          button {
+            @include pos(relative, $trans: rotate($degreeSpin));
+            &:after {
+              content:' ';
+              @include size(70%, 30%);
+              @include backColor($white);
+              @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+              clip-path:polygon(
+                0% 50%, 30% 0%, 80% 0%, 80% 95%, 85% 95%, 85% 0%, 100% 0%, 100% 100%, 30% 100%
+              )
+            }
+          }
+        }
+        &.color {
+          button { font-weight:400; }
+          &.red { button { border:none; background:$penRed; }}
+          &.blue { button { border:none; background:$penBlue; }}
+          &.white { button { border:none; color:$black; background:$penWhite; }}
+          &.yellow { button { border:none; color:black; background:$penYellow; }}
+          button {
+            @include backColor($black);
+            @include rel();
+            overflow:hidden;
+            .colors {
+              @include size(100%, 100%);
+              @include flex(flex, row, wrap);
+              div {
+                flex: 0 0 50%;
+                height:50%;
+                &:nth-child(1) {background: $penWhite;}
+                &:nth-child(2) {background: $penRed;}
+                &:nth-child(3) {background: $penBlue;}
+                &:nth-child(4) {background: $penYellow;}
+              }
+            }
+          }
+        }
+        &.select {
+          @include pos(relative, $trans: rotate($degreeSpin));
+          button {
+            background:$penBlue;
+            &:before {
+              content:' ';
+              @include size(70%, 45%);
+              @include backColor($white);
+              @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+              $a:50%;
+              $b:100% - $a;
+              $c: 25%;
+              $d: 100% - $c;
+              clip-path:polygon(
+                0% 50%, $a 0%, $a $c, 100% $c, 100% $d, $a $d, $a 100%,
+              );
+            }
+          }
+        }
+        &.erase {
+          @include rel();
+          button {
+            @include pos(absolute, 0px, 0px);
+            &.erase {
+              @include backColor($penRed);
+              @include rel();
+              .lid {
+                @include size(50%,10%);
+                @include backColor($white);
+                @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
+              }
+              &:after {
+                content:' ';
+                @include size(48%, 45%);
+                @include backColor($white);
+                @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
+                clip-path:polygon(
+                  0% 0%, 100% 0%, 90% 100%, 10% 100%,
+                )
+              }
+              &:before {
+                content:' ';
+                width:30%;
+                height:15%;
+                background:white;
+                position:absolute;
+                top:10%;
+                left:50%;
+                transform:translate(-50%,0%);
+                $a:30%;
+                $b:100% - $a;
+                clip-path:polygon(
+                  0% 0%, 100% 0%, 100% 100%,
+                  $b 100%, $b $a, $a $a, $a 100%, 0% 100%
+                )
+              }
+            }
+            &.select {
+              background:blue;
+            }
+            &.active {
+              display:block;
+            }
+          }
+        }
+        button {
+          @include size(100%, 100%);
+          @include flex(flex, $align: center, $just: center);
+          @include font($spec, $white, 20px, bold, .01em);
+        }
+      }
+      &.toolInfo {
+        @include pos(absolute, 0px, none, none, -500px, $toolWidth);
+        @include size(100%, 100%, 100px, 450px);
+      }
+      &.popTools {
+        @include pos(absolute, 0px, none, none, -500px, $toolWidth);
+        @include size(100%, 100%, 100px, 280px);
+        h3 {
+          @include font($spec, $white, 30px);
+        }
+        &.positions {
+          gap:8px;
+          .popDisplay {
+            @include size(70%, auto);
+            @include rel();
+            text-align:center;
+            cursor:pointer;
+            li {
+              font-size:12px;
+            }
+            p {
+              @include font($head, $white, 18px, bold, 0.05em, 20px, italic, uppercase);
+              @include pos(absolute, 50%, 48px, $trans:translate(-0%,-50%));
+            }
+          }
+        }
+      }
+    }
+    
+  }
+}
+
+
+
+// PLAYBOOK
+$playerWidth: 10px;
+.sorters {
+  @include flex(flex, row, nowrap);
+  padding:20px 26px 10px;
+  h4 {
+    @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
+    margin-right:10px;
+  }
+  select {
+    @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
+    appearance: none;
+    @supports (appearance: base-select) {
+      &, &::picker(select) {
+        appearance: base-select;
+      }
+    }
+    &::picker(select) {
+      position:relative;
+      top:-30px;
+      background-color: $white;
+      width:300px;
+      border-radius: 8px;
+      padding: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    option {
+      @include font($head, $black, 20px, bold, .01em, 20px);
+      padding: 10px 14px;
+      border-radius: 6px;
+      color: #1f2937;
+      cursor: pointer;
+    }
+    option:option-checked {
+      background-color: #eff6ff;
+      color: #2563eb;
+      font-weight: bold;
+    }
+  }
+}
+.playsContainer {
+  @include rel();
+  @include backColor(transparent);
+  @include flex(flex, row, wrap, center, center, $gap: 20px);
+  @include size(100%, auto, 100%, 100%, 300px, 100vh);
+  padding:30px 10px;
+  margin:0px;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(12%, 300px));
+  // grid-gap: .5rem;
+  // row-gap:50px;
+  .indPlays {
+    flex:1;
+    @include rel();
+    @include size(auto, auto, 280px, 310px);
+    overflow:hidden;
+    border-top:1px solid rgba(255,255,255,.2);
+    box-shadow:0 2px 10px black;
+    cursor:grab;
+    &.active {
+      outline:3px solid rgba(255, 188, 62, 0.8);
+    }
+    .field {
+      @include back(transparent, '@/assets/images/bck_chalkboard.jpg', cover, center, no-repeat);
+      @include rel();
+      @include size(100%, 150px);
+      .canvas {
+        @include pos(absolute,0px,0px);
+        @include size(100%, 100%);
+      }
+      .addedPlayers {
+        @include pos(absolute, -3px, -3px);
+        @include size(100%, 100%);
+        .player {
+          @include size($playerWidth,$playerWidth);
+          @include pos(absolute, $trans:translate(-50%,-50%));
+          @include backColor($white);
+          border-radius:50%;
+          margin:3px;
+          z-index:0;
+        }
+      }
+    }
+    .playInfo {
+      @include backColor(rgb(18, 17, 43));
+      text-align:center;
+      border-top:3px solid rgb(46, 45, 45);
+      h3 {
+        @include font($spec, $white, 30px, bold, .05em, 20px, normal, uppercase, $align:center);
+        padding:15px 0px;
+        @include back(rgba(255,255,255,.0), '@/assets/images/slash.png', 60% 7px, center 95%, no-repeat, 1px);
+      }
+      h4 {
+        strong {
+          @include font($par, $white, 13px, bold, .01em, 20px, normal, uppercase, $align:center);
+        }
+        @include font($par, $white, 15px, 500, .01em, 20px, normal, uppercase, $align:center);
+      }
+      button {
+        @include font($head, $black, 20px, bold, .02em, 20px, normal, uppercase, none, center);
+        @include size(100%, auto);
+        padding:11px 20px;
+        margin:20px 0px 0px;
+        background:$white;
+      }
+    }
+  }
+}
+
+.messageOutput {
+  @include pos(fixed, 40%, 50%, $trans: translate(-50%, 0%));
+  @include size(auto,auto);
+  @include back(rgba(0,0,0,.9), $blur: 10px);
+  @include font($head, $white, 25px, bold, .01em, 20px, normal, uppercase, $align:center);
+  border:1px solid rgba(255,255,255,.5);
+  padding:70px 150px;
+  strong {
+    display:block;
+    @include font($head, $blueB, 65px, bold, .01em, 20px, normal, uppercase, $align:center);
+  }
+  p {
+    color:white;
+  }
+  .btCont {
+    @include flex(flex, row, nowrap, $gap:10px);
+    button {
+      flex:1;
+      @include font($head, $black, 20px, bold, .02em, 20px, normal, uppercase, none, center);
+      // @include size(50%, auto);
+      padding:11px 20px;
+      margin:20px 0px 0px;
+      background:$white;
+    }
+  }
+}
+
+
+// 
+  // padding-left:5px;
+  //   &.sorter {
+  //       padding:10px 0px 0px 0px;
+  //       height:50px;
+        
+  //       .inputCont {
+  //           display:flex;
+  //           gap:10px;
+  //           .selectHolder {
+  //               flex:1;
+  //           }
+  //       }
+  //   }
+  //   &.addPlayerCont {
+  //       padding:30px 30px;
+  //   }
+  //   .messageOutput {
+  //       width:100%;
+  //       padding:0px;
+  //       margin:10px auto 0px;
+  //       position:relative;
+  //       left:0px;
+  //       z-index:-1;
+  //       h3 {
+  //           margin-bottom:15px;
+  //       }
+  //       .mess {
+  //           width:100%;
+  //           padding-left:10px;
+  //           display:flex;
+  //           margin-bottom:10px;
+  //           align-items:center;
+  //           justify-content:center;
+  //           font-size:14px;
+  //           font-weight:bold;
+  //           background:rgba(255,255,255,.8);
+  //           padding:8px 0px;
+  //           border-radius:20px;
+  //           opacity:1;
+  //           .ico {
+  //               width:20px;
+  //               height:20px;
+  //               position:relative;
+  //               margin-right:5px;
+  //           }
+  //           &.success {
+  //               font-weight:bold;
+  //               padding-left:0px;
+  //               color:green;
+  //           }
+  //           &.error {
+  //               color:red;
+  //           }
+  //       }
+  //   }
+  //   .btCont {
+  //       display:flex;
+  //       margin-top:-30px;
+  //       button {
+  //           &.formButton {
+  //               width:100%;
+  //               margin:10px 0px 10px 0px;
+  //               background:rgba(255,255,255,.5);
+  //               font-size:18px;
+  //               font-weight:300;
+  //               padding:10px 15px;
+  //               border-radius:30px;
+  //               box-sizing:border-box;
+  //               // @include hdrFont;
+  //               cursor:pointer;
+  //               &:hover {
+  //                   background:rgba(255,255,255,.7);
+  //               }
+  //               &.active {
+  //                   opacity:.2;
+  //               }
+  //           }
+  //       }
+  //       &.b {
+  //           button {
+  //               &.formButton {
+  //               position:relative;
+  //                   // top:10px;
+  //                   margin-top:20px;
+  //               }
+  //           }
+  //       }
+  //   }
+  //   .inputCont {
+  //       margin-bottom:20px;
+  //       p {
+  //           margin-bottom:10px;
+  //       }
+  //       &.error {
+  //           position:relative;
+  //           overflow:show;
+  //           &:before {
+  //               content:'!';
+  //               color:red;
+  //               font-size:25px;
+  //               font-weight:bold;
+  //               position:absolute;
+  //               top:15px;
+  //               transform:translateY(-50%);
+  //               right:-15px;
+  //           }
+            
+  //       }
+  //       label {
+  //           display:none;
+  //       }
+  //       input, .dropDownInd, textarea {
+  //           width:100%;
+  //           padding:10px;
+  //           position:relative;
+  //           background:rgba(255,255,255,.1);
+  //           border-bottom:1px solid $grayB;
+  //           border-right:1px solid $grayB;
+  //           border-left:1px solid $grayB;
+  //           border-radius:20px;
+  //           color:white;
+  //           caret-color: rgba(255,255,255,.5);
+  //           caret-animation: revert;
+  //           margin:0px;
+  //           &::placeholder {
+  //               color:rgba(255,255,255,.8);
+  //           }
+  //       }
+  //       textarea {
+  //           position:relative;
+  //           top:-10px;
+  //           max-height:150px;
+  //           min-width:100%;
+  //           max-width:100%;
+  //       }
+  //       input {
+  //           &:focus {
+  //               background:rgba(255,255,255,.4);
+  //           }
+  //       }
+  //       select {
+  //           visibility: hidden;
+  //           position:absolute;
+  //           z-index:0;
+  //       }
+  //       .selectHolder {
+  //           width:100%;
+  //           position:relative;
+  //           z-index:0;
+  //           &.active {
+  //               z-index:1;
+  //           }
+  //           &.error {
+                
+  //               &:after {
+  //                   content:'!';
+  //                   color:red;
+  //                   font-size:25px;
+  //                   font-weight:bold;
+  //                   position:absolute;
+  //                   top:15px;
+  //                   transform:translateY(-50%);
+  //                   right:-15px;
+  //               }
+  //           }
+  //           .dropDownInd {
+  //               z-index:1;
+  //               text-align:left;
+  //               position:relative;
+  //               margin-bottom:20px;
+  //               z-index:1;
+  //               &:before {
+  //                   content:' ';
+  //                   position:absolute;
+  //                   top:50%;
+  //                   right:10px;
+  //                   transform:translate(-50%,-50%);
+  //                   $depth: 25%;
+  //                   $depthB: 100% - $depth;
+  //                   width:13px;
+  //                   height:10px;
+  //                   background:rgba(255,255,255,.7);
+  //                   clip-path:polygon(
+  //                   0% 0%, 0% $depth, 50% 100%, 100% $depth, 100% 0%, 50% $depthB, 0% 0%,
+  //                   );
+  //               }
+  //               &.active {
+  //                   background:red;
+  //                   z-index:1;
+  //                   &:before {
+  //                       $depth: 25%;
+  //                       $depthB: 100% - $depth;
+  //                       clip-path:polygon(
+  //                           0% $depthB, 50% 0%, 100% $depthB, 100% 100%, 50% $depth, 0% 100%
+  //                       );
+  //                   }
+  //               }
+  //               &.inactive {
+  //                   background:rgba(255,255,255,0);
+  //               }
+  //               &.hidden {
+  //                   background:rgba(255,255,255,0);
+  //               }
+  //           }
+  //           .dropDownCase {
+  //               background: $grayB;
+  //               border-radius:20px;
+  //               padding-top:40px;
+  //               padding-bottom:10px;
+  //               position:absolute;
+  //               top:-0px;
+  //               width:100%; 
+  //               &.active {
+  //                   background:red;
+                    
+  //               }
+  //               .short {
+  //                   max-height:150px;
+  //                   overflow-y:scroll;
+  //               }
+  //               &.inactive {
+  //                   background:red;
+  //                   display:none;
+  //               }
+  //               button {
+  //                   background:none;
+  //                   border:none;
+  //                   outline:none;
+  //                   font-weight:bold;
+  //                   width:100%;
+  //                   text-align:left;
+  //                   color:rgba(255,255,255,1);
+  //                   padding:10px;
+  //                   cursor:pointer;
+  //                   &:hover {
+  //                       background:rgba(255,255,255,.3);
+  //                   }
+  //               }
+  //           }
+  //           &:has(> .dropDownCase.a) {
+
+  //               .dropDownCase { 
+  //                   border-radius:20px 20px 0px 0px;
+  //                   .routeSel {
+  //                       border-radius:1px;
+  //                       height:200px;
+  //                       overflow-y: scroll;
+  //                       &::-webkit-scrollbar {
+  //                           width: 5px;
+  //                       }
+  //                       /* Track */
+  //                       &::-webkit-scrollbar-track {
+  //                           background: rgba(255,255,255,.1); 
+  //                       }
+  //                       /* Handle */
+  //                       &::-webkit-scrollbar-thumb {
+  //                           background: rgba(255,255,255,.5);
+  //                       }
+  //                       /* Handle on hover */
+  //                       &::-webkit-scrollbar-thumb:hover {
+  //                       background: blue; 
+  //                       }
+
+  //                  }
+  //               }
+  //           }
+  //       }
+  //   }
+// }
+
+
+// select {
+//   visibility: hidden;
+//   position:absolute;
+//   z-index:0;
+// }
+
+
+// .selectHolder {
+  
+//   width:100%;
+//   position:relative;
+//   z-index:0;
+//   &.active {
+//     z-index:1;
+//   }
+//   &.error {
+//     &:after {
+//     content:'!';
+//     color:red;
+//     font-size:25px;
+//     font-weight:bold;
+//     position:absolute;
+//     top:15px;
+//     transform:translateY(-50%);
+//     right:-15px;
+//     }
+//   }
+//   .dropDownInd {
+//     z-index:1;
+//     width:100%;
+//     text-align:left;
+//     position:relative;
+//     margin-bottom:20px;
+//     z-index:1;
+    
+//     &:before {
+//       content:' ';
+//       position:absolute;
+//       top:50%;
+//       right:10px;
+//       transform:translate(-50%,-50%);
+//       $depth: 25%;
+//       $depthB: 100% - $depth;
+//       width:13px;
+//       height:10px;
+//       background:rgba(255,255,255,.7);
+//       clip-path:polygon(
+//       0% 0%, 0% $depth, 50% 100%, 100% $depth, 100% 0%, 50% $depthB, 0% 0%,
+//       );
+//     }
+//     &.active {
+//       background:red;
+//       z-index:1;
+//       &:before {
+//         $depth: 25%;
+//         $depthB: 100% - $depth;
+//         clip-path:polygon(
+//         0% $depthB, 50% 0%, 100% $depthB, 100% 100%, 50% $depth, 0% 100%
+//         );
+//       }
+//     }
+//     &.inactive {
+//       background:rgba(255,255,255,0);
+//     }
+//     &.hidden {
+//       background:rgba(255,255,255,0);
+//     }
+//   }
+//   .dropDownCase {
+//     background: $grayB;
+//     border-radius:20px;
+//     padding-top:40px;
+//     padding-bottom:10px;
+//     position:absolute;
+//     top:-0px;
+//     width:100%; 
+//     &.active {
+//       background:red;
+//     }
+//     .short {
+//       max-height:150px;
+//       overflow-y:scroll;
+//     }
+//     &.inactive {
+//       background:red;
+//       display:none;
+//     }
+//     button {
+//       background:none;
+//       border:none;
+//       outline:none;
+//       font-weight:bold;
+//       width:100%;
+//       text-align:left;
+//       color:rgba(255,255,255,1);
+//       padding:10px;
+//       cursor:pointer;
+//       &:hover {
+//         background:rgba(255,255,255,.3);
+//       }
+//     }
+//   }
+//   &:has(> .dropDownCase.a) {
+
+// .dropDownCase { 
+// border-radius:20px 20px 0px 0px;
+// .routeSel {
+// border-radius:1px;
+// height:200px;
+// overflow-y: scroll;
+// &::-webkit-scrollbar {
+// width: 5px;
+// }
+// /* Track */
+// &::-webkit-scrollbar-track {
+// background: rgba(255,255,255,.1); 
+// }
+// /* Handle */
+// &::-webkit-scrollbar-thumb {
+// background: rgba(255,255,255,.5);
+// }
+// /* Handle on hover */
+// &::-webkit-scrollbar-thumb:hover {
+// background: blue; 
+// }
+
+// }
+// }
+// }
+// }
