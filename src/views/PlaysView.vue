@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed } from 'vue'
 import { usePlayStore } from '@/stores/playStore'
 import PlayCanvas from '@/components/PlayCanvas.vue'
 import type { ColorType, ToolType } from '@/composables/usePlayCanvasB'
 import { useFormation } from '@/stores/formStore'
 
-
-onMounted(() => {
-  console.log('Maker mounted')
-})
-
-onUnmounted(() => {
-  console.log('Maker unmounted')
-})
-
 const playsStore = usePlayStore()
 const formationStore = useFormation()
+
+const selectedPlay = ref<any>([])
 
 const selectedColor = ref<ColorType>('white')
 const selectedTool = ref<ToolType>('pen')
 
-const showPlay =  ref<boolean>(false)
+const showPlay = ref(false)
+const openPlay = () => {
+  alert('working')
+  showPlay.value = true
+}
+const closePlay = () => {
+  showPlay.value = false
+}
 
 
 const sortBy = ref<'title' | 'formation' | 'playType'>('title')
@@ -48,22 +48,15 @@ const deleteMe = (id: string) => {
   playsStore.deletePlay(id)
 }
 
-const showMe = () => {
+
+
+const showMe = (p) => {
+  selectedPlay.value = p
   showPlay.value = !showPlay.value
 }
 
 </script>
 <template>
-
-
-<!-- <Teleport to="body">
-  <div v-if="showPlay"class="selectedPlay" @pointerdown="showMe()">
-    <div class="modalContainer" @click.stop>
-      <button @pointerdown="showMe()">CLOSE</button>
-    </div>
-  </div>
-</Teleport> -->
-
 
   <main class="plays">
     <h1>Your playbook</h1>
@@ -74,6 +67,8 @@ const showMe = () => {
         <option value="formation">Formation</option>
         <option value="playType">Play Type</option>
       </select>
+
+      
       <!-- <select v-model="selectedFormation">
         <option value="All">All Formations</option>
         <option
@@ -93,7 +88,7 @@ const showMe = () => {
         v-for="p in sortedPlays"
         :key="p.id"
         class="indPlays"
-        @click="showMe()"
+        @pointerdown="openPlay()"
       >
         <div  class="field"> 
           <div class="addedPlayers">
@@ -138,9 +133,32 @@ const showMe = () => {
   background:rgba(0,0,0,.5);
   inset: 0;
   z-index: 9999;
+  .modalContainer {
+    width:500px;
+    height:500px;
+    background:white;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    .canvasCont {
+      width:500px;
+      height:500px;
+      outline:1px solid red;
+      position:relative;
+      .canvas {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  
   button {
     background:white;
     color:blue;
+    position:absolute;
+    top:0px;
+    right:0px;
   }
 }
 </style>

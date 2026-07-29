@@ -4,10 +4,6 @@ import { useFormation } from '@/stores/formStore'
 import { useAuthStore } from '@/stores/userAuth' 
 import { usePlayStore } from '@/stores/playStore'
 
-onUnmounted(() => {
-  console.log('Maker unmounted')
-})
-
 import { useRouter } from 'vue-router'
 const router = useRouter()
 

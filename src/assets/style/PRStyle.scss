@@ -766,8 +766,9 @@ $playerWidth: 10px;
       text-align:center;
       border-top:3px solid rgb(46, 45, 45);
       h3 {
-        @include font($spec, $white, 30px, bold, .05em, 20px, normal, uppercase, $align:center);
+        @include font($spec, $white, 24px, bold, .05em, 20px, normal, uppercase, $align:center);
         padding:15px 0px;
+        margin-bottom:15px;
         @include back(rgba(255,255,255,.0), '@/assets/images/slash.png', 60% 7px, center 95%, no-repeat, 1px);
       }
       h4 {

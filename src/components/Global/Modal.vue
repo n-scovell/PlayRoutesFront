@@ -1,90 +1,63 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
-import html2canvas from 'html2canvas'
-
-const props = defineProps<{
+import PlayCanvas from '@/components/PlayCanvas.vue'
+defineProps<{
   show: boolean
-  title: string,
-  formation: string,
-  playType: string
 }>()
 
-// const props = defineProps({
-//   show: {
-//     type: Boolean,
-//     required: true
-//   },
-//   title: {
-//     type: String,
-//     default: 'Modal Title'
-//   },
-// })
-const emit = defineEmits(['close'])
-const closeModal = () => {
-  emit('close')
-} 
-const hideDisplays = ref<boolean>(false)
-const captureArea = ref<HTMLElement | null>(null)
-const saveScreenshot = async (playName: string, form: string, type: string) => {
-    hideDisplays.value = false
-    if (!captureArea.value) return
-    const canvas = await html2canvas(captureArea.value, {scale: 3})
-    canvas.toBlob((blob) => {
-        if (!blob) return
-        const link = document.createElement('a')
-        link.href = URL.createObjectURL(blob)
-        link.download = playName.replaceAll(' ','') + '_' + form + '_' + type + '.png'
-        link.click()
-    })
-}
+const emit = defineEmits<{
+  (e: 'close'): void
+}>()
 
-const printPlay = async () => {
-  if (!captureArea.value) return
-  await nextTick()
-  const canvas = await html2canvas(captureArea.value, {
-      scale: 1,
-      backgroundColor: '#000000'
-  })
-  const image = canvas.toDataURL('image/png')
-  const printWindow = window.open('', '_blank')
-  if (!printWindow) return
-  printWindow.document.write(`
-      <html>
-          <head>
-              <title>Print Play</title>
-              <style>
-                  body { margin:20px; display:flex; justify-content:center; align-items:center; }
-                  img { width:100%; max-width:1000px; }
-              </style>
-          </head>
-          <body>
-              <img src="${image}" />
-              <script>
-                  window.onload = () => {
-                      window.print()
-                      window.onafterprint = () => window.close()
-                  }
-              <\/script>
-          </body>
-      </html>
-  `)
-  printWindow.document.close()
-}
-const printMode = ref<boolean>(false)
-const setMode = () => {
-  printMode.value = !printMode.value
+const close = () => {
+  emit('close')
 }
 </script>
+
 <template>
-  <Teleport to="body">
-    <div v-if="show" class="modal-selected-play" @click.self="closeModal">
-      <!-- <button class="doit" @pointerdown="saveScreenshot(props.title, props.formation, props.playType)">DOWNLOAD</button> -->
-      <!-- <button class="doit b" @pointerdown="printPlay">PRINT</button> -->
-      <button class="close-play" @click="closeModal">✕</button>
-      <div class="play-content" @click.stop ref="captureArea" >
-        <slot>
-        </slot>
-      </div>
+  <div 
+    v-if="show"
+    class="modal-backdrop"
+    @click.self="close"
+  >
+    <div class="modal-container">
+      <button class="close" @click="close">
+        ✕
+      </button>
+<PlayCanvas
+        makerMode="small"
+        :strokesData="selectedPlay.grid.strokes"
+        :color="selectedColor"
+        :tool="selectedTool"
+      />
+      <!-- Whatever you put inside the modal -->
+      <slot />
     </div>
-  </Teleport>
+  </div>
 </template>
+
+<style scoped>
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-container {
+  width: 80vw;
+  height: 80vh;
+  background: white;
+  border-radius: 10px;
+  position: relative;
+  padding: 20px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+</style>
