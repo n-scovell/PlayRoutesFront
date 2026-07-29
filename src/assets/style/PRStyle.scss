@@ -763,6 +763,7 @@ $playerWidth: 10px;
     }
     .playInfo {
       @include backColor(rgb(18, 17, 43));
+      padding-bottom:20px;
       text-align:center;
       border-top:3px solid rgb(46, 45, 45);
       h3 {
@@ -776,13 +777,17 @@ $playerWidth: 10px;
           @include font($par, $white, 13px, bold, .01em, 20px, normal, uppercase, $align:center);
         }
         @include font($par, $white, 15px, 500, .01em, 20px, normal, uppercase, $align:center);
+        
       }
       button {
-        @include font($head, $black, 20px, bold, .02em, 20px, normal, uppercase, none, center);
-        @include size(100%, auto);
-        padding:11px 20px;
-        margin:20px 0px 0px;
-        background:$white;
+        @include font($head, $black, 15px, bold, .02em, 20px, normal, uppercase, none, left);
+        @include size(auto, auto);
+        padding:11px 11px;
+        margin:10px 0px 0px;
+        background:rgba(255,255,255,.2);
+        position:absolute;
+        top:-10px;
+        right:0px;
       }
     }
   }

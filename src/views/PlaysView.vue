@@ -116,7 +116,7 @@ const showMe = (p) => {
         <div class="playInfo">
           <h3>{{ p.title }}</h3>
           <h4> {{ p.formation }} - {{ p.playType }} </h4>
-          <button @click="deleteMe(p.id)">DELETE</button>
+          <button @click="deleteMe(p.id)">X</button>
         </div>
       </div>
     </section>

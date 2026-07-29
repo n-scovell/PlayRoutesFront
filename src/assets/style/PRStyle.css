@@ -1554,6 +1554,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 .playsContainer .indPlays .playInfo {
   background: rgb(18, 17, 43);
+  padding-bottom: 20px;
   text-align: center;
   border-top: 3px solid rgb(46, 45, 45);
 }
@@ -1606,21 +1607,24 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-shadow: none;
-  text-align: center;
-  width: 100%;
+  text-align: left;
+  width: auto;
   height: auto;
   min-width: 0;
   max-width: auto;
   min-height: auto;
   max-height: auto;
-  padding: 11px 20px;
-  margin: 20px 0px 0px;
-  background: #f5f5f5;
+  padding: 11px 11px;
+  margin: 10px 0px 0px;
+  background: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: -10px;
+  right: 0px;
 }
 
 .messageOutput {
