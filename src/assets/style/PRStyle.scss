@@ -14,6 +14,10 @@ $grayC: rgba(255,255,255,.1);
 $blueA: rgba(22, 18, 29, 1);
 $blueB: rgb(1, 121, 190);
 
+
+$addedPlayerXS: 10px;
+$addedPlayerModal: 30px;
+
 //UNIVERSALS
 * {
   @include initials();
@@ -21,9 +25,9 @@ $blueB: rgb(1, 121, 190);
 
 
 
-body {
+html, body {
   margin: 0px;
-  @include back(transparent, '@/assets/images/bck_blackGrain.png', cover, auto, no-repeat);
+  @include back(transparent, '@/assets/images/bck_blackGrain.png', cover 100%, auto, no-repeat);
 }
 
 h1, h2, h3, h4, h5 {
@@ -49,7 +53,7 @@ header {
   @include rel();
   @include flex(flex, row, nowrap, stretch, start);
   @include back(#333, '@/assets/images/bck_blackGrain.png', cover, auto, no-repeat);
-  z-index:9999;
+  z-index:9000;
   border-bottom:2px solid rgba(0,0,0,.7);
   box-shadow:0 5px 15px rgba(0,0,0,.5);
   img {
@@ -229,8 +233,7 @@ header {
 
 main {
   @include rel();
-  // height:100vh - 15vh;
-  // background:gray;
+  height:100lvh;
 }
 
 // 103 - FORM
@@ -679,7 +682,8 @@ $penGreen: #00e913;
 
 
 // PLAYBOOK
-$playerWidth: 10px;
+
+
 .sorters {
   @include flex(flex, row, nowrap);
   padding:20px 26px 10px;
@@ -748,18 +752,7 @@ $playerWidth: 10px;
         @include pos(absolute,0px,0px);
         @include size(100%, 100%);
       }
-      .addedPlayers {
-        @include pos(absolute, -3px, -3px);
-        @include size(100%, 100%);
-        .player {
-          @include size($playerWidth,$playerWidth);
-          @include pos(absolute, $trans:translate(-50%,-50%));
-          @include backColor($white);
-          border-radius:50%;
-          margin:3px;
-          z-index:0;
-        }
-      }
+      
     }
     .playInfo {
       @include backColor(rgb(18, 17, 43));
@@ -820,6 +813,62 @@ $playerWidth: 10px;
   }
 }
 
+.addedPlayers {
+  @include pos(absolute, -3px, -3px);
+  @include size(100%, 100%);
+  .player {
+    @include pos(absolute, $trans:translate(-50%,-50%));
+    @include backColor($white);
+    border-radius:50%;
+    margin:3px;
+    z-index:0;
+  }
+  &.xs {
+    .player {      
+      @include size($addedPlayerXS,$addedPlayerXS);
+    }
+  }
+  &.modal {
+    .player {
+      @include flex(flex, row, nowrap, center, center);
+      @include font($spec, $black, 16px, bold, .01em, 20px, normal, uppercase, none, center);
+      @include size($addedPlayerModal,$addedPlayerModal);
+    }
+  }
+}
+
+
+.authDelete {
+  @include pos(fixed, 50%, 50%, $trans:translate(-50%,-50%));
+  @include size(500px, 200px, 200px, 500px);
+  @include back(rgba(0,0,0,1), $blur: 10px);
+  @include flex(flex, row, wrap, center, center, $gap:0px);
+  border:2px solid rgba(255,255,255,.5);
+  padding:20px;
+  z-index:99999;
+  p {
+    flex: 0 0 100%;
+    @include font($head, $white, 18px, 500, .04em, 20px, normal, none, none, center);
+  }
+  h3 {
+    flex: 0 0 100%;
+    @include font($spec, $white, 40px, 400, .05em, 20px, normal, uppercase, none, center);
+    @include back(transparent, '@/assets/images/slash.png', 60% 7px, center 92%, no-repeat, 1px);
+    padding-bottom:15px;
+    margin:-5px 0px;
+  }
+  button {
+    flex: 0 0 auto;
+    margin:0px 5px;
+    @include font($head, $black, 20px, bold, .04em, 20px, normal, uppercase, none, center);
+    @include backColor($white);
+    padding:10px 20px;
+  }
+}
+// @media only screen and (max-width: 600px) {
+//   .authDelete {
+//   }
+// }
 
 // 
   // padding-left:5px;

@@ -10,9 +10,9 @@ const auth = useAuthStore()
   <section class="page">
     <!-- <SideSec /> -->
     <RouterView v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
+      <!-- <transition name="fade" mode="out-in"> -->
         <component :is="Component" />
-      </transition>
+      <!-- </transition> -->
     </RouterView>
   </section>
 </template>

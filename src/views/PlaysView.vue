@@ -2,25 +2,45 @@
 import { ref, computed } from 'vue'
 import { usePlayStore } from '@/stores/playStore'
 import PlayCanvas from '@/components/PlayCanvas.vue'
-import type { ColorType, ToolType } from '@/composables/usePlayCanvasB'
-import { useFormation } from '@/stores/formStore'
+import Modal from '@/components/Modal.vue'
+import type { ColorType, ToolType, Stroke } from '@/composables/usePlayCanvasB'
+// import { useFormation } from '@/stores/formStore'
+
+type Pos = {
+    x: number,
+    y: number,
+    id: string | number,
+    pos: string
+}
+
+type Grid = {
+  players: Pos[]
+  strokes: Stroke[]
+}
+interface Play {
+  id: string
+  title: string
+  formation: string
+  playType: string
+  grid: Grid
+}
 
 const playsStore = usePlayStore()
-const formationStore = useFormation()
-
-
-
-const selectedColor = ref<ColorType>('white')
-const selectedTool = ref<ToolType>('pen')
-
+const selectedPlay = ref<Play>()
 const showPlay = ref(false)
-const openPlay = () => {
-  alert('working')
+
+const openPlay = (p: Play) => {
+  selectedPlay.value = p
   showPlay.value = true
 }
 const closePlay = () => {
   showPlay.value = false
 }
+
+// const formationStore = useFormation()
+
+const selectedColor = ref<ColorType>('white')
+const selectedTool = ref<ToolType>('pen')
 
 
 const sortBy = ref<'title' | 'formation' | 'playType'>('title')
@@ -44,7 +64,13 @@ const displayedPlays = computed(() => {
   return plays
 })
 
+const areYouSure = ref<boolean>(false);
+const triggerPrompt = (p: Play) => {
+  selectedPlay.value = p
+  areYouSure.value = true
+}
 const deleteMe = (id: string) => {
+  areYouSure.value = false
   playsStore.deletePlay(id)
 }
 
@@ -53,8 +79,21 @@ const deleteMe = (id: string) => {
 </script>
 <template>
 
+  <Modal 
+    :show="showPlay"
+    @close="closePlay"
+    :foo="selectedPlay"
+  />
+
+  <div class="authDelete" v-if="areYouSure">
+    <p>Delete:</p>
+    <h3>{{ selectedPlay?.title }}</h3>
+    <button @click="selectedPlay && deleteMe(selectedPlay.id)">DELETE</button>
+    <button  @click="areYouSure = false">NOPE</button>
+  </div>
+  
   <main class="plays">
-    <h1>Your playbook</h1>
+    <h1>Your Playbook</h1>
     <div class="sorters">
       <h4>SORT BY: </h4>
       <select v-model="sortBy">
@@ -62,31 +101,15 @@ const deleteMe = (id: string) => {
         <option value="formation">Formation</option>
         <option value="playType">Play Type</option>
       </select>
-
-      
-      <!-- <select v-model="selectedFormation">
-        <option value="All">All Formations</option>
-        <option
-          v-for="formation in formationStore.formations"
-          :key="formation.id"
-          :value="formation.name"
-        >
-          {{ formation.name }}
-        </option>
-      </select> -->
     </div>
     <section class="playsContainer" > 
-      <!-- <div v-for="p in playsStore.plays" :key="p.title" class="indPlays"
-      :class="{active: currentSort === p.formation || currentSort === p.title || currentSort === p.playType}"
-      > -->
       <div
         v-for="p in sortedPlays"
         :key="p.id"
         class="indPlays"
-        
       >
-        <div  class="field"> 
-          <div class="addedPlayers">
+        <div  class="field" @click="openPlay(p)"> 
+          <div class="addedPlayers xs">
             <div
               v-for="player in p.grid.players"
               :key="player.id"
@@ -111,49 +134,9 @@ const deleteMe = (id: string) => {
         <div class="playInfo">
           <h3>{{ p.title }}</h3>
           <h4> {{ p.formation }} - {{ p.playType }} </h4>
-          <button @click="deleteMe(p.id)">X</button>
+          <button class="" @click.self="triggerPrompt(p)">X</button>
         </div>
       </div>
     </section>
   </main>
 </template>
-
-<style scoped lang="scss">
-.selectedPlay {
-  position:fixed;
-  top:0px;
-  left:0px;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,.5);
-  inset: 0;
-  z-index: 9999;
-  .modalContainer {
-    width:500px;
-    height:500px;
-    background:white;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    .canvasCont {
-      width:500px;
-      height:500px;
-      outline:1px solid red;
-      position:relative;
-      .canvas {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-  
-  button {
-    background:white;
-    color:blue;
-    position:absolute;
-    top:0px;
-    right:0px;
-  }
-}
-</style>
