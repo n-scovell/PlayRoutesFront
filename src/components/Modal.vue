@@ -85,7 +85,6 @@ const close = () => {
             <div class="btCont">
                 <button @click="captureDownload(foo?.title)" :disabled="isCapturing">PRINT</button>
                 <button @click="flipPlay()">FLIP</button>
-                <button>{{ foo?.title }}</button>
             </div>
             <div class="addedPlayers" :class="{flip: flipChoice}">
                 <div

@@ -115,7 +115,7 @@ const showMenu = (i: number) => {
     <button  @click="areYouSure = false">NOPE</button>
   </div>
   
-  <main class="plays">
+  <main>
     <h1>Your Playbook</h1>
     <div class="sorters">
       <h4>SORT BY: </h4>
@@ -126,49 +126,51 @@ const showMenu = (i: number) => {
       </select>
     </div>
     <section class="playsContainer" > 
-      <div
-        v-for="(p, index) in sortedPlays"
-        :key="p.id"
-        class="indPlays"
-      >
-        <div  class="field" @click="openPlay(p)"> 
-          <div class="addedPlayers xs">
-            <div
-              v-for="player in p.grid.players"
-              :key="player.id"
-              class="player"
-              :style="{
-               left: `${player.x * 100}%`,
-              top: `${player.y * 100}%`
-              }"
-              >
-              {{ player.type }}
+      <div class="playRows">
+        <div
+          v-for="(p, index) in sortedPlays"
+          :key="p.id"
+          class="indPlays"
+        >
+          <div  class="field" @click="openPlay(p)"> 
+             <div class="addedPlayers xs">
+              <div
+                v-for="player in p.grid.players"
+                :key="player.id"
+                class="player"
+                :style="{
+                left: `${player.x * 100}%`,
+                top: `${player.y * 100}%`
+                }"
+                >
+                {{ player.type }}
+              </div>
             </div>
+            <div class="previewScale">
+              <PlayCanvas
+                makerMode="small"
+                class="canvas"
+                :strokesData="p.grid.strokes"
+                :color="selectedColor" :tool="selectedTool"
+              />
+            </div> 
           </div>
-          <div class="previewScale">
-            <PlayCanvas
-              makerMode="small"
-              class="canvas"
-              :strokesData="p.grid.strokes"
-              :color="selectedColor" :tool="selectedTool"
-            />
-          </div>
-        </div>
-        <div class="playInfo">
-          <h3>{{ p.title }}</h3>
-          <h4> {{ p.formation }} - {{ p.playType }} </h4>
-          <div class="btCont">
-            <div class="show" :class="{active: popMenu === index}">
-              <button class="fav" @click="addFav(p.id)" :class="{star: coolness(p.id)}">&#9733</button>
-              <button class="del" @click.self="triggerPrompt(p)">
-                <div class="lid"></div>
+          <div class="playInfo">
+            <h3>{{ p.title }}</h3>
+            <h4> {{ p.formation }} - {{ p.playType }} </h4>
+            <div class="btCont">
+              <div class="show" :class="{active: popMenu === index}">
+                <button class="fav" @click="addFav(p.id)" :class="{star: coolness(p.id)}">&#9733</button>
+                <button class="del" @click.self="triggerPrompt(p)">
+                  <div class="lid"></div>
+                </button>
+              </div>
+              <button class="menu" @click="showMenu(index)" :class="{active: popMenu}">
+                <div></div>
+                <div></div>
+                <div></div>
               </button>
             </div>
-            <button class="menu" @click="showMenu(index)" :class="{active: popMenu}">
-              <div></div>
-              <div></div>
-              <div></div>
-            </button>
           </div>
         </div>
       </div>

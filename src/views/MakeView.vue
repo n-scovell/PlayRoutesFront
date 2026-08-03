@@ -290,7 +290,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="make">
+  <main>
     <h1>Your Play {{ title }}</h1>
     <div class="boardCont">
     <div class="board" ref="fuller">

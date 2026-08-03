@@ -14,12 +14,6 @@ html, body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: start;
-  gap: 0;
   width: auto;
   height: 100%;
   min-width: 0;
@@ -66,10 +60,6 @@ h1 {
   padding: 10px 10px;
 }
 
-main {
-  height: 100lvh;
-}
-
 .primaryBt {
   background: #f5f5f5;
   color: #242222;
@@ -85,19 +75,10 @@ main {
   padding: 9px 30px;
 }
 
-.play-routes {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: center;
-  gap: 0px;
-}
-.play-routes header, .play-routes .page {
-  flex: 1;
+.play-routes .page {
+  padding-bottom: 50px;
 }
 .play-routes header {
-  flex: 1;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -1034,4 +1015,1073 @@ form .inputCont input::placeholder, form .inputCont .dropDownInd::placeholder, f
 }
 form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont textarea:focus {
   background: rgba(255, 255, 255, 0.4);
+}
+
+* {
+  touch-action: none;
+}
+
+.boardCont {
+  width: auto;
+  height: 90vh;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+  overflow: hidden;
+}
+.boardCont .board {
+  width: auto;
+  height: auto;
+  min-width: 250px;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+.boardCont .board .player {
+  width: 40px;
+  height: 40px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  color: #242222;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 2px solid rgba(138, 137, 137, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: 8000;
+  cursor: grab;
+}
+.boardCont .board .player.remove:before, .boardCont .board .player.remove:after {
+  background: #dd1919;
+  color: white;
+  transition: all 0.5s;
+}
+.boardCont .board .player:before, .boardCont .board .player:after {
+  content: attr(myText);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: #242222;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.5s;
+}
+.boardCont .board .field {
+  flex: 1;
+  position: relative;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #242222;
+  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-size: cover;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+}
+.boardCont .board .field .canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  touch-action: none;
+  z-index: 2;
+}
+.boardCont .board .field .gridBox {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+}
+.boardCont .board .field .gridBox .lineOfScrimmage {
+  position: absolute;
+  top: 65%;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 10px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/maker/line.png");
+  background-size: contain;
+  background-position: center -5px;
+  background-repeat: repeat-x;
+  backdrop-filter: blur(none);
+}
+.boardCont .board .field .gridBox .gridLine {
+  flex: 1;
+  border-right: 1px dashed rgba(255, 255, 255, 0.9);
+}
+.boardCont .board .field .gridBox .gridLine:last-child {
+  border-right: none;
+}
+.boardCont .board .field .playerLand {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.boardCont .board .toolbox {
+  flex: 1;
+  width: auto;
+  height: auto;
+  min-width: 10px;
+  max-width: 50px;
+  min-height: auto;
+  max-height: auto;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
+  z-index: 3;
+}
+.boardCont .board .toolbox.toolInfo, .boardCont .board .toolbox.popTools {
+  background: rgba(0, 0, 0, 0.7);
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.5s 0.1s;
+}
+.boardCont .board .toolbox.toolInfo.active, .boardCont .board .toolbox.popTools.active {
+  opacity: 1;
+  z-index: 9999;
+  right: 50px;
+  transition: opacity 0.5s 0.2s;
+}
+.boardCont .board .toolbox li {
+  width: 38px;
+  height: 38px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  border: 3px solid #f5f5f5;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.boardCont .board .toolbox li.info button {
+  color: #f5f5f5;
+  font-family: serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 28px;
+  font-style: italic;
+  letter-spacing: 0em;
+  text-transform: lowercase;
+  text-shadow: none;
+  text-align: center;
+}
+.boardCont .board .toolbox li.pen button {
+  position: relative;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: rotate(-45deg);
+}
+.boardCont .board .toolbox li.pen button:after {
+  content: " ";
+  width: 70%;
+  height: 30%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(0% 50%, 30% 0%, 80% 0%, 80% 95%, 85% 95%, 85% 0%, 100% 0%, 100% 100%, 30% 100%);
+}
+.boardCont .board .toolbox li.color button {
+  font-weight: 400;
+}
+.boardCont .board .toolbox li.color.red button {
+  border: none;
+  background: #dd1919;
+}
+.boardCont .board .toolbox li.color.blue button {
+  border: none;
+  background: #301283;
+}
+.boardCont .board .toolbox li.color.white button {
+  border: none;
+  color: #242222;
+  background: #ffffff;
+}
+.boardCont .board .toolbox li.color.yellow button {
+  border: none;
+  color: black;
+  background: #f3ff44;
+}
+.boardCont .board .toolbox li.color button {
+  background: #242222;
+  position: relative;
+  overflow: hidden;
+}
+.boardCont .board .toolbox li.color button .colors {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+}
+.boardCont .board .toolbox li.color button .colors div {
+  flex: 0 0 50%;
+  height: 50%;
+}
+.boardCont .board .toolbox li.color button .colors div:nth-child(1) {
+  background: #ffffff;
+}
+.boardCont .board .toolbox li.color button .colors div:nth-child(2) {
+  background: #dd1919;
+}
+.boardCont .board .toolbox li.color button .colors div:nth-child(3) {
+  background: #301283;
+}
+.boardCont .board .toolbox li.color button .colors div:nth-child(4) {
+  background: #f3ff44;
+}
+.boardCont .board .toolbox li.select {
+  position: relative;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: rotate(-45deg);
+}
+.boardCont .board .toolbox li.select button {
+  background: #301283;
+}
+.boardCont .board .toolbox li.select button:before {
+  content: " ";
+  width: 70%;
+  height: 45%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(0% 50%, 50% 0%, 50% 25%, 100% 25%, 100% 75%, 50% 75%, 50% 100%);
+}
+.boardCont .board .toolbox li.erase {
+  position: relative;
+}
+.boardCont .board .toolbox li.erase button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+}
+.boardCont .board .toolbox li.erase button.erase {
+  background: #dd1919;
+  position: relative;
+}
+.boardCont .board .toolbox li.erase button.erase .lid {
+  width: 50%;
+  height: 10%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+}
+.boardCont .board .toolbox li.erase button.erase:after {
+  content: " ";
+  width: 48%;
+  height: 45%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+}
+.boardCont .board .toolbox li.erase button.erase:before {
+  content: " ";
+  width: 30%;
+  height: 15%;
+  background: white;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%, 70% 30%, 30% 30%, 30% 100%, 0% 100%);
+}
+.boardCont .board .toolbox li.erase button.select {
+  background: blue;
+}
+.boardCont .board .toolbox li.erase button.active {
+  display: block;
+}
+.boardCont .board .toolbox li button {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+.boardCont .board .toolbox.toolInfo {
+  position: absolute;
+  top: 0px;
+  left: none;
+  bottom: none;
+  right: -500px;
+  transform: 50px;
+  width: 100%;
+  height: 100%;
+  min-width: 100px;
+  max-width: 450px;
+  min-height: auto;
+  max-height: auto;
+}
+.boardCont .board .toolbox.popTools {
+  position: absolute;
+  top: 0px;
+  left: none;
+  bottom: none;
+  right: -500px;
+  transform: 50px;
+  width: 100%;
+  height: 100%;
+  min-width: 100px;
+  max-width: 280px;
+  min-height: auto;
+  max-height: auto;
+}
+.boardCont .board .toolbox.popTools h3 {
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+.boardCont .board .toolbox.popTools.positions {
+  gap: 8px;
+}
+.boardCont .board .toolbox.popTools.positions .popDisplay {
+  width: 70%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+.boardCont .board .toolbox.popTools.positions .popDisplay li {
+  font-size: 12px;
+}
+.boardCont .board .toolbox.popTools.positions .popDisplay p {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  left: 48px;
+  bottom: none;
+  right: none;
+  transform: translate(0%, -50%);
+}
+
+.sorters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+  padding: 20px 26px 10px;
+}
+.sorters h4 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  margin-right: 10px;
+}
+.sorters select {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+@supports ((-webkit-appearance: base-select) or (-moz-appearance: base-select) or (appearance: base-select)) {
+  .sorters select, .sorters select::picker(select) {
+    -webkit-appearance: base-select;
+       -moz-appearance: base-select;
+            appearance: base-select;
+  }
+}
+.sorters select::picker(select) {
+  position: relative;
+  top: -30px;
+  background-color: #f5f5f5;
+  width: 300px;
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.sorters select option {
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: #1f2937;
+  cursor: pointer;
+}
+.sorters select option:option-checked {
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.playsContainer {
+  min-height: 100vh;
+}
+.playsContainer.fav {
+  padding-top: 50px;
+}
+.playsContainer .playRows {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.playsContainer .playRows .indPlays {
+  position: relative;
+  flex: 0 1 22%;
+  width: auto;
+  height: auto;
+  min-width: 350px;
+  max-width: auto;
+  min-height: 0px;
+  max-height: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 3px rgb(20, 20, 20);
+  cursor: grab;
+}
+.playsContainer .playRows .indPlays.active {
+  outline: 3px solid rgba(255, 188, 62, 0.8);
+}
+.playsContainer .playRows .indPlays .field {
+  background: transparent;
+  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+  width: 100%;
+  height: 150px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+}
+.playsContainer .playRows .indPlays .field .previewScale {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.playsContainer .playRows .indPlays .field .previewScale .canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.playsContainer .playRows .indPlays .playInfo {
+  background: rgb(51, 51, 51);
+  padding-bottom: 20px;
+  text-align: center;
+  border-top: 3px solid rgb(46, 45, 45);
+}
+.playsContainer .playRows .indPlays .playInfo h3 {
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 25px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  padding: 15px 0px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0);
+  background-image: url("@/assets/images/slash.png");
+  background-size: 60% 7px;
+  background-position: center 95%;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(1px);
+}
+.playsContainer .playRows .indPlays .playInfo h4 strong {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.playsContainer .playRows .indPlays .playInfo h4 {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont {
+  position: absolute;
+  top: 5px;
+  left: none;
+  bottom: none;
+  right: 5px;
+  transform: none;
+  width: auto;
+  height: 30px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .menu {
+  width: 25px;
+  height: 20px;
+  display: flex;
+  position: relative;
+  top: 5px;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  background: transparent;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .menu div {
+  flex: 1;
+  width: 100%;
+  border-radius: 5px;
+  background: rgb(224, 224, 224);
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .menu.active div {
+  background: rgb(224, 224, 224);
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show {
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0px;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show.active {
+  display: flex;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show button {
+  width: 30px;
+  height: 30px;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show button.fav {
+  background: transparent;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show button.fav.star {
+  color: rgb(222, 235, 50);
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show button.del:hover {
+  font-size: 22px;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show button.del {
+  position: relative;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show button.del .lid {
+  width: 50%;
+  height: 10%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show button.del:after {
+  content: " ";
+  width: 48%;
+  height: 45%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+}
+.playsContainer .playRows .indPlays .playInfo .btCont .show button.del:before {
+  content: " ";
+  width: 30%;
+  height: 15%;
+  background: white;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%, 70% 30%, 30% 30%, 30% 100%, 0% 100%);
+}
+
+.messageOutput {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  width: auto;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgba(0, 0, 0, 0.9);
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(10px);
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 25px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 70px 150px;
+}
+.messageOutput strong {
+  display: block;
+  color: rgb(1, 121, 190);
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 65px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.messageOutput p {
+  color: white;
+}
+.messageOutput .btCont {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 10px;
+}
+.messageOutput .btCont button {
+  flex: 1;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  padding: 11px 20px;
+  margin: 20px 0px 0px;
+  background: #f5f5f5;
+}
+
+.addedPlayers {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.addedPlayers .player {
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: #f5f5f5;
+  border-radius: 50%;
+  margin: 3px;
+  z-index: 0;
+}
+.addedPlayers.xs .player {
+  width: 10px;
+  height: 10px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.addedPlayers.modal .player {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: #242222;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+
+.authDelete, .messageOutput {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 200px;
+  min-width: 200px;
+  max-width: 500px;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(0, 0, 0);
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  z-index: 99999;
+}
+.authDelete p, .messageOutput p {
+  flex: 0 0 100%;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+}
+.authDelete h3, .messageOutput h3 {
+  flex: 0 0 100%;
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 40px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  background: transparent;
+  background-image: url("@/assets/images/slash.png");
+  background-size: 60% 7px;
+  background-position: center 92%;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(1px);
+  padding-bottom: 15px;
+  margin: -5px 0px;
+}
+.authDelete button, .messageOutput button {
+  flex: 0 0 auto;
+  margin: 0px 5px;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  background: #f5f5f5;
+  padding: 10px 20px;
 }/*# sourceMappingURL=PRStyleB.css.map */

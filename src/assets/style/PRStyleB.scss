@@ -32,11 +32,10 @@ $cc: translate(-50%,-50%);
 
 html, body {
   margin: 0px;
-
   padding:0px;
 }
 body {
-  @include flex(flex, column);
+  // @include flex(flex, column);
   @include size(auto, 100%, $minH: 100%);
   @include back(transparent, '@/assets/images/bck_blackGrain.png', 100% 100%, auto, no-repeat);
 }
@@ -57,9 +56,6 @@ h1 {
   padding:10px 10px;
 }
 
-main {
-  height:100lvh;
-}
 
 .primaryBt {
   @include backColor($white);
@@ -70,17 +66,14 @@ main {
 
 
 .play-routes {
-  @include flex(flex, column, nowrap, stretch, center, 0px);
-  header, .page {
-    flex:1;
+  .page {
+    padding-bottom:50px;
   }
   header {
-    flex:1;
     @include rel();
     @include flex(flex, row, nowrap, center, center, 0px);
     border-bottom:2px solid rgba(0,0,0,.7);
     box-shadow:0 5px 15px rgba(0,0,0,.5);
-    // height:200px;
     .logo {
       @include rel();
       @include size(auto, $headerHeight, $maxW:80px);
@@ -829,544 +822,530 @@ form {
 // }
 
 
-// //CREATE VARS
-// $toolWidth: 50px;
-// $toolBtSize: $toolWidth - 12px;
-// $degreeSpin: -45deg;
-// $playerSize:40px;
+//CREATE VARS
+$toolWidth: 50px;
+$toolBtSize: $toolWidth - 12px;
+$degreeSpin: -45deg;
+$playerSize:40px;
 
-// //PEN COLORS
-// $penRed: #dd1919;
-// $penWhite: #ffffff;
-// $penBlue: #301283;
-// $penYellow: #f3ff44;
-// $penGreen: #00e913;
+//PEN COLORS
+$penRed: #dd1919;
+$penWhite: #ffffff;
+$penBlue: #301283;
+$penYellow: #f3ff44;
+$penGreen: #00e913;
 
-// * {touch-action: none;}
-// .boardCont {
-//   @include size(auto, 90vh);
-//   @include flex(flex, column);
-//   overflow: hidden;
-//   .board {
-//     @include size(auto, auto, 250px);
-//     @include rel();
-//     @include flex(flex);
-//     flex: 1;
-//     overflow: hidden;
-//     .player {
-//       @include size($playerSize, $playerSize);
-//       @include backColor(transparent);
-//       @include font($spec, $black, 20px, bold);
-//       @include pos(absolute, $trans: translate(-50%, -50%));
-//       @include flex(flex, wrap, nowrap, center, center);
-//       border:2px solid rgba(138, 137, 137, 0.5);
-//       box-shadow:0 5px 5px rgba(0,0,0,.5);
-//       border-radius:50%;
-//       z-index:8000;
-//       cursor: grab;
-//       &.remove {
-//         &:before, &:after {
-//           @include backColor($penRed);
-//           color:white;
-//           transition:all .5s;
-//         }
-//       }
-//       &:before, &:after {
-//         content:attr(myText);
-//         @include size(100%, 100%);
-//         @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%) );
-//         @include backColor($white);
-//         @include flex(flex, row, nowrap, center, center);
-//         @include font($spec, $black, 16px, 300, .01em, 15px,  normal, uppercase,  none,  center );
-//         border-radius:50%;
-//         z-index:1;
-//         transition:all .5s;
-//       }
-//     }
-//     .field {
-//       flex:1;
-//       @include rel();
-//       @include size(auto, 100%);
-//       @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
-//       .canvas {
-//         @include pos(absolute, 0px, 0px);
-//         @include size(100%, 100%);
-//         touch-action: none;
-//         z-index:2;
-//       }
-//       .gridBox {
-//         @include pos(absolute, 0%, 50%, $trans: translate(-50%,0%));
-//         @include size(100%, 100%);
-//         @include flex(flex);
-//         .lineOfScrimmage {
-//           @include pos(absolute, 65%);
-//           @include size(100%, 10px);
-//           @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
-//         }
-//         .gridLine {
-//           flex:1;
-//           border-right:1px dashed rgba(255,255,255,.9);
-//           &:last-child {
-//             border-right:none;
-//           }
-//         }
-//       }
-//       .playerLand {
-//         @include pos(absolute, 0px, 0px);
-//         @include size(100%, 100%);
-//         -webkit-user-drag: none;
-//         user-select: none;
-//         -moz-user-select: none;
-//         -webkit-user-select: none;
-//         -ms-user-select: none;
-//       }
-//     }
-//     .toolbox {
-//       flex:1;
-//       @include size(auto, auto, 10px, $toolWidth);
-//       @include backColor(black);
-//       @include flex(flex, column, wrap, center, center, 10px);
-//       list-style-type: none;
-//       z-index: 3;
-//       &.toolInfo, &.popTools {
-//         @include back(rgba(0,0,0,.7), $blur: 2px);
-//         @include flex(flex, column, wrap, center, center);
-//         opacity: 0;
-//         z-index:0;
-//         transition: opacity .5s .1s;
-//         &.active {
-//           opacity: 1;
-//           z-index: 9999;
-//           right:$toolWidth;
-//           transition: opacity .5s .2s;
-//         }
-//       }
-//       li {
-//         @include size($toolBtSize, $toolBtSize);
-//         border: 3px solid $white;
-//         border-radius: 50%;
-//         overflow: hidden;
-//         &.info {
-//           button {
-//             @include font(serif, $white, 28px, 600, 0em, 20px, italic, lowercase, none, center);
-//           }
-//         }
-//         &.pen {
-//           button {
-//             @include pos(relative, $trans: rotate($degreeSpin));
-//             &:after {
-//               content:' ';
-//               @include size(70%, 30%);
-//               @include backColor($white);
-//               @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
-//               clip-path:polygon(
-//                 0% 50%, 30% 0%, 80% 0%, 80% 95%, 85% 95%, 85% 0%, 100% 0%, 100% 100%, 30% 100%
-//               )
-//             }
-//           }
-//         }
-//         &.color {
-//           button { font-weight:400; }
-//           &.red { button { border:none; background:$penRed; }}
-//           &.blue { button { border:none; background:$penBlue; }}
-//           &.white { button { border:none; color:$black; background:$penWhite; }}
-//           &.yellow { button { border:none; color:black; background:$penYellow; }}
-//           button {
-//             @include backColor($black);
-//             @include rel();
-//             overflow:hidden;
-//             .colors {
-//               @include size(100%, 100%);
-//               @include flex(flex, row, wrap);
-//               div {
-//                 flex: 0 0 50%;
-//                 height:50%;
-//                 &:nth-child(1) {background: $penWhite;}
-//                 &:nth-child(2) {background: $penRed;}
-//                 &:nth-child(3) {background: $penBlue;}
-//                 &:nth-child(4) {background: $penYellow;}
-//               }
-//             }
-//           }
-//         }
-//         &.select {
-//           @include pos(relative, $trans: rotate($degreeSpin));
-//           button {
-//             background:$penBlue;
-//             &:before {
-//               content:' ';
-//               @include size(70%, 45%);
-//               @include backColor($white);
-//               @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
-//               $a:50%;
-//               $b:100% - $a;
-//               $c: 25%;
-//               $d: 100% - $c;
-//               clip-path:polygon(
-//                 0% 50%, $a 0%, $a $c, 100% $c, 100% $d, $a $d, $a 100%,
-//               );
-//             }
-//           }
-//         }
-//         &.erase {
-//           @include rel();
-//           button {
-//             @include pos(absolute, 0px, 0px);
-//             &.erase {
-//               @include backColor($penRed);
-//               @include rel();
-//               .lid {
-//                 @include size(50%,10%);
-//                 @include backColor($white);
-//                 @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
-//               }
-//               &:after {
-//                 content:' ';
-//                 @include size(48%, 45%);
-//                 @include backColor($white);
-//                 @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
-//                 clip-path:polygon(
-//                   0% 0%, 100% 0%, 90% 100%, 10% 100%,
-//                 )
-//               }
-//               &:before {
-//                 content:' ';
-//                 width:30%;
-//                 height:15%;
-//                 background:white;
-//                 position:absolute;
-//                 top:10%;
-//                 left:50%;
-//                 transform:translate(-50%,0%);
-//                 $a:30%;
-//                 $b:100% - $a;
-//                 clip-path:polygon(
-//                   0% 0%, 100% 0%, 100% 100%,
-//                   $b 100%, $b $a, $a $a, $a 100%, 0% 100%
-//                 )
-//               }
-//             }
-//             &.select {
-//               background:blue;
-//             }
-//             &.active {
-//               display:block;
-//             }
-//           }
-//         }
-//         button {
-//           @include size(100%, 100%);
-//           @include flex(flex, $align: center, $just: center);
-//           @include font($spec, $white, 20px, bold, .01em);
-//         }
-//       }
-//       &.toolInfo {
-//         @include pos(absolute, 0px, none, none, -500px, $toolWidth);
-//         @include size(100%, 100%, 100px, 450px);
-//       }
-//       &.popTools {
-//         @include pos(absolute, 0px, none, none, -500px, $toolWidth);
-//         @include size(100%, 100%, 100px, 280px);
-//         h3 {
-//           @include font($spec, $white, 30px);
-//         }
-//         &.positions {
-//           gap:8px;
-//           .popDisplay {
-//             @include size(70%, auto);
-//             @include rel();
-//             text-align:center;
-//             cursor:pointer;
-//             li {
-//               font-size:12px;
-//             }
-//             p {
-//               @include font($head, $white, 18px, bold, 0.05em, 20px, italic, uppercase);
-//               @include pos(absolute, 50%, 48px, $trans:translate(-0%,-50%));
-//             }
-//           }
-//         }
-//       }
-//     }
+* {touch-action: none;}
+.boardCont {
+  @include size(auto, 90vh);
+  @include flex(flex, column);
+  overflow: hidden;
+  .board {
+    @include size(auto, auto, 250px);
+    @include rel();
+    @include flex(flex);
+    flex: 1;
+    overflow: hidden;
+    .player {
+      @include size($playerSize, $playerSize);
+      @include backColor(transparent);
+      @include font($spec, $black, 20px, bold);
+      @include pos(absolute, $trans: translate(-50%, -50%));
+      @include flex(flex, wrap, nowrap, center, center);
+      border:2px solid rgba(138, 137, 137, 0.5);
+      box-shadow:0 5px 5px rgba(0,0,0,.5);
+      border-radius:50%;
+      z-index:8000;
+      cursor: grab;
+      &.remove {
+        &:before, &:after {
+          @include backColor($penRed);
+          color:white;
+          transition:all .5s;
+        }
+      }
+      &:before, &:after {
+        content:attr(myText);
+        @include size(100%, 100%);
+        @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%) );
+        @include backColor($white);
+        @include flex(flex, row, nowrap, center, center);
+        @include font($spec, $black, 16px, 300, .01em, 15px,  normal, uppercase,  none,  center );
+        border-radius:50%;
+        z-index:1;
+        transition:all .5s;
+      }
+    }
+    .field {
+      flex:1;
+      @include rel();
+      @include size(auto, 100%);
+      @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
+      .canvas {
+        @include pos(absolute, 0px, 0px);
+        @include size(100%, 100%);
+        touch-action: none;
+        z-index:2;
+      }
+      .gridBox {
+        @include pos(absolute, 0%, 50%, $trans: translate(-50%,0%));
+        @include size(100%, 100%);
+        @include flex(flex);
+        .lineOfScrimmage {
+          @include pos(absolute, 65%);
+          @include size(100%, 10px);
+          @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
+        }
+        .gridLine {
+          flex:1;
+          border-right:1px dashed rgba(255,255,255,.9);
+          &:last-child {
+            border-right:none;
+          }
+        }
+      }
+      .playerLand {
+        @include pos(absolute, 0px, 0px);
+        @include size(100%, 100%);
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+    }
+    .toolbox {
+      flex:1;
+      @include size(auto, auto, 10px, $toolWidth);
+      @include backColor(black);
+      @include flex(flex, column, wrap, center, center, 10px);
+      list-style-type: none;
+      z-index: 3;
+      &.toolInfo, &.popTools {
+        @include back(rgba(0,0,0,.7), $blur: 2px);
+        @include flex(flex, column, wrap, center, center);
+        opacity: 0;
+        z-index:0;
+        transition: opacity .5s .1s;
+        &.active {
+          opacity: 1;
+          z-index: 9999;
+          right:$toolWidth;
+          transition: opacity .5s .2s;
+        }
+      }
+      li {
+        @include size($toolBtSize, $toolBtSize);
+        border: 3px solid $white;
+        border-radius: 50%;
+        overflow: hidden;
+        &.info {
+          button {
+            @include font(serif, $white, 28px, 600, 0em, 20px, italic, lowercase, none, center);
+          }
+        }
+        &.pen {
+          button {
+            @include pos(relative, $trans: rotate($degreeSpin));
+            &:after {
+              content:' ';
+              @include size(70%, 30%);
+              @include backColor($white);
+              @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+              clip-path:polygon(
+                0% 50%, 30% 0%, 80% 0%, 80% 95%, 85% 95%, 85% 0%, 100% 0%, 100% 100%, 30% 100%
+              )
+            }
+          }
+        }
+        &.color {
+          button { font-weight:400; }
+          &.red { button { border:none; background:$penRed; }}
+          &.blue { button { border:none; background:$penBlue; }}
+          &.white { button { border:none; color:$black; background:$penWhite; }}
+          &.yellow { button { border:none; color:black; background:$penYellow; }}
+          button {
+            @include backColor($black);
+            @include rel();
+            overflow:hidden;
+            .colors {
+              @include size(100%, 100%);
+              @include flex(flex, row, wrap);
+              div {
+                flex: 0 0 50%;
+                height:50%;
+                &:nth-child(1) {background: $penWhite;}
+                &:nth-child(2) {background: $penRed;}
+                &:nth-child(3) {background: $penBlue;}
+                &:nth-child(4) {background: $penYellow;}
+              }
+            }
+          }
+        }
+        &.select {
+          @include pos(relative, $trans: rotate($degreeSpin));
+          button {
+            background:$penBlue;
+            &:before {
+              content:' ';
+              @include size(70%, 45%);
+              @include backColor($white);
+              @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+              $a:50%;
+              $b:100% - $a;
+              $c: 25%;
+              $d: 100% - $c;
+              clip-path:polygon(
+                0% 50%, $a 0%, $a $c, 100% $c, 100% $d, $a $d, $a 100%,
+              );
+            }
+          }
+        }
+        &.erase {
+          @include rel();
+          button {
+            @include pos(absolute, 0px, 0px);
+            &.erase {
+              @include backColor($penRed);
+              @include rel();
+              .lid {
+                @include size(50%,10%);
+                @include backColor($white);
+                @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
+              }
+              &:after {
+                content:' ';
+                @include size(48%, 45%);
+                @include backColor($white);
+                @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
+                clip-path:polygon(
+                  0% 0%, 100% 0%, 90% 100%, 10% 100%,
+                )
+              }
+              &:before {
+                content:' ';
+                width:30%;
+                height:15%;
+                background:white;
+                position:absolute;
+                top:10%;
+                left:50%;
+                transform:translate(-50%,0%);
+                $a:30%;
+                $b:100% - $a;
+                clip-path:polygon(
+                  0% 0%, 100% 0%, 100% 100%,
+                  $b 100%, $b $a, $a $a, $a 100%, 0% 100%
+                )
+              }
+            }
+            &.select {
+              background:blue;
+            }
+            &.active {
+              display:block;
+            }
+          }
+        }
+        button {
+          @include size(100%, 100%);
+          @include flex(flex, $align: center, $just: center);
+          @include font($spec, $white, 20px, bold, .01em);
+        }
+      }
+      &.toolInfo {
+        @include pos(absolute, 0px, none, none, -500px, $toolWidth);
+        @include size(100%, 100%, 100px, 450px);
+      }
+      &.popTools {
+        @include pos(absolute, 0px, none, none, -500px, $toolWidth);
+        @include size(100%, 100%, 100px, 280px);
+        h3 {
+          @include font($spec, $white, 30px);
+        }
+        &.positions {
+          gap:8px;
+          .popDisplay {
+            @include size(70%, auto);
+            @include rel();
+            text-align:center;
+            cursor:pointer;
+            li {
+              font-size:12px;
+            }
+            p {
+              @include font($head, $white, 18px, bold, 0.05em, 20px, italic, uppercase);
+              @include pos(absolute, 50%, 48px, $trans:translate(-0%,-50%));
+            }
+          }
+        }
+      }
+    }
     
-//   }
-// }
+  }
+}
 
 
 
-// // PLAYBOOK
+// PLAYBOOK
+.sorters {
+  @include flex(flex, row, nowrap);
+  padding:20px 26px 10px;
+  h4 {
+    @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
+    margin-right:10px;
+  }
+  select {
+    @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
+    appearance: none;
+    @supports (appearance: base-select) {
+      &, &::picker(select) {
+        appearance: base-select;
+      }
+    }
+    &::picker(select) {
+      position:relative;
+      top:-30px;
+      background-color: $white;
+      width:300px;
+      border-radius: 8px;
+      padding: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    option {
+      @include font($head, $black, 20px, bold, .01em, 20px);
+      padding: 10px 14px;
+      border-radius: 6px;
+      color: #1f2937;
+      cursor: pointer;
+    }
+    option:option-checked {
+      background-color: #eff6ff;
+      color: #2563eb;
+      font-weight: bold;
+    }
+  }
+}
+.playsContainer {
+  min-height:100vh;
+  &.fav {
+    padding-top:50px;
+  }
+  .playRows {
+    @include flex(flex, row, wrap, center, center, 20px);
+    .indPlays {
+      @include rel();
+      flex: 0 1 22%;
+      @include size($minW: 350px, $minH:0px);
+      border-top:1px solid rgba(255,255,255,.3);
+      box-shadow:0 2px 3px rgb(20, 20, 20);
+      cursor:grab;
+      &.active {
+        outline:3px solid rgba(255, 188, 62, 0.8);
+      }
+      .field {
+        @include back(transparent, '@/assets/images/bck_chalkboard.jpg', cover, center, no-repeat);
+        @include size(100%, 150px);
+        @include rel();
+        .previewScale {
+          @include size(100%, 100%);
+          .canvas {
+            @include pos(absolute,0px,0px);
+            @include size(100%, 100%);
+          }
+        }
+      }
+      .playInfo {
+        @include backColor(rgb(51, 51, 51));
+        padding-bottom:20px;
+        text-align:center;
+        border-top:3px solid rgb(46, 45, 45);
+        h3 {
+          @include font($spec, $white, 25px, bold, .05em, 20px, normal, uppercase, $align:center);
+          padding:15px 0px;
+          margin-bottom:15px;
+          @include back(rgba(255,255,255,.0), '@/assets/images/slash.png', 60% 7px, center 95%, no-repeat, 1px);
+        }
+        h4 {
+          strong {
+            @include font($par, $white, 12px, bold, .01em, 20px, normal, uppercase, $align:center);
+          }
+          @include font($par, $white, 13px, 500, .01em, 20px, normal, uppercase, $align:center);
+        }
+        .btCont {
+          $w:30px;
+          @include pos(absolute, 5px, $right: 5px);
+          @include size(auto, $w);
+          @include flex(flex);
+          .menu {
+            width:25px;
+            height:20px;
+            display:flex;
+            position:relative;
+            top:5px;
+            flex-direction:column;
+            gap:5px;
+            align-items:center;
+            justify-content:center;
+            margin-left:5px;
+            background:transparent;
+            div {
+              flex:1;
+              width:100%;
+              border-radius:5px;
+              background:rgba(224, 224, 224, 1);
+            }
+            &.active {
+              div {
+                background:rgba(224, 224, 224, 1);
+              }
+            }
+          }
+          .show {
+            display:none;
+            flex-direction:row;
+            flex-wrap:nowrap;
+            gap:0px;
+            &.active {
+              display:flex;
+            }
+            button {
+              width:$w;
+              height:$w;
+              color:white;
+              font-size:25px;
+              font-weight:bold;
+              line-height:22px;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              &.fav {
+                background:transparent;
+                &.star {
+                  color:rgb(222, 235, 50);
+                }
+              }
+              &.del {
+                &:hover {
+                  font-size:22px;
+                }
+                @include rel();
+                .lid {
+                  @include size(50%,10%);
+                  @include backColor($white);
+                  @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
+                }
+                &:after {
+                  content:' ';
+                  @include size(48%, 45%);
+                  @include backColor($white);
+                  @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
+                  clip-path:polygon(
+                  0% 0%, 100% 0%, 90% 100%, 10% 100%,
+                  )
+                }
+                &:before {
+                  content:' ';
+                  width:30%;
+                  height:15%;
+                  background:white;
+                  position:absolute;
+                  top:10%;
+                  left:50%;
+                  transform:translate(-50%,0%);
+                  $a:30%;
+                  $b:100% - $a;
+                  clip-path:polygon(
+                  0% 0%, 100% 0%, 100% 100%,
+                  $b 100%, $b $a, $a $a, $a 100%, 0% 100%
+                  )
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.messageOutput {
+  @include pos(fixed, 40%, 50%, $trans: translate(-50%, 0%));
+  @include size(auto,auto);
+  @include back(rgba(0,0,0,.9), $blur: 10px);
+  @include font($head, $white, 25px, bold, .01em, 20px, normal, uppercase, $align:center);
+  border:1px solid rgba(255,255,255,.5);
+  padding:70px 150px;
+  strong {
+    display:block;
+    @include font($head, $blueB, 65px, bold, .01em, 20px, normal, uppercase, $align:center);
+  }
+  p {
+    color:white;
+  }
+  .btCont {
+    @include flex(flex, row, nowrap, $gap:10px);
+    button {
+      flex:1;
+      @include font($head, $black, 20px, bold, .02em, 20px, normal, uppercase, none, center);
+      // @include size(50%, auto);
+      padding:11px 20px;
+      margin:20px 0px 0px;
+      background:$white;
+    }
+  }
+}
+
+.addedPlayers {
+  @include pos(absolute, -3px, -3px);
+  @include size(100%, 100%);
+  .player {
+    @include pos(absolute, $trans:translate(-50%,-50%));
+    @include backColor($white);
+    border-radius:50%;
+    margin:3px;
+    z-index:0;
+  }
+  &.xs {
+    .player {      
+      @include size($addedPlayerXS,$addedPlayerXS);
+    }
+  }
+  &.modal {
+    .player {
+      @include flex(flex, row, nowrap, center, center);
+      @include font($spec, $black, 16px, bold, .01em, 20px, normal, uppercase, none, center);
+      @include size($addedPlayerModal,$addedPlayerModal);
+    }
+  }
+}
 
 
-// .sorters {
-//   @include flex(flex, row, nowrap);
-//   padding:20px 26px 10px;
-//   h4 {
-//     @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
-//     margin-right:10px;
-//   }
-//   select {
-//     @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
-//     appearance: none;
-//     @supports (appearance: base-select) {
-//       &, &::picker(select) {
-//         appearance: base-select;
-//       }
-//     }
-//     &::picker(select) {
-//       position:relative;
-//       top:-30px;
-//       background-color: $white;
-//       width:300px;
-//       border-radius: 8px;
-//       padding: 6px;
-//       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-//     }
-//     option {
-//       @include font($head, $black, 20px, bold, .01em, 20px);
-//       padding: 10px 14px;
-//       border-radius: 6px;
-//       color: #1f2937;
-//       cursor: pointer;
-//     }
-//     option:option-checked {
-//       background-color: #eff6ff;
-//       color: #2563eb;
-//       font-weight: bold;
-//     }
-//   }
-// }
-// .playsContainer {
-//   @include rel();
-//   @include backColor(transparent);
-//   @include flex(flex, row, wrap, center, center, $gap: 20px);
-//   @include size(100%, auto, 100%, 100%, 300px, 100vh);
-//   padding:30px 10px;
-//   margin:0px;
-//   // display: grid;
-//   // grid-template-columns: repeat(auto-fill, minmax(12%, 300px));
-//   // grid-gap: .5rem;
-//   // row-gap:50px;
-//   .indPlays {
-//     flex:1;
-//     @include rel();
-//     @include size(auto, auto, 280px, 310px);
-//     overflow:hidden;
-//     border-top:1px solid rgba(255,255,255,.2);
-//     box-shadow:0 2px 10px black;
-//     cursor:grab;
-//     &.active {
-//       outline:3px solid rgba(255, 188, 62, 0.8);
-//     }
-//     .field {
-//       @include back(transparent, '@/assets/images/bck_chalkboard.jpg', cover, center, no-repeat);
-//       @include rel();
-//       @include size(100%, 150px);
-//       .canvas {
-//         @include pos(absolute,0px,0px);
-//         @include size(100%, 100%);
-//       }
-      
-//     }
-//     .playInfo {
-//       @include backColor(rgb(51, 51, 51));
-//       padding-bottom:20px;
-//       text-align:center;
-//       border-top:3px solid rgb(46, 45, 45);
-//       h3 {
-//         @include font($spec, $white, 25px, bold, .05em, 20px, normal, uppercase, $align:center);
-//         padding:15px 0px;
-//         margin-bottom:15px;
-//         @include back(rgba(255,255,255,.0), '@/assets/images/slash.png', 60% 7px, center 95%, no-repeat, 1px);
-//       }
-//       h4 {
-//         strong {
-//           @include font($par, $white, 12px, bold, .01em, 20px, normal, uppercase, $align:center);
-//         }
-//         @include font($par, $white, 13px, 500, .01em, 20px, normal, uppercase, $align:center);
-        
-//       }
-//       .btCont {
-//         $w:30px;
-//         @include pos(absolute, 5px, $right: 5px);
-//         @include size(auto, $w);
-//         @include flex(flex);
-//         .menu {
-//           width:25px;
-//           height:20px;
-//           display:flex;
-//           position:relative;
-//           top:5px;
-//           flex-direction:column;
-//           gap:5px;
-//           align-items:center;
-//           justify-content:center;
-//           margin-left:5px;
-//           background:transparent;
-//           div {
-//             flex:1;
-//             width:100%;
-//             border-radius:5px;
-//             background:rgba(224, 224, 224, 1);
-//           }
-//           &.active {
-//             div {
-//               background:rgba(224, 224, 224, 1);
-//             }
-//           }
-//         }
-//         .show {
-//           display:none;
-//           flex-direction:row;
-//           flex-wrap:nowrap;
-//           gap:0px;
-//           &.active {
-//             display:flex;
-//           }
-//           button {
-//             width:$w;
-//             height:$w;
-//             color:white;
-//             font-size:25px;
-//             font-weight:bold;
-//             line-height:22px;
-//             display:flex;
-//             align-items:center;
-//             justify-content:center;
-//             &.fav {
-//               background:transparent;
-//               &.star {
-//                 color:rgb(222, 235, 50);
-//               }
-//             }
-//             &.del {
-//               &:hover {
-//                 font-size:22px;
-//               }
-//               @include rel();
-//               .lid {
-//                 @include size(50%,10%);
-//                 @include backColor($white);
-//                 @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
-//               }
-//               &:after {
-//                 content:' ';
-//                 @include size(48%, 45%);
-//                 @include backColor($white);
-//                 @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
-//                 clip-path:polygon(
-//                 0% 0%, 100% 0%, 90% 100%, 10% 100%,
-//                 )
-//               }
-//               &:before {
-//                 content:' ';
-//                 width:30%;
-//                 height:15%;
-//                 background:white;
-//                 position:absolute;
-//                 top:10%;
-//                 left:50%;
-//                 transform:translate(-50%,0%);
-//                 $a:30%;
-//                 $b:100% - $a;
-//                 clip-path:polygon(
-//                 0% 0%, 100% 0%, 100% 100%,
-//                 $b 100%, $b $a, $a $a, $a 100%, 0% 100%
-//                 )
-//               }
-
-//             }
-//           }
-//         }
-//       }
-//     }
-//     &:hover {
-//       outline:1px solid rgba(225, 226, 127, 0.384);
-//       outline-offset:1px;
-//       transition: all .5s;
-//       .playInfo {
-//         @include backColor(rgb(27, 27, 27));
-//         transition: all .5s;
-//       }
-//     }
-//   }
-// }
-
-// .messageOutput {
-//   @include pos(fixed, 40%, 50%, $trans: translate(-50%, 0%));
-//   @include size(auto,auto);
-//   @include back(rgba(0,0,0,.9), $blur: 10px);
-//   @include font($head, $white, 25px, bold, .01em, 20px, normal, uppercase, $align:center);
-//   border:1px solid rgba(255,255,255,.5);
-//   padding:70px 150px;
-//   strong {
-//     display:block;
-//     @include font($head, $blueB, 65px, bold, .01em, 20px, normal, uppercase, $align:center);
-//   }
-//   p {
-//     color:white;
-//   }
-//   .btCont {
-//     @include flex(flex, row, nowrap, $gap:10px);
-//     button {
-//       flex:1;
-//       @include font($head, $black, 20px, bold, .02em, 20px, normal, uppercase, none, center);
-//       // @include size(50%, auto);
-//       padding:11px 20px;
-//       margin:20px 0px 0px;
-//       background:$white;
-//     }
-//   }
-// }
-
-// .addedPlayers {
-//   @include pos(absolute, -3px, -3px);
-//   @include size(100%, 100%);
-//   .player {
-//     @include pos(absolute, $trans:translate(-50%,-50%));
-//     @include backColor($white);
-//     border-radius:50%;
-//     margin:3px;
-//     z-index:0;
-//   }
-//   &.xs {
-//     .player {      
-//       @include size($addedPlayerXS,$addedPlayerXS);
-//     }
-//   }
-//   &.modal {
-//     .player {
-//       @include flex(flex, row, nowrap, center, center);
-//       @include font($spec, $black, 16px, bold, .01em, 20px, normal, uppercase, none, center);
-//       @include size($addedPlayerModal,$addedPlayerModal);
-//     }
-//   }
-// }
-
-
-// .authDelete {
-//   @include pos(fixed, 50%, 50%, $trans:translate(-50%,-50%));
-//   @include size(500px, 200px, 200px, 500px);
-//   @include back(rgba(0,0,0,1), $blur: 10px);
-//   @include flex(flex, row, wrap, center, center, $gap:0px);
-//   border:2px solid rgba(255,255,255,.5);
-//   padding:20px;
-//   z-index:99999;
-//   p {
-//     flex: 0 0 100%;
-//     @include font($head, $white, 18px, 500, .04em, 20px, normal, none, none, center);
-//   }
-//   h3 {
-//     flex: 0 0 100%;
-//     @include font($spec, $white, 40px, 400, .05em, 20px, normal, uppercase, none, center);
-//     @include back(transparent, '@/assets/images/slash.png', 60% 7px, center 92%, no-repeat, 1px);
-//     padding-bottom:15px;
-//     margin:-5px 0px;
-//   }
-//   button {
-//     flex: 0 0 auto;
-//     margin:0px 5px;
-//     @include font($head, $black, 20px, bold, .04em, 20px, normal, uppercase, none, center);
-//     @include backColor($white);
-//     padding:10px 20px;
-//   }
-// }
+.authDelete, .messageOutput {
+  @include pos(fixed, 50%, 50%, $trans:translate(-50%,-50%));
+  @include size(500px, 200px, 200px, 500px);
+  @include back(rgba(0,0,0,1), $blur: 10px);
+  @include flex(flex, row, wrap, center, center, $gap:0px);
+  border:2px solid rgba(255,255,255,.5);
+  padding:20px;
+  z-index:99999;
+  p {
+    flex: 0 0 100%;
+    @include font($head, $white, 18px, 500, .04em, 20px, normal, none, none, center);
+  }
+  h3 {
+    flex: 0 0 100%;
+    @include font($spec, $white, 40px, 400, .05em, 20px, normal, uppercase, none, center);
+    @include back(transparent, '@/assets/images/slash.png', 60% 7px, center 92%, no-repeat, 1px);
+    padding-bottom:15px;
+    margin:-5px 0px;
+  }
+  button {
+    flex: 0 0 auto;
+    margin:0px 5px;
+    @include font($head, $black, 20px, bold, .04em, 20px, normal, uppercase, none, center);
+    @include backColor($white);
+    padding:10px 20px;
+  }
+}
