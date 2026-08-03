@@ -100,18 +100,18 @@ header nav {
   flex-wrap: nowrap;
   align-items: stretch;
   justify-content: start;
-  gap: 10px;
+  gap: 30px;
   padding-left: 20px;
 }
 header nav button {
   color: #f5f5f5;
-  font-family: "Inter", sans-serif;
+  font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
   font-size: 15px;
   font-style: normal;
   letter-spacing: 0.08em;
-  text-transform: none;
+  text-transform: uppercase;
   text-shadow: none;
   text-align: left;
   background: transparent;
@@ -1522,7 +1522,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   max-height: auto;
 }
 .playsContainer .indPlays .playInfo {
-  background: rgb(18, 17, 43);
+  background: rgb(51, 51, 51);
   padding-bottom: 20px;
   text-align: center;
   border-top: 3px solid rgb(46, 45, 45);
@@ -1532,7 +1532,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   font-family: "Racing Sans One", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   font-style: normal;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1552,7 +1552,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 12px;
   font-style: normal;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -1564,36 +1564,138 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 13px;
   font-style: normal;
   letter-spacing: 0.01em;
   text-transform: uppercase;
   text-shadow: none;
   text-align: center;
 }
-.playsContainer .indPlays .playInfo button {
-  color: #242222;
-  font-family: "Fjalla One", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: bold;
-  font-size: 15px;
-  font-style: normal;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  text-shadow: none;
-  text-align: left;
+.playsContainer .indPlays .playInfo .btCont {
+  position: absolute;
+  top: 5px;
+  left: none;
+  bottom: none;
+  right: 5px;
+  transform: none;
   width: auto;
-  height: auto;
+  height: 30px;
   min-width: 0;
   max-width: auto;
   min-height: auto;
   max-height: auto;
-  padding: 11px 11px;
-  margin: 10px 0px 0px;
-  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+}
+.playsContainer .indPlays .playInfo .btCont .menu {
+  width: 25px;
+  height: 20px;
+  display: flex;
+  position: relative;
+  top: 5px;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  background: transparent;
+}
+.playsContainer .indPlays .playInfo .btCont .menu div {
+  flex: 1;
+  width: 100%;
+  border-radius: 5px;
+  background: rgb(224, 224, 224);
+}
+.playsContainer .indPlays .playInfo .btCont .menu.active div {
+  background: rgb(224, 224, 224);
+}
+.playsContainer .indPlays .playInfo .btCont .show {
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0px;
+}
+.playsContainer .indPlays .playInfo .btCont .show.active {
+  display: flex;
+}
+.playsContainer .indPlays .playInfo .btCont .show button {
+  width: 30px;
+  height: 30px;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.playsContainer .indPlays .playInfo .btCont .show button.fav {
+  background: transparent;
+}
+.playsContainer .indPlays .playInfo .btCont .show button.fav.star {
+  color: rgb(222, 235, 50);
+}
+.playsContainer .indPlays .playInfo .btCont .show button.del:hover {
+  font-size: 22px;
+}
+.playsContainer .indPlays .playInfo .btCont .show button.del {
+  position: relative;
+}
+.playsContainer .indPlays .playInfo .btCont .show button.del .lid {
+  width: 50%;
+  height: 10%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
   position: absolute;
-  top: -10px;
-  right: 0px;
+  top: 22%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+}
+.playsContainer .indPlays .playInfo .btCont .show button.del:after {
+  content: " ";
+  width: 48%;
+  height: 45%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #f5f5f5;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+}
+.playsContainer .indPlays .playInfo .btCont .show button.del:before {
+  content: " ";
+  width: 30%;
+  height: 15%;
+  background: white;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%, 70% 30%, 30% 30%, 30% 100%, 0% 100%);
+}
+.playsContainer .indPlays:hover {
+  outline: 1px solid rgba(225, 226, 127, 0.384);
+  outline-offset: 1px;
+  transition: all 0.5s;
+}
+.playsContainer .indPlays:hover .playInfo {
+  background: rgb(27, 27, 27);
+  transition: all 0.5s;
 }
 
 .messageOutput {

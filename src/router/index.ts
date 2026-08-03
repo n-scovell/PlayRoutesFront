@@ -14,11 +14,17 @@ const routes: RouteRecordRaw[] = [
     meta: { icon: 'create',  transition: 'slide-left', active: 'topNav' },
     component: () => import('../views/MakeView.vue')
   },
-   {
+  {
     path: '/plays',
     name: 'Playbook',
     meta: { icon: 'plays',  transition: 'slide-left', active: 'topNav' },
     component: () => import('../views/PlaysView.vue')
+  },
+  {
+    path: '/favorites',
+    name: 'Favorites',
+    meta: { icon: 'plays',  transition: 'slide-left', active: 'topNav' },
+    component: () => import('../views/FavoritesView.vue')
   },
   
   {

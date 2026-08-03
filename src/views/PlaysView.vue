@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { usePlayStore } from '@/stores/playStore'
+import { useFavorites } from '@/stores/favStore'
 import PlayCanvas from '@/components/PlayCanvas.vue'
 import Modal from '@/components/Modal.vue'
 import type { ColorType, ToolType, Stroke } from '@/composables/usePlayCanvasB'
-// import { useFormation } from '@/stores/formStore'
 
 type Pos = {
     x: number,
@@ -26,6 +26,7 @@ interface Play {
 }
 
 const playsStore = usePlayStore()
+const favPlays = useFavorites()
 const selectedPlay = ref<Play>()
 const showPlay = ref(false)
 
@@ -37,7 +38,7 @@ const closePlay = () => {
   showPlay.value = false
 }
 
-// const formationStore = useFormation()
+
 
 const selectedColor = ref<ColorType>('white')
 const selectedTool = ref<ToolType>('pen')
@@ -74,16 +75,38 @@ const deleteMe = (id: string) => {
   playsStore.deletePlay(id)
 }
 
+const coolness = (p: string): boolean => {
+  return favPlays.favorites.some(f => f.playId === p)
+}
 
 
+const addFav = (p: string) => {
+  if (favPlays.favorites.length === 0) {
+    favPlays.createFavorite(p)
+    return false
+  }
+  favPlays.favorites.filter(f => {
+    if (p === f.playId) {
+      favPlays.deleteFavorite(p)
+    } else {
+      favPlays.createFavorite(p)
+    }
+    favPlays.fetchFavorites()
+  })
+}
+
+const popMenu = ref<number>()
+const showMenu = (i: number) => {
+  if (popMenu.value === i) { 
+    popMenu.value = -1
+    return true
+  }
+  popMenu.value = i
+}
 </script>
 <template>
 
-  <Modal 
-    :show="showPlay"
-    @close="closePlay"
-    :foo="selectedPlay"
-  />
+  <Modal :show="showPlay" @close="closePlay" :foo="selectedPlay"/>
 
   <div class="authDelete" v-if="areYouSure">
     <p>Delete:</p>
@@ -104,7 +127,7 @@ const deleteMe = (id: string) => {
     </div>
     <section class="playsContainer" > 
       <div
-        v-for="p in sortedPlays"
+        v-for="(p, index) in sortedPlays"
         :key="p.id"
         class="indPlays"
       >
@@ -134,7 +157,19 @@ const deleteMe = (id: string) => {
         <div class="playInfo">
           <h3>{{ p.title }}</h3>
           <h4> {{ p.formation }} - {{ p.playType }} </h4>
-          <button class="" @click.self="triggerPrompt(p)">X</button>
+          <div class="btCont">
+            <div class="show" :class="{active: popMenu === index}">
+              <button class="fav" @click="addFav(p.id)" :class="{star: coolness(p.id)}">&#9733</button>
+              <button class="del" @click.self="triggerPrompt(p)">
+                <div class="lid"></div>
+              </button>
+            </div>
+            <button class="menu" @click="showMenu(index)" :class="{active: popMenu}">
+              <div></div>
+              <div></div>
+              <div></div>
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { usePlayStore } from './playStore'
 import { useFormation } from './formStore'
+import { useFavorites } from './favStore'
 
 export const useAuthStore = defineStore('auth', () => {
   type User = {
@@ -76,16 +77,20 @@ export const useAuthStore = defineStore('auth', () => {
 
   // 🔥 hydrate plays/formations after login
   const formStore = useFormation()
+  const favStore = useFavorites()
   const playStore = usePlayStore()
   await playStore.fetchPlays()
   await formStore.fetchFormations()
+  await favStore.fetchFavorites()
 }
 
   function logout() {
     const playStore = usePlayStore()
     const formStore = useFormation()
+    const favStore = useFavorites()
     playStore.clearPlays()
     formStore.clearFormations()
+    favStore.clearFavorites()
     user.value = null
     token.value = null
     localStorage.removeItem('token')

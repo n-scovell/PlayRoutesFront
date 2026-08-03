@@ -62,10 +62,10 @@ header {
   }
   nav {
     @include pos(relative, 0px);
-    @include flex(flex, row, nowrap, stretch, start, 10px);
+    @include flex(flex, row, nowrap, stretch, start, 30px);
     padding-left:20px;
     button {
-      @include font($par, $white, 15px, bold, .08em, 20px, normal, none);
+      @include font($head, $white, 15px, bold, .08em, 20px, normal, uppercase);
       @include backColor();
       cursor:pointer;
     }
@@ -755,32 +755,124 @@ $penGreen: #00e913;
       
     }
     .playInfo {
-      @include backColor(rgb(18, 17, 43));
+      @include backColor(rgb(51, 51, 51));
       padding-bottom:20px;
       text-align:center;
       border-top:3px solid rgb(46, 45, 45);
       h3 {
-        @include font($spec, $white, 20px, bold, .05em, 20px, normal, uppercase, $align:center);
+        @include font($spec, $white, 25px, bold, .05em, 20px, normal, uppercase, $align:center);
         padding:15px 0px;
         margin-bottom:15px;
         @include back(rgba(255,255,255,.0), '@/assets/images/slash.png', 60% 7px, center 95%, no-repeat, 1px);
       }
       h4 {
         strong {
-          @include font($par, $white, 13px, bold, .01em, 20px, normal, uppercase, $align:center);
+          @include font($par, $white, 12px, bold, .01em, 20px, normal, uppercase, $align:center);
         }
-        @include font($par, $white, 15px, 500, .01em, 20px, normal, uppercase, $align:center);
+        @include font($par, $white, 13px, 500, .01em, 20px, normal, uppercase, $align:center);
         
       }
-      button {
-        @include font($head, $black, 15px, bold, .02em, 20px, normal, uppercase, none, left);
-        @include size(auto, auto);
-        padding:11px 11px;
-        margin:10px 0px 0px;
-        background:rgba(255,255,255,.2);
-        position:absolute;
-        top:-10px;
-        right:0px;
+      .btCont {
+        $w:30px;
+        @include pos(absolute, 5px, $right: 5px);
+        @include size(auto, $w);
+        @include flex(flex);
+        .menu {
+          width:25px;
+          height:20px;
+          display:flex;
+          position:relative;
+          top:5px;
+          flex-direction:column;
+          gap:5px;
+          align-items:center;
+          justify-content:center;
+          margin-left:5px;
+          background:transparent;
+          div {
+            flex:1;
+            width:100%;
+            border-radius:5px;
+            background:rgba(224, 224, 224, 1);
+          }
+          &.active {
+            div {
+              background:rgba(224, 224, 224, 1);
+            }
+          }
+        }
+        .show {
+          display:none;
+          flex-direction:row;
+          flex-wrap:nowrap;
+          gap:0px;
+          &.active {
+            display:flex;
+          }
+          button {
+            width:$w;
+            height:$w;
+            color:white;
+            font-size:25px;
+            font-weight:bold;
+            line-height:22px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            &.fav {
+              background:transparent;
+              &.star {
+                color:rgb(222, 235, 50);
+              }
+            }
+            &.del {
+              &:hover {
+                font-size:22px;
+              }
+              @include rel();
+              .lid {
+                @include size(50%,10%);
+                @include backColor($white);
+                @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
+              }
+              &:after {
+                content:' ';
+                @include size(48%, 45%);
+                @include backColor($white);
+                @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
+                clip-path:polygon(
+                0% 0%, 100% 0%, 90% 100%, 10% 100%,
+                )
+              }
+              &:before {
+                content:' ';
+                width:30%;
+                height:15%;
+                background:white;
+                position:absolute;
+                top:10%;
+                left:50%;
+                transform:translate(-50%,0%);
+                $a:30%;
+                $b:100% - $a;
+                clip-path:polygon(
+                0% 0%, 100% 0%, 100% 100%,
+                $b 100%, $b $a, $a $a, $a 100%, 0% 100%
+                )
+              }
+
+            }
+          }
+        }
+      }
+    }
+    &:hover {
+      outline:1px solid rgba(225, 226, 127, 0.384);
+      outline-offset:1px;
+      transition: all .5s;
+      .playInfo {
+        @include backColor(rgb(27, 27, 27));
+        transition: all .5s;
       }
     }
   }
