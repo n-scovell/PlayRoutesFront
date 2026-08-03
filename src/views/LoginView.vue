@@ -32,7 +32,7 @@ const signOut = () => {
 </script>
 
 <template>
-  <main class="login"> 
+  <main> 
     <h1>Sign In:</h1>
     <form class="signIn" @submit.prevent>
       <h3>Welcome back!</h3>

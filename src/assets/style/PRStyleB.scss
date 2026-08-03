@@ -57,6 +57,10 @@ h1 {
   padding:10px 10px;
 }
 
+main {
+  height:100lvh;
+}
+
 .primaryBt {
   @include backColor($white);
   @include font($head, $black, 30px, bold, .02em, 20px, normal, uppercase, $align:center);
@@ -76,7 +80,7 @@ h1 {
     @include flex(flex, row, nowrap, center, center, 0px);
     border-bottom:2px solid rgba(0,0,0,.7);
     box-shadow:0 5px 15px rgba(0,0,0,.5);
-    height:200px;
+    // height:200px;
     .logo {
       @include rel();
       @include size(auto, $headerHeight, $maxW:80px);
@@ -102,7 +106,7 @@ h1 {
       @include flex(flex, row, nowrap, stretch, end, 0px);
       .avatarCont {
         @include size($avatarSize, $avatarSize);
-        @include pos(relative, 50%, $right:20px, $trans:translate(0%, -50%));
+        @include pos(relative, $top:10%, $right:10px, $trans:translate(0%, 0%));
         border-radius:50%;
         border:3px solid $white;
         overflow:hidden;
@@ -119,9 +123,9 @@ h1 {
       }
       .userDrop {
         @include pos(absolute, 100%, $right: 0px, $trans: translate(0%, 0%));
-        @include size(500px, auto);
+        @include size(200px, auto);
         @include flex(flex, column, nowrap, $gap:10px);
-        @include backColor(rgba(0,0,0, .5));
+        @include backColor(rgba(0,0,0, .8));
         z-index:1000;
         padding:20px;
         button {
@@ -138,9 +142,13 @@ h1 {
   }
 }
 
+
+
+// HOME PAGE BANNERS
 .homePageBanners {
   section {
     height:350px;
+    border-bottom:2px solid rgb(22, 22, 22);
     .btCont {
       padding:30px 0px 0px;
       @include flex(flex, row, nowrap, center, center, 20px);
@@ -190,10 +198,20 @@ h1 {
     }
     &.instruction {
       @include size(auto, 450px);
-      @include backColor(rgb(16, 15, 22));
       @include rel();
+      @include backColor(rgb(16, 15, 2, .5));
       @include flex($align: center, $just: center, $gap: 20px );
       padding:50px 0px;
+      overflow:hidden;
+      &:before {
+        content:' ';
+        @include size(150%, 320%);
+        @include pos(absolute);
+        @include back(rgb(16, 15, 2), '@/assets/images/ExampleA.jpg', 2200px auto, 300px -200px, repeat);
+        transform:rotate(-25deg);
+        opacity:.4;
+        z-index:-1;
+      }
       .arrowBox {
         @include size(100px, auto);
         img {
@@ -285,10 +303,9 @@ h1 {
             }
           }
           .primaryBt {
+            @include pos(relative, $left:35%, $trans: translateX(-50%));
             margin-top:20px;
-            position:relative;
-            left:50%;
-            transform:translateX(-50%);
+            transform:rotate(2deg);
           }
         }
         .right {
@@ -299,13 +316,9 @@ h1 {
             padding:40px 70px;
             &:after {
               content:' ';
-              width:100%;
-              height:110%;
+              @include size(100%, 110%);
               @include backColor(rgb(8, 8, 8));
-              position:absolute;
-              top:-10px;
-              left:10px;
-              transform: skew(-2deg);
+              @include pos(absolute, -10px, 10px, $trans: skew(-2deg));
               z-index:-1;
             }
             h3 {
@@ -339,6 +352,138 @@ h1 {
     }
   }
 }
+
+
+form {
+  $br: 20px;
+  @include size(100%, 100%);
+  &.signUp, &.signIn {
+    @include size(80%, auto, 150px, 350px);
+    @include pos(relative, 0%, 50%, $trans: translate(-50%, 0%));
+    padding-top: 20px;
+    margin-bottom: 50px;
+    &:before {
+      content:' ';
+      @include size(200px, 250px);
+      @include back(transparent, '@/assets/images/circleArrow.png', auto 100%, right center, no-repeat);
+      @include pos(absolute, 50%, $left:-230px, $trans:translate(-0%,-50%));
+      opacity:1;
+      transition: opacity .3s .5s;
+    }
+  }
+  &.signIn {
+    &:before {
+      display:none;
+    }
+    .btCont {
+      position:relative;
+      top:20px;
+    }
+  }
+  &.submitPlay {
+    @include size(90%, auto);
+    padding:20px;
+    .inputCont {
+      h3 {
+        @include font($spec, $white, 30px);
+      }
+      input, .dropDownInd {
+        @include backColor(rgba(255,255,255,.6));
+        color:black;
+        &:focus {
+          @include backColor(rgba(255,255,255,.8));
+        }
+      }
+    }
+    .btCont {
+      button {
+        @include font($head, $black, 20px, bold, 0.01em, 20px, normal, uppercase, none, $align: left);
+      }
+    }
+  }
+  h3 {
+    @include font($head, $white, 25px, bold, .09em, 20px, italic, none, none, left);
+    margin:10px 0px;
+  }
+  .btCont {
+    @include flex(flex, row, nowrap, $align:center, $just: center, $gap: 10px);
+    margin:20px 0px;
+    transition: all .3s .1s;
+    input, .dropDownInd, textarea {
+      @include backColor(rgba(255,255,255,.5));
+    }
+    button {
+      @include backColor($white);
+      @include font($head, $black, 20px, bold, .01em, 20px);
+      padding:10px 20px;
+      transition: all .3s .1s;
+      &:hover {
+        background: $black;
+        color: $white;
+      }
+    }
+  }
+  .inputCont {
+    @include flex(flex, column, wrap, stretch, center, 5px);
+    margin-bottom:10px;
+    label {
+      @include font($par, $white, 15px, 500, .01em, 20px, normal, none, none, left);
+      @include flex(flex, column, $gap: 5px);
+      cursor:pointer;
+    }
+    .selectHolder {
+      @include rel();
+      margin:10px 0px;
+      .dropDownCase {
+        @include pos(absolute, 24px, 0%);
+        @include size(100%, auto);
+        @include back(rgb(161, 161, 161), $blur: 15px);
+        border-radius:$br;
+        z-index:10;
+        div {
+          @include flex(flex, column, $gap: 13px);
+          @include backColor(transparent);
+          padding:20px 20px;
+          button {
+            @include font($par, $black, 18px, bold, $align:left);
+          }
+        }
+        &.active {
+          background:red;
+        }
+        .short {
+          max-height:200px;
+          overflow-y:scroll;
+        }
+        &.inactive {
+          background:red;
+          display:none;
+        }
+        
+      }
+    }
+    input, .dropDownInd, textarea {
+      @include backColor($grayC);
+      @include font($par, $white, 12px, .05em);
+      @include size(100%, auto);
+      @include inpCaret($black, revert, underscore);
+      border-bottom:1px solid $grayB;
+      border-radius:$br;
+      padding:10px 0px 10px 20px;
+      &::placeholder {
+        color: transparent;
+      }
+      &:focus {
+        @include backColor(rgba(255,255,255,.4));
+      }
+    }
+  }
+}
+
+
+
+
+
 // 102 - HOME BANNERS
 // .homePageBanners {
 //   background:red;

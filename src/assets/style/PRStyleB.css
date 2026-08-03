@@ -66,6 +66,10 @@ h1 {
   padding: 10px 10px;
 }
 
+main {
+  height: 100lvh;
+}
+
 .primaryBt {
   background: #f5f5f5;
   color: #242222;
@@ -103,7 +107,6 @@ h1 {
   gap: 0px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.7);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  height: 200px;
 }
 .play-routes header .logo {
   position: relative;
@@ -186,11 +189,11 @@ h1 {
   min-height: auto;
   max-height: auto;
   position: relative;
-  top: 50%;
+  top: 10%;
   left: none;
   bottom: none;
-  right: 20px;
-  transform: translate(0%, -50%);
+  right: 10px;
+  transform: translate(0%, 0%);
   border-radius: 50%;
   border: 3px solid #f5f5f5;
   overflow: hidden;
@@ -217,7 +220,7 @@ h1 {
   bottom: none;
   right: 0px;
   transform: translate(0%, 0%);
-  width: 500px;
+  width: 200px;
   height: auto;
   min-width: 0;
   max-width: auto;
@@ -229,7 +232,7 @@ h1 {
   align-items: stretch;
   justify-content: start;
   gap: 10px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   padding: 20px;
 }
@@ -254,6 +257,7 @@ h1 {
 
 .homePageBanners section {
   height: 350px;
+  border-bottom: 2px solid rgb(22, 22, 22);
 }
 .homePageBanners section .btCont {
   padding: 30px 0px 0px;
@@ -381,8 +385,8 @@ h1 {
   max-width: auto;
   min-height: auto;
   max-height: auto;
-  background: rgb(16, 15, 22);
   position: relative;
+  background: rgba(16, 15, 2, 0.5);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -390,6 +394,31 @@ h1 {
   justify-content: center;
   gap: 20px;
   padding: 50px 0px;
+  overflow: hidden;
+}
+.homePageBanners section.instruction:before {
+  content: " ";
+  width: 150%;
+  height: 320%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  background: rgb(16, 15, 2);
+  background-image: url("@/assets/images/ExampleA.jpg");
+  background-size: 2200px auto;
+  background-position: 300px -200px;
+  background-repeat: repeat;
+  backdrop-filter: blur(none);
+  transform: rotate(-25deg);
+  opacity: 0.4;
+  z-index: -1;
 }
 .homePageBanners section.instruction .arrowBox {
   width: 100px;
@@ -647,10 +676,14 @@ h1 {
   text-align: center;
 }
 .homePageBanners section.guestUsage .textBox .left .primaryBt {
-  margin-top: 20px;
   position: relative;
-  left: 50%;
+  top: none;
+  left: 35%;
+  bottom: none;
+  right: none;
   transform: translateX(-50%);
+  margin-top: 20px;
+  transform: rotate(2deg);
 }
 .homePageBanners section.guestUsage .textBox .right {
   transform: skew(-3deg);
@@ -669,10 +702,16 @@ h1 {
   content: " ";
   width: 100%;
   height: 110%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
   background: rgb(8, 8, 8);
   position: absolute;
   top: -10px;
   left: 10px;
+  bottom: none;
+  right: none;
   transform: skew(-2deg);
   z-index: -1;
 }
@@ -734,4 +773,265 @@ h1 {
 }
 .homePageBanners section.guestUsage .textBox .right ul li {
   transform: skew(3deg);
+}
+
+form {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+form.signUp, form.signIn {
+  width: 80%;
+  height: auto;
+  min-width: 150px;
+  max-width: 350px;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  top: 0%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, 0%);
+  padding-top: 20px;
+  margin-bottom: 50px;
+}
+form.signUp:before, form.signIn:before {
+  content: " ";
+  width: 200px;
+  height: 250px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/images/circleArrow.png");
+  background-size: auto 100%;
+  background-position: right center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+  position: absolute;
+  top: 50%;
+  left: -230px;
+  bottom: none;
+  right: none;
+  transform: translate(0%, -50%);
+  opacity: 1;
+  transition: opacity 0.3s 0.5s;
+}
+form.signIn:before {
+  display: none;
+}
+form.signIn .btCont {
+  position: relative;
+  top: 20px;
+}
+form.submitPlay {
+  width: 90%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  padding: 20px;
+}
+form.submitPlay .inputCont h3 {
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+form.submitPlay .inputCont input, form.submitPlay .inputCont .dropDownInd {
+  background: rgba(255, 255, 255, 0.6);
+  color: black;
+}
+form.submitPlay .inputCont input:focus, form.submitPlay .inputCont .dropDownInd:focus {
+  background: rgba(255, 255, 255, 0.8);
+}
+form.submitPlay .btCont button {
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+form h3 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 25px;
+  font-style: italic;
+  letter-spacing: 0.09em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  margin: 10px 0px;
+}
+form .btCont {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0px;
+  transition: all 0.3s 0.1s;
+}
+form .btCont input, form .btCont .dropDownInd, form .btCont textarea {
+  background: rgba(255, 255, 255, 0.5);
+}
+form .btCont button {
+  background: #f5f5f5;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  padding: 10px 20px;
+  transition: all 0.3s 0.1s;
+}
+form .btCont button:hover {
+  background: #242222;
+  color: #f5f5f5;
+}
+form .inputCont {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+form .inputCont label {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 5px;
+  cursor: pointer;
+}
+form .inputCont .selectHolder {
+  position: relative;
+  margin: 10px 0px;
+}
+form .inputCont .selectHolder .dropDownCase {
+  position: absolute;
+  top: 24px;
+  left: 0%;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(161, 161, 161);
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  z-index: 10;
+}
+form .inputCont .selectHolder .dropDownCase div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 13px;
+  background: transparent;
+  padding: 20px 20px;
+}
+form .inputCont .selectHolder .dropDownCase div button {
+  color: #242222;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+form .inputCont .selectHolder .dropDownCase.active {
+  background: red;
+}
+form .inputCont .selectHolder .dropDownCase .short {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+form .inputCont .selectHolder .dropDownCase.inactive {
+  background: red;
+  display: none;
+}
+form .inputCont input, form .inputCont .dropDownInd, form .inputCont textarea {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 0.05em;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  caret-color: #242222;
+  caret-animation: revert;
+  caret-shape: underscore;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 10px 0px 10px 20px;
+}
+form .inputCont input::-moz-placeholder, form .inputCont .dropDownInd::-moz-placeholder, form .inputCont textarea::-moz-placeholder {
+  color: transparent;
+}
+form .inputCont input::placeholder, form .inputCont .dropDownInd::placeholder, form .inputCont textarea::placeholder {
+  color: transparent;
+}
+form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont textarea:focus {
+  background: rgba(255, 255, 255, 0.4);
 }/*# sourceMappingURL=PRStyleB.css.map */
