@@ -27,7 +27,7 @@ $addedPlayerModal: 30px;
 
 html, body {
   margin: 0px;
-  @include back(transparent, '@/assets/images/bck_blackGrain.png', cover 100%, auto, no-repeat);
+  @include back(transparent, '@/assets/images/bck_blackGrain.png', 100% 100%, auto, no-repeat);
 }
 
 h1, h2, h3, h4, h5 {
@@ -47,9 +47,11 @@ h1 {
 }
 
 
+
+
+
 /// 101 - HEADER
 header {
-  @include size(auto, 80px);
   @include rel();
   @include flex(flex, row, nowrap, stretch, start);
   @include back(#333, '@/assets/images/bck_blackGrain.png', cover, auto, no-repeat);
@@ -87,6 +89,7 @@ header {
   @include size(100%, auto);
   @include backColor(rgba(255,255,255,.0));
   @include flex(flex, column, wrap);
+  display:none;
   section {
     @include size(auto, auto);
     @include rel();
@@ -233,7 +236,7 @@ header {
 
 main {
   @include rel();
-  height:100lvh;
+  // height:100lvh;
 }
 
 // 103 - FORM

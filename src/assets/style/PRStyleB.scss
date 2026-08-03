@@ -1,0 +1,1227 @@
+// INDEX
+// 101 - HEADER
+// 102 - HOME BANNERS
+
+@import "./mixins";
+// @import "./vars";
+
+$white: #f5f5f5;
+$black: #242222;
+$blackB: rgba(0,0,0, .9);
+$gray: #a3a3a3;
+$grayB: rgba(255,255,255,.3);
+$grayC: rgba(255,255,255,.1);
+$blueA: rgba(22, 18, 29, 1);
+$blueB: rgb(1, 121, 190);
+$rustRed: rgb(207, 18, 18);
+$rustYellow: rgb(241, 220, 23);
+$rustBlue: rgb(13, 126, 192);
+
+$headerHeight: 80px;
+$avatarSize: 50px;
+$addedPlayerXS: 10px;
+$addedPlayerModal: 30px;
+
+$cc: translate(-50%,-50%);
+
+//UNIVERSALS
+* {
+  @include initials();
+}
+
+
+html, body {
+  margin: 0px;
+
+  padding:0px;
+}
+body {
+  @include flex(flex, column);
+  @include size(auto, 100%, $minH: 100%);
+  @include back(transparent, '@/assets/images/bck_blackGrain.png', 100% 100%, auto, no-repeat);
+}
+
+h1, h2, h3, h4, h5 {
+  @include font($head,$white, 15px, 500, .01em, 20px, italic, none);
+  margin:0px;
+}
+button {
+  @include back(transparent);
+  border:none;
+  outline:none;
+  cursor:pointer;
+}
+h1 {
+  @include backColor(rgba(15, 15, 15, 0.5));
+  font-size:25px;
+  padding:10px 10px;
+}
+
+.primaryBt {
+  @include backColor($white);
+  @include font($head, $black, 30px, bold, .02em, 20px, normal, uppercase, $align:center);
+  padding:9px 30px;
+}
+
+
+
+.play-routes {
+  @include flex(flex, column, nowrap, stretch, center, 0px);
+  header, .page {
+    flex:1;
+  }
+  header {
+    flex:1;
+    @include rel();
+    @include flex(flex, row, nowrap, center, center, 0px);
+    border-bottom:2px solid rgba(0,0,0,.7);
+    box-shadow:0 5px 15px rgba(0,0,0,.5);
+    height:200px;
+    .logo {
+      @include rel();
+      @include size(auto, $headerHeight, $maxW:80px);
+      img {
+        @include size(auto, 80%);
+        @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+      }
+    }
+    nav {
+      @include pos(relative, 0px);
+      @include flex(flex, row, nowrap, stretch, start, 30px);
+      @include size(auto, 100%);
+      padding-left:20px;
+      button {
+        @include font($head, $white, 15px, bold, .08em, 20px, normal, uppercase);
+        @include backColor();
+        cursor:pointer;
+      }
+    }
+    .userCont {
+      @include rel();
+      @include size(auto, 100%);
+      @include flex(flex, row, nowrap, stretch, end, 0px);
+      .avatarCont {
+        @include size($avatarSize, $avatarSize);
+        @include pos(relative, 50%, $right:20px, $trans:translate(0%, -50%));
+        border-radius:50%;
+        border:3px solid $white;
+        overflow:hidden;
+        button {
+          @include size(100%, 100%);
+          background:$blueB;
+          img {
+            height:100%;
+          }
+        }
+      }
+      h3 {
+        display: none;
+      }
+      .userDrop {
+        @include pos(absolute, 100%, $right: 0px, $trans: translate(0%, 0%));
+        @include size(500px, auto);
+        @include flex(flex, column, nowrap, $gap:10px);
+        @include backColor(rgba(0,0,0, .5));
+        z-index:1000;
+        padding:20px;
+        button {
+          @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase, none);
+          a {
+            color:inherit;
+          }
+        }
+      }
+    }
+    .logo, nav, .userCont {
+      flex:1;
+    }
+  }
+}
+
+.homePageBanners {
+  section {
+    height:350px;
+    .btCont {
+      padding:30px 0px 0px;
+      @include flex(flex, row, nowrap, center, center, 20px);
+    }
+    &.createAccount {
+      @include rel();
+      @include size(auto, 100%, $minH:550px);
+      transition: all .5s;
+      overflow:hidden;
+      .fieldImage {
+        @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+        @include size(100%, auto);
+        z-index:0;
+      }
+      .mid {
+        @include size(90%, 90%, $maxW:900px);
+        @include pos(absolute, 55%, 50%, $trans: translate(-50%,-50%));
+        padding-top:20px;
+        z-index:1;
+        
+        img {
+          @include size(auto, 35%);
+          @include pos(relative, 0px, 50%, $trans:translateX(-50%));
+          transition:height .2s;
+        }
+        h3, h4 {
+          @include font($head, $white, 64px, bold, .01em, 20px, italic, none, none, center);
+          margin:0px;
+          transition:font-size .2s;
+          .alt {
+            color: $gray;
+          }
+        }
+        h4 {
+          @include font($head, $white, 32px, bold, .09em, 20px, italic, none, none, center);
+          @include flex(flex, $gap: 20px);
+          transition:font-size .2s;
+          &:before, &:after {
+            content:' ';
+            @include size(auto, 2px);
+            @include backColor($gray);
+            @include pos(relative, 17px);
+            flex:1;
+          }
+        }
+      }
+    }
+    &.instruction {
+      @include size(auto, 450px);
+      @include backColor(rgb(16, 15, 22));
+      @include rel();
+      @include flex($align: center, $just: center, $gap: 20px );
+      padding:50px 0px;
+      .arrowBox {
+        @include size(100px, auto);
+        img {
+        width:100%;
+        margin:0px;
+        }
+      }
+      .textBox {
+        @include size(50%, auto, 220px, 850px);
+        h3 {
+          @include font($head, $white, 35px, bold, .04em, 30px, normal, uppercase, $align:left);
+        }
+        p {
+          @include font($par, $white, 22px, bold, .05em, 20px, normal, none);
+        }
+      }
+    }
+
+    &.guestUsage {
+      @include size(auto, auto);
+      @include backColor(rgb(29, 27, 27));
+      @include flex(flex, row, nowrap, center, center);
+      @include rel();
+      padding:50px 50px 100px;
+      overflow:hidden;
+      &:before {
+        content:' ';
+        @include size(150%, 220%);
+        @include pos(absolute);
+        @include back(rgb(46, 43, 43), '@/assets/images/PR_Black.png', 220px auto, center center, repeat);
+        transform:rotate(-25deg);
+        opacity:.1;
+      }
+      .textBox {
+        @include flex(flex, row, nowrap, stretch, start, 0px);
+        @include size(100%, 100%, 900px, 1500px);
+        .left, .right {
+          flex:1;
+          @include rel();
+          h3 {
+            margin-bottom:50px;
+          }
+        }
+        .left {
+          .imgA {
+            @include size(80px);
+            @include pos(absolute, 110px, 180px, $trans: rotate(-10deg));
+          }
+          .imgB {
+            @include size(120px);
+            @include pos(absolute, $right:10px, $bottom: 50px, $trans: rotate(-10deg));
+          }
+          h2 {
+            @include font($head, $white, 65px, bold, .02em, 20px, normal, uppercase);
+            padding-left:110px;
+            &.highlight {
+              @include font($head, $rustBlue, 105px, bold, .02em, 20px, normal, uppercase, 0px 2px 2px $black, right);
+              margin-top:-33px;
+            }
+            transform:rotate(-3deg);
+          }
+          h3 {
+            @include size(355px, 90px);
+            @include pos(absolute, 150px, $right: -20px, $trans: translate(0%,-50%));
+            @include font($hand, $black, 55px, 300, .01em, 20px, normal, uppercase, none, center);
+            transform:rotate(-5deg);
+            &:before {
+              content:' ';
+              @include size(100%, 100%);
+              @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+              @include back(transparent, '@/assets/images/brushA.png', contain, center center, no-repeat);
+              z-index: -1;
+            }
+          }
+          h4 {
+            @include font($par, $white, 21px, 400, .02em, 20px, normal, normal, none, center);
+            margin-top:100px;
+            strong {
+              color:$rustBlue;
+            }
+            padding-bottom:20px;
+          }
+          h5 {
+            padding-top:10px;
+            @include font($head, $white, 25px, 400, .02em, 20px, normal, normal, none, center);
+            margin:0px 0px -5px 0px;
+            &.highlight {
+              @include font($head, $rustBlue, 25px, 400, .02em, 20px, normal, uppercase, none, center);
+            }
+          }
+          .primaryBt {
+            margin-top:20px;
+            position:relative;
+            left:50%;
+            transform:translateX(-50%);
+          }
+        }
+        .right {
+          transform: skew(-3deg);
+          ul {
+            @include pos(absolute, 270px, 55%, $trans: $cc);
+            @include backColor($rustBlue);
+            padding:40px 70px;
+            &:after {
+              content:' ';
+              width:100%;
+              height:110%;
+              @include backColor(rgb(8, 8, 8));
+              position:absolute;
+              top:-10px;
+              left:10px;
+              transform: skew(-2deg);
+              z-index:-1;
+            }
+            h3 {
+              @include font($spec, $white, 30px, 400, .02em, 20px, normal, uppercase, none, center);
+              white-space: nowrap;
+              margin:0px 0px 20px 0px;
+              transform: skew(3deg);
+            }
+            li {
+              @include flex(flex, row, wrap, center, start, 0px);
+              @include font($head, $white, 30px, 400, .02em, 20px, normal, uppercase, none, left);
+              padding:20px 0px;
+              strong {
+                color:$rustBlue;
+                font-size:65px;
+                margin-right:10px;
+              }
+              img {
+                width:50px;
+                margin-right:30px;
+              }
+              p {
+                flex: 0 0 100%;
+                @include font($par, $white, 12px, 400, .02em, 20px, normal, uppercase, none, left);
+              }
+              transform: skew(3deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// 102 - HOME BANNERS
+// .homePageBanners {
+//   background:red;
+//   @include rel();
+//   @include size(100%, auto);
+//   @include backColor(rgba(255,255,255,.0));
+
+//   height:100%;
+//   section {
+//     @include rel();
+//     border-bottom:2px solid black;
+//     height:500px;
+//     width:100%;
+    
+//   }
+  // section {
+  //   @include size(auto, auto);
+  //   @include rel();
+    
+  //   &.instruction {
+  //     @include size(auto, auto);
+  //     @include backColor(rgb(16, 15, 22));
+  //     @include rel();
+  //     @include flex($align: center, $just: center, $gap: 20px );
+  //     padding:50px 0px;
+  //     .arrowBox {
+  //       @include size(100px, auto);
+  //       img {
+  //         width:100%;
+  //         margin:0px;
+  //       }
+  //     }
+  //     .textBox {
+  //       @include size(50%, auto, 220px, 850px);
+  //       h3 {
+  //         @include font($head, $white, 35px, bold, .04em, 30px, normal, uppercase, $align:left);
+  //       }
+  //       p {
+  //         @include font($par, $white, 22px, bold, .05em, 20px, normal, none);
+  //       }
+  //     }
+  //   }
+  //   &.createAccount {
+  //     @include rel();
+  //     @include size(auto, 400px);
+      
+  //     transition: all .5s;
+  //     overflow:hidden;
+  //     .fieldImage {
+  //       @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+  //       @include size(100%, auto, 1200px);
+  //       z-index:0;
+  //     }
+  //     .mid {
+  //       @include size(90%, 90%, $maxW:900px);
+  //       @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+  //       padding-top:20px;
+  //       z-index:1;
+  //       .btCont {
+  //         padding:30px 0px 0px;
+  //         @include flex(flex, row, nowrap, center, center, 20px);
+  //         button {
+  //           @include backColor($white);
+  //           @include font($head, $black, 30px, bold, .02em, 20px, normal, uppercase, $align:center);
+  //           padding:9px 30px;
+  //         }
+  //       }
+  //       img {
+  //         @include size(auto, 35%);
+  //         @include pos(relative, 0px, 50%, $trans:translateX(-50%));
+  //         transition:height .2s;
+  //       }
+  //       h3, h4 {
+  //         @include font($head, $white, 64px, bold, .01em, 20px, italic, none, none, center);
+  //         margin:0px;
+  //         transition:font-size .2s;
+  //         .alt {
+  //           color: $gray;
+  //         }
+  //       }
+  //       h4 {
+  //         @include font($head, $white, 32px, bold, .09em, 20px, italic, none, none, center);
+  //         @include flex(flex, $gap: 20px);
+  //         transition:font-size .2s;
+  //         &:before, &:after {
+  //           content:' ';
+  //           @include size(auto, 2px);
+  //           @include backColor($gray);
+  //           @include pos(relative, 17px);
+  //           flex:1;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+// }
+
+// @media only screen and (max-width: 600px) {
+//   .homePageBanners {
+//     @include flex(flex, column, wrap, $gap: 0px);
+//     section {
+//       &.instruction {
+//         @include size(auto, auto);
+//         @include flex($dir:column, $align:center, $just: center);
+//         @include font($align: center);
+//         transition: all .3s;
+//         padding:40px 20px;
+//         .arrowBox {
+//           display:none;
+//         }
+//         .textBox {
+//           @include size(90%, auto);
+//           padding:0px;
+//           h3 {
+//             font-size:25px;
+//             text-align:center;
+//           }
+//           p {
+//             font-size:15px;
+//             text-align:center;
+//           }
+//         }
+//       }
+//       &.createAccount {
+//         @include size(auto, 350px);
+//         transition: all .5s;
+//         .mid {
+//           @include size(auto, 80%);
+//           padding:0px 0px; 
+//           .btCont {
+//             @include flex($dir: column, $gap:10px);
+//             margin-top:-10px;
+//             button {
+//               @include size(200px);
+//               font-size:15px;
+//               padding:12px 0px;
+//             }
+//           }
+//           img {
+//             height:40%;
+//             transition:height .2s;
+//           }
+//           h3, h4 {
+//             font-size:30px;
+//             letter-spacing:0.01em;
+//             transition:font-size .2s;
+//           }
+//           h4 {
+//             font-size:15px;
+//             &:before, &:after {
+//               top:14px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// // 102 - END HOME BANNERS
+
+// main {
+//   @include rel();
+//   // height:100lvh;
+// }
+
+// // 103 - FORM
+// form {
+//   $br: 20px;
+//   @include size(100%, 100%);
+//   &.signUp, &.signIn {
+//     @include size(80%, auto, 150px, 350px);
+//     @include pos(relative, 0%, 50%, $trans: translate(-50%, 0%));
+//     padding-top: 20px;
+//     margin-bottom: 50px;
+//     &:before {
+//       content:' ';
+//       @include size(200px, 250px);
+//       @include back(transparent, '@/assets/images/circleArrow.png', auto 100%, right center, no-repeat);
+//       @include pos(absolute, 50%, $left:-230px, $trans:translate(-0%,-50%));
+//       opacity:1;
+//       transition: opacity .3s .5s;
+//     }
+//   }
+//   &.signIn {
+//     &:before {
+//       display:none;
+//     }
+//     .btCont {
+//       position:relative;
+//       top:20px;
+//     }
+//   }
+//   &.submitPlay {
+//     @include size(90%, auto);
+//     padding:20px;
+//     .inputCont {
+//       h3 {
+//         @include font($spec, $white, 30px);
+//       }
+//       input, .dropDownInd {
+//         @include backColor(rgba(255,255,255,.6));
+//         color:black;
+//         &:focus {
+//           @include backColor(rgba(255,255,255,.8));
+//         }
+//       }
+//     }
+//     .btCont {
+//       button {
+//         @include font($head, $black, 20px, bold, 0.01em, 20px, normal, uppercase, none, $align: left);
+//       }
+//     }
+//   }
+//   h3 {
+//     @include font($head, $white, 25px, bold, .09em, 20px, italic, none, none, left);
+//     margin:10px 0px;
+//   }
+//   .btCont {
+//     @include flex(flex, row, nowrap, $align:center, $just: center, $gap: 10px);
+//     margin:20px 0px;
+//     transition: all .3s .1s;
+//     input, .dropDownInd, textarea {
+//       @include backColor(rgba(255,255,255,.5));
+//     }
+//     button {
+//       @include backColor($white);
+//       @include font($head, $black, 20px, bold, .01em, 20px);
+//       padding:10px 20px;
+//       transition: all .3s .1s;
+//       &:hover {
+//         background: $black;
+//         color: $white;
+//       }
+//     }
+//   }
+//   .inputCont {
+//     @include flex(flex, column, wrap, stretch, center, 5px);
+//     margin-bottom:10px;
+//     label {
+//       @include font($par, $white, 15px, 500, .01em, 20px, normal, none, none, left);
+//       @include flex(flex, column, $gap: 5px);
+//       cursor:pointer;
+//     }
+//     .selectHolder {
+//       @include rel();
+//       margin:10px 0px;
+//       .dropDownCase {
+//         @include pos(absolute, 24px, 0%);
+//         @include size(100%, auto);
+//         @include back(rgb(161, 161, 161), $blur: 15px);
+//         border-radius:$br;
+//         z-index:10;
+//         div {
+//           @include flex(flex, column, $gap: 13px);
+//           @include backColor(transparent);
+//           padding:20px 20px;
+//           button {
+//             @include font($par, $black, 18px, bold, $align:left);
+//           }
+//         }
+//         &.active {
+//           background:red;
+//         }
+//         .short {
+//           max-height:200px;
+//           overflow-y:scroll;
+//         }
+//         &.inactive {
+//           background:red;
+//           display:none;
+//         }
+        
+//       }
+//     }
+//     input, .dropDownInd, textarea {
+//       @include backColor($grayC);
+//       @include font($par, $white, 12px, .05em);
+//       @include size(100%, auto);
+//       @include inpCaret($black, revert, underscore);
+//       border-bottom:1px solid $grayB;
+//       border-radius:$br;
+//       padding:10px 0px 10px 20px;
+//       &::placeholder {
+//         color: transparent;
+//       }
+//       &:focus {
+//         @include backColor(rgba(255,255,255,.4));
+//       }
+//     }
+//   }
+// }
+// @media only screen and (max-width: 600px) {
+//   form {
+//     &.signUp {
+//       &:before {
+//         opacity:0;
+//         transition: opacity .3s;
+//       }
+//     }
+//     .btCont {
+//       @include flex(flex, column, nowrap, $align:center, $just: center, $gap: 20px);
+//       transition: all .3s .1s;
+//       button {
+//         @include size(100%, auto);
+//         text-align:center;
+//         transition: all .3s .1s;
+//       }
+//     }
+//   }
+// }
+
+// .loginCreds {
+//   @include size(100%, 100%);
+//   @include pos(fixed, 50%, 50%, $trans: translate(-50%,-50%));
+//   @include backColor($blackB);
+//   z-index:2;
+//   .content {
+//     @include size(650px, auto);
+//     @include backColor($blackB);
+//     @include pos(absolute, 50%, 50%, 0, 0, $trans: translate(-50%,-50%));
+//     border: 1px solid $gray;
+//     padding:20px;
+//     form {
+//       @include size(100%, auto);
+//       margin-bottom: 10px;
+//       h3 {
+//         @include font($align:center);
+//         margin: 20px 0px;
+//       }
+//       .inputCont {
+//         label {
+//           @include font($align:center);
+//         }
+//         input {
+//           @include size(150px, auto);
+//           @include font($color: $white, $align: center);
+//           margin:auto;
+//           padding:10px 0px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+// //CREATE VARS
+// $toolWidth: 50px;
+// $toolBtSize: $toolWidth - 12px;
+// $degreeSpin: -45deg;
+// $playerSize:40px;
+
+// //PEN COLORS
+// $penRed: #dd1919;
+// $penWhite: #ffffff;
+// $penBlue: #301283;
+// $penYellow: #f3ff44;
+// $penGreen: #00e913;
+
+// * {touch-action: none;}
+// .boardCont {
+//   @include size(auto, 90vh);
+//   @include flex(flex, column);
+//   overflow: hidden;
+//   .board {
+//     @include size(auto, auto, 250px);
+//     @include rel();
+//     @include flex(flex);
+//     flex: 1;
+//     overflow: hidden;
+//     .player {
+//       @include size($playerSize, $playerSize);
+//       @include backColor(transparent);
+//       @include font($spec, $black, 20px, bold);
+//       @include pos(absolute, $trans: translate(-50%, -50%));
+//       @include flex(flex, wrap, nowrap, center, center);
+//       border:2px solid rgba(138, 137, 137, 0.5);
+//       box-shadow:0 5px 5px rgba(0,0,0,.5);
+//       border-radius:50%;
+//       z-index:8000;
+//       cursor: grab;
+//       &.remove {
+//         &:before, &:after {
+//           @include backColor($penRed);
+//           color:white;
+//           transition:all .5s;
+//         }
+//       }
+//       &:before, &:after {
+//         content:attr(myText);
+//         @include size(100%, 100%);
+//         @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%) );
+//         @include backColor($white);
+//         @include flex(flex, row, nowrap, center, center);
+//         @include font($spec, $black, 16px, 300, .01em, 15px,  normal, uppercase,  none,  center );
+//         border-radius:50%;
+//         z-index:1;
+//         transition:all .5s;
+//       }
+//     }
+//     .field {
+//       flex:1;
+//       @include rel();
+//       @include size(auto, 100%);
+//       @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
+//       .canvas {
+//         @include pos(absolute, 0px, 0px);
+//         @include size(100%, 100%);
+//         touch-action: none;
+//         z-index:2;
+//       }
+//       .gridBox {
+//         @include pos(absolute, 0%, 50%, $trans: translate(-50%,0%));
+//         @include size(100%, 100%);
+//         @include flex(flex);
+//         .lineOfScrimmage {
+//           @include pos(absolute, 65%);
+//           @include size(100%, 10px);
+//           @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
+//         }
+//         .gridLine {
+//           flex:1;
+//           border-right:1px dashed rgba(255,255,255,.9);
+//           &:last-child {
+//             border-right:none;
+//           }
+//         }
+//       }
+//       .playerLand {
+//         @include pos(absolute, 0px, 0px);
+//         @include size(100%, 100%);
+//         -webkit-user-drag: none;
+//         user-select: none;
+//         -moz-user-select: none;
+//         -webkit-user-select: none;
+//         -ms-user-select: none;
+//       }
+//     }
+//     .toolbox {
+//       flex:1;
+//       @include size(auto, auto, 10px, $toolWidth);
+//       @include backColor(black);
+//       @include flex(flex, column, wrap, center, center, 10px);
+//       list-style-type: none;
+//       z-index: 3;
+//       &.toolInfo, &.popTools {
+//         @include back(rgba(0,0,0,.7), $blur: 2px);
+//         @include flex(flex, column, wrap, center, center);
+//         opacity: 0;
+//         z-index:0;
+//         transition: opacity .5s .1s;
+//         &.active {
+//           opacity: 1;
+//           z-index: 9999;
+//           right:$toolWidth;
+//           transition: opacity .5s .2s;
+//         }
+//       }
+//       li {
+//         @include size($toolBtSize, $toolBtSize);
+//         border: 3px solid $white;
+//         border-radius: 50%;
+//         overflow: hidden;
+//         &.info {
+//           button {
+//             @include font(serif, $white, 28px, 600, 0em, 20px, italic, lowercase, none, center);
+//           }
+//         }
+//         &.pen {
+//           button {
+//             @include pos(relative, $trans: rotate($degreeSpin));
+//             &:after {
+//               content:' ';
+//               @include size(70%, 30%);
+//               @include backColor($white);
+//               @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+//               clip-path:polygon(
+//                 0% 50%, 30% 0%, 80% 0%, 80% 95%, 85% 95%, 85% 0%, 100% 0%, 100% 100%, 30% 100%
+//               )
+//             }
+//           }
+//         }
+//         &.color {
+//           button { font-weight:400; }
+//           &.red { button { border:none; background:$penRed; }}
+//           &.blue { button { border:none; background:$penBlue; }}
+//           &.white { button { border:none; color:$black; background:$penWhite; }}
+//           &.yellow { button { border:none; color:black; background:$penYellow; }}
+//           button {
+//             @include backColor($black);
+//             @include rel();
+//             overflow:hidden;
+//             .colors {
+//               @include size(100%, 100%);
+//               @include flex(flex, row, wrap);
+//               div {
+//                 flex: 0 0 50%;
+//                 height:50%;
+//                 &:nth-child(1) {background: $penWhite;}
+//                 &:nth-child(2) {background: $penRed;}
+//                 &:nth-child(3) {background: $penBlue;}
+//                 &:nth-child(4) {background: $penYellow;}
+//               }
+//             }
+//           }
+//         }
+//         &.select {
+//           @include pos(relative, $trans: rotate($degreeSpin));
+//           button {
+//             background:$penBlue;
+//             &:before {
+//               content:' ';
+//               @include size(70%, 45%);
+//               @include backColor($white);
+//               @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+//               $a:50%;
+//               $b:100% - $a;
+//               $c: 25%;
+//               $d: 100% - $c;
+//               clip-path:polygon(
+//                 0% 50%, $a 0%, $a $c, 100% $c, 100% $d, $a $d, $a 100%,
+//               );
+//             }
+//           }
+//         }
+//         &.erase {
+//           @include rel();
+//           button {
+//             @include pos(absolute, 0px, 0px);
+//             &.erase {
+//               @include backColor($penRed);
+//               @include rel();
+//               .lid {
+//                 @include size(50%,10%);
+//                 @include backColor($white);
+//                 @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
+//               }
+//               &:after {
+//                 content:' ';
+//                 @include size(48%, 45%);
+//                 @include backColor($white);
+//                 @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
+//                 clip-path:polygon(
+//                   0% 0%, 100% 0%, 90% 100%, 10% 100%,
+//                 )
+//               }
+//               &:before {
+//                 content:' ';
+//                 width:30%;
+//                 height:15%;
+//                 background:white;
+//                 position:absolute;
+//                 top:10%;
+//                 left:50%;
+//                 transform:translate(-50%,0%);
+//                 $a:30%;
+//                 $b:100% - $a;
+//                 clip-path:polygon(
+//                   0% 0%, 100% 0%, 100% 100%,
+//                   $b 100%, $b $a, $a $a, $a 100%, 0% 100%
+//                 )
+//               }
+//             }
+//             &.select {
+//               background:blue;
+//             }
+//             &.active {
+//               display:block;
+//             }
+//           }
+//         }
+//         button {
+//           @include size(100%, 100%);
+//           @include flex(flex, $align: center, $just: center);
+//           @include font($spec, $white, 20px, bold, .01em);
+//         }
+//       }
+//       &.toolInfo {
+//         @include pos(absolute, 0px, none, none, -500px, $toolWidth);
+//         @include size(100%, 100%, 100px, 450px);
+//       }
+//       &.popTools {
+//         @include pos(absolute, 0px, none, none, -500px, $toolWidth);
+//         @include size(100%, 100%, 100px, 280px);
+//         h3 {
+//           @include font($spec, $white, 30px);
+//         }
+//         &.positions {
+//           gap:8px;
+//           .popDisplay {
+//             @include size(70%, auto);
+//             @include rel();
+//             text-align:center;
+//             cursor:pointer;
+//             li {
+//               font-size:12px;
+//             }
+//             p {
+//               @include font($head, $white, 18px, bold, 0.05em, 20px, italic, uppercase);
+//               @include pos(absolute, 50%, 48px, $trans:translate(-0%,-50%));
+//             }
+//           }
+//         }
+//       }
+//     }
+    
+//   }
+// }
+
+
+
+// // PLAYBOOK
+
+
+// .sorters {
+//   @include flex(flex, row, nowrap);
+//   padding:20px 26px 10px;
+//   h4 {
+//     @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
+//     margin-right:10px;
+//   }
+//   select {
+//     @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
+//     appearance: none;
+//     @supports (appearance: base-select) {
+//       &, &::picker(select) {
+//         appearance: base-select;
+//       }
+//     }
+//     &::picker(select) {
+//       position:relative;
+//       top:-30px;
+//       background-color: $white;
+//       width:300px;
+//       border-radius: 8px;
+//       padding: 6px;
+//       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+//     }
+//     option {
+//       @include font($head, $black, 20px, bold, .01em, 20px);
+//       padding: 10px 14px;
+//       border-radius: 6px;
+//       color: #1f2937;
+//       cursor: pointer;
+//     }
+//     option:option-checked {
+//       background-color: #eff6ff;
+//       color: #2563eb;
+//       font-weight: bold;
+//     }
+//   }
+// }
+// .playsContainer {
+//   @include rel();
+//   @include backColor(transparent);
+//   @include flex(flex, row, wrap, center, center, $gap: 20px);
+//   @include size(100%, auto, 100%, 100%, 300px, 100vh);
+//   padding:30px 10px;
+//   margin:0px;
+//   // display: grid;
+//   // grid-template-columns: repeat(auto-fill, minmax(12%, 300px));
+//   // grid-gap: .5rem;
+//   // row-gap:50px;
+//   .indPlays {
+//     flex:1;
+//     @include rel();
+//     @include size(auto, auto, 280px, 310px);
+//     overflow:hidden;
+//     border-top:1px solid rgba(255,255,255,.2);
+//     box-shadow:0 2px 10px black;
+//     cursor:grab;
+//     &.active {
+//       outline:3px solid rgba(255, 188, 62, 0.8);
+//     }
+//     .field {
+//       @include back(transparent, '@/assets/images/bck_chalkboard.jpg', cover, center, no-repeat);
+//       @include rel();
+//       @include size(100%, 150px);
+//       .canvas {
+//         @include pos(absolute,0px,0px);
+//         @include size(100%, 100%);
+//       }
+      
+//     }
+//     .playInfo {
+//       @include backColor(rgb(51, 51, 51));
+//       padding-bottom:20px;
+//       text-align:center;
+//       border-top:3px solid rgb(46, 45, 45);
+//       h3 {
+//         @include font($spec, $white, 25px, bold, .05em, 20px, normal, uppercase, $align:center);
+//         padding:15px 0px;
+//         margin-bottom:15px;
+//         @include back(rgba(255,255,255,.0), '@/assets/images/slash.png', 60% 7px, center 95%, no-repeat, 1px);
+//       }
+//       h4 {
+//         strong {
+//           @include font($par, $white, 12px, bold, .01em, 20px, normal, uppercase, $align:center);
+//         }
+//         @include font($par, $white, 13px, 500, .01em, 20px, normal, uppercase, $align:center);
+        
+//       }
+//       .btCont {
+//         $w:30px;
+//         @include pos(absolute, 5px, $right: 5px);
+//         @include size(auto, $w);
+//         @include flex(flex);
+//         .menu {
+//           width:25px;
+//           height:20px;
+//           display:flex;
+//           position:relative;
+//           top:5px;
+//           flex-direction:column;
+//           gap:5px;
+//           align-items:center;
+//           justify-content:center;
+//           margin-left:5px;
+//           background:transparent;
+//           div {
+//             flex:1;
+//             width:100%;
+//             border-radius:5px;
+//             background:rgba(224, 224, 224, 1);
+//           }
+//           &.active {
+//             div {
+//               background:rgba(224, 224, 224, 1);
+//             }
+//           }
+//         }
+//         .show {
+//           display:none;
+//           flex-direction:row;
+//           flex-wrap:nowrap;
+//           gap:0px;
+//           &.active {
+//             display:flex;
+//           }
+//           button {
+//             width:$w;
+//             height:$w;
+//             color:white;
+//             font-size:25px;
+//             font-weight:bold;
+//             line-height:22px;
+//             display:flex;
+//             align-items:center;
+//             justify-content:center;
+//             &.fav {
+//               background:transparent;
+//               &.star {
+//                 color:rgb(222, 235, 50);
+//               }
+//             }
+//             &.del {
+//               &:hover {
+//                 font-size:22px;
+//               }
+//               @include rel();
+//               .lid {
+//                 @include size(50%,10%);
+//                 @include backColor($white);
+//                 @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
+//               }
+//               &:after {
+//                 content:' ';
+//                 @include size(48%, 45%);
+//                 @include backColor($white);
+//                 @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
+//                 clip-path:polygon(
+//                 0% 0%, 100% 0%, 90% 100%, 10% 100%,
+//                 )
+//               }
+//               &:before {
+//                 content:' ';
+//                 width:30%;
+//                 height:15%;
+//                 background:white;
+//                 position:absolute;
+//                 top:10%;
+//                 left:50%;
+//                 transform:translate(-50%,0%);
+//                 $a:30%;
+//                 $b:100% - $a;
+//                 clip-path:polygon(
+//                 0% 0%, 100% 0%, 100% 100%,
+//                 $b 100%, $b $a, $a $a, $a 100%, 0% 100%
+//                 )
+//               }
+
+//             }
+//           }
+//         }
+//       }
+//     }
+//     &:hover {
+//       outline:1px solid rgba(225, 226, 127, 0.384);
+//       outline-offset:1px;
+//       transition: all .5s;
+//       .playInfo {
+//         @include backColor(rgb(27, 27, 27));
+//         transition: all .5s;
+//       }
+//     }
+//   }
+// }
+
+// .messageOutput {
+//   @include pos(fixed, 40%, 50%, $trans: translate(-50%, 0%));
+//   @include size(auto,auto);
+//   @include back(rgba(0,0,0,.9), $blur: 10px);
+//   @include font($head, $white, 25px, bold, .01em, 20px, normal, uppercase, $align:center);
+//   border:1px solid rgba(255,255,255,.5);
+//   padding:70px 150px;
+//   strong {
+//     display:block;
+//     @include font($head, $blueB, 65px, bold, .01em, 20px, normal, uppercase, $align:center);
+//   }
+//   p {
+//     color:white;
+//   }
+//   .btCont {
+//     @include flex(flex, row, nowrap, $gap:10px);
+//     button {
+//       flex:1;
+//       @include font($head, $black, 20px, bold, .02em, 20px, normal, uppercase, none, center);
+//       // @include size(50%, auto);
+//       padding:11px 20px;
+//       margin:20px 0px 0px;
+//       background:$white;
+//     }
+//   }
+// }
+
+// .addedPlayers {
+//   @include pos(absolute, -3px, -3px);
+//   @include size(100%, 100%);
+//   .player {
+//     @include pos(absolute, $trans:translate(-50%,-50%));
+//     @include backColor($white);
+//     border-radius:50%;
+//     margin:3px;
+//     z-index:0;
+//   }
+//   &.xs {
+//     .player {      
+//       @include size($addedPlayerXS,$addedPlayerXS);
+//     }
+//   }
+//   &.modal {
+//     .player {
+//       @include flex(flex, row, nowrap, center, center);
+//       @include font($spec, $black, 16px, bold, .01em, 20px, normal, uppercase, none, center);
+//       @include size($addedPlayerModal,$addedPlayerModal);
+//     }
+//   }
+// }
+
+
+// .authDelete {
+//   @include pos(fixed, 50%, 50%, $trans:translate(-50%,-50%));
+//   @include size(500px, 200px, 200px, 500px);
+//   @include back(rgba(0,0,0,1), $blur: 10px);
+//   @include flex(flex, row, wrap, center, center, $gap:0px);
+//   border:2px solid rgba(255,255,255,.5);
+//   padding:20px;
+//   z-index:99999;
+//   p {
+//     flex: 0 0 100%;
+//     @include font($head, $white, 18px, 500, .04em, 20px, normal, none, none, center);
+//   }
+//   h3 {
+//     flex: 0 0 100%;
+//     @include font($spec, $white, 40px, 400, .05em, 20px, normal, uppercase, none, center);
+//     @include back(transparent, '@/assets/images/slash.png', 60% 7px, center 92%, no-repeat, 1px);
+//     padding-bottom:15px;
+//     margin:-5px 0px;
+//   }
+//   button {
+//     flex: 0 0 auto;
+//     margin:0px 5px;
+//     @include font($head, $black, 20px, bold, .04em, 20px, normal, uppercase, none, center);
+//     @include backColor($white);
+//     padding:10px 20px;
+//   }
+// }

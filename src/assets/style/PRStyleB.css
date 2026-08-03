@@ -1,0 +1,737 @@
+* {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: 100%;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/images/bck_blackGrain.png");
+  background-size: 100% 100%;
+  background-position: auto;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+}
+
+h1, h2, h3, h4, h5 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  margin: 0px;
+}
+
+button {
+  background: transparent;
+  background-image: url(none);
+  background-size: contain;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+h1 {
+  background: rgba(15, 15, 15, 0.5);
+  font-size: 25px;
+  padding: 10px 10px;
+}
+
+.primaryBt {
+  background: #f5f5f5;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  padding: 9px 30px;
+}
+
+.play-routes {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0px;
+}
+.play-routes header, .play-routes .page {
+  flex: 1;
+}
+.play-routes header {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  height: 200px;
+}
+.play-routes header .logo {
+  position: relative;
+  width: auto;
+  height: 80px;
+  min-width: 0;
+  max-width: 80px;
+  min-height: auto;
+  max-height: auto;
+}
+.play-routes header .logo img {
+  width: auto;
+  height: 80%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+}
+.play-routes header nav {
+  position: relative;
+  top: 0px;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 30px;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  padding-left: 20px;
+}
+.play-routes header nav button {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+.play-routes header .userCont {
+  position: relative;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: end;
+  gap: 0px;
+}
+.play-routes header .userCont .avatarCont {
+  width: 50px;
+  height: 50px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  top: 50%;
+  left: none;
+  bottom: none;
+  right: 20px;
+  transform: translate(0%, -50%);
+  border-radius: 50%;
+  border: 3px solid #f5f5f5;
+  overflow: hidden;
+}
+.play-routes header .userCont .avatarCont button {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(1, 121, 190);
+}
+.play-routes header .userCont .avatarCont button img {
+  height: 100%;
+}
+.play-routes header .userCont h3 {
+  display: none;
+}
+.play-routes header .userCont .userDrop {
+  position: absolute;
+  top: 100%;
+  left: none;
+  bottom: none;
+  right: 0px;
+  transform: translate(0%, 0%);
+  width: 500px;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  padding: 20px;
+}
+.play-routes header .userCont .userDrop button {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+.play-routes header .userCont .userDrop button a {
+  color: inherit;
+}
+.play-routes header .logo, .play-routes header nav, .play-routes header .userCont {
+  flex: 1;
+}
+
+.homePageBanners section {
+  height: 350px;
+}
+.homePageBanners section .btCont {
+  padding: 30px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.homePageBanners section.createAccount {
+  position: relative;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: 550px;
+  max-height: auto;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+.homePageBanners section.createAccount .fieldImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  z-index: 0;
+}
+.homePageBanners section.createAccount .mid {
+  width: 90%;
+  height: 90%;
+  min-width: 0;
+  max-width: 900px;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  padding-top: 20px;
+  z-index: 1;
+}
+.homePageBanners section.createAccount .mid img {
+  width: auto;
+  height: 35%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  top: 0px;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translateX(-50%);
+  transition: height 0.2s;
+}
+.homePageBanners section.createAccount .mid h3, .homePageBanners section.createAccount .mid h4 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 64px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  margin: 0px;
+  transition: font-size 0.2s;
+}
+.homePageBanners section.createAccount .mid h3 .alt, .homePageBanners section.createAccount .mid h4 .alt {
+  color: #a3a3a3;
+}
+.homePageBanners section.createAccount .mid h4 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 32px;
+  font-style: italic;
+  letter-spacing: 0.09em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 20px;
+  transition: font-size 0.2s;
+}
+.homePageBanners section.createAccount .mid h4:before, .homePageBanners section.createAccount .mid h4:after {
+  content: " ";
+  width: auto;
+  height: 2px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #a3a3a3;
+  position: relative;
+  top: 17px;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  flex: 1;
+}
+.homePageBanners section.instruction {
+  width: auto;
+  height: 450px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(16, 15, 22);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px 0px;
+}
+.homePageBanners section.instruction .arrowBox {
+  width: 100px;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.homePageBanners section.instruction .arrowBox img {
+  width: 100%;
+  margin: 0px;
+}
+.homePageBanners section.instruction .textBox {
+  width: 50%;
+  height: auto;
+  min-width: 220px;
+  max-width: 850px;
+  min-height: auto;
+  max-height: auto;
+}
+.homePageBanners section.instruction .textBox h3 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 35px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+.homePageBanners section.instruction .textBox p {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 22px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+.homePageBanners section.guestUsage {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(29, 27, 27);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  padding: 50px 50px 100px;
+  overflow: hidden;
+}
+.homePageBanners section.guestUsage:before {
+  content: " ";
+  width: 150%;
+  height: 220%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  background: rgb(46, 43, 43);
+  background-image: url("@/assets/images/PR_Black.png");
+  background-size: 220px auto;
+  background-position: center center;
+  background-repeat: repeat;
+  backdrop-filter: blur(none);
+  transform: rotate(-25deg);
+  opacity: 0.1;
+}
+.homePageBanners section.guestUsage .textBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 0px;
+  width: 100%;
+  height: 100%;
+  min-width: 900px;
+  max-width: 1500px;
+  min-height: auto;
+  max-height: auto;
+}
+.homePageBanners section.guestUsage .textBox .left, .homePageBanners section.guestUsage .textBox .right {
+  flex: 1;
+  position: relative;
+}
+.homePageBanners section.guestUsage .textBox .left h3, .homePageBanners section.guestUsage .textBox .right h3 {
+  margin-bottom: 50px;
+}
+.homePageBanners section.guestUsage .textBox .left .imgA {
+  width: 80px;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 110px;
+  left: 180px;
+  bottom: none;
+  right: none;
+  transform: rotate(-10deg);
+}
+.homePageBanners section.guestUsage .textBox .left .imgB {
+  width: 120px;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: 50px;
+  right: 10px;
+  transform: rotate(-10deg);
+}
+.homePageBanners section.guestUsage .textBox .left h2 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 65px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  padding-left: 110px;
+}
+.homePageBanners section.guestUsage .textBox .left h2.highlight {
+  color: rgb(13, 126, 192);
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 105px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: 0px 2px 2px #242222;
+  text-align: right;
+  margin-top: -33px;
+}
+.homePageBanners section.guestUsage .textBox .left h2 {
+  transform: rotate(-3deg);
+}
+.homePageBanners section.guestUsage .textBox .left h3 {
+  width: 355px;
+  height: 90px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 150px;
+  left: none;
+  bottom: none;
+  right: -20px;
+  transform: translate(0%, -50%);
+  color: #242222;
+  font-family: "Permanent Marker", cursive;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 55px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  transform: rotate(-5deg);
+}
+.homePageBanners section.guestUsage .textBox .left h3:before {
+  content: " ";
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  background-image: url("@/assets/images/brushA.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+  z-index: -1;
+}
+.homePageBanners section.guestUsage .textBox .left h4 {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 21px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: normal;
+  text-shadow: none;
+  text-align: center;
+  margin-top: 100px;
+}
+.homePageBanners section.guestUsage .textBox .left h4 strong {
+  color: rgb(13, 126, 192);
+}
+.homePageBanners section.guestUsage .textBox .left h4 {
+  padding-bottom: 20px;
+}
+.homePageBanners section.guestUsage .textBox .left h5 {
+  padding-top: 10px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 25px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: normal;
+  text-shadow: none;
+  text-align: center;
+  margin: 0px 0px -5px 0px;
+}
+.homePageBanners section.guestUsage .textBox .left h5.highlight {
+  color: rgb(13, 126, 192);
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 25px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.homePageBanners section.guestUsage .textBox .left .primaryBt {
+  margin-top: 20px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.homePageBanners section.guestUsage .textBox .right {
+  transform: skew(-3deg);
+}
+.homePageBanners section.guestUsage .textBox .right ul {
+  position: absolute;
+  top: 270px;
+  left: 55%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: rgb(13, 126, 192);
+  padding: 40px 70px;
+}
+.homePageBanners section.guestUsage .textBox .right ul:after {
+  content: " ";
+  width: 100%;
+  height: 110%;
+  background: rgb(8, 8, 8);
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  transform: skew(-2deg);
+  z-index: -1;
+}
+.homePageBanners section.guestUsage .textBox .right ul h3 {
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0px 0px 20px 0px;
+  transform: skew(3deg);
+}
+.homePageBanners section.guestUsage .textBox .right ul li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  gap: 0px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  padding: 20px 0px;
+}
+.homePageBanners section.guestUsage .textBox .right ul li strong {
+  color: rgb(13, 126, 192);
+  font-size: 65px;
+  margin-right: 10px;
+}
+.homePageBanners section.guestUsage .textBox .right ul li img {
+  width: 50px;
+  margin-right: 30px;
+}
+.homePageBanners section.guestUsage .textBox .right ul li p {
+  flex: 0 0 100%;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+.homePageBanners section.guestUsage .textBox .right ul li {
+  transform: skew(3deg);
+}/*# sourceMappingURL=PRStyleB.css.map */

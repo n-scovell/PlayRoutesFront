@@ -32,9 +32,10 @@ const signOut = () => {
 </script>
 
 <template>
-  <main class="login">
+  <main class="login"> 
     <h1>Sign In:</h1>
     <form class="signIn" @submit.prevent>
+      <h3>Welcome back!</h3>
       <div class="inputCont">
             <label>Email:</label><input placeholder="Email" type="email" v-model="email" />
       </div>

@@ -5,6 +5,7 @@
 $head: "Fjalla One", sans-serif;
 $par: "Inter", sans-serif;
 $spec: "Racing Sans One", sans-serif;
+$hand: "Permanent Marker", cursive;
 
 @mixin initials() {
     box-sizing:border-box;
@@ -60,7 +61,7 @@ $spec: "Racing Sans One", sans-serif;
     position:relative;
 }
 
-@mixin back($color: transparent, $img: none, $size: contain, $pos: 0px 0px, $rep: no-repeat, $blur: 0px) {
+@mixin back($color: transparent, $img: none, $size: contain, $pos: 0px 0px, $rep: no-repeat, $blur: none) {
     background: $color;
     background-image: url($img);
     background-size: $size;

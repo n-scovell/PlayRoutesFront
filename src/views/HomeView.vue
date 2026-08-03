@@ -4,7 +4,7 @@ import { useAuthStore } from '../stores/userAuth'
 // import { Image } from '@unpic/vue'
 // import fieldImage from '@/assets/images/field.jpg'
 import { RouterLink } from 'vue-router'
-import '../assets/home.css'
+// import '../assets/home.css'
 const auth = useAuthStore()
 
 
@@ -17,75 +17,8 @@ Create custom offensive plays, organize your formations,
 and build a playbook that's always available whenever inspiration strikes.
 `
 
-// const showModal = ref<boolean>(false)
-// const name = ref('')
-// const email = ref('')
-// const sport = ref('')
-// const team = ref('')
-// const password = ref('')
-// const code = ref("")
-// async function checkSignUp() {
-//   try {
-//     const formData = {
-//       email: email.value,
-//       password: password.value,
-//       name: name.value,
-//       sport: sport.value,
-//       team: team.value,
-//     }
-//     const res = await fetch(
-//       "https://play-route-back.vercel.app/api/auth/request-verification",
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(formData),
-//       }
-//     )
-//     const data = await res.json()
-//     if (!res.ok) {
-//       throw new Error(data.error || "Request failed")
-//     }
-//     showModal.value = true
-//   } catch (err: any) {
-//     console.log(err.message)
-//   }
-// }
-// async function verifyCode() {
-//   const res = await fetch(
-//     "https://play-route-back.vercel.app/api/auth/verify-code",
-//     {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         email: email.value,
-//         code: code.value,
-//       }),
-//     }
-//   )
-//   const data = await res.json()
-//   if (!res.ok) {
-//     alert(data.error)
-//     return
-//   }
-//   showModal.value = false
-//   auth.login(email.value, password.value)
-// }
-// const cancelcode = () => {
-//   showModal.value = false
-// }
-
-// const clearMe = () => {
-//   name.value = ''
-//   email.value = ''
-//   sport.value = ''
-//   password.value = ''
-//   team.value = ''
-// }
 </script>
 <template>
-  <main class="home">
     <div class="homePageBanners">
       <section class="createAccount">
         <div class="mid">
@@ -94,11 +27,12 @@ and build a playbook that's always available whenever inspiration strikes.
           <h4>PLAN, PREPARE, PERFORM</h4>
           <div class="btCont" v-if="!auth.user">
             <RouterLink to="/register">
-              <button>REGISTER</button>
+              <button class="primaryBt">REGISTER</button>
             </RouterLink>
             <RouterLink to="/login">
-            <button>LOGIN</button>
+            <button class="primaryBt">LOGIN</button>
             </RouterLink>
+            <button class="primaryBt">GUEST</button>
           </div>
           <div class="btCont" v-else>
             <RouterLink to="/create">
@@ -106,7 +40,7 @@ and build a playbook that's always available whenever inspiration strikes.
             </RouterLink>
           </div>
         </div>
-        <img src="@/assets/images/field.jpg" width="100%" className="fieldImage" />
+        <img src="@/assets/images/field.jpg" width="100%" class="fieldImage" />
       </section>
       <section class="instruction">
           <div class="arrowBox">
@@ -117,6 +51,35 @@ and build a playbook that's always available whenever inspiration strikes.
             <p>{{hdrB}}</p>
           </div>
       </section>
+      <section class="guestUsage">
+          <div class="textBox">
+            <div class="left">
+              <img src="@/assets/images/playFun.png" class="imgA" />
+              <img src="@/assets/images/playFunB.png" class="imgB" />
+              <h2>Don't have an</h2>
+              <h2 class="highlight">Account?</h2>
+              <h3>That's OK!</h3>
+              <h4>We get it! You want to be sure of what <strong>Play Routes</strong> <br>does and how it can help you get the <strong>W</strong>.</h4>
+              <h5>So go ahead and use it as a guest</h5>
+              <h5 class="highlight">For the time being.</h5>
+              <button type="button" class="primaryBt">Use as Guest</button>
+            </div>
+            <div class="right">
+              <ul>
+                <h3>You'll have access to:</h3>
+                <li> <img src="@/assets/images/clipboard.png" class="ico" /> <strong>4</strong> Plays</li>
+                <li> <img src="@/assets/images/formation.png" class="ico" /> <strong>2</strong> Formations</li>
+                <li>
+                  <img src="@/assets/images/playbook.png" class="ico" />
+                  <div>
+                    Playbook access
+                    <p>Without enlarging or play sharing</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </section>
+      
     </div>
-  </main>
 </template>
