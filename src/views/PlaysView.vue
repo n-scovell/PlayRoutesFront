@@ -135,7 +135,7 @@ const showMenu = (i: number) => {
         >
           <div  class="field" @click="openPlay(p)"> 
              <div class="addedPlayers xs">
-              <Player :players="p.grid.players" />
+              <Player :players="p.grid.players" :num="100" />
             </div>
             <div class="previewScale">
               <PlayCanvas

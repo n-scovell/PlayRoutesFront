@@ -32,6 +32,12 @@ const routes: RouteRecordRaw[] = [
     meta: { icon: 'formations',  transition: 'slide-left', active: 'topNav' },
     component: () => import('../views/FormationsView.vue')
   },
+  {
+    path: '/badges',
+    name: 'Badges',
+    meta: { icon: 'badges',  transition: 'slide-left', active: 'topNav' },
+    component: () => import('../views/BadgesView.vue')
+  },
   
   {
     path: '/register',

@@ -1130,6 +1130,23 @@ $penGreen: #00e913;
   min-height:100vh;
   &.fav {
     padding-top:50px;
+    .playRows {
+      .indPlays {
+        h4 {
+          @include pos(absolute, 15px, 0px);
+          @include size(100%, auto);
+          @include font($head, $white, 22px, 400, .03em, $align:center);
+          @include backColor(rgba(0,0,0,.2));
+          padding:5px 0px;
+          z-index:1000;
+        }
+        .playInfo {
+          h3 {
+            font-size:20px;
+          }
+        }
+      }
+    }
   }
   .playRows {
     @include flex(flex, row, wrap, center, center, 20px);

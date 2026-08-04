@@ -12,7 +12,6 @@ export const usePlayStore = defineStore(
     const error = ref<string | null>(null)
 
     async function fetchPlays() {
-      console.log('FETCHING API')
       const auth = useAuthStore()
       if (!auth.userId || !auth.token) {
         return
