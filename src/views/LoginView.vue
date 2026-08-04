@@ -57,7 +57,7 @@ const signOut = () => {
         </p>
         <div class="btCont">
           <RouterLink to="/create"><button>CREATE PLAYS</button></RouterLink>
-          <RouterLink to="/plays"><button>{{ auth.user.team }} PLAYBOOK</button></RouterLink>
+          <RouterLink to="/plays"><button>{{ auth.user?.team }} PLAYBOOK</button></RouterLink>
         </div>
       </div>
     </Teleport>
