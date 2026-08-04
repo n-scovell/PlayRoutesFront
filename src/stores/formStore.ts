@@ -70,7 +70,6 @@ export const useFormation = defineStore(
     formations.value = formations.value.filter(p => p.id !== id)
     const res = await fetch(`https://play-route-back.vercel.app/api/formation?id=${id}`, {method: "DELETE"})
     const text = await res.text()
-    alert(text)
     fetchFormations()
     if (!res.ok) throw new Error("Delete failed")
   }
