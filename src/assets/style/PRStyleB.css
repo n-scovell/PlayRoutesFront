@@ -1883,7 +1883,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   transform: translate(-50%, 0%);
   width: auto;
   height: auto;
-  min-width: 0;
+  min-width: 800px;
   max-width: auto;
   min-height: auto;
   max-height: auto;
@@ -1926,8 +1926,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: start;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 .messageOutput .btCont button {
@@ -2006,7 +2006,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   max-height: auto;
 }
 
-.authDelete, .messageOutput {
+.authDelete {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -2035,7 +2035,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   padding: 20px;
   z-index: 99999;
 }
-.authDelete p, .messageOutput p {
+.authDelete p {
   flex: 0 0 100%;
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
@@ -2048,7 +2048,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   text-shadow: none;
   text-align: center;
 }
-.authDelete h3, .messageOutput h3 {
+.authDelete h3 {
   flex: 0 0 100%;
   color: #f5f5f5;
   font-family: "Racing Sans One", sans-serif;
@@ -2069,7 +2069,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   padding-bottom: 15px;
   margin: -5px 0px;
 }
-.authDelete button, .messageOutput button {
+.authDelete button {
   flex: 0 0 auto;
   margin: 0px 5px;
   color: #242222;

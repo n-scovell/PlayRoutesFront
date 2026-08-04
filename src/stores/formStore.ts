@@ -66,27 +66,25 @@ export const useFormation = defineStore(
       return data
   }
 
-  async function deletePlay(id: string) {
+  async function deleteFormation(id: string) {
     formations.value = formations.value.filter(p => p.id !== id)
-    const res = await fetch(`https://play-route-back.vercel.app/api/play?id=${id}`, {
-      method: "DELETE"
-    })
+    const res = await fetch(`https://play-route-back.vercel.app/api/formation?id=${id}`, {method: "DELETE"})
     const text = await res.text()
-    // console.log("DELETE RESPONSE:", text)
+    alert(text)
+    fetchFormations()
     if (!res.ok) throw new Error("Delete failed")
   }
-
-
-    function clearFormations() {
-      formations.value = []
-    }
+  function clearFormations() {
+    formations.value = []
+  }
 
     return {
       formations,
       addedForm,
       fetchFormations,
       createFormation,
-      clearFormations
+      clearFormations,
+      deleteFormation
     }
   }, 
   {

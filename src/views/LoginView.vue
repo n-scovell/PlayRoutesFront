@@ -32,7 +32,7 @@ const signOut = () => {
 </script>
 
 <template>
-  <main> 
+  <main style="min-height:100vh"> 
     <h1>Sign In:</h1>
     <form class="signIn" @submit.prevent>
       <h3>Welcome back!</h3>
@@ -46,9 +46,7 @@ const signOut = () => {
         <button :disabled="loading" class="formButton" @click="signIn">{{ loading ? 'Logging in...' : 'Login' }}</button>
         <button type="button" class="formButton" @click="signOut">Log Out</button>
       </div>
-      
     </form>
-
     <Teleport to="body" >
       <div class="messageOutput" :class="{green: auth.user}" v-if="showMessage">
         <p v-if="error" style="color:red">
@@ -59,10 +57,9 @@ const signOut = () => {
         </p>
         <div class="btCont">
           <RouterLink to="/create"><button>CREATE PLAYS</button></RouterLink>
-          <RouterLink to="/plays"><button>CREATE PLAYS</button></RouterLink>
+          <RouterLink to="/plays"><button>{{ auth.user.team }} PLAYBOOK</button></RouterLink>
         </div>
       </div>
     </Teleport>
-    
   </main>
 </template>

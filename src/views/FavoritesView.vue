@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useFavorites } from '@/stores/favStore'
-
+import Player from '../components/Player.vue'
 import PlayCanvas from '@/components/PlayCanvas.vue'
 import Modal from '@/components/Modal.vue'
 import type { ColorType, ToolType, Stroke } from '@/composables/usePlayCanvasB'
@@ -57,9 +57,7 @@ const selectedTool = ref<ToolType>('pen')
         <div v-for="p in favStore.favorites" :key="p.id" class="indPlays">
           <div class="field">
             <div class="addedPlayers xs">
-              <div v-for="(player, index) in p.play.grid.players" :key="p.play.title + index" class="player"
-              :style="{left: `${player.x * 100}%`, top: `${player.y * 100}%`}"
-              ></div>
+              <Player :players="p.grid.players" />
             </div>
             <div class="previewScale">
               <PlayCanvas

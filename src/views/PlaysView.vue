@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { usePlayStore } from '@/stores/playStore'
 import { useFavorites } from '@/stores/favStore'
+import Player from '../components/Player.vue'
 import PlayCanvas from '@/components/PlayCanvas.vue'
 import Modal from '@/components/Modal.vue'
 import type { ColorType, ToolType, Stroke } from '@/composables/usePlayCanvasB'
@@ -134,17 +135,7 @@ const showMenu = (i: number) => {
         >
           <div  class="field" @click="openPlay(p)"> 
              <div class="addedPlayers xs">
-              <div
-                v-for="player in p.grid.players"
-                :key="player.id"
-                class="player"
-                :style="{
-                left: `${player.x * 100}%`,
-                top: `${player.y * 100}%`
-                }"
-                >
-                {{ player.type }}
-              </div>
+              <Player :players="p.grid.players" />
             </div>
             <div class="previewScale">
               <PlayCanvas

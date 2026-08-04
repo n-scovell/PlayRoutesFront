@@ -70,7 +70,7 @@ const clearMe = () => {
 }
 </script>
 <template>
-  <main>
+  <main style="min-height:100vh">
   <h1>Register Your Account Now</h1>
   <div v-if="showModal" class="loginCreds">
     <div class="content">

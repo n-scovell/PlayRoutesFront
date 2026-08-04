@@ -1272,7 +1272,7 @@ $penGreen: #00e913;
 
 .messageOutput {
   @include pos(fixed, 40%, 50%, $trans: translate(-50%, 0%));
-  @include size(auto,auto);
+  @include size(auto,auto, 800px);
   @include back(rgba(0,0,0,.9), $blur: 10px);
   @include font($head, $white, 25px, bold, .01em, 20px, normal, uppercase, $align:center);
   border:1px solid rgba(255,255,255,.5);
@@ -1285,7 +1285,7 @@ $penGreen: #00e913;
     color:white;
   }
   .btCont {
-    @include flex(flex, row, nowrap, $gap:10px);
+    @include flex(flex, row, nowrap, center, center, $gap:10px);
     button {
       flex:1;
       @include font($head, $black, 20px, bold, .02em, 20px, normal, uppercase, none, center);
@@ -1322,7 +1322,7 @@ $penGreen: #00e913;
 }
 
 
-.authDelete, .messageOutput {
+.authDelete {
   @include pos(fixed, 50%, 50%, $trans:translate(-50%,-50%));
   @include size(500px, 200px, 200px, 500px);
   @include back(rgba(0,0,0,1), $blur: 10px);
