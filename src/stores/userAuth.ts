@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { usePlayStore } from './playStore'
 import { useFormation } from './formStore'
 import { useFavorites } from './favStore'
+import { useBadges } from './badgeStore'
 
 export const useAuthStore = defineStore('auth', () => {
   type User = {
@@ -53,35 +54,31 @@ export const useAuthStore = defineStore('auth', () => {
 }
 
   async function login(email: any, password: any) {
-    
-  const res = await fetch('https://play-route-back.vercel.app/api/auth/login', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    email,
-    password,
-  }),
-})
-  
-
+    const res = await fetch('https://play-route-back.vercel.app/api/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  })
   const data = await res.json()
-
   if (!res.ok) {
     throw new Error(data.error || 'Login failed')
   }
-
   user.value = data.user
   token.value = data.token
-
   // 🔥 hydrate plays/formations after login
   const formStore = useFormation()
   const favStore = useFavorites()
   const playStore = usePlayStore()
+  const badgeStore = useBadges()
   await playStore.fetchPlays()
   await formStore.fetchFormations()
   await favStore.fetchFavorites()
+  await badgeStore.fetchBadges()
 }
 
   function logout() {

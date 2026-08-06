@@ -35,9 +35,8 @@ html, body {
   padding:0px;
 }
 body {
-  // @include flex(flex, column);
   @include size(auto, 100%, $minH: 100%);
-  @include back(transparent, '@/assets/images/bck_blackGrain.png', 100% 100%, auto, no-repeat);
+  @include back(transparent, '@/assets/images/bck_blackGrain.png', 100% 1500px, auto, repeat-y);
 }
 
 h1, h2, h3, h4, h5 {
@@ -389,10 +388,16 @@ form {
       }
     }
     .btCont {
+      @include flex(flex,column, wrap, center, center, $gap:20px);
       button {
         @include font($head, $black, 20px, bold, 0.01em, 20px, normal, uppercase, none, $align: left);
       }
+      p {
+        flex: 0 0 100%;
+        @include font($head, $blueB, 30px, bold, .01em, 20px);
+      }
     }
+
   }
   h3 {
     @include font($head, $white, 25px, bold, .09em, 20px, italic, none, none, left);
@@ -1288,12 +1293,19 @@ $penGreen: #00e913;
 }
 
 .messageOutput {
-  @include pos(fixed, 40%, 50%, $trans: translate(-50%, 0%));
-  @include size(auto,auto, 800px);
+  @include pos(fixed, 15%, 50%, $trans: translate(-50%, 0%));
+  @include size(800px,350px);
   @include back(rgba(0,0,0,.9), $blur: 10px);
   @include font($head, $white, 25px, bold, .01em, 20px, normal, uppercase, $align:center);
   border:1px solid rgba(255,255,255,.5);
   padding:70px 150px;
+  z-index:999999;
+  h3 {
+    @include font($head, $white, 65px, bold, .01em, 20px, normal, uppercase, $align:center);
+    @include pos(absolute, 10px, 20px);
+    @include size(100%, 100px);
+    transform:rotate(-25px);
+  }
   strong {
     display:block;
     @include font($head, $blueB, 65px, bold, .01em, 20px, normal, uppercase, $align:center);
@@ -1365,4 +1377,14 @@ $penGreen: #00e913;
     @include backColor($white);
     padding:10px 20px;
   }
+}
+
+
+.errorsShow {
+  @include pos(fixed,0px,0px);
+  @include size(100vw, 100vh);
+  @include backColor(rgba(8, 8, 8, 0.568));
+  @include flex(flex, column, nowrap, center, center);
+  @include font($head, $white, 25px, 400, .01em, 20px, normal, uppercase, none);
+  z-index:999999;
 }

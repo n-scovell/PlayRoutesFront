@@ -12,6 +12,8 @@ const plays = usePlayStore()
 const auth = useAuthStore()
 
 
+
+
 import PlayCanvas from '@/components/PlayCanvas.vue'
 import type { Stroke, ColorType, ToolType } from '@/composables/usePlayCanvasB'
 
@@ -25,8 +27,38 @@ const togglePanel = (p: Panel) => {
   activePanel.value = activePanel.value === p ? null : p
 }
 
+const playSuccess = ref<boolean>(false)
 const submitPlay = () => {
   if (!auth.user) return
+  if (!title.value) {
+    errors.value.push({ txt: `YOU HAVE A PLAY ERROR`, cls:'hdr' })
+    errors.value.push({ txt: "Your play needs a name!", cls:'reg' })
+    errorsShow.value = true
+    playSuccess.value = false
+    return
+  }
+  if (dropDownsPlayType.value.ptype.newValue === 'Play Type') {
+    errors.value.push({ txt: `YOU HAVE A PLAY TYPE ERROR`, cls:'hdr' })
+    errors.value.push({ txt: "Your play needs a type!", cls:'reg' })
+    errorsShow.value = true
+    playSuccess.value = false
+    return
+  }
+  if (myStrokes.value.length === 0) {
+    errors.value.push({ txt: `YOU HAVE A ROUTES ERROR`, cls:'hdr' })
+    errors.value.push({ txt: "Don't you want to add player routes?", cls:'reg' })
+    errorsShow.value = true
+    playSuccess.value = false
+    return
+  }
+  if (players.value.length <= 10) {
+    const needed = 11 - players.value.length
+    errors.value.push({ txt: `YOU HAVE A FORMATION ERROR`, cls:'hdr' })
+    errors.value.push({ txt: `YOU NEED ${needed} MORE PLAYERS`, cls:'reg' })
+    errorsShow.value = true
+    playSuccess.value = false
+    return
+  }
   const payload = {
     title: title.value,
     formation: dropDownsPlayType.value.formation.newValue,
@@ -40,6 +72,7 @@ const submitPlay = () => {
   }
   console.log('SUBMITTED PLAY')
   plays.createPlay(payload) 
+  playSuccess.value = true
   clearPlayers()
   title.value = ''
 }
@@ -256,8 +289,29 @@ const changeTool = (prop: ToolType) => {
   selectedTool.value = prop
 }
 
+interface FormError {
+  txt: string,
+  cls: string
+}
+const errors = ref<FormError[]>([])
+const errorsShow = ref<boolean>(false)
 const addFormation = () => {
   if (!auth.user) return
+  if (!newFormation.value) {
+    errors.value.push({ txt: `YOU HAVE A FORMATION ERROR`, cls:'hdr' })
+    errors.value.push({ txt: "Your formation needs a name!", cls:'reg' })
+    errorsShow.value = true
+    return
+  }
+  if (players.value.length <= 10) {
+    const needed = 11 - players.value.length
+    errors.value.push({ txt: `YOU HAVE A FORMATION ERROR`, cls:'hdr' })
+    errors.value.push({ txt: `YOU NEED ${needed} MORE PLAYERS`, cls:'reg' })
+    errorsShow.value = true
+    return
+  }
+
+  
   const formload = {
     formationName: newFormation.value,
     grid: {
@@ -287,14 +341,21 @@ onMounted(async () => {
   gatherAllFormations()
 })
 
+const clearErrors = () => {
+  errorsShow.value = false
+  errors.value = []
+}
+
 </script>
 
 <template>
   <main>
     <h1>Your Play {{ title }}</h1>
+    <div class="errorsShow" v-if="errorsShow" @click="clearErrors()">
+      <p v-for="(e,index) in errors" :key="'error_'+index">{{ e.txt }}</p>
+    </div>
     <div class="boardCont">
     <div class="board" ref="fuller">
-      <!-- <div class="loading" :class="{active: plays.loading}"></div> -->
       <!-- FIELD STRATEGY -->
       <div class="field" >
         <!-- <h3>{{ title }}</h3> -->
@@ -358,8 +419,8 @@ onMounted(async () => {
             </div>
           </div>
           <div class="btCont">
-            <button class="formButton" 
-            @click="submitPlay">Submit Play</button>
+            <button class="primaryBt" @click="submitPlay">Submit Play</button>
+            <p class="success" v-if="playSuccess">PLAY CREATED!</p>
           </div>
         </form>
       </ul>

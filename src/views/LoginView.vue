@@ -49,12 +49,9 @@ const signOut = () => {
     </form>
     <Teleport to="body" >
       <div class="messageOutput" :class="{green: auth.user}" v-if="showMessage">
-        <p v-if="error" style="color:red">
-        {{ error }}
-        </p>
-        <p v-if="auth.user">
-        Welcome back coach: <strong>{{ auth.user.name }}</strong>
-        </p>
+        <p v-if="error" style="color:red">{{ error }}</p>
+        <h3 v-if="auth.user">Welcome back coach:</h3>
+        <h4>{{ auth.user?.name }}</h4>
         <div class="btCont">
           <RouterLink to="/create"><button>CREATE PLAYS</button></RouterLink>
           <RouterLink to="/plays"><button>PLAYBOOK</button></RouterLink>

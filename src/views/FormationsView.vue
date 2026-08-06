@@ -8,6 +8,9 @@
       await forms.fetchFormations()
     }
   })
+  const delForm = (id:string) => {
+    forms.deleteFormation(id)
+  }
 </script>
 <template>
   <main>
@@ -21,6 +24,7 @@
               <Player :players="p.grid.players" :num="88" />
             </div>
           </div>
+          <button class="primaryBt" @click="delForm(p.id)">DELETE</button>
         </div>
       </div>
     </section>
