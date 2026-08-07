@@ -37,6 +37,19 @@ html, body {
 body {
   @include size(auto, 100%, $minH: 100%);
   @include back(transparent, '@/assets/images/bck_blackGrain.png', 100% 1500px, auto, repeat-y);
+
+  // width: auto;
+  // height: 100%;
+  // min-width: 0;
+  // max-width: auto;
+  // min-height: 100%;
+  // max-height: auto;
+  // background: transparent;
+  // background-image: url("@/assets/images/bck_blackGrain.png");
+  // background-size: 100% 1500px;
+  // background-position: auto;
+  // background-repeat: repeat-y;
+  // backdrop-filter: blur(none);
 }
 
 h1, h2, h3, h4, h5 {
@@ -572,8 +585,8 @@ $penBlue: #301283;
 $penYellow: #f3ff44;
 $penGreen: #00e913;
 
-* {touch-action: none;}
 .boardCont {
+  * {touch-action: none;}
   @include size(auto, 90vh);
   @include flex(flex, column);
   overflow: hidden;

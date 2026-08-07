@@ -1162,10 +1162,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   background: rgba(255, 255, 255, 0.4);
 }
 
-* {
+.boardCont * {
   touch-action: none;
 }
-
 .boardCont {
   width: auto;
   height: 90vh;
