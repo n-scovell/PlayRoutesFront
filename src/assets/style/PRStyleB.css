@@ -2427,10 +2427,64 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   box-sizing: border-box;
 }
 
-@media only screen and (max-width: 728px) {
+@media only screen and (max-width: 828px) {
   .homePageBanners section {
     background: blue;
     padding-top: 0px;
+  }
+  .homePageBanners section.instruction {
+    width: auto;
+    height: 440px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    padding: 50px 0px;
+    overflow: hidden;
+  }
+  .homePageBanners section.instruction .arrowBox {
+    width: 100px;
+    height: auto;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+  }
+  .homePageBanners section.instruction .arrowBox img {
+    width: 100%;
+    margin: 0px;
+  }
+  .homePageBanners section.instruction .textBox {
+    width: 50%;
+    height: auto;
+    min-width: 220px;
+    max-width: 850px;
+    min-height: auto;
+    max-height: auto;
+  }
+  .homePageBanners section.instruction .textBox h3 {
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size: 25px;
+    font-style: normal;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: left;
+  }
+  .homePageBanners section.instruction .textBox p {
+    color: #f5f5f5;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size: 15px;
+    font-style: normal;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: left;
   }
   .homePageBanners section.guestUsage {
     width: auto;
@@ -2538,7 +2592,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     top: 30%;
     left: none;
     bottom: none;
-    right: -20px;
+    right: 5%;
     transform: translate(0%, -50%);
     color: #242222;
     font-family: "Permanent Marker", cursive;
@@ -2616,9 +2670,11 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     transform: rotate(2deg);
   }
   .homePageBanners section.guestUsage .textBox .right {
+    width: 80%;
     transform: skew(-3deg);
     left: -30px;
-    top: -90px;
+    top: -50px;
+    display: none;
   }
   .homePageBanners section.guestUsage .textBox .right ul {
     position: absolute;

@@ -1170,15 +1170,33 @@ $penGreen: #00e913;
 
 
 
-$mobile: 728px;
+$mobile: 828px;
 //MEDIA ANYTHING BELOW 600
 @media only screen and (max-width: $mobile) {
   .homePageBanners {
     section {
       background:blue;
       padding-top:0px;
-      &.instruction { 
-
+      &.instruction {
+        @include size(auto, 440px);
+        padding:50px 0px;
+        overflow:hidden;
+        .arrowBox {
+          @include size(100px, auto);
+          img {
+          width:100%;
+          margin:0px;
+          }
+        }
+        .textBox {
+          @include size(50%, auto, 220px, 850px);
+          h3 {
+            @include font($head, $white, 25px, bold, .04em, 30px, normal, uppercase, $align:left);
+          }
+          p {
+            @include font($par, $white, 15px, bold, .05em, 20px, normal, none);
+          }
+        }
       }
       &.guestUsage {
         @include size(auto, auto);
@@ -1216,7 +1234,7 @@ $mobile: 728px;
             }
             h3 {
               @include size(300px, 60px);
-              @include pos(absolute, 30%, $right: -20px, $trans: translate(0%,-50%));
+              @include pos(absolute, 30%, $right: 5%, $trans: translate(0%,-50%));
               @include font($hand, $black, 33px, 300, .01em, 20px, normal, uppercase, none, center);
               &:before {
                 @include pos(absolute, 45%, 50%, $trans: translate(-50%,-50%));
@@ -1246,9 +1264,11 @@ $mobile: 728px;
             }
           }
           .right {
+            width:80%;
             transform: skew(-3deg);
             left:-30px;
-            top:-90px;
+            top:-50px;
+            display:none;
             ul {
               @include pos(absolute, 270px, 55%, $trans: $cc);
               @include backColor($rustBlue);
