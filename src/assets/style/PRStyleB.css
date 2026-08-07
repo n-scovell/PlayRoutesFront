@@ -1663,10 +1663,36 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 .playsContainer {
   min-height: 100vh;
 }
-.playsContainer.fav {
+.playsContainer.fav, .playsContainer.form {
   padding-top: 50px;
 }
-.playsContainer.fav .playRows .indPlays h4 {
+.playsContainer.fav .playRows .indPlays h5, .playsContainer.form .playRows .indPlays h5 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  padding: 10px 10px;
+  z-index: 1000;
+}
+.playsContainer.fav .playRows .indPlays h4, .playsContainer.form .playRows .indPlays h4 {
   position: absolute;
   top: 15px;
   left: 0px;
@@ -1693,8 +1719,14 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   padding: 5px 0px;
   z-index: 1000;
 }
-.playsContainer.fav .playRows .indPlays .playInfo h3 {
+.playsContainer.fav .playRows .indPlays .playInfo h3, .playsContainer.form .playRows .indPlays .playInfo h3 {
   font-size: 20px;
+}
+.playsContainer.form {
+  padding: 55px 50px 0px;
+}
+.playsContainer.form .playRows .indPlays .playInfo {
+  padding-bottom: 0px;
 }
 .playsContainer .playRows {
   display: flex;
@@ -2176,9 +2208,76 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   max-width: auto;
   min-height: auto;
   max-height: auto;
-  background: rgba(8, 8, 8, 0.568);
+  background: rgba(8, 8, 8, 0);
+  z-index: 999999;
+}
+.errorsShow .errorCont {
+  background: rgba(0, 0, 0, 0.9);
+  width: auto;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 30px 50px;
+}
+.errorsShow .errorCont p.hdr {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 25px;
+  font-style: normal;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.errorsShow .errorCont p.reg {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  width: 80%;
+  height: auto;
+  min-width: 400px;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+  padding: 10px 20px 10px 55px;
+}
+.errorsShow .errorCont p.reg:before {
+  content: "!";
+  width: 35px;
+  height: 70%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #dd1919;
+  display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
@@ -2186,12 +2285,20 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
-  font-size: 25px;
+  font-weight: bold;
+  font-size: 15px;
   font-style: normal;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: none;
   text-shadow: none;
   text-align: left;
-  z-index: 999999;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  bottom: none;
+  right: none;
+  transform: translate(0%, -50%);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  padding-top: 5px;
+  box-sizing: border-box;
 }/*# sourceMappingURL=PRStyleB.css.map */

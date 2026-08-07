@@ -17,6 +17,10 @@ $hand: "Permanent Marker", cursive;
     list-style-type:none;
 }
 
+@mixin tri() {
+    clip-path:polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
 @mixin font($fam: $par, $color: #333, $size: 15px, $weight: 500, $kern: .01em, $lh:20px, $style: normal, $trans: none, $shadow: none, $align: left ) {
     color: $color;
     font-family: $fam;

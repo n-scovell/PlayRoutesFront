@@ -22,6 +22,7 @@ export const useAuthStore = defineStore('auth', () => {
   const userId = computed(() => user.value?.id || null)
   const userName = computed(() => user.value?.name || null)
   const teamName = computed(() => user.value?.team || null)
+  const sport = computed(() => user.value?.sport || null)
 
   async function createUser(
   email: string,
@@ -141,6 +142,7 @@ export const useAuthStore = defineStore('auth', () => {
     userId,
     userName,
     teamName,
+    sport,
 
     createUser,
     login,

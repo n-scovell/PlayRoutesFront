@@ -1,358 +1,386 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted  } from 'vue'
-import { useFormation } from '@/stores/formStore'
-import { useAuthStore } from '@/stores/userAuth' 
-import { usePlayStore } from '@/stores/playStore'
+  //IMPORTS
+  import { ref, watch, onMounted } from 'vue'
+  import { useFormation } from '@/stores/formStore'
+  import { useAuthStore } from '@/stores/userAuth' 
+  import { usePlayStore } from '@/stores/playStore'
+  import { useRouter } from 'vue-router'
+  import PlayCanvas from '@/components/PlayCanvas.vue'
+  import type { Stroke, ColorType, ToolType } from '@/composables/usePlayCanvasB'
 
-import { useRouter } from 'vue-router'
-const router = useRouter()
+  //TYPES
+  type Panel = 'pos' | 'pen' | 'color' | 'info' | 'formation' | null
+  type DropKeys = 'ptype' | 'formation'
+  type Ptype = Record<DropKeys, DropField>
 
-const forms = useFormation()
-const plays = usePlayStore()
-const auth = useAuthStore()
+  //INTERFACES
+  interface Player { id: string, pos: string, x: number, y: number }
+  interface PosType { id:number, pos: string, x: number, y:number, name: string }
+  interface DropField { showDrop: boolean, initialVal: string, newValue: string, newLst: string[], errorOut: boolean }
+  interface FormError {txt: string, cls: string }
 
+  //LETS
+  let activeId: string | null = null
 
-
-
-import PlayCanvas from '@/components/PlayCanvas.vue'
-import type { Stroke, ColorType, ToolType } from '@/composables/usePlayCanvasB'
-
-const canvasRef = ref<InstanceType<typeof PlayCanvas> | null>(null)
-
-// const forms = useFormation()
-
-type Panel = 'pos' | 'pen' | 'color' | 'info' | 'formation' | null
-const activePanel = ref<Panel>(null)
-const togglePanel = (p: Panel) => {
-  activePanel.value = activePanel.value === p ? null : p
-}
-
-const playSuccess = ref<boolean>(false)
-const submitPlay = () => {
-  if (!auth.user) return
-  if (!title.value) {
-    errors.value.push({ txt: `YOU HAVE A PLAY ERROR`, cls:'hdr' })
-    errors.value.push({ txt: "Your play needs a name!", cls:'reg' })
-    errorsShow.value = true
-    playSuccess.value = false
-    return
-  }
-  if (dropDownsPlayType.value.ptype.newValue === 'Play Type') {
-    errors.value.push({ txt: `YOU HAVE A PLAY TYPE ERROR`, cls:'hdr' })
-    errors.value.push({ txt: "Your play needs a type!", cls:'reg' })
-    errorsShow.value = true
-    playSuccess.value = false
-    return
-  }
-  if (myStrokes.value.length === 0) {
-    errors.value.push({ txt: `YOU HAVE A ROUTES ERROR`, cls:'hdr' })
-    errors.value.push({ txt: "Don't you want to add player routes?", cls:'reg' })
-    errorsShow.value = true
-    playSuccess.value = false
-    return
-  }
-  if (players.value.length <= 10) {
-    const needed = 11 - players.value.length
-    errors.value.push({ txt: `YOU HAVE A FORMATION ERROR`, cls:'hdr' })
-    errors.value.push({ txt: `YOU NEED ${needed} MORE PLAYERS`, cls:'reg' })
-    errorsShow.value = true
-    playSuccess.value = false
-    return
-  }
-  const payload = {
-    title: title.value,
-    formation: dropDownsPlayType.value.formation.newValue,
-    playType: dropDownsPlayType.value.ptype.newValue,
-    description: 'this is a default description for now',
-    grid: {
-      strokes: myStrokes.value,
-      players: players.value
-    },
-    ownerId: auth.user.id
-  }
-  console.log('SUBMITTED PLAY')
-  plays.createPlay(payload) 
-  playSuccess.value = true
-  clearPlayers()
-  title.value = ''
-}
-
-const noPanel = () => {
-  activePanel.value = null
-}
-interface Player {
-  id: string
-  pos: string
-  x: number
-  y: number
-}
-
-const showFormation = ref<boolean>(false)
-const showFormations = () => {
-  showFormation.value = !showFormation.value
-}
-const showPlayType = ref<boolean>(false)
-const showPlayTypes = () => {
-  showPlayType.value = !showPlayType.value
-}
-
-
-const hasC = ref<number>(0)
-const hasG = ref<number>(0)
-const hasT = ref<number>(0)
-const hasQB = ref<number>(0)
-interface PosType { id:number, pos: string, x: number, y:number, name: string}
-const myPositionList = ref<PosType[]>([
-  {id:0, pos:'qb', x:.5, y:.74, name:'quarterback'},
-  {id:0, pos:'fb', x:.5, y:.83, name:'fullback'},
-  {id:0, pos:'rb', x:.5, y:.92, name:'runningback'},
-  {id:0, pos:'tb', x:.5, y:.88, name:'tailback'},
-  {id:0, pos:'wr', x:.7, y:.65, name:'wide reciever'},
-  {id:0, pos:'sl', x:.65, y:.75, name:'slot reciever'},
-  {id:0, pos:'te', x:.35, y:.7, name:'tight end'},
-  {id:0, pos:'c', x:.5, y:.65, name:'center'},
-  {id:0, pos:'g', x:.25, y:.65, name:'guard'},
-  {id:0, pos:'t', x:.6, y:.65, name:'tackle'},
-])
-const players = ref<Player[]>([])
-const myCount = ref<number>(0)
-const addPlayer = (pos: string, x:number, y:number) => {
-  if (myCount.value === 11) return
-  if (pos === 'qb') {
-    if (hasQB.value === 1) return
-    hasQB.value++
-  }
-  if (pos === 'c') {
-    if (hasC.value === 1) return
-    hasC.value++
-  }
-  if (pos === 'g') {
-    if (hasG.value === 2) return
-    x = hasG.value === 0 ? .55 : .45
-    hasG.value++
-  }
-  if (pos === 't') {
-    if (hasT.value === 2) return
-    x = hasT.value === 0 ? .6 : .4
-    hasT.value++
-  }
-  myCount.value++
-  players.value.push({
-    id: crypto.randomUUID(),
-    pos,
-    x,
-    y
+  //CONSTS
+  const router = useRouter()
+  const forms = useFormation()
+  const plays = usePlayStore()
+  const auth = useAuthStore()
+  const canvasRef = ref<InstanceType<typeof PlayCanvas> | null>(null)
+  const activePanel = ref<Panel>(null)
+  const playSuccess = ref<boolean>(false)
+  const hasC = ref<number>(0)
+  const hasG = ref<number>(0)
+  const hasT = ref<number>(0)
+  const hasWR = ref<number>(0)
+  const hasTE = ref<number>(0)
+  const hasQB = ref<number>(0)
+  const hasRB = ref<number>(0)
+  const hasFB = ref<number>(0)
+  const hasTB = ref<number>(0)
+  const hasSL = ref<number>(0)
+  const showFormation = ref<boolean>(false)
+  const showPlayType = ref<boolean>(false)
+  const players = ref<Player[]>([])
+  const playerCount = ref<number>(0)
+  const container = ref<HTMLElement | null>(null)
+  const activeTool = ref<'select' | 'erase'>('select')
+  const newFormation = ref()
+  const title = ref()
+  const dropDownsPlayType = ref<Ptype>({
+      formation: {
+          errorOut: false,
+          showDrop: false,
+          initialVal: 'Formation',
+          newValue: 'Formation',
+          newLst: [ ],
+      },
+      ptype: {
+          errorOut: false,
+          showDrop: false,
+          initialVal: 'Play Type',
+          newValue: 'Play Type',
+          newLst: ['Play Type', 'Pass', 'Run', 'Special'],
+      },
   })
-}
-const clearPlayers = () => {
-  canvasRef.value?.clearMe()
-  hasG.value = 0
-  hasT.value = 0
-  hasC.value = 0
-  hasQB.value = 0
-  players.value = []
-}
-const container = ref<HTMLElement | null>(null)
-const fuller = ref<HTMLElement | null>(null)
-let activeId: string | null = null
-const makeActiveTool = (tool: 'erase' | 'select') => {
-  if (activeTool.value === 'select') {
-    activeTool.value = tool
-  } else {
-    activeTool.value = 'select'
-  }
-}
-const activeTool = ref<'select' | 'erase'>('select')
-const startDrag = (id: string, pos: string, e: PointerEvent) => {
-  noPanel()
-    if (activeTool.value === 'erase') {
-    players.value = players.value.filter(p => p.id !== id)
-    myCount.value--
-    if (pos === 'c') hasC.value = 0
-    if (pos === 'qb') hasQB.value = 0
-    if (pos === 'g') hasG.value--
-    if (pos === 't') hasT.value--
-    return
-  }
-  const el = container.value
-  if (!el) return
-  el.setPointerCapture(e.pointerId)
-  activeId = id
-  // 👇 IMPORTANT: attach move to element via capture
-  el.addEventListener('pointermove', onDrag)
-  el.addEventListener('pointerup', stopDrag)
-}
-const onDrag = (e: PointerEvent) => {
-  if (!activeId || !container.value) return
-  const rect = container.value.getBoundingClientRect()
-  const player = players.value.find(p => p.id === activeId)
-  if (!player) return
-  player.x = (e.clientX - rect.left) / rect.width
-  player.y = (e.clientY - rect.top) / rect.height
-}
-const stopDrag = () => {
-  activeId = null
-}
-const newFormation = ref()
-const title = ref()
-interface DropField { showDrop: boolean, initialVal: string, newValue: string, newLst: string[], errorOut: boolean }
-    type DropKeys = 'ptype' | 'formation'
-    type Ptype = Record<DropKeys, DropField>
-    const dropDownsPlayType = ref<Ptype>({
-        formation: {
-            errorOut: false,
-            showDrop: false,
-            initialVal: 'Formation',
-            newValue: 'Formation',
-            newLst: [ ],
-        },
-        ptype: {
-            errorOut: false,
-            showDrop: false,
-            initialVal: 'Play Type',
-            newValue: 'Play Type',
-            newLst: ['Pass', 'Run', 'Special'],
-        },
-        
-    })
+  const myStrokes = ref<Stroke[]>([])
+  const selectedColor = ref<ColorType>('white')
+  const selectedTool = ref<ToolType>('pen')
+  const errors = ref<FormError[]>([])
+  const errorsShow = ref<boolean>(false)
 
-  const showTypeDrop = (key: DropKeys) => {
-      Object.keys(dropDownsPlayType.value).forEach((k) => {
-          const typedKey = k as DropKeys
-          dropDownsPlayType.value[typedKey].showDrop =
-          typedKey === key? !dropDownsPlayType.value[typedKey].showDrop : false
-      })
+  //LISTS
+  const positionList = ref<PosType[]>([
+    {id:0, pos:'qb', x:.5, y:.74, name:'quarterback'},
+    {id:0, pos:'fb', x:.5, y:.83, name:'fullback'},
+    {id:0, pos:'rb', x:.5, y:.92, name:'runningback'},
+    {id:0, pos:'tb', x:.6, y:.92, name:'tailback'},
+    {id:0, pos:'wr', x:.7, y:.65, name:'wide reciever'},
+    {id:0, pos:'sl', x:.65, y:.7, name:'slot reciever'},
+    {id:0, pos:'te', x:.35, y:.7, name:'tight end'},
+    {id:0, pos:'c', x:.5, y:.65, name:'center'},
+    {id:0, pos:'g', x:.25, y:.65, name:'guard'},
+    {id:0, pos:'t', x:.6, y:.65, name:'tackle'},
+  ])
+  const myToolbarList = [
+    {class:'info', click: () => togglePanel('info'), icon:'i'},
+    {class:'formation', click: () => togglePanel('formation'), icon:'F'},
+    {class:'position', click: () => togglePanel('pos'), icon:'P'},
+    {class:'pen', click: () => togglePanel('pen'), icon:''},
+    {class:'select', click: () => makeActiveTool('select'), icon:''},
+    {class:'erase', click: () => makeActiveTool('erase'), icon:''},
+    {class:'clear', click: () => clearPlayers(), icon:'X'},
+  ]
+  
+  //FUNCTIONS
+  const togglePanel = (p: Panel) => {
+    activePanel.value = activePanel.value === p ? null : p
+  }
+  const checkErrors = (type: 'play' | 'formation') => {
+    let pass = 0
+    let playCheck = 0
+    let formationCheck = 0
+    errors.value = []
+    const needed = 11 - players.value.length
+    const errorLogs = {
+      101: `${needed} players needed.`,
+      102: `Name your play.`,
+      103: `Choose play type.`,
+      104: `Play needs routes.`,
+      105: `Name your formation`
+    }
+    //CHECK PLAYER COUNT
+    if (players.value.length <= 10) {
+      errors.value.push({ txt: errorLogs[101], cls:'reg' })
+      pass++
+      playCheck++
+      formationCheck++
+    }
+    if (type === 'play') {
+      //CHECK TITLE
+      if (!title.value) {
+        errors.value.push({ txt: errorLogs[102], cls:'reg' })
+        pass++
+        playCheck++
+      }
+      //CHECK PLAY TYPE
+      if (dropDownsPlayType.value.ptype.newValue === 'Play Type') { 
+        errors.value.push({ txt: errorLogs[103], cls:'reg' })
+        pass++
+        playCheck++
+      }
+      //CHECK STROKES
+      if (myStrokes.value.length === 0) {
+        errors.value.push({ txt: errorLogs[104], cls:'reg' })
+        pass++
+        playCheck++
+      }
+      if (playCheck >= 1) {
+        errors.value.unshift({ txt: "Submit Play Errors:", cls:'hdr' })
+      }
+    }
+    if (type === 'formation') {
+      //CHECK FORMATION NAME
+      if (!newFormation.value) {
+        errors.value.push({ txt: errorLogs[105], cls:'reg' })
+        pass++
+        formationCheck++
+      }
+      if (formationCheck >= 1) {
+        errors.value.unshift({ txt: "Formation Error:", cls:'hdr' })
+      }
+    }
+    if (pass != 0) {
+      errorsShow.value = true
+      return false
+    } else {
+      errorsShow.value = false
+      errors.value = []
+      return true
+    }
+  }
+  const submitPlay = () => {
+    if (!auth.user) return
+    if (!checkErrors('play')) return
+    const payload = {
+      title: title.value,
+      formation: dropDownsPlayType.value.formation.newValue,
+      playType: dropDownsPlayType.value.ptype.newValue,
+      description: 'this is a default description for now',
+      grid: {
+        strokes: myStrokes.value,
+        players: players.value
+      },
+      ownerId: auth.user.id
+    }
+    console.log('SUBMITTED PLAY')
+    plays.createPlay(payload) 
+    playSuccess.value = true
+    clearPlayers()
+    title.value = ''
+  }
+  const noPanel = () => {
+    activePanel.value = null
+  }
+  const showFormations = () => {
+    showFormation.value = !showFormation.value
+  }
+  const showPlayTypes = () => {
+    showPlayType.value = !showPlayType.value
+  }
+  const addPlayer = (pos: string, x:number, y:number) => {
+    // WHEN USER SELECTS A PLAYER ICON
+    if (auth.sport?.toLowerCase().includes("tackle")) {
+      if (playerCount.value === 11) return // stops at 11
+    }
+    if (auth.sport?.toLowerCase().includes("flag")) {
+      if (playerCount.value === 9) return // stops at 9
+    }
+    if (pos === 'qb') {
+      if (hasQB.value === 1) return
+      hasQB.value++
+    }
+    if (pos === 'fb') {
+      if (hasFB.value === 1) return
+      hasFB.value++
+    }
+    if (pos === 'tb') {
+      if (hasTB.value === 1) return
+      hasTB.value++
+    }
+    if (pos === 'c') {
+      if (hasC.value === 1) return
+      hasC.value++
+    }
+    if (pos === 'g') {
+      if (hasG.value === 2) return
+      x = hasG.value === 0 ? .55 : .45
+      hasG.value++
+    }
+    if (pos === 't') {
+      if (hasT.value === 2) return
+      x = hasT.value === 0 ? .6 : .4
+      hasT.value++
+    }
+    if (pos === 'wr') {
+      if (hasWR.value === 2) return
+      x = hasWR.value === 0 ? .79 : .215
+      hasWR.value++
+    }
+    if (pos === 'sl') {
+      if (hasSL.value === 2) return
+      x = hasSL.value === 0 ? .68 : .32
+      hasSL.value++
+    }
+    if (pos === 'te') {
+      if (hasTE.value === 2) return
+      x = hasTE.value === 0 ? .64 : .36
+      hasTE.value++
+    }
+    if (pos === 'rb') {
+      if (hasRB.value === 2) return
+      x = hasRB.value === 0 ? .55 : .45
+      hasRB.value++
+    }
+    playerCount.value++
+    players.value.push({ id: crypto.randomUUID(), pos, x, y }) // add to payload
+  }
+  const clearPlayers = () => {
+    canvasRef.value?.clearMe()
+    players.value = []
+    clearAllPositionCount()
+  }
+  const makeActiveTool = (tool: 'erase' | 'select') => {
+    if (activeTool.value === 'select') {
+      activeTool.value = tool
+    } else {
+      activeTool.value = 'select'
+    }
+  }
+  const startDrag = (id: string, pos: string, e: PointerEvent) => {
+    noPanel()
+      if (activeTool.value === 'erase') {
+        players.value = players.value.filter(p => p.id !== id)
+        playerCount.value--
+        if (pos === 'qb') hasQB.value = 0
+        if (pos === 'c') hasC.value = 0
+        if (pos === 'g') hasG.value = 0
+        if (pos === 't') hasT.value = 0
+        if (pos === 'wr') hasWR.value = 0
+        if (pos === 'rb') hasRB.value = 0
+        if (pos === 'fb') hasFB.value = 0
+        if (pos === 'tb') hasTB.value = 0
+        if (pos === 'te') hasTE.value = 0
+        if (pos === 'sl') hasSL.value = 0
+        return
+      }
+      const el = container.value
+      if (!el) return
+      el.setPointerCapture(e.pointerId)
+      activeId = id
+      el.addEventListener('pointermove', onDrag)
+      el.addEventListener('pointerup', stopDrag)
+  }
+  const onDrag = (e: PointerEvent) => {
+    if (!activeId || !container.value) return
+    const rect = container.value.getBoundingClientRect()
+    const player = players.value.find(p => p.id === activeId)
+    if (!player) return
+    player.x = (e.clientX - rect.left) / rect.width
+    player.y = (e.clientY - rect.top) / rect.height
+  }
+  const stopDrag = () => {
+    activeId = null
   }
   const playTypeValue = (key: DropKeys, value: string ) => {
       dropDownsPlayType.value[key].newValue = value
       dropDownsPlayType.value[key].showDrop = false
       showPlayTypes()
   }
-
   const formationType = (key: DropKeys, value: string) => {
     dropDownsPlayType.value[key].newValue = value
     dropDownsPlayType.value[key].showDrop = false
     showFormations()
     router.push('/create')
   }
+  const changeColor = (prop: ColorType) => {
+    selectedColor.value = prop
+  }
+  const changeTool = (prop: ToolType) => {
+    selectedTool.value = prop
+  }
+  const addFormation = () => {
+    if (!auth.user) return
+    if (!checkErrors('formation')) return
+    const formload = {
+      formationName: newFormation.value,
+      grid: {
+        players: players.value
+      },
+      ownerId: auth.user.id
+    }
+    dropDownsPlayType.value.formation.newLst.push(newFormation.value)
+    dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
+    forms.createFormation(formload)
+    newFormation.value = ""
+  }
+  const gatherAllFormations = () => {
+    // Gets all formations and places them in formations list
+    dropDownsPlayType.value.formation.newLst = []
+    for (const i of forms.formations) {
+      dropDownsPlayType.value.formation.newLst.push(i.formationName)
+      dropDownsPlayType.value.formation.newLst.sort();
+    }
+    dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
+  }
+  const clearErrors = () => {
+    errorsShow.value = false
+    errors.value = []
+  }
+  const clearAllPositionCount = () => {
+    playerCount.value = 0
+    hasC.value = 0
+    hasG.value = 0
+    hasT.value = 0
+    hasQB.value = 0
+    hasFB.value = 0
+    hasRB.value = 0
+    hasTB.value = 0
+    hasTE.value = 0
+    hasWR.value = 0
+    hasSL.value = 0
+  }
 
-
-
-watch(() => dropDownsPlayType.value.formation.newValue, (f: string) => {
-  clearPlayers()
-  myCount.value = 0
-  hasC.value = 0
-  hasQB.value = 0
-  hasG.value = 0
-  hasT.value = 0
-  for (let i = 0; i <forms.formations.length; i++) {
-    const myForm = forms.formations[i]
-    if (myForm.formationName === f) {
-      for (let p = 0; p < myForm.grid.players.length; p++) {
-        const pg = myForm.grid.players[p]
-        addPlayer(pg.pos, pg.x, pg.y)
+  //WATCH
+  // watch when a new formation dropdown is chosen
+  watch(() => dropDownsPlayType.value.formation.newValue, (f: string) => {
+    clearPlayers() // gets rid of every player on the screen
+    clearAllPositionCount() // clear all positions
+    const myForm = forms.formations.find( formation => formation.formationName === f )
+    if (myForm) {
+      for (const player of myForm.grid.players) {
+        addPlayer(player.pos, player.x, player.y)
       }
     }
-  }
-})
+  })
 
-const saveFormation = () => {
-  if (!auth.user) return
-  const formationload = {
-    formationName: newFormation.value,
-    grid: {
-      players: players.value
-    },
-    ownerId: auth.user.id
-  }
-  clearPlayers()
-}
-
-const myToolbarList = [
-  {class:'info', click: () => togglePanel('info'), icon:'i'},
-  {class:'formation', click: () => togglePanel('formation'), icon:'F'},
-  {class:'position', click: () => togglePanel('pos'), icon:'P'},
-  {class:'pen', click: () => togglePanel('pen'), icon:''},
-  // {class:'color', click: () => togglePanel('color'), icon:''},
-  {class:'select', click: () => makeActiveTool('select'), icon:''},
-  {class:'erase', click: () => makeActiveTool('erase'), icon:''},
-  {class:'clear', click: () => clearPlayers(), icon:'X'},
-  // {class:'submit', click: () => submitPlay(), icon:'S'},
-]
-const myStrokes = ref<Stroke[]>([])
-const selectedColor = ref<ColorType>('white')
-const selectedTool = ref<ToolType>('pen')
-const changeColor = (prop: ColorType) => {
-  selectedColor.value = prop
-}
-const changeTool = (prop: ToolType) => {
-  selectedTool.value = prop
-}
-
-interface FormError {
-  txt: string,
-  cls: string
-}
-const errors = ref<FormError[]>([])
-const errorsShow = ref<boolean>(false)
-const addFormation = () => {
-  if (!auth.user) return
-  if (!newFormation.value) {
-    errors.value.push({ txt: `YOU HAVE A FORMATION ERROR`, cls:'hdr' })
-    errors.value.push({ txt: "Your formation needs a name!", cls:'reg' })
-    errorsShow.value = true
-    return
-  }
-  if (players.value.length <= 10) {
-    const needed = 11 - players.value.length
-    errors.value.push({ txt: `YOU HAVE A FORMATION ERROR`, cls:'hdr' })
-    errors.value.push({ txt: `YOU NEED ${needed} MORE PLAYERS`, cls:'reg' })
-    errorsShow.value = true
-    return
-  }
-
-  
-  const formload = {
-    formationName: newFormation.value,
-    grid: {
-      players: players.value
-    },
-    ownerId: auth.user.id
-  }
-  dropDownsPlayType.value.formation.newLst.push(newFormation.value)
-  dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
-  forms.createFormation(formload)
-  newFormation.value = ""
-}
-
-const gatherAllFormations = () => {
-  dropDownsPlayType.value.formation.newLst = []
-  for (let i = 0; i < forms.formations.length; i++) {
-    dropDownsPlayType.value.formation.newLst.push(forms.formations[i].formationName)
-    dropDownsPlayType.value.formation.newLst.sort();
-  }
-  dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
-}
-
-onMounted(async () => {
-  if (!forms.formations.length) {
-    await forms.fetchFormations()
-  }
-  gatherAllFormations()
-})
-
-const clearErrors = () => {
-  errorsShow.value = false
-  errors.value = []
-}
-
+  //OnMOUNTED
+  onMounted(async () => {
+    if (!forms.formations.length) {
+      await forms.fetchFormations()
+    }
+    gatherAllFormations()
+  })
 </script>
 
 <template>
   <main>
-    <h1>Your Play {{ title }}</h1>
+    <h1>Your Play: {{ title }}</h1>
     <div class="errorsShow" v-if="errorsShow" @click="clearErrors()">
-      <p v-for="(e,index) in errors" :key="'error_'+index">{{ e.txt }}</p>
+      <div class="errorCont">
+        <p v-for="(e,index) in errors" :key="'error_'+index" :class="e.cls">{{ e.txt }}</p>
+      </div>
     </div>
     <div class="boardCont">
     <div class="board" ref="fuller">
@@ -514,7 +542,7 @@ const clearErrors = () => {
       <!-- POSITIONS -->
       <ul class="toolbox popTools positions" :class="{active: activePanel === 'pos'}">
         <h3>Add Player:</h3>
-        <div class="popDisplay" v-for="p in myPositionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
+        <div class="popDisplay" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
           <li ><button >{{ p.pos.toUpperCase() }}</button></li>
           <p>{{ p.name.toUpperCase() }}</p>
         </div>

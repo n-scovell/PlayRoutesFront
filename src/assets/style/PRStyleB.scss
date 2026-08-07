@@ -1133,10 +1133,17 @@ $penGreen: #00e913;
 }
 .playsContainer {
   min-height:100vh;
-  &.fav {
+  &.fav, &.form {
     padding-top:50px;
     .playRows {
       .indPlays {
+        h5 {
+          @include pos(absolute, 0px, 0px);
+          @include size(auto, auto);
+          @include font($head, $white, 18px, 400, .03em, $align:center);
+          padding:10px 10px;
+          z-index:1000;
+        }
         h4 {
           @include pos(absolute, 15px, 0px);
           @include size(100%, auto);
@@ -1149,6 +1156,16 @@ $penGreen: #00e913;
           h3 {
             font-size:20px;
           }
+        }
+      }
+    }
+  }
+  &.form {
+    padding:55px 50px 0px;
+    .playRows {
+      .indPlays {
+        .playInfo {
+          padding-bottom:0px;
         }
       }
     }
@@ -1383,8 +1400,39 @@ $penGreen: #00e913;
 .errorsShow {
   @include pos(fixed,0px,0px);
   @include size(100vw, 100vh);
-  @include backColor(rgba(8, 8, 8, 0.568));
-  @include flex(flex, column, nowrap, center, center);
-  @include font($head, $white, 25px, 400, .01em, 20px, normal, uppercase, none);
+  @include backColor(rgba(8, 8, 8, 0));
+  
   z-index:999999;
+  .errorCont {
+    @include backColor(rgba(0,0,0,.9));
+    @include size(auto, auto);
+    @include flex(flex, column, nowrap, center, center);
+    @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+    border:2px solid rgba(255,255,255,.5);
+    padding:30px 50px;
+    p {
+      &.hdr {
+        @include font($head, $white, 25px, 400, -.01em, 20px, normal, uppercase, none, left);
+        margin-bottom:10px;
+      }
+      &.reg {
+        @include font($par, $white, 20px, 400, .01em, 20px, normal, none, none);
+        @include size(80%, auto, 400px);
+        @include rel();
+        padding:10px 20px 10px 55px;
+        &:before {
+          content:'!';
+          @include size(35px, 70%);
+          @include backColor($penRed);
+          @include flex(flex, row, nowrap, center, center);
+          @include font($head, $white, 15px, bold);
+          @include pos(absolute, 50%, 10px, $trans: translate(0%,-50%));
+          @include tri();
+          padding-top:5px;
+          box-sizing:border-box;
+        }
+      }
+    }
+  }
+
 }
