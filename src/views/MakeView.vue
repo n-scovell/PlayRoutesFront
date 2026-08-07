@@ -436,7 +436,7 @@
           </div>
           <div class="inputCont a">
             <div class="selectHolder">
-              <label>Choose Your Formation:
+              <label>Choose Your Play Type:
                 <button class="dropDownInd" @pointerdown="showPlayTypes()">{{ dropDownsPlayType.ptype.newValue }}</button>
                 <div class="dropDownCase" v-if="showPlayType">
                   <div>
