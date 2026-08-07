@@ -235,6 +235,47 @@ h1 {
 .play-routes header .logo, .play-routes header nav, .play-routes header .userCont {
   flex: 1;
 }
+.play-routes .roster {
+  margin: 20px auto;
+  outline: 1px solid white;
+  width: 95%;
+  height: 100%;
+  max-height: 350px;
+  background-image: url(@/assets/images/bck_chalkboard.jpg);
+  background-size: cover;
+}
+.play-routes .roster .playerRoster {
+  display: flex;
+  flex-direction: row;
+  font-family: "Arial", sans-serif;
+  color: white;
+  text-align: center;
+  padding: 13px 0px;
+}
+.play-routes .roster .playerRoster.a {
+  padding: 10px 0px;
+  border-bottom: 1px solid white;
+  position: relative;
+}
+.play-routes .roster .playerRoster.a:before {
+  content: " ";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-image: url(@/assets/images/bck_chalkboard.jpg);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+.play-routes .roster .playerRoster div {
+  flex: 1;
+  padding: 10px;
+}
+.play-routes .roster .playerRoster div:first-child {
+  flex: 0 0 50px;
+  text-align: center;
+}
 
 .homePageBanners section {
   height: 350px;

@@ -4,7 +4,7 @@ const badges = useBadges();
 badges.fetchBadges();
 </script>
 <template>
-  <main style="min-height:100vh">
+  <main >
     <h1>Your Badges work </h1>
     <div
       class="badge"

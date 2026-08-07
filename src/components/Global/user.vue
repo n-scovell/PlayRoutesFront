@@ -56,8 +56,8 @@
           <RouterLink :to="route.path">
               <div>{{ route.name }}</div>
           </RouterLink>
-      </button>
-      <button @pointerdown="signOut">Log Out</button>
+      </button> 
+      <button v-if="auth.user" @pointerdown="signOut">Log Out</button>
     </div>
   </div>
 </template>
