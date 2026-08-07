@@ -2762,6 +2762,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   .homePageBanners section.guestUsage .textBox .right ul li {
     transform: skew(3deg);
   }
+  .homePageBanners section.createAccount {
+    height: 650px;
+  }
   .homePageBanners section.createAccount .fieldImage {
     position: absolute;
     top: 0%;
@@ -2821,6 +2824,14 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   }
   .homePageBanners section.createAccount .mid h4:before, .homePageBanners section.createAccount .mid h4:after {
     opacity: 0;
+  }
+  .homePageBanners section.createAccount .mid .btCont {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
   .play-routes header nav .ham {
     width: 40px;

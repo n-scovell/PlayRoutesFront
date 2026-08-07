@@ -261,6 +261,7 @@ h1 {
             flex:1;
           }
         }
+        
       }
     }
     &.instruction {
@@ -1309,7 +1310,8 @@ $mobile: 828px;
           }
         }
       }
-      &.createAccount {        
+      &.createAccount {    
+        height:650px;    
         .fieldImage {
           @include pos(absolute, 0%, 50%, $trans:translate(-50%,0%));
         }
@@ -1329,6 +1331,9 @@ $mobile: 828px;
             @include flex(flex, $gap: 11px);
             transition:font-size .2s;
             &:before, &:after { opacity:0; }
+          }
+          .btCont {
+            @include flex(flex, column, nowrap, center, center, $gap:10px);
           }
         }
       }
