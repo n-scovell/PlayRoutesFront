@@ -89,7 +89,7 @@ h1 {
           display:none;
           @include pos(fixed, 0px, -100vw);
           @include backColor(rgba(0,0,0,.9));
-          @include size(80%, 100%, $maxH:100%);
+          @include size(80%, 100%, $minW:250px, $maxW:310px, $maxH:100%);
           backdrop-filter: blur(2px);
           padding:30px 30px;
           z-index:999999;
@@ -222,12 +222,12 @@ h1 {
     }
     &.createAccount {
       @include rel();
-      @include size(auto, 100%, $minH:550px);
+      @include size(auto, 100%, $minH:490px);
       transition: all .5s;
       overflow:hidden;
       .fieldImage {
         @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-        @include size(100%, auto);
+        @include size(100%, auto, $minW:1500px);
         z-index:0;
       }
       .mid {
@@ -1170,7 +1170,150 @@ $penGreen: #00e913;
 
 
 
-@media only screen and (max-width: 600px) {
+$mobile: 728px;
+//MEDIA ANYTHING BELOW 600
+@media only screen and (max-width: $mobile) {
+  .homePageBanners {
+    section {
+      background:blue;
+      padding-top:0px;
+      &.instruction { 
+
+      }
+      &.guestUsage {
+        @include size(auto, auto);
+        @include flex(flex, column, nowrap, center, center);
+        padding:20px 10px 20px;
+        .textBox {
+          @include flex(flex, column, nowrap, center, start, 0px);
+          @include size(100%, 100%, 300px, 1500px);
+          .left, .right {
+            flex:1;
+            width:100%;
+            min-height:500px;
+            @include rel();
+            h3 {
+              margin-bottom:50px;
+            }
+          }
+          .left {
+            .imgA {
+              @include size(50px);
+              @include pos(absolute, 12%, 5%, $trans: rotate(-10deg));
+            }
+            .imgB {
+              @include size(50px);
+              @include pos(absolute, $right:2%, $top: 55%, $trans: rotate(35deg));
+            }
+            h2 {
+              @include font($head, $white, 35px, bold, .02em, 20px, normal, uppercase);
+              padding-left:50px;
+              &.highlight {
+                @include font($head, $rustBlue, 65px, bold, .02em, 20px, normal, uppercase, 0px 2px 2px $black, center);
+                margin-top:-15px;
+              }
+              transform:rotate(-3deg);
+            }
+            h3 {
+              @include size(300px, 60px);
+              @include pos(absolute, 30%, $right: -20px, $trans: translate(0%,-50%));
+              @include font($hand, $black, 33px, 300, .01em, 20px, normal, uppercase, none, center);
+              &:before {
+                @include pos(absolute, 45%, 50%, $trans: translate(-50%,-50%));
+              }
+            }
+            h4 {
+              @include font($par, $white, 20px, 400, .02em, 20px, normal, normal, none, center);
+              margin-top:80px;
+              padding:0px 50px;
+              strong {
+                color:$rustBlue;
+              }
+              padding-bottom:20px;
+            }
+            h5 {
+              padding-top:10px;
+              @include font($head, $white, 25px, 400, .02em, 20px, normal, normal, none, center);
+              margin:0px 0px -5px 0px;
+              &.highlight {
+                @include font($head, $rustBlue, 25px, 400, .02em, 20px, normal, uppercase, none, center);
+              }
+            }
+            .primaryBt {
+              @include pos(relative, $left:27%, $trans: translateX(-50%));
+              margin-top:20px;
+              transform:rotate(2deg);
+            }
+          }
+          .right {
+            transform: skew(-3deg);
+            left:-30px;
+            top:-90px;
+            ul {
+              @include pos(absolute, 270px, 55%, $trans: $cc);
+              @include backColor($rustBlue);
+              padding:40px 70px;
+              &:after {
+                content:' ';
+                @include size(100%, 110%);
+                @include backColor(rgb(8, 8, 8));
+                @include pos(absolute, -10px, 10px, $trans: skew(-2deg));
+                z-index:-1;
+              }
+              h3 {
+                @include font($spec, $white, 30px, 400, .02em, 20px, normal, uppercase, none, center);
+                white-space: nowrap;
+                margin:0px 0px 20px 0px;
+                transform: skew(3deg);
+              }
+              li {
+                @include flex(flex, row, wrap, center, start, 0px);
+                @include font($head, $white, 30px, 400, .02em, 20px, normal, uppercase, none, left);
+                padding:20px 0px;
+                strong {
+                  color:$rustBlue;
+                  font-size:65px;
+                  margin-right:10px;
+                }
+                img {
+                  width:50px;
+                  margin-right:30px;
+                }
+                p {
+                  flex: 0 0 100%;
+                  @include font($par, $white, 12px, 400, .02em, 20px, normal, uppercase, none, left);
+                }
+                transform: skew(3deg);
+              }
+            }
+          }
+        }
+      }
+      &.createAccount {        
+        .fieldImage {
+          @include pos(absolute, 0%, 50%, $trans:translate(-50%,0%));
+        }
+        .mid {
+          @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+          img {
+            @include size(auto, 30%);
+            transition:height .2s;
+          }
+          h3, h4 {
+            @include font($head, $white, 55px, bold, .01em, 20px, italic, none, none, center);
+            margin:20px 0px;
+            // .alt { display:block; }
+          }
+          h4 {
+            @include font($head, $white, 25px, bold, .09em, 20px, italic, none, none, center);
+            @include flex(flex, $gap: 11px);
+            transition:font-size .2s;
+            &:before, &:after { opacity:0; }
+          }
+        }
+      }
+    }
+  }
   .play-routes {
     header {
       nav {
