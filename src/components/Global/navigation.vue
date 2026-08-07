@@ -4,7 +4,7 @@ import router from '@/router'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/userAuth'
 const auth = useAuthStore()
-const showNav = ref<boolean>(true)
+const showNav = ref<boolean>(false)
 const togNav = () => {
     showNav.value = !showNav.value
 }
@@ -16,14 +16,30 @@ const routes = computed(() => {
         }
     })
 })
+const alertMe = () => {
+    showNav.value = false
+}
 </script>
 <template>
     <nav>
-        <button class="icoBt" v-for="route in routes" :key="route.path">
-            <RouterLink :to="route.path">
-                <button>{{ route.name }}</button>
-            </RouterLink>
+        <button class="ham" @click="togNav()">
+            <div></div><div></div><div></div>
         </button>
+        <div class="mobNav" :class="{show : showNav}">
+            <button class="close" @click="togNav()">✕</button>
+            <div class="icoBt" v-for="route in routes" :key="route.path">
+                <RouterLink :to="route.path">
+                    <button @click="alertMe()">{{ route.name }}</button>
+                </RouterLink>
+            </div>
+        </div>
+        <div class="deskNav">
+            <button class="icoBt" v-for="route in routes" :key="route.path">
+                <RouterLink :to="route.path">
+                    <button>{{ route.name }}</button>
+                </RouterLink>
+            </button>
+        </div>
     </nav>
 </template>
 

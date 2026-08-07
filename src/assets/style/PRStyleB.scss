@@ -84,13 +84,45 @@ h1 {
     }
     nav {
       @include pos(relative, 0px);
-      @include flex(flex, row, nowrap, stretch, start, 30px);
       @include size(auto, 100%);
-      padding-left:20px;
-      button {
-        @include font($head, $white, 15px, bold, .08em, 20px, normal, uppercase);
-        @include backColor();
-        cursor:pointer;
+      .mobNav {
+          display:none;
+          @include pos(fixed, 0px, -100vw);
+          @include backColor(rgba(0,0,0,.9));
+          @include size(80%, 100%, $maxH:100%);
+          backdrop-filter: blur(2px);
+          padding:30px 30px;
+          z-index:999999;
+          transition: all .2s;
+          &.show {
+            @include pos(fixed, 0px, 0px);
+            transition: all .5s;
+          }
+          .close {
+            @include pos(absolute, 20px, $right:15px, $trans:translate(-50%, 0%));
+            @include size(40px, 40px);
+            @include font($par, $white, 15px, bold, .02em, 20px, normal, uppercase, none, center);
+            border:3px solid white;
+            border-radius:50%;
+          }
+          .icoBt {
+            @include size(100%, auto);
+            a {
+              button {
+                @include size(100%, auto);
+                @include font($head, $white, 40px, bold, .02em, 20px, normal, uppercase, none, right);
+              }
+            }
+          }
+        }
+      .deskNav {
+        @include flex(flex, row, nowrap, stretch, start, 30px);
+        padding-left:20px;
+        button {
+          @include font($head, $white, 15px, bold, .08em, 20px, normal, uppercase);
+          @include backColor();
+          cursor:pointer;
+        }
       }
     }
     .userCont {
@@ -524,350 +556,6 @@ form {
 
 
 
-
-// 102 - HOME BANNERS
-// .homePageBanners {
-//   background:red;
-//   @include rel();
-//   @include size(100%, auto);
-//   @include backColor(rgba(255,255,255,.0));
-
-//   height:100%;
-//   section {
-//     @include rel();
-//     border-bottom:2px solid black;
-//     height:500px;
-//     width:100%;
-    
-//   }
-  // section {
-  //   @include size(auto, auto);
-  //   @include rel();
-    
-  //   &.instruction {
-  //     @include size(auto, auto);
-  //     @include backColor(rgb(16, 15, 22));
-  //     @include rel();
-  //     @include flex($align: center, $just: center, $gap: 20px );
-  //     padding:50px 0px;
-  //     .arrowBox {
-  //       @include size(100px, auto);
-  //       img {
-  //         width:100%;
-  //         margin:0px;
-  //       }
-  //     }
-  //     .textBox {
-  //       @include size(50%, auto, 220px, 850px);
-  //       h3 {
-  //         @include font($head, $white, 35px, bold, .04em, 30px, normal, uppercase, $align:left);
-  //       }
-  //       p {
-  //         @include font($par, $white, 22px, bold, .05em, 20px, normal, none);
-  //       }
-  //     }
-  //   }
-  //   &.createAccount {
-  //     @include rel();
-  //     @include size(auto, 400px);
-      
-  //     transition: all .5s;
-  //     overflow:hidden;
-  //     .fieldImage {
-  //       @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-  //       @include size(100%, auto, 1200px);
-  //       z-index:0;
-  //     }
-  //     .mid {
-  //       @include size(90%, 90%, $maxW:900px);
-  //       @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
-  //       padding-top:20px;
-  //       z-index:1;
-  //       .btCont {
-  //         padding:30px 0px 0px;
-  //         @include flex(flex, row, nowrap, center, center, 20px);
-  //         button {
-  //           @include backColor($white);
-  //           @include font($head, $black, 30px, bold, .02em, 20px, normal, uppercase, $align:center);
-  //           padding:9px 30px;
-  //         }
-  //       }
-  //       img {
-  //         @include size(auto, 35%);
-  //         @include pos(relative, 0px, 50%, $trans:translateX(-50%));
-  //         transition:height .2s;
-  //       }
-  //       h3, h4 {
-  //         @include font($head, $white, 64px, bold, .01em, 20px, italic, none, none, center);
-  //         margin:0px;
-  //         transition:font-size .2s;
-  //         .alt {
-  //           color: $gray;
-  //         }
-  //       }
-  //       h4 {
-  //         @include font($head, $white, 32px, bold, .09em, 20px, italic, none, none, center);
-  //         @include flex(flex, $gap: 20px);
-  //         transition:font-size .2s;
-  //         &:before, &:after {
-  //           content:' ';
-  //           @include size(auto, 2px);
-  //           @include backColor($gray);
-  //           @include pos(relative, 17px);
-  //           flex:1;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-// }
-
-// @media only screen and (max-width: 600px) {
-//   .homePageBanners {
-//     @include flex(flex, column, wrap, $gap: 0px);
-//     section {
-//       &.instruction {
-//         @include size(auto, auto);
-//         @include flex($dir:column, $align:center, $just: center);
-//         @include font($align: center);
-//         transition: all .3s;
-//         padding:40px 20px;
-//         .arrowBox {
-//           display:none;
-//         }
-//         .textBox {
-//           @include size(90%, auto);
-//           padding:0px;
-//           h3 {
-//             font-size:25px;
-//             text-align:center;
-//           }
-//           p {
-//             font-size:15px;
-//             text-align:center;
-//           }
-//         }
-//       }
-//       &.createAccount {
-//         @include size(auto, 350px);
-//         transition: all .5s;
-//         .mid {
-//           @include size(auto, 80%);
-//           padding:0px 0px; 
-//           .btCont {
-//             @include flex($dir: column, $gap:10px);
-//             margin-top:-10px;
-//             button {
-//               @include size(200px);
-//               font-size:15px;
-//               padding:12px 0px;
-//             }
-//           }
-//           img {
-//             height:40%;
-//             transition:height .2s;
-//           }
-//           h3, h4 {
-//             font-size:30px;
-//             letter-spacing:0.01em;
-//             transition:font-size .2s;
-//           }
-//           h4 {
-//             font-size:15px;
-//             &:before, &:after {
-//               top:14px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// // 102 - END HOME BANNERS
-
-// main {
-//   @include rel();
-//   // height:100lvh;
-// }
-
-// // 103 - FORM
-// form {
-//   $br: 20px;
-//   @include size(100%, 100%);
-//   &.signUp, &.signIn {
-//     @include size(80%, auto, 150px, 350px);
-//     @include pos(relative, 0%, 50%, $trans: translate(-50%, 0%));
-//     padding-top: 20px;
-//     margin-bottom: 50px;
-//     &:before {
-//       content:' ';
-//       @include size(200px, 250px);
-//       @include back(transparent, '@/assets/images/circleArrow.png', auto 100%, right center, no-repeat);
-//       @include pos(absolute, 50%, $left:-230px, $trans:translate(-0%,-50%));
-//       opacity:1;
-//       transition: opacity .3s .5s;
-//     }
-//   }
-//   &.signIn {
-//     &:before {
-//       display:none;
-//     }
-//     .btCont {
-//       position:relative;
-//       top:20px;
-//     }
-//   }
-//   &.submitPlay {
-//     @include size(90%, auto);
-//     padding:20px;
-//     .inputCont {
-//       h3 {
-//         @include font($spec, $white, 30px);
-//       }
-//       input, .dropDownInd {
-//         @include backColor(rgba(255,255,255,.6));
-//         color:black;
-//         &:focus {
-//           @include backColor(rgba(255,255,255,.8));
-//         }
-//       }
-//     }
-//     .btCont {
-//       button {
-//         @include font($head, $black, 20px, bold, 0.01em, 20px, normal, uppercase, none, $align: left);
-//       }
-//     }
-//   }
-//   h3 {
-//     @include font($head, $white, 25px, bold, .09em, 20px, italic, none, none, left);
-//     margin:10px 0px;
-//   }
-//   .btCont {
-//     @include flex(flex, row, nowrap, $align:center, $just: center, $gap: 10px);
-//     margin:20px 0px;
-//     transition: all .3s .1s;
-//     input, .dropDownInd, textarea {
-//       @include backColor(rgba(255,255,255,.5));
-//     }
-//     button {
-//       @include backColor($white);
-//       @include font($head, $black, 20px, bold, .01em, 20px);
-//       padding:10px 20px;
-//       transition: all .3s .1s;
-//       &:hover {
-//         background: $black;
-//         color: $white;
-//       }
-//     }
-//   }
-//   .inputCont {
-//     @include flex(flex, column, wrap, stretch, center, 5px);
-//     margin-bottom:10px;
-//     label {
-//       @include font($par, $white, 15px, 500, .01em, 20px, normal, none, none, left);
-//       @include flex(flex, column, $gap: 5px);
-//       cursor:pointer;
-//     }
-//     .selectHolder {
-//       @include rel();
-//       margin:10px 0px;
-//       .dropDownCase {
-//         @include pos(absolute, 24px, 0%);
-//         @include size(100%, auto);
-//         @include back(rgb(161, 161, 161), $blur: 15px);
-//         border-radius:$br;
-//         z-index:10;
-//         div {
-//           @include flex(flex, column, $gap: 13px);
-//           @include backColor(transparent);
-//           padding:20px 20px;
-//           button {
-//             @include font($par, $black, 18px, bold, $align:left);
-//           }
-//         }
-//         &.active {
-//           background:red;
-//         }
-//         .short {
-//           max-height:200px;
-//           overflow-y:scroll;
-//         }
-//         &.inactive {
-//           background:red;
-//           display:none;
-//         }
-        
-//       }
-//     }
-//     input, .dropDownInd, textarea {
-//       @include backColor($grayC);
-//       @include font($par, $white, 12px, .05em);
-//       @include size(100%, auto);
-//       @include inpCaret($black, revert, underscore);
-//       border-bottom:1px solid $grayB;
-//       border-radius:$br;
-//       padding:10px 0px 10px 20px;
-//       &::placeholder {
-//         color: transparent;
-//       }
-//       &:focus {
-//         @include backColor(rgba(255,255,255,.4));
-//       }
-//     }
-//   }
-// }
-// @media only screen and (max-width: 600px) {
-//   form {
-//     &.signUp {
-//       &:before {
-//         opacity:0;
-//         transition: opacity .3s;
-//       }
-//     }
-//     .btCont {
-//       @include flex(flex, column, nowrap, $align:center, $just: center, $gap: 20px);
-//       transition: all .3s .1s;
-//       button {
-//         @include size(100%, auto);
-//         text-align:center;
-//         transition: all .3s .1s;
-//       }
-//     }
-//   }
-// }
-
-// .loginCreds {
-//   @include size(100%, 100%);
-//   @include pos(fixed, 50%, 50%, $trans: translate(-50%,-50%));
-//   @include backColor($blackB);
-//   z-index:2;
-//   .content {
-//     @include size(650px, auto);
-//     @include backColor($blackB);
-//     @include pos(absolute, 50%, 50%, 0, 0, $trans: translate(-50%,-50%));
-//     border: 1px solid $gray;
-//     padding:20px;
-//     form {
-//       @include size(100%, auto);
-//       margin-bottom: 10px;
-//       h3 {
-//         @include font($align:center);
-//         margin: 20px 0px;
-//       }
-//       .inputCont {
-//         label {
-//           @include font($align:center);
-//         }
-//         input {
-//           @include size(150px, auto);
-//           @include font($color: $white, $align: center);
-//           margin:auto;
-//           padding:10px 0px;
-//         }
-//       }
-//     }
-//   }
-// }
 
 
 //CREATE VARS
@@ -1481,3 +1169,29 @@ $penGreen: #00e913;
 }
 
 
+
+@media only screen and (max-width: 600px) {
+  .play-routes {
+    header {
+      nav {
+        .ham {
+          @include size(40px, 25px);
+          @include rel();
+          @include flex(flex, column, nowrap, center, center, 5px);
+          div {
+            flex:1;
+            background:white;
+            border-radius:8px;
+            @include size(100%, 2px);
+          }
+        }
+        .deskNav {
+          display:none;
+        }
+        .mobNav {
+          @include flex(flex, column, nowrap, center, center, 8px);
+        }
+      }
+    }
+  }
+}

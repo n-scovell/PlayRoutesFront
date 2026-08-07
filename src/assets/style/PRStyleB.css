@@ -119,21 +119,104 @@ h1 {
   bottom: none;
   right: none;
   transform: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: start;
-  gap: 30px;
   width: auto;
   height: 100%;
   min-width: 0;
   max-width: auto;
   min-height: auto;
   max-height: auto;
+}
+.play-routes header nav .mobNav {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: -100vw;
+  bottom: none;
+  right: none;
+  transform: none;
+  background: rgba(0, 0, 0, 0.9);
+  width: 80%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: 100%;
+  backdrop-filter: blur(2px);
+  padding: 30px 30px;
+  z-index: 999999;
+  transition: all 0.2s;
+}
+.play-routes header nav .mobNav.show {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  transition: all 0.5s;
+}
+.play-routes header nav .mobNav .close {
+  position: absolute;
+  top: 20px;
+  left: none;
+  bottom: none;
+  right: 15px;
+  transform: translate(-50%, 0%);
+  width: 40px;
+  height: 40px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+.play-routes header nav .mobNav .icoBt {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.play-routes header nav .mobNav .icoBt a button {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 40px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: right;
+}
+.play-routes header nav .deskNav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 30px;
   padding-left: 20px;
 }
-.play-routes header nav button {
+.play-routes header nav .deskNav button {
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
@@ -2342,4 +2425,44 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
   padding-top: 5px;
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+  .play-routes header nav .ham {
+    width: 40px;
+    height: 25px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .play-routes header nav .ham div {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    width: 100%;
+    height: 2px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+  }
+  .play-routes header nav .deskNav {
+    display: none;
+  }
+  .play-routes header nav .mobNav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
 }/*# sourceMappingURL=PRStyleB.css.map */
