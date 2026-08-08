@@ -54,7 +54,7 @@ const signOut = () => {
       <h3>Preview As Guest!</h3>
       <p></p>
       <div class="inputCont">
-          <label>Guest Name:</label><input placeholder="Guest" type="guest" v-model="guest" />
+          <label>Guest Name You Will Use:</label><input placeholder="Guest" type="guest" v-model="guest" />
       </div>
       <div class="btCont">
         <button type="button" class="formButton" @click="signGuest()">PROCEED</button>
