@@ -25,7 +25,7 @@ const signIn = async () => {
   }  
 }
 const signGuest = () => {
-  
+  alert('done')
 }
 const signOut = () => {
   auth.logout()
