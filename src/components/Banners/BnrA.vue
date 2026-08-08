@@ -14,9 +14,11 @@ const auth = useAuthStore()
               <button class="primaryBt">REGISTER</button>
             </RouterLink>
             <RouterLink to="/login">
-            <button class="primaryBt">LOGIN</button>
+              <button class="primaryBt">LOGIN</button>
             </RouterLink>
-            <button class="primaryBt">GUEST</button>
+            <RouterLink to="/login">
+              <button class="primaryBt">GUEST</button>
+            </RouterLink>
           </div>
           <div class="btCont" v-else>
             <RouterLink to="/create">

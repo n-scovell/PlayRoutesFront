@@ -76,7 +76,7 @@ h1 {
 }
 
 .play-routes .page {
-  padding-bottom: 10px;
+  padding-bottom: 0px;
 }
 .play-routes header {
   position: relative;
@@ -2831,6 +2831,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     align-items: center;
     justify-content: center;
     gap: 10px;
+  }
+  .homePageBanners section.createAccount .mid .btCont button {
+    width: 250px;
   }
   .play-routes header nav .ham {
     width: 40px;

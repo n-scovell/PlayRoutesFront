@@ -4,6 +4,7 @@ import { useAuthStore } from '../stores/userAuth'
 
 const auth = useAuthStore()
 const email = ref('')
+const guest = ref('')
 const password = ref('')
 const error = ref<string | null>(null)
 const loading = ref(false)
@@ -21,8 +22,10 @@ const signIn = async () => {
     error.value = err.message || 'Login failed'
   } finally {
     loading.value = false
-    
   }  
+}
+const signGuest = () => {
+  
 }
 const signOut = () => {
   auth.logout()
@@ -47,6 +50,17 @@ const signOut = () => {
         <button type="button" class="formButton" @click="signOut">Log Out</button>
       </div>
     </form>
+    <form class="signIn" @submit.prevent>
+      <h3>Preview As Guest!</h3>
+      <p></p>
+      <div class="inputCont">
+          <label>Guest Name:</label><input placeholder="Guest" type="guest" v-model="guest" />
+      </div>
+      <div class="btCont">
+        <button type="button" class="formButton" @click="signGuest()">PROCEED</button>
+      </div>
+    </form>
+
     <Teleport to="body" >
       <div class="messageOutput" :class="{green: auth.user}" v-if="showMessage">
         <p v-if="error" style="color:red">{{ error }}</p>

@@ -21,6 +21,7 @@
     showDrop.value = !showDrop.value
   }
   const signOut = () => {
+    showDrop.value = false
     auth.logout()
   }
   const routes = computed(() => {

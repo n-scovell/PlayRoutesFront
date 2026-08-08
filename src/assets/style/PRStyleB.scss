@@ -37,19 +37,6 @@ html, body {
 body {
   @include size(auto, 100%, $minH: 100%);
   @include back(transparent, '@/assets/images/bck_blackGrain.png', 100% 1500px, auto, repeat-y);
-
-  // width: auto;
-  // height: 100%;
-  // min-width: 0;
-  // max-width: auto;
-  // min-height: 100%;
-  // max-height: auto;
-  // background: transparent;
-  // background-image: url("@/assets/images/bck_blackGrain.png");
-  // background-size: 100% 1500px;
-  // background-position: auto;
-  // background-repeat: repeat-y;
-  // backdrop-filter: blur(none);
 }
 
 h1, h2, h3, h4, h5 {
@@ -80,7 +67,7 @@ h1 {
 
 .play-routes {
   .page {
-    padding-bottom:10px;
+    padding-bottom:0px;
   }
   header {
     @include rel();
@@ -1347,6 +1334,9 @@ $mobile: 828px;
           }
           .btCont {
             @include flex(flex, column, nowrap, center, center, $gap:10px);
+            button {
+              width:250px;
+            }
           }
         }
       }

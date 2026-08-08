@@ -1,12 +1,12 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { usePlayStore } from './playStore'
-import { useFormation } from './formStore'
-import { useFavorites } from './favStore'
-import { useBadges } from './badgeStore'
-import { usePlayers } from './playerStore'
+// import { usePlayStore } from './playStore'
+// import { useFormation } from './formStore'
+// import { useFavorites } from './favStore'
+// import { useBadges } from './badgeStore'
+// import { usePlayers } from './playerStore'
 
-export const useAuthStore = defineStore('auth', () => {
+export const guestStore = defineStore('guest', () => {
   type User = {
     id: string
     email: string
