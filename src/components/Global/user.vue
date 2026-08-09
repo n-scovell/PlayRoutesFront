@@ -3,14 +3,22 @@
   import router from '@/router'
   import { useRoute } from 'vue-router'
   import { useAuthStore } from '@/stores/userAuth'
+  import { useGuest } from '@/stores/guestStore'
   import { RouterLink } from 'vue-router'
 
   const route = useRoute()
   const showDrop = ref<boolean>(false)
   const auth = useAuthStore()
+  const gst = useGuest()
+
 
   const imgSrc = computed(() => {
-    return new URL(`../../assets/icons/alph/${auth.teamName![0]}.png`, import.meta.url).href
+    if (auth.user) {
+      return new URL(`../../assets/icons/alph/${auth.teamName![0]}.png`, import.meta.url).href
+    }
+    if (gst.guest?.name) {
+      return new URL(`../../assets/icons/alph/${gst.guest.name![0]}.png`, import.meta.url).href
+    }
   })
 
   const avatarImg = computed(() => {
@@ -34,6 +42,9 @@
   watch(() => route.path, () => {
     showDrop.value = false
   })
+  watch(() => gst.guest, () => {
+    console.log(gst.guest)
+  })
 
   const iconSrc = computed(() => {
   if (!route.meta.icon) return ''
@@ -43,16 +54,16 @@
 </script>
 <template>
   <div class="userCont">
-    <div class="avatarCont" v-if="auth.user">
+    <div class="avatarCont" v-if="auth.user || gst.guest?.name">
       <button class="avatar" @pointerdown="revealDrop">
         <img :src="imgSrc" />
       </button>
     </div>
     <h3>
-      <span v-if="auth.user" style="margin-right:5px;">{{auth.teamName}}</span> 
+      <span v-if="auth.user" style="margin-right:5px;">{{auth.teamName || gst.guest?.name}}</span> 
       <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink></span> 
     </h3>
-    <div class="userDrop" v-if="showDrop">
+    <div class="userDrop" v-if="showDrop || !gst.guest?.name">
       <button v-for="route in routes" :key="route.path">
           <RouterLink :to="route.path">
               <div>{{ route.name }}</div>

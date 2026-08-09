@@ -1,15 +1,27 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
+import { useGuest } from '../stores/guestStore'
 
+const guestAccount = useGuest()
 const auth = useAuthStore()
 const email = ref('')
 const guest = ref('')
+const guestemail = ref('')
+const guestdescription = ref('')
 const password = ref('')
 const error = ref<string | null>(null)
 const loading = ref(false)
 const charged = ref(false)
 const showMessage = ref(false)
+
+const clearInp = () => {
+  guest.value = ''
+  guestemail.value = ''
+  guestdescription.value = ''
+  email.value = ''
+  password.value = ''
+}
 
 const signIn = async () => {
   loading.value = true
@@ -25,17 +37,17 @@ const signIn = async () => {
   }  
 }
 const signGuest = () => {
-  alert('done')
+  guestAccount.createGuest(guest.value, guestemail.value, guestdescription.value)
+  clearInp()
 }
 const signOut = () => {
   auth.logout()
-  email.value = ''
-  password.value = ''
+  clearInp()
 }
 </script>
 
 <template>
-  <main style="min-height:100vh"> 
+  <main style="min-height:100vh;"> 
     <h1>Sign In:</h1>
     <form class="signIn" @submit.prevent>
       <h3>Welcome back!</h3>
@@ -50,11 +62,17 @@ const signOut = () => {
         <button type="button" class="formButton" @click="signOut">Log Out</button>
       </div>
     </form>
-    <form class="signIn" @submit.prevent>
+    <form class="signIn" @submit.prevent v-if="!auth.user">
       <h3>Preview As Guest!</h3>
       <p></p>
       <div class="inputCont">
-          <label>Guest Name You Will Use:</label><input placeholder="Guest" type="guest" v-model="guest" />
+          <label>Guest Name:</label><input placeholder="Guest" type="text" v-model="guest" />
+      </div>
+      <div class="inputCont">
+          <label>Guest Email:</label><input placeholder="Email" type="email" v-model="guestemail" />
+      </div>
+      <div class="inputCont">
+          <label>Please describe your usage of Play Routes:</label><input placeholder="Tell us who you are" type="text" v-model="guestdescription" />
       </div>
       <div class="btCont">
         <button type="button" class="formButton" @click="signGuest()">PROCEED</button>
