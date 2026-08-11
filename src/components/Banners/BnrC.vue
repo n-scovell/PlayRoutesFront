@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { useAuthStore } from '../../stores/userAuth'
+import { useAuthStore } from '@/stores/userAuth'
+import { useGuest } from '@/stores/guestStore'
 const auth = useAuthStore()
+const gst = useGuest()
 </script>
 <template>
   <section class="guestUsage">
@@ -14,7 +16,8 @@ const auth = useAuthStore()
         <h4>We get it! You want to be sure of what <strong>Play Routes</strong> <br>does and how it can help you get the <strong>W</strong>.</h4>
         <h5>So go ahead and use it as a guest</h5>
         <h5 class="highlight">For the time being.</h5>
-        <button v-if="!auth.user" type="button" class="primaryBt">Use as Guest</button>
+        <button v-if="!gst.guest" type="button" class="primaryBt">Use as Guest</button>
+        <button :disable="gst.guest" type="button" class="primaryBt">WELCOME {{  gst.guest?.name }}</button>
       </div>
       <div class="right">
         <ul>

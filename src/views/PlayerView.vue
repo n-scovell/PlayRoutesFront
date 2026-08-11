@@ -3,8 +3,10 @@ import { ref } from 'vue'
 import {useAuthStore} from '@/stores/userAuth'
 import { usePlayers } from '@/stores/playerStore'
 
+
 const selectedPlayer = ref<number>()
 const auth = useAuthStore()
+
 const players = usePlayers();
 players.fetchPlayers();
 const deletePlayer = (id:string) => {
@@ -16,7 +18,7 @@ const updateTab = (id: number) => {
 </script>
 <template>
   <main style="min-height:100vh">
-    <h1>{{auth.teamName}} Roster</h1>
+    <h1>{{auth.teamName }} Roster</h1>
     <div class="roster">
       <div class="playerRoster a">
         <div class="ind">#</div>

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { usePlayStore } from '@/stores/playStore'
+import { useGuest } from '@/stores/guestStore' 
 import PlayCanvas from '@/components/PlayCanvas.vue'
 import type { ColorType, ToolType, Stroke } from '@/composables/usePlayCanvasB'
 import html2canvas from 'html2canvas' 
 
+const gst = useGuest();
 const captureTarget = ref<HTMLElement | null>(null)
 const previewUrl = ref<string | null>(null)
 const isCapturing = ref(false)
@@ -82,7 +83,7 @@ const close = () => {
     <div v-if="show" class="mdlBack" @click.self="close">
         <div class="mdlCont" ref="captureTarget">
             <button class="mdlClose" @click="close">✕</button>
-            <div class="btCont">
+            <div class="btCont" v-if="!gst.guest"">
                 <button @click="captureDownload(foo?.title)" :disabled="isCapturing">PRINT</button>
                 <button @click="flipPlay()">FLIP</button>
             </div>

@@ -117,6 +117,7 @@ h1 {
         }
       .deskNav {
         @include flex(flex, row, nowrap, stretch, start, 30px);
+        @include pos(relative, -8px);
         padding-left:20px;
         button {
           @include font($head, $white, 15px, bold, .08em, 20px, normal, uppercase);
@@ -262,6 +263,48 @@ h1 {
           }
         }
         
+      }
+    }
+    &.upgradeAccount {
+      @include size(auto, 450px);
+      @include rel();
+      @include backColor(rgb(16, 15, 2, .5));
+      @include flex($align: center, $just: center, $gap: 20px );
+      padding:50px 0px;
+      overflow:hidden;
+      &:before {
+        content:' ';
+        @include size(150%, 320%);
+        @include pos(absolute);
+        @include back(rgb(16, 15, 2), '@/assets/images/PlayRoutesBW_Orb.png', 155px auto, 300px -200px, repeat);
+        transform:rotate(-25deg);
+        opacity:.1;
+        z-index:-1;
+      }
+      .textBox {
+        @include size(90%, 100%, 300px, 900px);
+        @include flex(flex, row, nowrap, center, center, 20px);
+        @include rel();
+        .txt {
+          flex:1;
+          h2 {
+            @include font($spec, $white, 80px, bold, .03em, 20px, none);
+          }
+          h4 {
+            @include font($head, $blueB, 50px, bold, .03em, 20px, none);
+          }
+          h5 {
+            margin:20px 0px;
+            @include font($par, $white, 15px, bold, .03em, 20px, none);
+            &.a {
+              margin:20px 0px;
+              @include font($head, $blueB, 30px, bold, .03em, 20px, none, uppercase);
+            }
+          }
+        }
+        .imgB {
+          @include size(auto, 90%);
+        }
       }
     }
     &.instruction {

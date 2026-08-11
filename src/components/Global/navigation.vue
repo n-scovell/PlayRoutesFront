@@ -1,24 +1,31 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import router from '@/router'
-import { RouterLink } from 'vue-router'
-import { useAuthStore } from '@/stores/userAuth'
-const auth = useAuthStore()
-const showNav = ref<boolean>(false)
-const togNav = () => {
-    showNav.value = !showNav.value
-}
-const routes = computed(() => {
-    return router.getRoutes().filter(route => {
-        if (route.name === 'Home' || route.name === 'Login' && !auth.user) return true
-        if (route.meta.active === 'topNav' && auth.user) {
-            return true
-        }
+    import { ref, computed } from 'vue'
+    import router from '@/router'
+    import { RouterLink } from 'vue-router'
+    import { useAuthStore } from '@/stores/userAuth'
+    import { useGuest } from '@/stores/guestStore'
+    const auth = useAuthStore()
+    const gst = useGuest()
+    const showNav = ref<boolean>(false)
+    const togNav = () => {
+        showNav.value = !showNav.value
+    }
+    const routes = computed(() => {
+        return router.getRoutes().filter(route => {
+            if (!auth.user && !gst.guest) {
+                if (route.name === 'Home' || route.name === 'Login' ) return true
+            }
+            if (auth.user) {
+                if (route.meta.active === 'topNav') return true
+            }
+            if (gst.guest) {
+                if (route.name === 'Home' || route.name === 'Create' || route.name === 'Playbook' ) return true
+            }
+        })
     })
-})
-const alertMe = () => {
-    showNav.value = false
-}
+    const alertMe = () => {
+        showNav.value = false
+    }
 </script>
 <template>
     <nav>

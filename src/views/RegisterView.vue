@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
+import { useGuest } from '../stores/guestStore'
 const auth = useAuthStore()
+const gst = useGuest()
 const showModal = ref<boolean>(false)
 const name = ref('')
 const email = ref('')
@@ -9,6 +11,11 @@ const sport = ref('')
 const team = ref('')
 const password = ref('')
 const code = ref("")
+
+onMounted(() => {
+  // gst.emptyGuest()
+})
+
 async function checkSignUp() {
   try {
     const formData = {

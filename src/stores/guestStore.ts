@@ -24,11 +24,61 @@ export const useGuest = defineStore('guest', () => {
       guest.value = data
       return data
     }
+    async function createGuestPlay(payload: any) {
+      const res = await fetch("https://play-route-back.vercel.app/api/guestplay",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        }
+      )
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(
+          data.error || "Failed to create play for guest"
+        )
+      }
+      return data
+    }
+
+
+async function emptyGuest() {
+  guest.value = null
+}
+
+const guestPlays = ref<any[]>([])
+async function getGuestPlays(guestId: string) {
+  if (!guestId) return
+  try {
+    const res = await fetch(
+      `https://play-route-back.vercel.app/api/guestplay?guestId=${guestId}`
+    )
+    const data = await res.json()
+    if (!res.ok) {
+      throw new Error(
+        data.error || 'Failed to fetch guest plays'
+      )
+    }
+    guestPlays.value = data
+    console.log(guestPlays.value)
+    return data
+  } catch (err: any) {
+    console.error(err)
+  }
+}
+    
+
     return {
       guest,
-      createGuest
+      guestPlays,
+      createGuest,
+      createGuestPlay,
+      getGuestPlays,
+      emptyGuest
     }
   },
   {
-    persist: false
+    persist: true
 })

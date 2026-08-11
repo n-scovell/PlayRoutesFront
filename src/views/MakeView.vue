@@ -3,6 +3,7 @@
   import { ref, watch, onMounted } from 'vue'
   import { useFormation } from '@/stores/formStore'
   import { useAuthStore } from '@/stores/userAuth' 
+  import { useGuest } from '@/stores/guestStore' 
   import { usePlayStore } from '@/stores/playStore'
   import { useRouter } from 'vue-router'
   import PlayCanvas from '@/components/PlayCanvas.vue'
@@ -27,6 +28,7 @@
   const forms = useFormation()
   const plays = usePlayStore()
   const auth = useAuthStore()
+  const gst = useGuest()
   const canvasRef = ref<InstanceType<typeof PlayCanvas> | null>(null)
   const activePanel = ref<Panel>(null)
   const playSuccess = ref<boolean>(false)
@@ -160,25 +162,87 @@
       return true
     }
   }
-  const submitPlay = () => {
-    if (!auth.user) return
+  // const submitPlay = () => {
+  //   if (!checkErrors('play')) return
+
+  //   const grid = {
+  //     strokes: myStrokes.value,
+  //     players: players.value
+  //   }
+  //   let payload
+  //   if (auth.user) {
+  //      payload = {
+  //       title: title.value,
+  //       formation: dropDownsPlayType.value.formation.newValue,
+  //       playType: dropDownsPlayType.value.ptype.newValue,
+  //       description: 'this is a default description for now',
+  //       grid: {
+  //         strokes: myStrokes.value,
+  //         players: players.value
+  //       },
+  //       ownerId: auth.user?.id
+  //     }
+  //     plays.createPlay(payload) 
+  //   }
+  //   if (gst.guest) {
+  //      payload = {
+  //       title: title.value,
+  //       formation: dropDownsPlayType.value.formation.newValue,
+  //       playType: dropDownsPlayType.value.ptype.newValue,
+  //       description: 'this is a default description for now',
+  //       grid: {
+  //         strokes: myStrokes.value,
+  //         players: players.value
+  //       },
+  //       guestId: gst.guest?.id
+  //     }
+  //     gst.createGuestPlay(payload)
+  //   }
+  //   playSuccess.value = true
+  //   clearPlayers()
+  //   title.value = ''
+  // }
+
+  const submitPlay = async () => {
     if (!checkErrors('play')) return
-    const payload = {
-      title: title.value,
-      formation: dropDownsPlayType.value.formation.newValue,
-      playType: dropDownsPlayType.value.ptype.newValue,
-      description: 'this is a default description for now',
-      grid: {
-        strokes: myStrokes.value,
-        players: players.value
-      },
-      ownerId: auth.user.id
+    const grid = {
+      strokes: myStrokes.value,
+      players: players.value
     }
-    console.log('SUBMITTED PLAY')
-    plays.createPlay(payload) 
-    playSuccess.value = true
-    clearPlayers()
-    title.value = ''
+    try {
+      if (auth.user) {
+        await plays.createPlay({
+          title: title.value,
+          formation: dropDownsPlayType.value.formation.newValue,
+          playType: dropDownsPlayType.value.ptype.newValue,
+          description: 'this is a default description for now',
+          grid,
+          ownerId: auth.user.id
+        })
+      } 
+      else if (gst.guest) {
+        await gst.createGuestPlay({
+          title: title.value,
+          formation: dropDownsPlayType.value.formation.newValue,
+          playType: dropDownsPlayType.value.ptype.newValue,
+          description: 'this is a default description for now',
+          grid,
+          guestId: gst.guest.id
+        })
+      }
+      // Only happens if API succeeded
+      playSuccess.value = true
+      clearPlayers()
+      title.value = ''
+    } catch (err: any) {
+      if (err.message === 'Guest play limit reached') {
+
+        errors.value.push({ txt: 'You have reached your play limit', cls:'reg' })
+        errorsShow.value = true
+        return
+      }
+      console.error(err)
+    }
   }
   const noPanel = () => {
     activePanel.value = null
@@ -191,12 +255,13 @@
   }
   const addPlayer = (pos: string, x:number, y:number) => {
     // WHEN USER SELECTS A PLAYER ICON
-    if (auth.sport?.toLowerCase().includes("tackle")) {
-      if (playerCount.value === 11) return // stops at 11
-    }
-    if (auth.sport?.toLowerCase().includes("flag")) {
-      if (playerCount.value === 9) return // stops at 9
-    }
+    if (playerCount.value === 11) return
+    // if (auth.sport?.toLowerCase().includes("tackle")) {
+    //   if (playerCount.value === 10) return // stops at 11
+    // }
+    // if (auth.sport?.toLowerCase().includes("flag")) {
+    //   if (playerCount.value === 9) return // stops at 9
+    // }
     if (pos === 'qb') {
       if (hasQB.value === 1) return
       hasQB.value++

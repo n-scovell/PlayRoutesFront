@@ -26,7 +26,10 @@
   })
 
   const revealDrop = () => {
+    if (gst.guest?.name) {
+    } else {
     showDrop.value = !showDrop.value
+    }
   }
   const signOut = () => {
     showDrop.value = false
@@ -63,7 +66,7 @@
       <span v-if="auth.user" style="margin-right:5px;">{{auth.teamName || gst.guest?.name}}</span> 
       <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink></span> 
     </h3>
-    <div class="userDrop" v-if="showDrop || !gst.guest?.name">
+    <div class="userDrop" v-if="showDrop">
       <button v-for="route in routes" :key="route.path">
           <RouterLink :to="route.path">
               <div>{{ route.name }}</div>

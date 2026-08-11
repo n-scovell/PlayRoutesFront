@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useAuthStore } from '../../stores/userAuth'
 import { RouterLink } from 'vue-router'
+import { useGuest } from '@/stores/guestStore'
 const auth = useAuthStore()
+const gst = useGuest()
 </script>
 <template>
       <section class="createAccount">
@@ -11,12 +13,15 @@ const auth = useAuthStore()
           <h4>PLAN, PREPARE, PERFORM</h4>
           <div class="btCont" v-if="!auth.user">
             <RouterLink to="/register">
-              <button class="primaryBt">REGISTER</button>
+              <button class="primaryBt">
+                <span v-if="gst.guest">GUEST REGISTER</span>
+                <span v-else>REGISTER</span>
+              </button>
             </RouterLink>
             <RouterLink to="/login">
               <button class="primaryBt">LOGIN</button>
             </RouterLink>
-            <RouterLink to="/login">
+            <RouterLink to="/login" v-if="!gst.guest">
               <button class="primaryBt">GUEST</button>
             </RouterLink>
           </div>

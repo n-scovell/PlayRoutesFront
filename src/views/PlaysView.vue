@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { usePlayStore } from '@/stores/playStore'
+import { useGuest } from '@/stores/guestStore' 
 import { useFavorites } from '@/stores/favStore'
 import Player from '../components/Player.vue'
 import PlayCanvas from '@/components/PlayCanvas.vue'
@@ -26,6 +27,7 @@ interface Play {
   grid: Grid
 }
 
+const gst = useGuest()
 const playsStore = usePlayStore()
 const favPlays = useFavorites()
 const selectedPlay = ref<Play>()
@@ -46,11 +48,30 @@ const selectedTool = ref<ToolType>('pen')
 
 
 const sortBy = ref<'title' | 'formation' | 'playType'>('title')
+
+// const sortedPlays = computed(() => {
+//   return [...playsStore.plays].sort((a, b) =>
+//     a[sortBy.value].localeCompare(b[sortBy.value])
+//   )
+// })
+
+
+onMounted(async () => {
+  if (gst.guest?.id) {
+    await gst.getGuestPlays(gst.guest.id)
+  }
+})
+
 const sortedPlays = computed(() => {
-  return [...playsStore.plays].sort((a, b) =>
+  if (gst.guest) {
+    console.log(gst.guestPlays)
+  }
+  const source = gst.guest ? gst.guestPlays : playsStore.plays
+  return [...source].sort((a, b) =>
     a[sortBy.value].localeCompare(b[sortBy.value])
   )
 })
+
 
 const selectedFormation = ref('All')
 const displayedPlays = computed(() => {
@@ -117,7 +138,7 @@ const showMenu = (i: number) => {
   </div>
   
   <main>
-    <h1>Your Playbook</h1>
+    <h1>Your Playbook:</h1>
     <div class="sorters">
       <h4>SORT BY: </h4>
       <select v-model="sortBy">
@@ -150,13 +171,13 @@ const showMenu = (i: number) => {
             <h3>{{ p.title }}</h3>
             <h4> {{ p.formation }} - {{ p.playType }} </h4>
             <div class="btCont">
-              <div class="show" :class="{active: popMenu === index}">
+              <div class="show" :class="{active: popMenu === index}" v-if="!gst.guest">
                 <button class="fav" @click="addFav(p.id)" :class="{star: coolness(p.id)}">&#9733</button>
                 <button class="del" @click.self="triggerPrompt(p)">
                   <div class="lid"></div>
                 </button>
               </div>
-              <button class="menu" @click="showMenu(index)" :class="{active: popMenu}">
+              <button v-if="!gst.guest" class="menu" @click="showMenu(index)" :class="{active: popMenu}">
                 <div></div>
                 <div></div>
                 <div></div>
