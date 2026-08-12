@@ -33,6 +33,7 @@ const signIn = async () => {
   } catch (err: any) {
     error.value = err.message || 'Login failed'
   } finally {
+    guestAccount.emptyGuest()
     loading.value = false
   }  
 }

@@ -26,10 +26,10 @@
   })
 
   const revealDrop = () => {
-    if (gst.guest?.name) {
-    } else {
+    // if (gst.guest?.name) {
+    // } else {
     showDrop.value = !showDrop.value
-    }
+    // }
   }
   const signOut = () => {
     showDrop.value = false
@@ -45,14 +45,16 @@
   watch(() => route.path, () => {
     showDrop.value = false
   })
-  watch(() => gst.guest, () => {
-    console.log(gst.guest)
-  })
 
   const iconSrc = computed(() => {
   if (!route.meta.icon) return ''
   return new URL(`../assets/icons/${route.meta.icon}.png`, import.meta.url).href
 })
+
+const logoutGuest = () => {
+  showDrop.value = false
+  gst.emptyGuest()
+}
 
 </script>
 <template>
@@ -67,11 +69,13 @@
       <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink></span> 
     </h3>
     <div class="userDrop" v-if="showDrop">
-      <button v-for="route in routes" :key="route.path">
+
+      <button v-for="route in routes" :key="route.path" v-if="!gst.guest">
           <RouterLink :to="route.path">
               <div>{{ route.name }}</div>
           </RouterLink>
-      </button> 
+      </button>
+      <button @click="logoutGuest()">GUEST LOGOUT</button>
       <button v-if="auth.user" @pointerdown="signOut">Log Out</button>
     </div>
   </div>

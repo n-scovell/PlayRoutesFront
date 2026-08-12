@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useAuthStore } from './userAuth'
 
-import { useBadges } from './badgeStore'
+// import { useBadges } from './badgeStore'
 
 export const useFormation = defineStore(
   'formations',
@@ -43,7 +43,7 @@ export const useFormation = defineStore(
     }
   async function createFormation(payload: any) {    
       const auth = useAuthStore()
-      const badges = useBadges()
+      // const badges = useBadges()
       if (!auth.token || !auth.userId) {
         throw new Error("Not authenticated")
       }
@@ -66,7 +66,7 @@ export const useFormation = defineStore(
       if (!exists) {
         formations.value.unshift(data)
       }
-      await badges.checkFormationBadges()
+      // await badges.checkFormationBadges()
       return data
   }
 

@@ -19,7 +19,7 @@
                 if (route.meta.active === 'topNav') return true
             }
             if (gst.guest) {
-                if (route.name === 'Home' || route.name === 'Create' || route.name === 'Playbook' ) return true
+                if (route.name === 'Home' || route.name === 'Create' || route.name === 'Playbook' || route.name === 'Formations' ) return true
             }
         })
     })
@@ -39,6 +39,9 @@
                     <button @click="alertMe()">{{ route.name }}</button>
                 </RouterLink>
             </div>
+            <!-- <div class="icoBt" v-if="gst.guest">
+                <button @click="gst.emptyGuest()">LOGOUT AS GUEST</button>
+            </div> -->
         </div>
         <div class="deskNav">
             <button class="icoBt" v-for="route in routes" :key="route.path">
@@ -46,6 +49,9 @@
                     <button>{{ route.name }}</button>
                 </RouterLink>
             </button>
+            <!-- <div class="icoBt" v-if="gst.guest">
+                <button @click="gst.emptyGuest()">LOGOUT AS GUEST</button>
+            </div> -->
         </div>
     </nav>
 </template>

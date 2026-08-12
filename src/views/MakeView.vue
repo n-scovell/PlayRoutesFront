@@ -323,30 +323,59 @@
       activeTool.value = 'select'
     }
   }
+  // const startDrag = (id: string, pos: string, e: PointerEvent) => {
+  //   noPanel()
+  //     if (activeTool.value === 'erase') {
+  //       players.value = players.value.filter(p => p.id !== id)
+  //       playerCount.value--
+  //       if (pos === 'qb') hasQB.value = 0
+  //       if (pos === 'c') hasC.value = 0
+  //       if (pos === 'g') hasG.value = 0
+  //       if (pos === 't') hasT.value = 0
+  //       if (pos === 'wr') hasWR.value = 0
+  //       if (pos === 'rb') hasRB.value = 0
+  //       if (pos === 'fb') hasFB.value = 0
+  //       if (pos === 'tb') hasTB.value = 0
+  //       if (pos === 'te') hasTE.value = 0
+  //       if (pos === 'sl') hasSL.value = 0
+  //       return
+  //     }
+  //     const el = container.value
+  //     if (!el) return
+  //     el.setPointerCapture(e.pointerId)
+  //     activeId = id
+  //     el.addEventListener('pointermove', onDrag)
+  //     el.addEventListener('pointerup', stopDrag)
+  // }
+
   const startDrag = (id: string, pos: string, e: PointerEvent) => {
-    noPanel()
-      if (activeTool.value === 'erase') {
-        players.value = players.value.filter(p => p.id !== id)
-        playerCount.value--
-        if (pos === 'qb') hasQB.value = 0
-        if (pos === 'c') hasC.value = 0
-        if (pos === 'g') hasG.value = 0
-        if (pos === 't') hasT.value = 0
-        if (pos === 'wr') hasWR.value = 0
-        if (pos === 'rb') hasRB.value = 0
-        if (pos === 'fb') hasFB.value = 0
-        if (pos === 'tb') hasTB.value = 0
-        if (pos === 'te') hasTE.value = 0
-        if (pos === 'sl') hasSL.value = 0
-        return
-      }
-      const el = container.value
-      if (!el) return
-      el.setPointerCapture(e.pointerId)
-      activeId = id
-      el.addEventListener('pointermove', onDrag)
-      el.addEventListener('pointerup', stopDrag)
+  noPanel()
+
+  if (activeTool.value === 'erase') {
+    players.value = players.value.filter(p => p.id !== id)
+    playerCount.value--
+
+    if (pos === 'qb') hasQB.value = 0
+    if (pos === 'c') hasC.value = 0
+    if (pos === 'g') hasG.value = 0
+    if (pos === 't') hasT.value = 0
+    if (pos === 'wr') hasWR.value = 0
+    if (pos === 'rb') hasRB.value = 0
+    if (pos === 'fb') hasFB.value = 0
+    if (pos === 'tb') hasTB.value = 0
+    if (pos === 'te') hasTE.value = 0
+    if (pos === 'sl') hasSL.value = 0
+
+    return
   }
+
+  activeId = id
+
+  const el = container.value
+  if (!el) return
+
+  el.setPointerCapture(e.pointerId)
+}
   const onDrag = (e: PointerEvent) => {
     if (!activeId || !container.value) return
     const rect = container.value.getBoundingClientRect()
@@ -364,6 +393,7 @@
       showPlayTypes()
   }
   const formationType = (key: DropKeys, value: string) => {
+
     dropDownsPlayType.value[key].newValue = value
     dropDownsPlayType.value[key].showDrop = false
     showFormations()
@@ -375,27 +405,59 @@
   const changeTool = (prop: ToolType) => {
     selectedTool.value = prop
   }
-  const addFormation = () => {
-    if (!auth.user) return
+  const addFormation = async () => {
     if (!checkErrors('formation')) return
-    const formload = {
-      formationName: newFormation.value,
-      grid: {
-        players: players.value
-      },
-      ownerId: auth.user.id
+    let formload
+    try {
+    if (auth.user) {
+      formload = {
+        formationName: newFormation.value,
+        grid: {
+          players: players.value
+        },
+        ownerId: auth.user.id
+      }
+      await forms.createFormation(formload)
     }
+    if (gst.guest) {
+      formload = {
+        formationName: newFormation.value,
+        grid: {
+          players: players.value
+        },
+        guestId: gst.guest.id
+      }
+      await gst.createGuestFormation(formload)
+      gst.getGuestFormations(gst.guest?.id)
+    }
+    } catch (err: any) {
+      if (err.message === 'Guest formation limit reached') {
+        errors.value.push({ txt: 'You have reached your formation limit', cls:'reg' })
+        errorsShow.value = true
+        return
+      }
+      console.error(err)
+    }
+    
     dropDownsPlayType.value.formation.newLst.push(newFormation.value)
     dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
-    forms.createFormation(formload)
     newFormation.value = ""
+    router.push('/create')
   }
   const gatherAllFormations = () => {
     // Gets all formations and places them in formations list
     dropDownsPlayType.value.formation.newLst = []
-    for (const i of forms.formations) {
-      dropDownsPlayType.value.formation.newLst.push(i.formationName)
-      dropDownsPlayType.value.formation.newLst.sort();
+    if (auth.user) {
+      for (const i of forms.formations) {
+        dropDownsPlayType.value.formation.newLst.push(i.formationName)
+        dropDownsPlayType.value.formation.newLst.sort();
+      }
+    }
+    if (gst.guest) {
+      for (const i of gst.guestFormations) {
+        dropDownsPlayType.value.formation.newLst.push(i.formationName)
+        dropDownsPlayType.value.formation.newLst.sort();
+      }
     }
     dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
   }
@@ -419,24 +481,60 @@
 
   //WATCH
   // watch when a new formation dropdown is chosen
+  // watch(() => dropDownsPlayType.value.formation.newValue, (f: string) => {
+  //   clearPlayers() // gets rid of every player on the screen
+  //   clearAllPositionCount() // clear all positions
+  //   const myForm = forms.formations.find( formation => formation.formationName === f )
+  //   if (myForm) {
+  //     for (const player of myForm.grid.players) {
+  //       addPlayer(player.pos, player.x, player.y)
+  //     }
+  //   }
+  // })
+
   watch(() => dropDownsPlayType.value.formation.newValue, (f: string) => {
-    clearPlayers() // gets rid of every player on the screen
-    clearAllPositionCount() // clear all positions
-    const myForm = forms.formations.find( formation => formation.formationName === f )
-    if (myForm) {
-      for (const player of myForm.grid.players) {
-        addPlayer(player.pos, player.x, player.y)
-      }
+  clearPlayers()
+  
+  let myForm
+  if (auth.user) {
+    myForm = forms.formations.find(
+      formation => formation.formationName === f
+    )
+  }
+  if (gst.guest) {
+    myForm = gst.guestFormations.find(
+    formation => formation.formationName === f
+    )
+  }
+
+  if (myForm) {
+    for (const player of myForm.grid.players) {
+      players.value.push({
+        id: crypto.randomUUID(),
+        pos: player.pos,
+        x: player.x,
+        y: player.y
+      })
+
+      playerCount.value++
     }
-  })
+  }
+})
 
   //OnMOUNTED
   onMounted(async () => {
-    if (!forms.formations.length) {
-      await forms.fetchFormations()
+    if (auth.user) {
+      if (!forms.formations.length) {
+        await forms.fetchFormations()
+      } 
+    }
+    if (gst.guest) {
+      await gst.getGuestFormations(gst.guest.id)
     }
     gatherAllFormations()
   })
+
+
 </script>
 
 <template>
@@ -453,7 +551,13 @@
       <div class="field" >
         <!-- <h3>{{ title }}</h3> -->
         <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
-        <div ref="container" class="playerLand">
+        <div 
+          ref="container" 
+          class="playerLand"
+          @pointermove="onDrag"
+          @pointerup="stopDrag"
+          @pointercancel="stopDrag"
+        >
           <div
             v-for="p in players"
             :key="p.id"

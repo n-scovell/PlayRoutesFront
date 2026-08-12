@@ -948,6 +948,16 @@ $penGreen: #00e913;
   .playRows {
     @include flex(flex, row, wrap, center, center, 20px);
     .indPlays {
+      .register {
+        width:100%;
+        height:150px;
+        background:rgba(255,255,255, .5);
+        @include flex(flex, column, nowrap, center, center);
+        p {
+          @include font($head, $black, 30px, bold, .01em, 20px, $align:center);
+        }
+        button {margin:auto;}
+      }
       @include rel();
       flex: 0 1 22%;
       @include size($minW: 350px, $minH:0px);

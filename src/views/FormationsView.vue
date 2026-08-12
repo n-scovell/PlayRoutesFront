@@ -1,13 +1,27 @@
 <script setup lang="ts">
-  import { ref, onMounted  } from 'vue'
+  import { ref, onMounted, computed  } from 'vue'
   import { useFormation } from '@/stores/formStore'
+  import { useAuthStore } from '../stores/userAuth'
+  import { useGuest } from '@/stores/guestStore'
   import Player from '../components/Player.vue'
+
   const forms = useFormation()
+  const auth = useAuthStore();
+  const gst = useGuest()
+
+  const myForms = computed(() => {
+  return auth.user
+    ? forms.formations
+    : gst.guestFormations
+  })
   onMounted(async () => {
-    if (!forms.formations.length) {
+    if (auth.user) {
       await forms.fetchFormations()
+    } else if (gst.guest) {
+      await gst.getGuestFormations(gst.guest.id)
     }
   })
+
   const delForm = (id:string) => {
     forms.deleteFormation(id)
   }
@@ -45,28 +59,33 @@
     <h1>Your Formations</h1>
     <section class="playsContainer form" >
       <div class="playRows">
-        <div v-for="(p, index) in forms.formations" :key="p.id" class="indPlays">
+        <!-- <div class="indPlays" v-if="gst.guestFormations.length === 5">
+            <div class="register">
+              <p>You have reached your formation limit!</p>
+              <button class="primaryBt">REGISTER</button>
+            </div>
+        </div> -->
+        <div v-for="(p, index) in myForms" :key="p.id" class="indPlays">
           <h5>{{ p.formationName }}</h5>
           <div class="field">
             <div class="addedPlayers xs">
               <Player :players="p.grid.players" :num="88" />
             </div>
           </div>
-        <div class="playInfo">
-          <div class="btCont">
-            <div class="show" :class="{active: popMenu === index}">
-              <button class="del" @click.self="triggerPrompt(p.id, p.formationName)">
-                <div class="lid"></div>
+          <div class="playInfo" v-if="!gst.guest">
+            <div class="btCont">
+              <div class="show" :class="{active: popMenu === index}">
+                <button class="del" @click.self="triggerPrompt(p.id, p.formationName)">
+                  <div class="lid"></div>
+                </button>
+              </div>
+              <button class="menu" @click="showMenu(index)"  :class="{active: popMenu}">
+                <div></div>
+                <div></div>
+                <div></div>
               </button>
             </div>
-            <button class="menu" @click="showMenu(index)"  :class="{active: popMenu}">
-              <div></div>
-              <div></div>
-              <div></div>
-            </button>
           </div>
-        </div>
-          <!-- <button class="primaryBt" @click="delForm(p.id)">DELETE</button> -->
         </div>
       </div>
     </section>

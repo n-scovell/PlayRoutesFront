@@ -1983,6 +1983,32 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   justify-content: center;
   gap: 20px;
 }
+.playsContainer .playRows .indPlays .register {
+  width: 100%;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.playsContainer .playRows .indPlays .register p {
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+}
+.playsContainer .playRows .indPlays .register button {
+  margin: auto;
+}
 .playsContainer .playRows .indPlays {
   position: relative;
   flex: 0 1 22%;
