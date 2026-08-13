@@ -8,7 +8,7 @@
 <template>
     <header>
         <RouterLink to="/" class="logo">
-            <img alt="Play Routes Logo" src="@/assets/images/PlayRoutesBW.png" />
+            <img alt="Play Routes Logo" src="@/assets/images/PlayRoutesBWsm.png" />
         </RouterLink>
         <NewMenu />
         <Avatar /> 
