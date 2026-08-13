@@ -509,7 +509,7 @@ h1 {
   height: 100%;
   min-width: 0;
   max-width: auto;
-  min-height: 350px;
+  min-height: 450px;
   max-height: auto;
   transition: all 0.5s;
   overflow: hidden;
