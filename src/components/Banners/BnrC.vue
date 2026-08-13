@@ -8,8 +8,8 @@ const gst = useGuest()
   <section class="guestUsage">
     <div class="textBox">
       <div class="left">
-        <img src="@/assets/images/playFun.png" class="imgA" />
-        <img src="@/assets/images/playFunB.png" class="imgB" />
+        <img alt="arrows" src="@/assets/images/playFun.png" class="imgA" />
+        <img alt="extra arrows" src="@/assets/images/playFunB.png" class="imgB" />
         <h2>Don't have an</h2>
         <h2 class="highlight">Account?</h2>
         <h3>That's OK!</h3>
@@ -22,10 +22,10 @@ const gst = useGuest()
       <div class="right">
         <ul>
           <h3>You'll have access to:</h3>
-          <li> <img src="@/assets/images/clipboard.png" class="ico" /> <strong>4</strong> Plays</li>
-          <li> <img src="@/assets/images/formation.png" class="ico" /> <strong>2</strong> Formations</li>
+          <li> <img alt="Clipboard" src="@/assets/images/clipboard.png" class="ico" /> <strong>4</strong> Plays</li>
+          <li> <img alt="Formation" src="@/assets/images/formation.png" class="ico" /> <strong>2</strong> Formations</li>
           <li>
-            <img src="@/assets/images/playbook.png" class="ico" />
+            <img alt="Playbook" src="@/assets/images/playbook.png" class="ico" />
             <div>
               Playbook access
               <p>Without enlarging or play sharing</p>

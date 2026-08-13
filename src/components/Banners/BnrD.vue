@@ -8,7 +8,7 @@ const gst = useGuest()
 <template>
   <section class="upgradeAccount">
     <div class="textBox">
-      <img src="@/assets/images/playFunB.png" class="imgB" />
+      <img alt="Arrow" src="@/assets/images/playFunB.png" class="imgB" />
       <div class="txt">
         <h2>LET'S GO!!</h2>
         <h4>UPGRADE YOUR ACCOUNT!</h4>

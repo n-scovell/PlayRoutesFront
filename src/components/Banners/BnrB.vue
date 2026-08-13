@@ -11,7 +11,7 @@ and build a playbook that's always available whenever inspiration strikes.
 <template>
   <section class="instruction">
       <div class="arrowBox">
-        <img src="@/assets/images/circleArrow.png" />
+        <img alt="Circle Arrow" src="@/assets/images/circleArrow.png" />
       </div>
       <div class="textBox">
         <h3>{{hdrA}}</h3>

@@ -43,7 +43,7 @@ export function playBook() {
                     </style>
                 </head>
                 <body>
-                    <img src="${image}" />
+                    <img alt="Play Image" src="${image}" />
                     <script>
                         window.onload = () => {
                             window.print()

@@ -61,7 +61,7 @@ const logoutGuest = () => {
   <div class="userCont">
     <div class="avatarCont" v-if="auth.user || gst.guest?.name">
       <button class="avatar" @pointerdown="revealDrop">
-        <img :src="imgSrc" />
+        <img alt="User Logo" :src="imgSrc" />
       </button>
     </div>
     <h3>

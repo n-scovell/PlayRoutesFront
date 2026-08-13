@@ -8,7 +8,7 @@ const gst = useGuest()
 <template>
       <section class="createAccount">
         <div class="mid">
-          <img src="@/assets/images/PlayRoutesBW.png" />
+          <img alt="PRArrow" src="@/assets/images/PlayRoutesBW.png" />
           <h3>PLAY <span class="alt">ROUTES</span></h3>
           <h4>PLAN, PREPARE, PERFORM</h4>
           <div class="btCont" v-if="!auth.user">
@@ -31,6 +31,6 @@ const gst = useGuest()
             </RouterLink>
           </div>
         </div>
-        <img src="@/assets/images/field.jpg" width="100%" class="fieldImage" />
+        <img alt="PR Field" src="@/assets/images/field.jpg" width="100%" class="fieldImage" />
       </section>
 </template>
