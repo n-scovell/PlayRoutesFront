@@ -545,6 +545,11 @@
         <p v-for="(e,index) in errors" :key="'error_'+index" :class="e.cls">{{ e.txt }}</p>
       </div>
     </div>
+    <p class="flipPhoneText">Play Creator works better on a horizontal screen when on a phone!</p>
+    <div class="flipPhone">
+      <img src="@/assets/icons/CellPhone.png" width="100%" class="b" />
+      
+    </div>
     <div class="boardCont">
     <div class="board" ref="fuller">
       <!-- FIELD STRATEGY -->

@@ -9,10 +9,11 @@
 <template>
   <section class="screenShot">
     <div class="textBox">
-      <div class="left">
-        <img alt="PR iPad Shot" src="@/assets/images/ipadShotA.jpg" />
-      </div>>
+      <div class="left">aa
+        <img alt="PR iPad Shot" src="@/assets/images/ipadShotAA.jpg" />
+      </div>
       <div class="right">
+        bb
         <img alt="Play Routes Orb Logo" src="@/assets/images/PlayRoutesBW_Orb.png" class="prLogo" />
         <div class="txt">
           <h2>{{header}}</h2>

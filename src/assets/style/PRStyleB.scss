@@ -36,7 +36,7 @@ html, body {
 }
 body {
   @include size(auto, 100%, $minH: 100%);
-  @include back(transparent, '@/assets/images/bck_blackGrain.png', 100% 1500px, auto, repeat-y);
+  @include back(transparent, '@/assets/images/bck_blackGrainNew.png', 100% 1500px, auto, repeat-y);
 }
 
 h1, h2, h3, h4, h5 {
@@ -283,30 +283,11 @@ h1 {
             z-index:1;
           }
         }
-        // .pr_logo {
-        //   @include size(100px, 100px);
-        //   @include pos(absolute, 50%, $right:40%, $trans:translate(50%,-50%));
-        // }
-        // .ssImg {
-        //   flex: 0 0 40%;
-        //   height:100%;
-        //   @include rel();
-        //   overflow:hidden;
-          
-        //   img {
-        //     width:120%;
-        //     position:absolute;
-        //     top:50%;
-        //     left:50%;
-        //     transform:translate(-50%,-50%);
-        //   }
-        // }
-        
       }
     }
     &.createAccount {
       @include rel();
-      @include size(auto, 100%, $minH:490px);
+      @include size(auto, 100%, $minH:350px);
       transition: all .5s;
       overflow:hidden;
       .fieldImage {
@@ -698,6 +679,13 @@ $penBlue: #301283;
 $penYellow: #f3ff44;
 $penGreen: #00e913;
 
+.flipPhoneText {
+  display:none;
+}
+.flipPhone {
+  display:none;
+
+}
 .boardCont {
   * {touch-action: none;}
   @include size(auto, 90vh);
@@ -1307,12 +1295,161 @@ $penGreen: #00e913;
 
 
 
-$mobile: 828px;
+$mobile: 728px;
 //MEDIA ANYTHING BELOW 600
+
+@keyframes turnObj {
+  0% {
+    transform:rotate(0deg);
+  }
+  50% {
+    transform:rotate(90deg);
+  }
+  60% {
+    transform:rotate(90deg);
+  }
+  100% {
+    transform:rotate(0deg);
+  }
+}
+
+@media only screen and (max-width:490px) {
+  .flipPhoneText {
+    display:block;
+    position:absolute;
+    bottom:15%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    height:50px;
+    @include font($spec, $white, 25px, bold, .03em, 25px, normal, uppercase, none, center);
+  }
+  .flipPhone {
+    display:block;
+    width:60px;
+    height:auto;
+    position:absolute;
+    top:30%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:99999;
+    .b {
+      animation: turnObj 3s 0s infinite;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .boardCont {
+    
+    .board {
+      .player {
+        $w: 54px;
+        width:$w;
+        height:$w;
+        transition:all .5s;
+        &:before, &:after {
+          font-size:25px;
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: $mobile) {
+  h1 {
+    font-size:15px;
+    padding:5px 5px;
+  }
+  .boardCont {
+    @include size(auto, 65vh);
+    max-height:320px;
+    .board {
+      .player {
+        $w: 27px;
+        width:$w;
+        height:$w;
+        font-size:12px;
+        &:before, &:after {
+          font-size:12px;
+        }
+      }
+    }
+  }
   .homePageBanners {
     section {
-      background:blue;
+      &.screenShot {
+      @include size(100%, 420px);
+      .textBox {
+        @include size(100%, 100%);
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        @include rel();
+        
+        .left, .right {
+          flex:1;
+          width:100%;
+        }
+        .left {
+          flex:1;
+          max-height:50%;
+          overflow:hidden;
+          position:relative;
+          img {
+            width:110%;
+            @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+          }
+        }
+        .right {
+          flex: 0 0 50%;
+          position:relative;
+          .txt {
+            @include size(100%, 100%);
+            @include pos(relative, 0px, 0px, $trans:translate(0%,0%));
+            padding-left:0px;
+            z-index:0;
+            h2 {
+              @include back(transparent, '@/assets/images/brushA.png', 90% 100%, center center, no-repeat);
+              @include font($head, $blueB, 35px, bold, .01em, 20px, $align:center);
+              position:relative;
+              top:-30px;
+              margin-bottom:0px;
+              padding:0px 0px 0px;
+            }
+            ul {
+              padding-left:50px;
+              li {
+                @include font($par, $white, 20px, 500, .01em, 20px);
+                
+                margin-bottom:10px;
+                position:relative;
+                &:before {
+                  content:' ';
+                  $w:8px;
+                  width:$w;
+                  height:$w;
+                  background:$blueB;
+                  border-radius:50%;
+                  position:absolute;
+                  left:-15px;
+                  top:50%;
+                  transform:translateY(-50%);
+                }
+              }
+            }
+          }
+          .prLogo {
+            $w: 180px;
+            @include size($w, $w);
+            @include pos(absolute, 50%, 6%, $trans:translate(-50%, -50%));
+            z-index:1;
+            display:none;
+          }
+        }
+      }
+    }
       padding-top:0px;
       &.instruction {
         @include size(auto, 440px);
@@ -1447,7 +1584,7 @@ $mobile: 828px;
         }
       }
       &.createAccount {    
-        height:650px;    
+        height:450px;   
         .fieldImage {
           @include pos(absolute, 0%, 50%, $trans:translate(-50%,0%));
         }
