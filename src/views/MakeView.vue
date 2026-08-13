@@ -581,7 +581,7 @@
       <!-- TOOLBOX -->
       <ul class="toolbox">
         <li v-for="b in myToolbarList" :key="'bt_'+b.class" :class="b.class">
-          <button :class="b.class" @pointerdown="b.click">
+          <button :aria-label="`${b.class} Button`" :class="b.class" @pointerdown="b.click">
             <div v-if="b.class === 'color'" class="colors">
               <div></div>
               <div></div>
@@ -606,17 +606,17 @@
           <div class="inputCont a">
             <div class="selectHolder">
               <label>Choose Your Play Type:
-                <button class="dropDownInd" @pointerdown="showPlayTypes()">{{ dropDownsPlayType.ptype.newValue }}</button>
+                <button aria-label="Play Type Drop" class="dropDownInd" @pointerdown="showPlayTypes()">{{ dropDownsPlayType.ptype.newValue }}</button>
                 <div class="dropDownCase" v-if="showPlayType">
                   <div>
-                    <button v-for="f in dropDownsPlayType.ptype.newLst" :key="f" @pointerdown="playTypeValue('ptype', f)">{{f}}</button>
+                    <button :aria-label="`${f} Option`" v-for="f in dropDownsPlayType.ptype.newLst" :key="f" @pointerdown="playTypeValue('ptype', f)">{{f}}</button>
                   </div>
                 </div>
               </label>
             </div>
           </div>
           <div class="btCont">
-            <button class="primaryBt" @click="submitPlay">Submit Play</button>
+            <button aria-label="Submit Play" class="primaryBt" @click="submitPlay">Submit Play</button>
             <p class="success" v-if="playSuccess">PLAY CREATED!</p>
           </div>
         </form>
@@ -632,10 +632,10 @@
           <div class="inputCont a">
             <div class="selectHolder">
               <label>Choose Your Formation:
-                <button class="dropDownInd" @pointerdown="showFormations()">{{ dropDownsPlayType.formation.newValue }}</button>
+                <button aria-label="Formations Select" class="dropDownInd" @pointerdown="showFormations()">{{ dropDownsPlayType.formation.newValue }}</button>
                 <div class="dropDownCase" v-if="showFormation">
                   <div class="short">
-                    <button v-for="f in dropDownsPlayType.formation.newLst" :key="f" @pointerdown="formationType('formation', f)">{{f}}</button>
+                    <button :aria-label="`${f} Formation Option`" v-for="f in dropDownsPlayType.formation.newLst" :key="f" @pointerdown="formationType('formation', f)">{{f}}</button>
                   </div>
                 </div>
               </label>
@@ -646,7 +646,7 @@
             <label>Formation Name<input placeholder="New Formation" type="text" v-model="newFormation" /></label>
           </div>
           <div class="btCont b">
-            <button class="formButton" @click="addFormation">Add Formation</button>
+            <button aria-label="Add Formation" class="formButton" @click="addFormation">Add Formation</button>
           </div>
         </form>
       </ul>
@@ -656,19 +656,19 @@
       <ul class="toolbox popTools positions" :class="{active: activePanel === 'color'}">
         <h3>Pen Color:</h3>
         <div class="popDisplay">
-          <li class="color white"><button @pointerdown="changeColor('white')">W</button></li>
+          <li class="color white"><button aria-label="White Pen" @pointerdown="changeColor('white')">W</button></li>
           <p>white</p>
         </div>
         <div class="popDisplay">
-          <li class="color red"><button @pointerdown="changeColor('red')">R</button></li>
+          <li class="color red"><button aria-label="Red Pen" @pointerdown="changeColor('red')">R</button></li>
           <p>red</p>
         </div>
         <div class="popDisplay">
-          <li class="color blue"><button @pointerdown="changeColor('blue')">B</button></li>
+          <li class="color blue"><button aria-label="Blue Pen" @pointerdown="changeColor('blue')">B</button></li>
           <p>blue</p>
         </div>
         <div class="popDisplay">
-          <li class="color yellow"><button @pointerdown="changeColor('yellow')">Y</button></li>
+          <li class="color yellow"><button aria-label="Yellow Pen" @pointerdown="changeColor('yellow')">Y</button></li>
           <p>yellow</p>
         </div>
       </ul>
@@ -677,33 +677,33 @@
       <ul class="toolbox popTools positions" :class="{active: activePanel === 'pen'}">
         <h3>Pen Style:</h3>
         <div class="popDisplay">
-          <li><button @pointerdown="changeTool('pen')">P</button></li>
+          <li><button aria-label="Pen Stroke" @pointerdown="changeTool('pen')">P</button></li>
           <p>pen</p>
         </div>
         <div class="popDisplay">
-          <li><button @pointerdown="changeTool('chalk')">C</button></li>
+          <li><button aria-label="Chalk Stroke" @pointerdown="changeTool('chalk')">C</button></li>
           <p>chalk</p>
         </div>
         <div class="popDisplay">
-          <li><button @pointerdown="changeTool('dash')">D</button></li>
+          <li><button aria-label="Dash Stroke"  @pointerdown="changeTool('dash')">D</button></li>
           <p>dash</p>
         </div>
 
         <h3>Pen Color:</h3>
         <div class="popDisplay">
-          <li class="color white"><button @pointerdown="changeColor('white')">W</button></li>
+          <li class="color white"><button aria-label="White Stroke"  @pointerdown="changeColor('white')">W</button></li>
           <p>white</p>
         </div>
         <div class="popDisplay">
-          <li class="color red"><button @pointerdown="changeColor('red')">R</button></li>
+          <li class="color red"><button aria-label="Red Stroke" @pointerdown="changeColor('red')">R</button></li>
           <p>red</p>
         </div>
         <div class="popDisplay">
-          <li class="color blue"><button @pointerdown="changeColor('blue')">B</button></li>
+          <li class="color blue"><button aria-label="Blue Stroke" @pointerdown="changeColor('blue')">B</button></li>
           <p>blue</p>
         </div>
         <div class="popDisplay">
-          <li class="color yellow"><button @pointerdown="changeColor('yellow')">Y</button></li>
+          <li class="color yellow"><button aria-label="Yellow Stroke" @pointerdown="changeColor('yellow')">Y</button></li>
           <p>yellow</p>
         </div>
       </ul>
@@ -712,7 +712,7 @@
       <ul class="toolbox popTools positions" :class="{active: activePanel === 'pos'}">
         <h3>Add Player:</h3>
         <div class="popDisplay" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
-          <li ><button >{{ p.pos.toUpperCase() }}</button></li>
+          <li ><button :aria-label="`${p.pos}`" >{{ p.pos.toUpperCase() }}</button></li>
           <p>{{ p.name.toUpperCase() }}</p>
         </div>
       </ul> 
