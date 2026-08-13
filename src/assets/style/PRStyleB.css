@@ -2151,7 +2151,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 .playsContainer .playRows .indPlays .field {
   background: transparent;
-  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-image: url("@/assets/images/bck_chalkboard_sm.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
