@@ -1051,7 +1051,7 @@ $penGreen: #00e913;
         outline:3px solid rgba(255, 188, 62, 0.8);
       }
       .field {
-        @include back(transparent, '@/assets/images/bck_chalkboard.jpg', cover, center, no-repeat);
+        @include back(transparent, '@/assets/images/bck_chalkboard_sm.jpg', cover, center, no-repeat);
         @include size(100%, 150px);
         @include rel();
         .previewScale {
