@@ -16,8 +16,7 @@ const gst = useGuest()
         <h4>We get it! You want to be sure of what <strong>Play Routes</strong> <br>does and how it can help you get the <strong>W</strong>.</h4>
         <h5>So go ahead and use it as a guest</h5>
         <h5 class="highlight">For the time being.</h5>
-        <button v-if="!gst.guest" type="button" class="primaryBt">Use as Guest</button>
-        <button :disable="gst.guest" type="button" class="primaryBt">WELCOME {{  gst.guest?.name }}</button>
+        <button aria-label="Use As Guest" v-if="!gst.guest" type="button" class="primaryBt">Use as Guest</button>
       </div>
       <div class="right">
         <ul>

@@ -93,7 +93,7 @@ onMounted(() => {
     top: `${selectedStrokeBounds.top - 10}px`
   }"
   >
-  <button @pointerdown="deleteMe">X</button>
+  <button  aria-label="Delete Route" @pointerdown="deleteMe">X</button>
   </div>
   <canvas
   ref="canvasRef"

@@ -13,21 +13,21 @@ const gst = useGuest()
           <h4>PLAN, PREPARE, PERFORM</h4>
           <div class="btCont" v-if="!auth.user">
             <RouterLink to="/register">
-              <button class="primaryBt">
+              <button  aria-label="Register Button" class="primaryBt">
                 <span v-if="gst.guest">GUEST REGISTER</span>
                 <span v-else>REGISTER</span>
               </button>
             </RouterLink>
             <RouterLink to="/login">
-              <button class="primaryBt">LOGIN</button>
+              <button  aria-label="Login Button" class="primaryBt">LOGIN</button>
             </RouterLink>
             <RouterLink to="/login" v-if="!gst.guest">
-              <button class="primaryBt">GUEST</button>
+              <button aria-label="Guest Button" class="primaryBt">GUEST</button>
             </RouterLink>
           </div>
           <div class="btCont" v-else>
             <RouterLink to="/create">
-              <button class="primaryBt">CREATE PLAY</button>
+              <button aria-label="Creat Play Button" class="primaryBt">CREATE PLAY</button>
             </RouterLink>
           </div>
         </div>

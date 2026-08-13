@@ -29,29 +29,23 @@
 </script>
 <template>
     <nav>
-        <button class="ham" @click="togNav()">
+        <button aria-label="Navigation Toggle" class="ham" @click="togNav()">
             <div></div><div></div><div></div>
         </button>
         <div class="mobNav" :class="{show : showNav}">
-            <button class="close" @click="togNav()">✕</button>
+            <button aria-label="Close Menu" class="close" @click="togNav()">✕</button>
             <div class="icoBt" v-for="route in routes" :key="route.path">
                 <RouterLink :to="route.path">
-                    <button @click="alertMe()">{{ route.name }}</button>
+                    <button aria-label="Close Menu"  @click="alertMe()">{{ route.name }}</button>
                 </RouterLink>
             </div>
-            <!-- <div class="icoBt" v-if="gst.guest">
-                <button @click="gst.emptyGuest()">LOGOUT AS GUEST</button>
-            </div> -->
         </div>
         <div class="deskNav">
-            <button class="icoBt" v-for="route in routes" :key="route.path">
+            <button aria-label="Menu BT" class="icoBt" v-for="route in routes" :key="route.path">
                 <RouterLink :to="route.path">
-                    <button>{{ route.name }}</button>
+                    <button aria-label="Desktop Button">{{ route.name }}</button>
                 </RouterLink>
             </button>
-            <!-- <div class="icoBt" v-if="gst.guest">
-                <button @click="gst.emptyGuest()">LOGOUT AS GUEST</button>
-            </div> -->
         </div>
     </nav>
 </template>
