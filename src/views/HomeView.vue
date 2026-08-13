@@ -4,6 +4,7 @@ import TopBanner from '@/components/Banners/BnrA.vue'
 import InfoBanner from '@/components/Banners/BnrB.vue'
 import GuestBanner from '@/components/Banners/BnrC.vue'
 import UpgradeAccount from '@/components/Banners/BnrD.vue'
+import ScreenShot from '@/components/Banners/BnrE.vue'
 const gst = useGuest()
 </script>
 <template>
@@ -12,5 +13,6 @@ const gst = useGuest()
       <TopBanner />
       <GuestBanner />
       <InfoBanner />
+      <ScreenShot />
     </div>
 </template>

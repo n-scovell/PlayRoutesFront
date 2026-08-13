@@ -221,6 +221,89 @@ h1 {
       padding:30px 0px 0px;
       @include flex(flex, row, nowrap, center, center, 20px);
     }
+    &.screenShot {
+      @include size(100%, 550px);
+      .textBox {
+        @include size(100%, 100%);
+        @include flex(flex, row, nowrap, center, start);
+        @include backColor($black);
+        @include rel();
+        .left, .right {
+          flex:1;
+          height:100%;
+        }
+        .left {
+          flex: 0 0 40%;
+          overflow:hidden;
+          position:relative;
+          img {
+            width:110%;
+            @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+          }
+        }
+        .right {
+          position:relative;
+          .txt {
+            @include size(100%, auto);
+            @include pos(absolute, 50%, 0%, $trans:translate(0%,-50%));
+            z-index:0;
+            padding-left:160px;
+            h2 {
+              @include font($head, $blueB, 55px, bold, .01em, 20px);
+              margin-bottom:10px;
+              padding:10px 50px 0px;
+              @include back(transparent, '@/assets/images/brushA.png', 80% 75%, 0px 15px, no-repeat);
+            }
+            ul {
+              padding-left:35px;
+              li {
+                @include font($par, $white, 22px, 500, .01em, 20px);
+                
+                margin-bottom:10px;
+                position:relative;
+                &:before {
+                  content:' ';
+                  $w:8px;
+                  width:$w;
+                  height:$w;
+                  background:$blueB;
+                  border-radius:50%;
+                  position:absolute;
+                  left:-15px;
+                  top:50%;
+                  transform:translateY(-50%);
+                }
+              }
+            }
+          }
+          .prLogo {
+            $w: 180px;
+            @include size($w, $w);
+            @include pos(absolute, 50%, 6%, $trans:translate(-50%, -50%));
+            z-index:1;
+          }
+        }
+        // .pr_logo {
+        //   @include size(100px, 100px);
+        //   @include pos(absolute, 50%, $right:40%, $trans:translate(50%,-50%));
+        // }
+        // .ssImg {
+        //   flex: 0 0 40%;
+        //   height:100%;
+        //   @include rel();
+        //   overflow:hidden;
+          
+        //   img {
+        //     width:120%;
+        //     position:absolute;
+        //     top:50%;
+        //     left:50%;
+        //     transform:translate(-50%,-50%);
+        //   }
+        // }
+        
+      }
+    }
     &.createAccount {
       @include rel();
       @include size(auto, 100%, $minH:490px);

@@ -379,6 +379,130 @@ h1 {
   justify-content: center;
   gap: 20px;
 }
+.homePageBanners section.screenShot {
+  width: 100%;
+  height: 550px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.homePageBanners section.screenShot .textBox {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 0;
+  background: #242222;
+  position: relative;
+}
+.homePageBanners section.screenShot .textBox .left, .homePageBanners section.screenShot .textBox .right {
+  flex: 1;
+  height: 100%;
+}
+.homePageBanners section.screenShot .textBox .left {
+  flex: 0 0 40%;
+  overflow: hidden;
+  position: relative;
+}
+.homePageBanners section.screenShot .textBox .left img {
+  width: 110%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+}
+.homePageBanners section.screenShot .textBox .right {
+  position: relative;
+}
+.homePageBanners section.screenShot .textBox .right .txt {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  bottom: none;
+  right: none;
+  transform: translate(0%, -50%);
+  z-index: 0;
+  padding-left: 160px;
+}
+.homePageBanners section.screenShot .textBox .right .txt h2 {
+  color: rgb(1, 121, 190);
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 55px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  margin-bottom: 10px;
+  padding: 10px 50px 0px;
+  background: transparent;
+  background-image: url("@/assets/images/brushA.png");
+  background-size: 80% 75%;
+  background-position: 0px 15px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+}
+.homePageBanners section.screenShot .textBox .right .txt ul {
+  padding-left: 35px;
+}
+.homePageBanners section.screenShot .textBox .right .txt ul li {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 22px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  margin-bottom: 10px;
+  position: relative;
+}
+.homePageBanners section.screenShot .textBox .right .txt ul li:before {
+  content: " ";
+  width: 8px;
+  height: 8px;
+  background: rgb(1, 121, 190);
+  border-radius: 50%;
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.homePageBanners section.screenShot .textBox .right .prLogo {
+  width: 180px;
+  height: 180px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
 .homePageBanners section.createAccount {
   position: relative;
   width: auto;
