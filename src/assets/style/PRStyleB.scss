@@ -705,7 +705,7 @@ form {
         margin-bottom:10px;
       }
       input, .dropDownInd, textarea {
-        @include font($par, $white, 28px, .02em);
+        @include font($par, $white, 22px, .02em);
         border-bottom:1px solid $grayB;
         border-radius:50px;
         padding:15px 0px 15px 30px;
