@@ -37,6 +37,7 @@ const signIn = async () => {
     await auth.login(email.value, password.value)
     charged.value = true
     showMessage.value = true
+    clearGuest()
   } catch (err: any) {
     error.value = err.message || 'Login failed'
   } finally {
