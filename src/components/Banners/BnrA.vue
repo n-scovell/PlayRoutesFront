@@ -9,7 +9,7 @@ const gst = useGuest()
       <section class="createAccount">
         <div class="mid">
           <img alt="PRArrow" src="@/assets/images/PlayRoutesBW.png" />
-          <h3>PLAY <span class="alt">ROUTES</span></h3>
+          <h3>PLAYER <span class="alt">ROUTES</span></h3>
           <h4>PLAN, PREPARE, PERFORM</h4>
           <div class="btCont" v-if="!auth.user">
             <RouterLink to="/register">
