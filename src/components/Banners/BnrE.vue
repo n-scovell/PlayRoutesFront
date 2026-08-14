@@ -14,7 +14,7 @@
       </div>
       <div class="right">
         bb
-        <img alt="Play Routes Orb Logo" src="@/assets/images/PlayRoutesBW_Orb.png" class="prLogo" />
+        <img alt="Player Routes Orb Logo" src="@/assets/images/PlayRoutesBW_Orb.png" class="prLogo" />
         <div class="txt">
           <h2>{{header}}</h2>
           <ul>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const hdrA = `
-Play Routes is an online football playbook builder 
+Player Routes is an online football playbook builder 
 designed for coaches at every level.
 `
 const hdrB = `
