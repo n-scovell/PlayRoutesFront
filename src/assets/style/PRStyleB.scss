@@ -287,7 +287,7 @@ h1 {
     }
     &.createAccount {
       @include rel();
-      @include size(auto, 100%, $minH:450px);
+      @include size(auto, 500px);
       transition: all .5s;
       overflow:hidden;
       .fieldImage {
@@ -1584,7 +1584,7 @@ $mobile: 728px;
         }
       }
       &.createAccount {    
-        height:450px;   
+        height:600px;   
         .fieldImage {
           @include pos(absolute, 0%, 50%, $trans:translate(-50%,0%));
         }
