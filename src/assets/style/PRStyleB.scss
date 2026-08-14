@@ -1220,7 +1220,9 @@ $penGreen: #00e913;
     }
   }
 }
-
+.messageToUser {
+  @include font($head, $white, 30px, bold, .02em, 20px, normal, none, none, center);
+}
 .messageOutput {
   @include pos(fixed, 15%, 50%, $trans: translate(-50%, 0%));
   @include size(800px,350px);

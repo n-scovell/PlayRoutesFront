@@ -88,7 +88,11 @@ const signOut = () => {
       </div>
     </form>
 
-    <Teleport to="body" >
+    <div v-if="showMessage && auth.user" class="messageToUser">
+      Welcome back {{ auth.user.name }}
+    </div>
+
+    <!-- <Teleport to="body" >
       <div class="messageOutput" :class="{green: auth.user}" v-if="showMessage">
         <p v-if="error" style="color:red">{{ error }}</p>
         <h3 v-if="auth.user">Welcome back coach:</h3>
@@ -98,6 +102,6 @@ const signOut = () => {
           <RouterLink to="/plays"><button>PLAYBOOK</button></RouterLink>
         </div>
       </div>
-    </Teleport>
+    </Teleport> -->
   </main>
 </template>
