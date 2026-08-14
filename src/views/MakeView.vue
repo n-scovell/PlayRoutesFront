@@ -550,7 +550,7 @@
       <img src="@/assets/icons/CellPhone.png" width="100%" class="b" />
       
     </div>
-    <div class="boardCont">
+    <div class="boardCont" v-if="auth.user">
     <div class="board" ref="fuller">
       <!-- FIELD STRATEGY -->
       <div class="field" >
