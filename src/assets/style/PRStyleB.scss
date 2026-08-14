@@ -533,7 +533,11 @@ form {
   $br: 20px;
   @include size(100%, 100%);
   &.signUp, &.signIn {
-    @include size(80%, auto, 150px, 350px);
+    
+    width:80%;
+    height:auto;
+    min-width:150px;
+    max-width:350px;
     @include pos(relative, 0%, 50%, $trans: translate(-50%, 0%));
     padding-top: 20px;
     margin-bottom: 50px;
@@ -660,6 +664,58 @@ form {
     }
   }
 }
+
+@media only screen and (max-width:690px) {
+  form {
+    &.signUp, &.signIn {
+      width:90%;
+      height:auto;
+      min-width:250px;
+      max-width:400px;
+    }
+    h3 {
+      @include font($head, $white, 45px, bold, .09em, 20px, italic, none, none, center);
+      margin:10px 0px 20px;
+    }
+    .btCont {
+      @include flex(flex, row, nowrap, $align:center, $just: center, $gap: 5px);
+      margin:0px 0px;
+      transition: all .3s .1s;
+      input, .dropDownInd, textarea {
+        @include backColor(rgba(255,255,255,.5));
+      }
+      button {
+        @include font($head, $black, 27px, bold, .01em, 20px, normal, uppercase, none, center);
+        padding:15px 0px;
+        width:50%;
+        transition: all .3s .1s;
+        &:hover {
+          background: $black;
+          color: $white;
+        }
+      }
+    }
+    .inputCont {
+      @include flex(flex, column, wrap, stretch, center, 5px);
+      margin-bottom:20px;
+      label {
+        @include font($par, $white, 25px, 500, .01em, 20px, normal, none, none, left);
+        cursor:pointer;
+        text-indent:20px;
+        margin-bottom:10px;
+      }
+      input, .dropDownInd, textarea {
+        @include font($par, $white, 28px, .02em);
+        border-bottom:1px solid $grayB;
+        border-radius:50px;
+        padding:15px 0px 15px 30px;
+      }
+    }
+  }
+}
+
+
+
 
 
 
@@ -1340,6 +1396,11 @@ $mobile: 728px;
 }
 
 @media only screen and (min-width: 1600px) {
+
+
+  
+
+
   .boardCont {
     
     .board {
@@ -1358,8 +1419,8 @@ $mobile: 728px;
 
 @media only screen and (max-width: $mobile) {
   h1 {
-    font-size:15px;
-    padding:5px 5px;
+    text-align:center;
+    padding:10px 5px;
   }
   .boardCont {
     @include size(auto, 65vh);
@@ -1584,7 +1645,7 @@ $mobile: 728px;
         }
       }
       &.createAccount {    
-        height:600px;   
+        height:610px;   
         .fieldImage {
           @include pos(absolute, 0%, 50%, $trans:translate(-50%,0%));
         }
@@ -1638,4 +1699,7 @@ $mobile: 728px;
       }
     }
   }
+
+
+ 
 }

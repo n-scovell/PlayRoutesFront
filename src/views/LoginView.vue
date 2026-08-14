@@ -15,6 +15,13 @@ const loading = ref(false)
 const charged = ref(false)
 const showMessage = ref(false)
 
+
+const clearGuest = () => {
+  guest.value = ''
+  guestemail.value = ''
+  guestdescription.value = ''
+}
+
 const clearInp = () => {
   guest.value = ''
   guestemail.value = ''
@@ -73,10 +80,11 @@ const signOut = () => {
           <label>Guest Email:</label><input placeholder="Email" type="email" v-model="guestemail" />
       </div>
       <div class="inputCont">
-          <label>Please describe your usage of Play Routes:</label><input placeholder="Tell us who you are" type="text" v-model="guestdescription" />
+          <label>Describe Usage:</label><input placeholder="Tell us who you are" type="text" v-model="guestdescription" />
       </div>
       <div class="btCont">
         <button type="button" class="formButton" @click="signGuest()">PROCEED</button>
+        <button type="button" class="formButton" @click="clearGuest()">CLEAR</button>
       </div>
     </form>
 

@@ -1141,8 +1141,6 @@ form.signUp, form.signIn {
   height: auto;
   min-width: 150px;
   max-width: 350px;
-  min-height: auto;
-  max-height: auto;
   position: relative;
   top: 0%;
   left: 50%;
@@ -1410,6 +1408,98 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   background: rgba(255, 255, 255, 0.4);
 }
 
+@media only screen and (max-width: 690px) {
+  form.signUp, form.signIn {
+    width: 90%;
+    height: auto;
+    min-width: 250px;
+    max-width: 400px;
+  }
+  form h3 {
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size: 45px;
+    font-style: italic;
+    letter-spacing: 0.09em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: center;
+    margin: 10px 0px 20px;
+  }
+  form .btCont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 0px 0px;
+    transition: all 0.3s 0.1s;
+  }
+  form .btCont input, form .btCont .dropDownInd, form .btCont textarea {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  form .btCont button {
+    color: #242222;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size: 27px;
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: center;
+    padding: 15px 0px;
+    width: 50%;
+    transition: all 0.3s 0.1s;
+  }
+  form .btCont button:hover {
+    background: #242222;
+    color: #f5f5f5;
+  }
+  form .inputCont {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+  form .inputCont label {
+    color: #f5f5f5;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 25px;
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: left;
+    cursor: pointer;
+    text-indent: 20px;
+    margin-bottom: 10px;
+  }
+  form .inputCont input, form .inputCont .dropDownInd, form .inputCont textarea {
+    color: #f5f5f5;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 0.02em;
+    font-size: 28px;
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 15px 0px 15px 30px;
+  }
+}
 .flipPhoneText {
   display: none;
 }
@@ -2768,8 +2858,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 @media only screen and (max-width: 728px) {
   h1 {
-    font-size: 15px;
-    padding: 5px 5px;
+    text-align: center;
+    padding: 10px 5px;
   }
   .boardCont {
     width: auto;
@@ -3248,7 +3338,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     transform: skew(3deg);
   }
   .homePageBanners section.createAccount {
-    height: 600px;
+    height: 610px;
   }
   .homePageBanners section.createAccount .fieldImage {
     position: absolute;
