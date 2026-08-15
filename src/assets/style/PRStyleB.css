@@ -2247,6 +2247,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 .playsContainer .playRows .indPlays.active {
   outline: 3px solid rgba(255, 188, 62, 0.8);
 }
+.playsContainer .playRows .indPlays .field {
+  opacity: 1;
+}
 .playsContainer .playRows .indPlays .field .openThePlay {
   background: transparent;
   position: absolute;
@@ -2254,7 +2257,6 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   left: 0px;
   width: 100%;
   height: 100%;
-  z-index: 10;
 }
 .playsContainer .playRows .indPlays .field {
   background: transparent;
@@ -2363,6 +2365,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   align-items: stretch;
   justify-content: start;
   gap: 0;
+  z-index: 500;
 }
 .playsContainer .playRows .indPlays .playInfo .btCont .menu {
   width: 25px;
