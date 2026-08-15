@@ -2090,6 +2090,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  background: transparent;
 }
 @supports ((-webkit-appearance: base-select) or (-moz-appearance: base-select) or (appearance: base-select)) {
   .sorters select, .sorters select::picker(select) {

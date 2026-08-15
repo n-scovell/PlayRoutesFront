@@ -1006,6 +1006,7 @@ $penGreen: #00e913;
   select {
     @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase);
     appearance: none;
+    background:transparent;
     @supports (appearance: base-select) {
       &, &::picker(select) {
         appearance: base-select;
