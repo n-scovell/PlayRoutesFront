@@ -2292,6 +2292,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   max-width: auto;
   min-height: auto;
   max-height: auto;
+  z-index: 1;
 }
 .playsContainer .playRows .indPlays .playInfo {
   background: rgb(51, 51, 51);
