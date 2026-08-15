@@ -154,7 +154,7 @@ const showMenu = (i: number) => {
           :key="p.id"
           class="indPlays"
         >
-          <div  class="field" @click="openPlay(p)"> 
+          <div  class="field" @pointerdown="openPlay(p)"> 
              <div class="addedPlayers xs">
               <Player :players="p.grid.players" :num="100" />
             </div>
