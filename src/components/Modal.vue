@@ -117,11 +117,14 @@ const close = () => {
 <style lang="scss">
 .mdlBack {
     position:fixed;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
+    top:-500px;
+    left:-100px;
+    
+    width:1500px;
+    height:50px;
+    overflow:hidden;
     background:rgba(0,0,0,.5);
+    background:blue;
     backdrop-filter: blur(2px);
     z-index:555;
     inset: 0;
