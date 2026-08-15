@@ -59,7 +59,7 @@ const setDrawMode = () => {
 }
 
 const handleClick = (e: PointerEvent, canvas: HTMLCanvasElement | null) => {
-  if (!canvas) return
+  if (!canvas || canvasMode.value === 'small') return
   const clickedStroke = getStrokeAtPoint(e, canvas)
   if (clickedStroke) {
     selectedStroke.value = clickedStroke.id
