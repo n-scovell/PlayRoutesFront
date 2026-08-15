@@ -264,14 +264,14 @@ const close = () => {
         color:transparent;
     }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 728px) {
     .mdlBack .mdlCont {
         top:50%;
         left:0px;
         transform:translate(0%, -50%);
         width:100vw;
         height:100%;
-        max-height:200px;
+        max-height:350px;
     }
     .mdlBack .mdlCont .addedPlayers .player {
         color:transparent;

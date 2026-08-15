@@ -128,7 +128,7 @@ const showMenu = (i: number) => {
 </script>
 <template>
 
-  <!-- <Modal :show="showPlay" @close="closePlay" :foo="selectedPlay"/> -->
+  <Modal :show="showPlay" @close="closePlay" :foo="selectedPlay"/>
 
   <div class="authDelete" v-if="areYouSure">
     <p>Delete:</p>
@@ -154,8 +154,8 @@ const showMenu = (i: number) => {
           :key="p.id"
           class="indPlays"
         >
-          <div class="field" >
-              <button class="openThePlay" @click="openPlay(p)">CLICK</button>
+          <button class="field" @click="openPlay(p)">
+              <!-- <button class="openThePlay">CLICK</button> -->
              <div class="addedPlayers xs">
               <Player :players="p.grid.players" :num="100" />
             </div>
@@ -167,7 +167,7 @@ const showMenu = (i: number) => {
                 :color="selectedColor" :tool="selectedTool"
               />
             </div> 
-          </div>
+          </button>
           <div class="playInfo">
             <h3>{{ p.title }}</h3>
             <h4> {{ p.formation }} - {{ p.playType }} </h4>
