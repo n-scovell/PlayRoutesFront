@@ -123,7 +123,7 @@ const close = () => {
     right:0;
     background:rgba(0,0,0,.5);
     backdrop-filter: blur(2px);
-    z-index:9999;
+    z-index:555;
     inset: 0;
     .preview {
         position:absolute;
