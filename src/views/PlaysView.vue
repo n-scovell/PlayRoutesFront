@@ -127,9 +127,6 @@ const showMenu = (i: number) => {
 }
 </script>
 <template>
-
-  
-
   <div class="authDelete" v-if="areYouSure">
     <p>Delete:</p>
     <h3>{{ selectedPlay?.title }}</h3>
@@ -188,7 +185,6 @@ const showMenu = (i: number) => {
         </div>
       </div>
     </section>
-    
   </main>
   <Modal :show="showPlay" @close="closePlay" :foo="selectedPlay"/>
 </template>
