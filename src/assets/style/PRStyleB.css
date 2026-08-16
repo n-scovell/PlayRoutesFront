@@ -2300,7 +2300,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 .playsContainer .playRows .indPlays .playInfo {
   background: rgb(51, 51, 51);
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   text-align: center;
   border-top: 3px solid rgb(46, 45, 45);
 }
@@ -2316,7 +2316,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   text-shadow: none;
   text-align: center;
   padding: 15px 0px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   background: rgba(255, 255, 255, 0);
   background-image: url("@/assets/images/slash.png");
   background-size: 60% 7px;
@@ -2348,13 +2348,59 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   text-shadow: none;
   text-align: center;
 }
-.playsContainer .playRows .indPlays .playInfo .btCont {
+.playsContainer .playRows .indPlays .playInfo .menuHam {
+  width: 42px;
+  height: 42px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
   position: absolute;
-  top: 5px;
+  top: none;
   left: none;
-  bottom: none;
-  right: 5px;
+  bottom: 0px;
+  right: 0px;
   transform: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 13px 5px;
+}
+.playsContainer .playRows .indPlays .playInfo .menuHam div {
+  flex: 1;
+  width: 85%;
+  background: white;
+  border-radius: 8px;
+}
+.playsContainer .playRows .indPlays .playInfo .menuHam.active div {
+  background: rgba(255, 255, 255, 0.5);
+}
+.playsContainer .playRows .indPlays .playInfo .menuPop {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 100%;
+  right: 0px;
+  display: none;
+}
+.playsContainer .playRows .indPlays .playInfo .menuPop.active {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
+}
+.playsContainer .playRows .indPlays .playInfo .menuPop.active button {
+  flex: 1;
+  background: rgb(1, 121, 190);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 8px 0px;
+}
+.playsContainer .playRows .indPlays .playInfo .btCont {
   width: auto;
   height: 45px;
   min-width: 0;
