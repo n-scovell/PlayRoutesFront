@@ -101,6 +101,14 @@ const close = () => {
                 </div>
             </div>
             <div class="lineOfScrimmage" />
+            <div class="canvasCont" :class="{flip: flipChoice}">
+                <PlayCanvas
+                    makerMode="cool"
+                    class="canvas"
+                    :strokesData="foo?.grid.strokes"
+                    :color="selectedColor" :tool="selectedTool"
+                />
+            </div>
             <div class="field"></div>
         </div>
         <!-- <div class="mdlCont" ref="captureTarget">
