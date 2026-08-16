@@ -2776,7 +2776,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 @media only screen and (max-width: 490px) {
   .playsContainer.plays .playRows {
-    gap: 50px;
+    gap: 35px;
   }
   .playsContainer.plays .playRows .indPlays {
     opacity: 1;
