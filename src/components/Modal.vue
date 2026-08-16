@@ -116,7 +116,7 @@ const close = () => {
 
 
 <template>
-  <div v-if="show" class="mdlBack">
+  <div v-if="show" class="mdlBack" @click.self="close">
     TEST
   </div>
 </template>
