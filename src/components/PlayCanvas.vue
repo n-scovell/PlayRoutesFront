@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { usePlayCanvas } from '@/composables/usePlayCanvasB'
 import type { Stroke, ColorType, ToolType } from '@/composables/usePlayCanvasB'
 
@@ -81,6 +81,14 @@ watch(canvasRef, (canvas) => {
 onMounted(() => {
   canvasMode.value = props.makerMode
   window.addEventListener('resize', resizeMe)
+})
+
+onBeforeUnmount(() => {
+  const canvas = canvasRef.value
+  if (!canvas) return
+  canvas.removeEventListener('pointermove', hoverCanvas)
+  canvas.removeEventListener('pointerdown', clickDown)
+  window.removeEventListener('resize', resizeMe)
 })
 
 </script>
