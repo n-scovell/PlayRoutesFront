@@ -83,10 +83,10 @@ const close = () => {
     <div v-if="show" class="mdlBack" :class="{active : show}" @click.self="close">
         <div class="mdlCont" ref="captureTarget">
             <button  aria-label="Close Modal" class="mdlClose" @click="close">✕</button>
-            <!-- <div class="btCont">
+            <div class="btCont">
                 <button  aria-label="Download Play" @click="captureDownload(foo?.title)" :disabled="isCapturing">PRINT</button>
                 <button  aria-label="Flip Play" @click="flipPlay()">FLIP</button>
-            </div> -->
+            </div>
             <div class="addedPlayers" :class="{flip: flipChoice}">
                 <div
                     v-for="player in foo?.grid.players"
