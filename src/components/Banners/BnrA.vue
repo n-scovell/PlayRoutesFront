@@ -26,7 +26,7 @@ const gst = useGuest()
             </RouterLink>
           </div>
           <div class="btCont" v-else>
-            <RouterLink to="/create">
+            <RouterLink to="/create"> 
               <button aria-label="Creat Play Button" class="primaryBt">CREATE PLAY</button>
             </RouterLink>
           </div>
