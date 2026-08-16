@@ -71,11 +71,23 @@ const deleteMe = () => {
   deleteSelectedStroke()
 }
 
-watch(canvasRef, (canvas) => {
-  if (!canvas) return
-  canvas.addEventListener('pointermove', hoverCanvas)
-  canvas.addEventListener('pointerdown', clickDown)
-  // canvas.addEventListener('pointerdown', clickMe)
+// watch(canvasRef, (canvas) => {
+//   if (!canvas) return
+//   canvas.addEventListener('pointermove', hoverCanvas)
+//   canvas.addEventListener('pointerdown', clickDown)
+//   // canvas.addEventListener('pointerdown', clickMe)
+// }, { immediate: true })
+
+watch(canvasRef, (canvas, oldCanvas) => {
+  if (oldCanvas) {
+    oldCanvas.removeEventListener('pointermove', hoverCanvas)
+    oldCanvas.removeEventListener('pointerdown', clickDown)
+  }
+
+  if (canvas) {
+    canvas.addEventListener('pointermove', hoverCanvas)
+    canvas.addEventListener('pointerdown', clickDown)
+  }
 }, { immediate: true })
 
 onMounted(() => {
