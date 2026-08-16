@@ -3041,6 +3041,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   .homePageBanners section {
     padding-top: 0px;
   }
+  .homePageBanners section.coachShot img {
+    left: -80px;
+  }
   .homePageBanners section.instruction {
     width: auto;
     height: 440px;
