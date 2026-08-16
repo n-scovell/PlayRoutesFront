@@ -79,7 +79,7 @@ const close = () => {
     emit('close')
 }
 </script>
-<template>
+<!-- <template>
     <div v-if="show" class="mdlBack" :class="{active : show}" @click.self="close">
         <div class="mdlCont" ref="captureTarget">
             <button  aria-label="Close Modal" class="mdlClose" @click="close">✕</button>
@@ -101,16 +101,23 @@ const close = () => {
                 </div>
             </div>
             <div class="lineOfScrimmage" />
-            <!-- <div class="canvasCont" :class="{flip: flipChoice}">
+            <div class="canvasCont" :class="{flip: flipChoice}">
                 <PlayCanvas
                     makerMode="cool"
                     class="canvas"
                     :strokesData="foo?.grid.strokes"
                     :color="selectedColor" :tool="selectedTool"
                 />
-            </div> -->
+            </div>
             <div class="field"></div>
     </div>
+  </div>
+</template> -->
+
+
+<template>
+  <div v-if="show" class="mdlBack">
+    TEST
   </div>
 </template>
 
@@ -122,7 +129,7 @@ const close = () => {
     right:0;
     bottom:0;
     background:rgba(0,0,0,.5);
-    backdrop-filter: blur(2px);
+    // backdrop-filter: blur(2px);
     z-index:555;
     inset: 0;
     pointer-events: auto;
