@@ -275,7 +275,7 @@ const close = () => {
         transform:translate(0%, -50%);
         width:100vw;
         height:100%;
-        max-height:310px;
+        max-height:280px;
     }
     .mdlBack .mdlCont .addedPlayers .player {
         color:transparent;
