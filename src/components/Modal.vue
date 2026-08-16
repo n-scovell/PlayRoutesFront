@@ -101,14 +101,14 @@ const close = () => {
                 </div>
             </div>
             <div class="lineOfScrimmage" />
-            <div class="canvasCont" :class="{flip: flipChoice}">
+            <!-- <div class="canvasCont" :class="{flip: flipChoice}">
                 <PlayCanvas
                     makerMode="cool"
                     class="canvas"
                     :strokesData="foo?.grid.strokes"
                     :color="selectedColor" :tool="selectedTool"
                 />
-            </div>
+            </div> -->
             <div class="field"></div>
     </div>
   </div>
@@ -116,14 +116,11 @@ const close = () => {
 
 <style lang="scss">
 .mdlBack {
-    // position:fixed;
-    // top:0;
-    // left:0;
-    // right:0;
-    // bottom:0;
-    overflow:hidden;
-    width:50px;
-    height:50px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
     background:rgba(0,0,0,.5);
     backdrop-filter: blur(2px);
     z-index:555;
