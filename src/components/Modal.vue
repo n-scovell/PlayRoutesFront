@@ -80,7 +80,7 @@ const close = () => {
 }
 </script>
 <template>
-    <div v-if="show" class="mdlBack" @click.self="close">
+    <div v-if="show" class="mdlBack" :class="{active : show}" @click.self="close">
         <div class="mdlCont" ref="captureTarget">
             <button  aria-label="Close Modal" class="mdlClose" @click="close">✕</button>
             <div class="btCont" v-if="!gst.guest"">
@@ -117,17 +117,20 @@ const close = () => {
 <style lang="scss">
 .mdlBack {
     position:fixed;
-    top:-500px;
-    left:-100px;
-    
-    width:1500px;
-    height:50px;
-    overflow:hidden;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
     background:rgba(0,0,0,.5);
-    background:blue;
+    background:red;
     backdrop-filter: blur(2px);
     z-index:555;
     inset: 0;
+    display:none;
+    &.active {
+        background:yellow;
+        display:block;
+    }
     .preview {
         position:absolute;
         top:0px;
