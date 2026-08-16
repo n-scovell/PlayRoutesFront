@@ -269,6 +269,9 @@ const close = () => {
     }
 }
 @media only screen and (max-width: 728px) {
+    .mdlBack {
+        display:block;
+    }
     .mdlBack .mdlCont {
         top:50%;
         left:0px;
