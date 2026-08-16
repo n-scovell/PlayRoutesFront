@@ -2356,7 +2356,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   right: 5px;
   transform: none;
   width: auto;
-  height: 30px;
+  height: 45px;
   min-width: 0;
   max-width: auto;
   min-height: auto;
@@ -2369,9 +2369,12 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   gap: 0;
   z-index: 500;
 }
+.playsContainer .playRows .indPlays .playInfo .btCont.active {
+  background: rgba(0, 0, 0, 0.5);
+}
 .playsContainer .playRows .indPlays .playInfo .btCont .menu {
-  width: 25px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
   display: flex;
   position: relative;
   top: 5px;
@@ -2380,7 +2383,6 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   align-items: center;
   justify-content: center;
   margin-left: 5px;
-  background: transparent;
 }
 .playsContainer .playRows .indPlays .playInfo .btCont .menu div {
   flex: 1;
@@ -2401,10 +2403,10 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   display: flex;
 }
 .playsContainer .playRows .indPlays .playInfo .btCont .show button {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   color: white;
-  font-size: 25px;
+  font-size: 50px;
   font-weight: bold;
   line-height: 22px;
   display: flex;
@@ -2645,7 +2647,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   bottom: none;
   right: none;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 90%;
   height: 200px;
   min-width: 200px;
   max-width: 500px;
@@ -2686,7 +2688,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   font-family: "Racing Sans One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 30px;
   font-style: normal;
   letter-spacing: 0.05em;
   text-transform: uppercase;

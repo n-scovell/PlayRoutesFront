@@ -121,13 +121,13 @@ const close = () => {
     left:0;
     right:0;
     bottom:0;
-    background:rgba(0,0,0,.5);
-    backdrop-filter: blur(2px);
+
+    // backdrop-filter: blur(2px);
     z-index:555;
     inset: 0;
     pointer-events: auto;
     &.active {
-        background: rgba(0, 0, 0, .5);
+        background: rgba(0, 0, 0, .8);
     }
     .preview {
         position:absolute;
@@ -271,9 +271,9 @@ const close = () => {
 @media only screen and (max-width: 728px) {
     .mdlBack .mdlCont {
         top:50%;
-        left:0px;
-        transform:translate(0%, -50%);
-        width:100vw;
+        left:50%;
+        transform:translate(-50%, -50%);
+        width:90vw;
         height:100%;
         max-height:280px;
     }

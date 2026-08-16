@@ -134,7 +134,7 @@ const showMenu = (i: number) => {
     <p>Delete:</p>
     <h3>{{ selectedPlay?.title }}</h3>
     <button @click="selectedPlay && deleteMe(selectedPlay.id)">DELETE</button>
-    <button  @click="areYouSure = false">NOPE</button>
+    <button class="cancel"  @click="areYouSure = false">CANCEL</button>
   </div>
   
   <main>
@@ -174,7 +174,7 @@ const showMenu = (i: number) => {
           <div class="playInfo">
             <h3>{{ p.title }}</h3>
             <h4> {{ p.formation }} - {{ p.playType }} </h4>
-            <div class="btCont">
+            <div class="btCont" :class="{active: popMenu === index}" >
               <div class="show" :class="{active: popMenu === index}" v-if="!gst.guest">
                 <button class="fav" @click="addFav(p.id)" :class="{star: coolness(p.id)}">&#9733</button>
                 <button class="del" @click.self="triggerPrompt(p)">
