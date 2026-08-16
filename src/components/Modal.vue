@@ -100,6 +100,8 @@ const close = () => {
                     {{ player.pos }}
                 </div>
             </div>
+            <div class="lineOfScrimmage" />
+            <div class="field"></div>
         </div>
         <!-- <div class="mdlCont" ref="captureTarget">
             <button  aria-label="Close Modal" class="mdlClose" @click="close">✕</button>
