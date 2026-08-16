@@ -122,15 +122,12 @@ const close = () => {
     right:0;
     bottom:0;
     background:rgba(0,0,0,.5);
-    // background:red;
     backdrop-filter: blur(2px);
     z-index:555;
     inset: 0;
-    // display:none;
     pointer-events: none;
     &.active {
         background:black;
-        // display:block;
     }
     .preview {
         position:absolute;
