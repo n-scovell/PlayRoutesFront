@@ -114,13 +114,6 @@ const close = () => {
   </div>
 </template>
 
-
-<!-- <template>
-  <div v-if="show" class="mdlBack" @click.self="close">
-    TEST
-  </div>
-</template> -->
-
 <style lang="scss">
 .mdlBack {
     position:fixed;
@@ -276,16 +269,13 @@ const close = () => {
     }
 }
 @media only screen and (max-width: 728px) {
-    .mdlBack {
-        display:block;
-    }
     .mdlBack .mdlCont {
         top:50%;
         left:0px;
         transform:translate(0%, -50%);
         width:100vw;
         height:100%;
-        max-height:350px;
+        max-height:310px;
     }
     .mdlBack .mdlCont .addedPlayers .player {
         color:transparent;
