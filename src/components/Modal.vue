@@ -79,7 +79,7 @@ const close = () => {
     emit('close')
 }
 </script>
-<!-- <template>
+<template>
     <div v-if="show" class="mdlBack" :class="{active : show}" @click.self="close">
         <div class="mdlCont" ref="captureTarget">
             <button  aria-label="Close Modal" class="mdlClose" @click="close">✕</button>
@@ -112,14 +112,14 @@ const close = () => {
             <div class="field"></div>
     </div>
   </div>
-</template> -->
+</template>
 
 
-<template>
+<!-- <template>
   <div v-if="show" class="mdlBack" @click.self="close">
     TEST
   </div>
-</template>
+</template> -->
 
 <style lang="scss">
 .mdlBack {

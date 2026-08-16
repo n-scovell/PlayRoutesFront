@@ -34,7 +34,6 @@ const selectedPlay = ref<Play>()
 const showPlay = ref(false)
 
 const openPlay = (p: Play) => {
-  alert('working')
   selectedPlay.value = p
   showPlay.value = true
 }

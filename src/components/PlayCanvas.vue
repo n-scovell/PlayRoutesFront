@@ -63,7 +63,9 @@ const resizeMe = () => {
   resizeCanvas(canvasRef.value!)
 }
 const clickDown = (e: PointerEvent) => {
-  handleClick(e, canvasRef.value)
+  if (canvasMode.value != 'small') {
+    handleClick(e, canvasRef.value)
+  }
 }
 const deleteMe = () => {
   deleteSelectedStroke()
