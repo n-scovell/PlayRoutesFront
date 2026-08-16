@@ -1126,7 +1126,7 @@ $penGreen: #00e913;
         text-align:center;
         border-top:3px solid rgb(46, 45, 45);
         h3 {
-          @include font($spec, $white, 25px, bold, .05em, 20px, normal, uppercase, $align:center);
+          @include font($spec, $white, 20px, bold, .05em, 20px, normal, uppercase, $align:center);
           padding:15px 0px;
           margin-bottom:5px;
           @include back(rgba(255,255,255,.0), '@/assets/images/slash.png', 60% 7px, center 95%, no-repeat, 1px);
@@ -1176,103 +1176,6 @@ $penGreen: #00e913;
 
               font-weight:bold;
               padding:8px 0px;
-            }
-          }
-        }
-        .btCont {
-          $w:45px;
-          // @include pos(absolute, 5px, $right: 5px);
-          @include size(auto, $w);
-          @include flex(flex);
-          z-index:500;
-          &.active {
-            background:rgba(0,0,0,.5);
-          }
-
-          .menu {
-            width:$w - 10px;
-            height:$w - 10px;
-            display:flex;
-            position:relative;
-            top:5px;
-            flex-direction:column;
-            gap:5px;
-            align-items:center;
-            justify-content:center;
-            margin-left:5px;
-            div {
-              flex:1;
-              width:100%;
-              border-radius:5px;
-              background:rgba(224, 224, 224, 1);
-            }
-            &.active {
-              div {
-                background:rgba(224, 224, 224, 1);
-              }
-            }
-          }
-          .show {
-            display:none;
-            flex-direction:row;
-            flex-wrap:nowrap;
-            gap:0px;
-            &.active {
-              display:flex;
-            }
-            button {
-              width:$w;
-              height:$w;
-              color:white;
-              font-size:50px;
-              font-weight:bold;
-              line-height:22px;
-              display:flex;
-              align-items:center;
-              justify-content:center;
-              &.fav {
-                background:transparent;
-                &.star {
-                  color:rgb(222, 235, 50);
-                }
-              }
-              &.del {
-                &:hover {
-                  font-size:22px;
-                }
-                @include rel();
-                .lid {
-                  @include size(50%,10%);
-                  @include backColor($white);
-                  @include pos(absolute, 22%, 50%, $trans: translate(-50%,0%));
-                }
-                &:after {
-                  content:' ';
-                  @include size(48%, 45%);
-                  @include backColor($white);
-                  @include pos(absolute, 40%, 50%, $trans: translate(-50%,0%));
-                  clip-path:polygon(
-                  0% 0%, 100% 0%, 90% 100%, 10% 100%,
-                  )
-                }
-                &:before {
-                  content:' ';
-                  width:30%;
-                  height:15%;
-                  background:white;
-                  position:absolute;
-                  top:10%;
-                  left:50%;
-                  transform:translate(-50%,0%);
-                  $a:30%;
-                  $b:100% - $a;
-                  clip-path:polygon(
-                  0% 0%, 100% 0%, 100% 100%,
-                  $b 100%, $b $a, $a $a, $a 100%, 0% 100%
-                  )
-                }
-
-              }
             }
           }
         }
@@ -1432,6 +1335,16 @@ $mobile: 728px;
 }
 
 @media only screen and (max-width:490px) {
+  .playsContainer {
+    &.plays {
+      .playRows {
+        gap:50px;
+        .indPlays {
+          opacity:1;
+        }
+      }
+    }
+  }
   .flipPhoneText {
     display:block;
     position:absolute;

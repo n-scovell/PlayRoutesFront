@@ -150,7 +150,7 @@ const showMenu = (i: number) => {
         <option value="playType">Play Type</option>
       </select>
     </div>
-    <section class="playsContainer" > 
+    <section class="playsContainer plays" > 
       <div class="playRows">
         <div
           v-for="(p, index) in sortedPlays"
