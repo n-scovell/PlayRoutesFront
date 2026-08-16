@@ -212,7 +212,6 @@ h1 {
 }
 
 
-
 // HOME PAGE BANNERS
 .homePageBanners {
   section {
@@ -221,6 +220,48 @@ h1 {
     .btCont {
       padding:30px 0px 0px;
       @include flex(flex, row, nowrap, center, center, 20px);
+    }
+    &.coachShot {
+      background:#0C0936;
+      overflow:hidden;
+      @include rel();
+      img {
+        @include pos(absolute, 0px, 0px);
+        // height:100%;
+      }
+      .txt {
+        height:100%;
+        width:auto;
+        padding-left:520px;
+        position:relative;
+        top:50%;
+        transform:translateY(-50%);
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        gap:50px;
+        div {
+          h3 {
+            @include font($head, $white, 30px, bold, .02em, 1px);
+          }
+          h2 {
+            @include font($head, $white, 100px, bold, .02em, 1px);
+          }
+          &.b {
+            background:white;
+            width:550px;
+            height:110px;
+            @include flex(flex, column, nowrap, center, center);
+            h3, h2 {
+              margin:0px;
+              padding:0px;
+              font-size:55px;
+              color:#0C0936;
+            }
+          }
+        }
+        
+      }
     }
     &.screenShot {
       @include size(100%, 550px);
