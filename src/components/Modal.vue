@@ -81,6 +81,9 @@ const close = () => {
 </script>
 <template>
     <div v-if="show" class="mdlBack" :class="{active : show}" @click.self="close">
+        <div class="mdlCont" ref="captureTarget">
+            
+        </div>
         <!-- <div class="mdlCont" ref="captureTarget">
             <button  aria-label="Close Modal" class="mdlClose" @click="close">✕</button>
             <div class="btCont" v-if="!gst.guest"">
