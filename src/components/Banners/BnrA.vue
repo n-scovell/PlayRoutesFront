@@ -31,6 +31,6 @@ const gst = useGuest()
             </RouterLink>
           </div>
         </div>
-        <img alt="PR Field" src="@/assets/images/field.jpg" width="100%" class="fieldImage" />
+        <img alt="PR Field" src="@/assets/images/PRBack.jpg" width="100%" class="fieldImage" />
       </section>
 </template>

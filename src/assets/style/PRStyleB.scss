@@ -293,7 +293,7 @@ h1 {
       overflow:hidden;
       .fieldImage {
         @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-        @include size(100%, auto, $minW:1500px);
+        @include size(130%, auto, $minW:500px);
         z-index:0;
       }
       .mid {
@@ -313,6 +313,7 @@ h1 {
           transition:font-size .2s;
           .alt {
             color: $gray;
+            color: $blueB;
           }
         }
         h4 {
@@ -1663,6 +1664,7 @@ $mobile: 728px;
       &.createAccount {    
         height:610px;   
         .fieldImage {
+          
           @include pos(absolute, 0%, 50%, $trans:translate(-50%,0%));
         }
         .mid {

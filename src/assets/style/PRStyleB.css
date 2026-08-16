@@ -521,9 +521,9 @@ h1 {
   bottom: none;
   right: none;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 130%;
   height: auto;
-  min-width: 1500px;
+  min-width: 500px;
   max-width: auto;
   min-height: auto;
   max-height: auto;
@@ -576,6 +576,7 @@ h1 {
 }
 .homePageBanners section.createAccount .mid h3 .alt, .homePageBanners section.createAccount .mid h4 .alt {
   color: #a3a3a3;
+  color: rgb(1, 121, 190);
 }
 .homePageBanners section.createAccount .mid h4 {
   color: #f5f5f5;
