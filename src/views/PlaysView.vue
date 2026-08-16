@@ -128,7 +128,7 @@ const showMenu = (i: number) => {
 </script>
 <template>
 
-  <Modal :show="showPlay" @close="closePlay" :foo="selectedPlay"/>
+  <!-- <Modal :show="showPlay" @close="closePlay" :foo="selectedPlay"/> -->
 
   <div class="authDelete" v-if="areYouSure">
     <p>Delete:</p>
@@ -157,7 +157,7 @@ const showMenu = (i: number) => {
           :key="p.id"
           class="indPlays"
         >
-          <div  class="field" > 
+          <div  class="field" @click="openPlay(p)"> 
           <!-- <div class="field">  -->
              <div class="addedPlayers xs">
               <Player :players="p.grid.players" :num="100" />
