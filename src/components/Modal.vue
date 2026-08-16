@@ -125,9 +125,9 @@ const close = () => {
     backdrop-filter: blur(2px);
     z-index:555;
     inset: 0;
-    pointer-events: none;
+    pointer-events: auto;
     &.active {
-        background:black;
+        background: rgba(0, 0, 0, .5);
     }
     .preview {
         position:absolute;

@@ -128,7 +128,7 @@ const showMenu = (i: number) => {
 </script>
 <template>
 
-  <!-- <Modal :show="showPlay" @close="closePlay" :foo="selectedPlay"/> -->
+  <Modal :show="showPlay" @close="closePlay" :foo="selectedPlay"/>
 
   <div class="authDelete" v-if="areYouSure">
     <p>Delete:</p>
@@ -139,6 +139,9 @@ const showMenu = (i: number) => {
   
   <main>
     <h1>Your Playbook:</h1>
+    <div>
+      HELLO ALL
+    </div>
     <div class="sorters">
       <h4>SORT BY: </h4>
       <select v-model="sortBy">
