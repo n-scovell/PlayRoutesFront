@@ -293,7 +293,7 @@ h1 {
       overflow:hidden;
       .fieldImage {
         @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-        @include size(130%, auto, $minW:500px);
+        @include size(130%, auto, $minW:1100px);
         z-index:0;
       }
       .mid {
