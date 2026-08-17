@@ -13,10 +13,6 @@
       <div>
         <h3>BECOME THE PLAY MAKING</h3><h2>WIZARD</h2>
       </div>
-      <div class="b">
-        <h3>YOU WERE MEANT TO BE</h3>
-        <!-- <h2>TO BE</h2> -->
-      </div>
     </div>
   </section>
 </template>

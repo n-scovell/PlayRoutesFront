@@ -241,7 +241,7 @@ h1 {
   width: auto;
   height: 100%;
   min-width: 0;
-  max-width: auto;
+  max-width: 150px;
   min-height: auto;
   max-height: auto;
   display: flex;
@@ -262,7 +262,7 @@ h1 {
   top: 10%;
   left: none;
   bottom: none;
-  right: 10px;
+  right: 20px;
   transform: translate(0%, 0%);
   border-radius: 50%;
   border: 3px solid #f5f5f5;
@@ -409,7 +409,7 @@ h1 {
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -427,23 +427,6 @@ h1 {
   text-transform: none;
   text-shadow: none;
   text-align: left;
-}
-.homePageBanners section.coachShot .txt div.b {
-  background: white;
-  width: 550px;
-  height: 110px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-}
-.homePageBanners section.coachShot .txt div.b h3, .homePageBanners section.coachShot .txt div.b h2 {
-  margin: 0px;
-  padding: 0px;
-  font-size: 55px;
-  color: #0C0936;
 }
 .homePageBanners section.screenShot {
   width: 100%;

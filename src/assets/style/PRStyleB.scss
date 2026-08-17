@@ -129,11 +129,11 @@ h1 {
     }
     .userCont {
       @include rel();
-      @include size(auto, 100%);
+      @include size(auto, 100%, $maxW:150px);
       @include flex(flex, row, nowrap, stretch, end, 0px);
       .avatarCont {
         @include size($avatarSize, $avatarSize);
-        @include pos(relative, $top:10%, $right:10px, $trans:translate(0%, 0%));
+        @include pos(relative, $top:10%, $right:20px, $trans:translate(0%, 0%));
         border-radius:50%;
         border:3px solid $white;
         overflow:hidden;
@@ -242,23 +242,12 @@ h1 {
         gap:50px;
         div {
           h3 {
-            @include font($head, $white, 30px, bold, .02em, 1px);
+            @include font($head, $white, 20px, bold, .02em, 1px);
           }
           h2 {
             @include font($head, $white, 100px, bold, .02em, 1px);
           }
-          &.b {
-            background:white;
-            width:550px;
-            height:110px;
-            @include flex(flex, column, nowrap, center, center);
-            h3, h2 {
-              margin:0px;
-              padding:0px;
-              font-size:55px;
-              color:#0C0936;
-            }
-          }
+          
         }
         
       }
