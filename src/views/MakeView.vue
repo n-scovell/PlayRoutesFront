@@ -612,10 +612,10 @@ const changePosColor = () => {
       </div>
       <div class="secB">
         <div class="topButtonCont">
-          <button @click="makeActiveTool('select')">MOVE</button>
-          <button @click="makeActiveTool('erase')">DELETE</button>
-          <button @click="clearPlayers()">CLEAR</button>
+          <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">MOVE</button>
+          <button :class="{active : activeTool === 'erase'}" @click="makeActiveTool('erase')">DELETE</button>
           <button :class="{color : colorFlip }" @click="changePosColor()">COLOR/B&W</button>
+          <button class="clearBt" @click="clearPlayers()">CLEAR</button>
         </div>
         <div class="sectional">
           <div class="field">

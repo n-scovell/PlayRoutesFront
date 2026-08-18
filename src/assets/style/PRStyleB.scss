@@ -1787,8 +1787,14 @@ $fieldSize: 75%;
         @include boxA();
         padding:0px 30px;
         height:100%;
+        &.clearBt {
+          background:rgba(0, 0, 0, 0.678);
+        }
         &.color {
           background:rgb(58, 163, 204, .5);
+        }
+        &.active {
+          background:rgba(97, 97, 97, 0.5);
         }
       }
     }
@@ -1875,8 +1881,8 @@ $fieldSize: 75%;
             }
             &.remove {
               &:before, &:after {
-                @include backColor($penRed);
-                color:white;
+                @include backColor(rgb(143, 142, 142));
+                color:$black;
                 transition:all .5s;
               }
             }

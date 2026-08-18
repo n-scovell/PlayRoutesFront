@@ -3555,8 +3555,14 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   padding: 0px 30px;
   height: 100%;
 }
+.playCreator .secA .topButtonCont button.clearBt, .playCreator .secB .topButtonCont button.clearBt, .playCreator .secC .topButtonCont button.clearBt {
+  background: rgba(0, 0, 0, 0.678);
+}
 .playCreator .secA .topButtonCont button.color, .playCreator .secB .topButtonCont button.color, .playCreator .secC .topButtonCont button.color {
   background: rgba(58, 163, 204, 0.5);
+}
+.playCreator .secA .topButtonCont button.active, .playCreator .secB .topButtonCont button.active, .playCreator .secC .topButtonCont button.active {
+  background: rgba(97, 97, 97, 0.5);
 }
 .playCreator .secA, .playCreator .secC {
   max-width: 250px;
@@ -3752,8 +3758,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   background: rgba(0, 0, 0, 0.7);
 }
 .playCreator .secB .sectional .field .positionBox .player.remove:before, .playCreator .secB .sectional .field .positionBox .player.remove:after {
-  background: #dd1919;
-  color: white;
+  background: rgb(143, 142, 142);
+  color: #242222;
   transition: all 0.5s;
 }
 .playCreator .secB .sectional .field .positionBox .player:before, .playCreator .secB .sectional .field .positionBox .player:after {
