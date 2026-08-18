@@ -1776,6 +1776,12 @@ $fieldSize: 75%;
       flex:1;
       width:100%;
       max-height:70px;
+      button {
+        @include font($head, $white, 15px, 300, .09em, 20px, normal, uppercase, none, center);
+        @include boxA();
+        padding:0px 30px;
+        height:100%;
+      }
     }
   }
   .secA, .secC  {
@@ -1807,7 +1813,7 @@ $fieldSize: 75%;
           @include size(100%, 100%);
           @include flex(flex);
           img {
-            @include size(150px, auto);
+            @include size(120px, auto);
             @include pos(absolute, 40%, 50%, $trans: translate(-50%,-50%));
             opacity:.4;
           }

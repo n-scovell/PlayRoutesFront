@@ -3532,6 +3532,23 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   width: 100%;
   max-height: 70px;
 }
+.playCreator .secA .topButtonCont button, .playCreator .secB .topButtonCont button, .playCreator .secC .topButtonCont button {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 3px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0px 30px;
+  height: 100%;
+}
 .playCreator .secA, .playCreator .secC {
   max-width: 250px;
 }
@@ -3588,7 +3605,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   gap: 0;
 }
 .playCreator .secB .sectional .field .gridBox img {
-  width: 150px;
+  width: 120px;
   height: auto;
   min-width: 0;
   max-width: auto;

@@ -607,7 +607,11 @@ const showBox = (p:string) => {
         </div>
       </div>
       <div class="secB">
-        <div class="topButtonCont"></div>
+        <div class="topButtonCont">
+          <button>MOVE</button>
+          <button>DELETE</button>
+          <button>CLEAR</button>
+        </div>
         <div class="sectional">
           <div class="field">
             <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
@@ -631,7 +635,7 @@ const showBox = (p:string) => {
             </div>
           </div>
           <div class="gridBox">
-            <img src="@/assets/images/PlayRoutesBW_Orb.png" />
+            <img src="@/assets/images/PlayRoutesBWsm.png" />
             <div class="lineOfScrimmage" />
             <div class="gridLine" v-for="g in 7" :key="g" />
           </div>
