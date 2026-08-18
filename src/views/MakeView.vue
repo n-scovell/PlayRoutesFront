@@ -9,6 +9,8 @@
   import PlayCanvas from '@/components/PlayCanvas.vue'
   import type { Stroke, ColorType, ToolType } from '@/composables/usePlayCanvasB'
 
+  import Header from '@/components/maker/header.vue'
+
   //TYPES
   type Panel = 'pos' | 'pen' | 'color' | 'info' | 'formation' | null
   type DropKeys = 'ptype' | 'formation'
@@ -534,12 +536,140 @@
     gatherAllFormations()
   })
 
+const shrinkBox = ref<boolean>(false)
+const shownBox =  ref<string>('')
+const showBox = (p:string) => {
+  if (shownBox.value === p) {
+    shrinkBox.value = false
+    shownBox.value = ''
+  } else {
+    shrinkBox.value = true
+    shownBox.value = p
+  }
+  
+}
+
+
 
 </script>
 
 <template>
   <main>
-    <h1>Your Play: {{ title }}</h1>
+    <!-- <h1>CREATE YOUR PLAY</h1> -->
+    <section class="playCreator">
+      <div class="secA">
+        <div class="sectional a">
+          <Header title="PLAY INFORMATION" icon="clipboard" />
+          <form @submit.prevent class="submitForm">
+            <div class="inputCont a">
+            <label>Play Name<input placeholder="Name" type="text" v-model="title" /></label>
+            </div>
+            <div class="inputCont a">
+            <div class="selectHolder">
+            <label>Choose Your Play Type:
+            <button aria-label="Play Type Drop" class="dropDownInd" @pointerdown="showPlayTypes()">{{ dropDownsPlayType.ptype.newValue }}</button>
+            <div class="dropDownCase" v-if="showPlayType">
+            <div>
+            <button :aria-label="`${f} Option`" v-for="f in dropDownsPlayType.ptype.newLst" :key="f" @pointerdown="playTypeValue('ptype', f)">{{f}}</button>
+            </div>
+            </div>
+            </label>
+            </div>
+            </div>
+            <div class="btCont">
+              <button aria-label="Submit Play" class="primaryBt" @click="submitPlay">Submit Play</button>
+              <p class="success" v-if="playSuccess">PLAY CREATED!</p>
+            </div>
+          </form>
+        </div>
+        <div class="sectional b">
+          <Header title="FORMATIONS" icon="formation" />
+          <form @submit.prevent class="submitForm">
+            <div class="inputCont a">
+              <div class="selectHolder">
+                <label>Choose Your Formation:
+                <button aria-label="Formations Select" class="dropDownInd" @pointerdown="showFormations()">{{ dropDownsPlayType.formation.newValue }}</button>
+                <div class="dropDownCase" v-if="showFormation">
+                <div class="short">
+                <button :aria-label="`${f} Formation Option`" v-for="f in dropDownsPlayType.formation.newLst" :key="f" @pointerdown="formationType('formation', f)">{{f}}</button>
+                </div>
+                </div>
+                </label>
+              </div>
+            </div>
+            <!-- <div class="inputCont">
+              <label>Formation Name<input placeholder="New Formation" type="text" v-model="newFormation" /></label>
+            </div>
+            <div class="btCont b">
+              <button aria-label="Add Formation" class="formButton" @click="addFormation">Add Formation</button>
+            </div> -->
+          </form>
+        </div>
+      </div>
+      <div class="secB">
+        <div class="topButtonCont"></div>
+        <div class="sectional">
+          <div class="field">
+            <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
+            <div 
+            class="positionBox"
+            ref="container" 
+            @pointermove="onDrag"
+            @pointerup="stopDrag"
+            @pointercancel="stopDrag"
+          >
+            <div
+              v-for="p in players"
+              :key="p.id"
+              class="player"
+              :myText="p.pos"
+              :class="{ remove: activeTool === 'erase' }"
+              :style="{ left: `${p.x * 100}%`, top: `${p.y * 100}%` }"
+              @pointerdown="(e) => startDrag(p.id, p.pos, e)"
+            >
+            {{ p.pos }}
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="secC">
+        <div class="sectional"></div>
+        <div class="sectional"></div>
+      </div>
+    </section>
+  </main>
+</template>
+
+
+<!-- <form @submit.prevent class="submitForm">
+          <div class="inputCont">
+            <h3>Formations:</h3>
+          </div>
+          <div class="inputCont a">
+          <div class="selectHolder">
+          <label>Choose Your Formation:
+          <button aria-label="Formations Select" class="dropDownInd" @pointerdown="showFormations()">{{ dropDownsPlayType.formation.newValue }}</button>
+          <div class="dropDownCase" v-if="showFormation">
+          <div class="short">
+          <button :aria-label="`${f} Formation Option`" v-for="f in dropDownsPlayType.formation.newLst" :key="f" @pointerdown="formationType('formation', f)">{{f}}</button>
+          </div>
+          </div>
+          </label>
+          </div>
+          </div>
+          <div class="inputCont">
+          <h3>Add Formation:</h3>
+          <label>Formation Name<input placeholder="New Formation" type="text" v-model="newFormation" /></label>
+          </div>
+          <div class="btCont b">
+          <button aria-label="Add Formation" class="formButton" @click="addFormation">Add Formation</button>
+          </div>
+        </form> -->
+
+<!-- <template>
+  <main>
+    <h1>Play Creator</h1>
     <div class="errorsShow" v-if="errorsShow" @click="clearErrors()">
       <div class="errorCont">
         <p v-for="(e,index) in errors" :key="'error_'+index" :class="e.cls">{{ e.txt }}</p>
@@ -552,9 +682,9 @@
     </div>
     <div class="boardCont" v-if="auth.user">
     <div class="board" ref="fuller">
-      <!-- FIELD STRATEGY -->
+
       <div class="field" >
-        <!-- <h3>{{ title }}</h3> -->
+
         <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
         <div 
           ref="container" 
@@ -575,15 +705,15 @@
             {{ p.pos }}
           </div>
         </div>
-        <!-- GRID DISPLAY UTILITIES -->
+
         <div class="gridBox">
           <div class="lineOfScrimmage" />
           <div class="gridLine" v-for="g in 7" :key="g" />
         </div>
-        <!-- <div class="los" /> -->
+
       </div>
 
-      <!-- TOOLBOX -->
+
       <ul class="toolbox">
         <li v-for="b in myToolbarList" :key="'bt_'+b.class" :class="b.class">
           <button :aria-label="`${b.class} Button`" :class="b.class" @pointerdown="b.click">
@@ -599,7 +729,7 @@
         </li>
       </ul>
 
-      <!-- INFO BOX -->
+
       <ul class="toolbox toolInfo" :class="{active: activePanel === 'info'}">
         <form @submit.prevent class="submitPlay">
           <div class="inputCont">
@@ -656,8 +786,6 @@
         </form>
       </ul>
 
-
-      <!-- PEN COLORS -->
       <ul class="toolbox popTools positions" :class="{active: activePanel === 'color'}">
         <h3>Pen Color:</h3>
         <div class="popDisplay">
@@ -678,7 +806,6 @@
         </div>
       </ul>
 
-      <!-- PEN TOOLS -->
       <ul class="toolbox popTools positions" :class="{active: activePanel === 'pen'}">
         <h3>Pen Style:</h3>
         <div class="popDisplay">
@@ -713,7 +840,6 @@
         </div>
       </ul>
 
-      <!-- POSITIONS -->
       <ul class="toolbox popTools positions" :class="{active: activePanel === 'pos'}">
         <h3>Add Player:</h3>
         <div class="popDisplay" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
@@ -725,4 +851,4 @@
     </div>
     </div>
   </main>
-</template>
+</template> -->

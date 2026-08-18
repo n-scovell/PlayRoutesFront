@@ -1311,29 +1311,30 @@ form .btCont {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 20px 0px;
+  margin: 10px 0px;
   transition: all 0.3s 0.1s;
 }
 form .btCont input, form .btCont .dropDownInd, form .btCont textarea {
   background: rgba(255, 255, 255, 0.5);
 }
 form .btCont button {
+  flex: 1;
   background: #f5f5f5;
   color: #242222;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
-  font-weight: bold;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 18px;
   font-style: normal;
   letter-spacing: 0.01em;
-  text-transform: none;
+  text-transform: uppercase;
   text-shadow: none;
-  text-align: left;
-  padding: 10px 20px;
+  text-align: center;
+  padding: 8px 10px;
   transition: all 0.3s 0.1s;
 }
 form .btCont button:hover {
-  background: #242222;
+  background: rgb(1, 121, 190);
   color: #f5f5f5;
 }
 form .inputCont {
@@ -1343,17 +1344,17 @@ form .inputCont {
   align-items: stretch;
   justify-content: center;
   gap: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 form .inputCont label {
   color: #f5f5f5;
-  font-family: "Inter", sans-serif;
+  font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 15px;
   font-style: normal;
   letter-spacing: 0.01em;
-  text-transform: none;
+  text-transform: uppercase;
   text-shadow: none;
   text-align: left;
   display: flex;
@@ -1361,7 +1362,7 @@ form .inputCont label {
   flex-wrap: nowrap;
   align-items: stretch;
   justify-content: start;
-  gap: 5px;
+  gap: 10px;
   cursor: pointer;
 }
 form .inputCont .selectHolder {
@@ -1387,7 +1388,6 @@ form .inputCont .selectHolder .dropDownCase {
   background-position: 0px 0px;
   background-repeat: no-repeat;
   backdrop-filter: blur(15px);
-  border-radius: 20px;
   z-index: 10;
 }
 form .inputCont .selectHolder .dropDownCase div {
@@ -1424,7 +1424,7 @@ form .inputCont .selectHolder .dropDownCase.inactive {
   display: none;
 }
 form .inputCont input, form .inputCont .dropDownInd, form .inputCont textarea {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   color: #f5f5f5;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -1444,9 +1444,8 @@ form .inputCont input, form .inputCont .dropDownInd, form .inputCont textarea {
   caret-color: #242222;
   caret-animation: revert;
   caret-shape: underscore;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  padding: 10px 0px 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 0px 8px 10px;
 }
 form .inputCont input::-moz-placeholder, form .inputCont .dropDownInd::-moz-placeholder, form .inputCont textarea::-moz-placeholder {
   color: transparent;
@@ -1594,8 +1593,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   overflow: hidden;
 }
 .boardCont .board .player {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   min-width: 0;
   max-width: auto;
   min-height: auto;
@@ -3468,4 +3467,201 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     justify-content: center;
     gap: 8px;
   }
+}
+.playCreator {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 25px;
+  height: 80vh;
+  min-height: 550px;
+}
+.playCreator .boardCont, .playCreator .popCont, .playCreator .toolCont {
+  display: none;
+}
+.playCreator .secA, .playCreator .secB, .playCreator .secC {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.playCreator .secA .sectional, .playCreator .secB .sectional, .playCreator .secC .sectional {
+  flex: 1;
+  width: 100%;
+  padding: 15px;
+  border-radius: 3px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+.playCreator .secA .sectional h4, .playCreator .secB .sectional h4, .playCreator .secC .sectional h4 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.playCreator .secA .sectional h4 div, .playCreator .secB .sectional h4 div, .playCreator .secC .sectional h4 div {
+  flex: 1;
+  max-width: 22px;
+}
+.playCreator .secA .sectional h4 div img, .playCreator .secB .sectional h4 div img, .playCreator .secC .sectional h4 div img {
+  width: 100%;
+}
+.playCreator .secA .topButtonCont, .playCreator .secB .topButtonCont, .playCreator .secC .topButtonCont {
+  flex: 1;
+  width: 100%;
+  max-height: 70px;
+}
+.playCreator .secA, .playCreator .secC {
+  max-width: 310px;
+}
+.playCreator .secA .sectional.a {
+  background: transparent;
+}
+.playCreator .secB .sectional .field {
+  flex: 1;
+  position: relative;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: #242222;
+  background-image: url("@/assets/images/bck_chalkboard.jpg");
+  background-size: cover;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+}
+.playCreator .secB .sectional .field .canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  touch-action: none;
+  z-index: 2;
+}
+.playCreator .secB .sectional .field .positionBox {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.playCreator .secB .sectional .field .positionBox .player {
+  width: 30px;
+  height: 30px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  color: #242222;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 2px solid rgba(138, 137, 137, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: 8000;
+  cursor: grab;
+}
+.playCreator .secB .sectional .field .positionBox .player.remove:before, .playCreator .secB .sectional .field .positionBox .player.remove:after {
+  background: #dd1919;
+  color: white;
+  transition: all 0.5s;
+}
+.playCreator .secB .sectional .field .positionBox .player:before, .playCreator .secB .sectional .field .positionBox .player:after {
+  content: attr(myText);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: #242222;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.5s;
 }/*# sourceMappingURL=PRStyleB.css.map */

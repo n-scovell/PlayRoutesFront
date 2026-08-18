@@ -17,7 +17,7 @@ $blueC: #445ef1;
 $rustRed: rgb(207, 18, 18);
 $rustYellow: rgb(241, 220, 23);
 $rustBlue: rgb(13, 126, 192);
-
+ 
 $headerHeight: 80px;
 $avatarSize: 50px;
 $addedPlayerXS: 10px;
@@ -565,7 +565,6 @@ form {
   $br: 20px;
   @include size(100%, 100%);
   &.signUp, &.signIn {
-    
     width:80%;
     height:auto;
     min-width:150px;
@@ -624,28 +623,29 @@ form {
   }
   .btCont {
     @include flex(flex, row, nowrap, $align:center, $just: center, $gap: 10px);
-    margin:20px 0px;
+    margin:10px 0px;
     transition: all .3s .1s;
     input, .dropDownInd, textarea {
       @include backColor(rgba(255,255,255,.5));
     }
     button {
+      flex:1;
       @include backColor($white);
-      @include font($head, $black, 20px, bold, .01em, 20px);
-      padding:10px 20px;
+      @include font($head, $black, 18px, 400, .01em, 20px, normal, uppercase, none, center);
+      padding:8px 10px;
       transition: all .3s .1s;
       &:hover {
-        background: $black;
+        background: $blueB;
         color: $white;
       }
     }
   }
   .inputCont {
     @include flex(flex, column, wrap, stretch, center, 5px);
-    margin-bottom:10px;
+    margin-bottom:5px;
     label {
-      @include font($par, $white, 15px, 500, .01em, 20px, normal, none, none, left);
-      @include flex(flex, column, $gap: 5px);
+      @include font($head, $white, 15px, 500, .01em, 20px, normal, uppercase, none, left);
+      @include flex(flex, column, $gap: 10px);
       cursor:pointer;
     }
     .selectHolder {
@@ -655,7 +655,7 @@ form {
         @include pos(absolute, 24px, 0%);
         @include size(100%, auto);
         @include back(rgb(161, 161, 161), $blur: 15px);
-        border-radius:$br;
+        // border-radius:$br;
         z-index:10;
         div {
           @include flex(flex, column, $gap: 13px);
@@ -680,13 +680,12 @@ form {
       }
     }
     input, .dropDownInd, textarea {
-      @include backColor($grayC);
+      @include backColor(rgba(0,0,0,.1));
       @include font($par, $white, 12px, .05em);
       @include size(100%, auto);
       @include inpCaret($black, revert, underscore);
-      border-bottom:1px solid $grayB;
-      border-radius:$br;
-      padding:10px 0px 10px 20px;
+      border:1px solid $grayB;
+      padding:8px 0px 8px 10px;
       &::placeholder {
         color: transparent;
       }
@@ -758,7 +757,7 @@ form {
 $toolWidth: 50px;
 $toolBtSize: $toolWidth - 12px;
 $degreeSpin: -45deg;
-$playerSize:40px;
+$playerSize:30px;
 
 //PEN COLORS
 $penRed: #dd1919;
@@ -774,6 +773,7 @@ $penGreen: #00e913;
   display:none;
 
 }
+
 .boardCont {
   * {touch-action: none;}
   @include size(auto, 90vh);
@@ -1713,4 +1713,135 @@ $mobile: 728px;
 
 
  
+}
+
+
+//MAKER VARS
+$pagePadding: 25px;
+$pageCellPadding: $pagePadding - 15px;
+$mainHeight: 80vh;
+$menuMarBt: 10px;
+$fieldSize: 75%;
+
+// z-index index
+// 10 - canvas
+// 9
+// 8
+// 7
+// 6
+// 5
+// 4
+// 3
+// 2
+// 1
+// 0
+
+@mixin boxA() {
+  border-radius:3px;
+  border:3px solid rgba(255,255,255,.1);
+  background:rgba(0,0,0,.2);
+}
+.playCreator {
+  @include flex(flex, row, nowrap, center, center, $pageCellPadding);
+  padding: $pagePadding;
+  height: $mainHeight;
+  min-height:550px;
+  .boardCont, .popCont, .toolCont {
+    display:none;
+  }
+  .secA, .secB, .secC {
+    flex: 1;
+    height:100%;
+    @include flex(flex, column, nowrap, center, center, $pageCellPadding);
+    .sectional {
+      flex:1;
+      width:100%;
+      padding:15px;
+      @include boxA();
+      h4 {
+        @include rel();
+        @include flex(flex, row, nowrap, center, start, 10px);
+        @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, left);
+        margin-bottom:10px;
+        div {
+          flex: 1;
+          max-width:22px;
+          img {
+            width:100%;
+          }
+        }
+      }
+    }
+    .topButtonCont {
+      flex:1;
+      width:100%;
+      max-height:70px;
+    }
+  }
+  .secA, .secC  {
+    max-width:310px;
+  }
+  .secA {
+    .sectional {
+      &.a {
+        background:transparent;
+      }
+    }
+  }
+  .secB {
+    .sectional {
+      // padding:0px;
+      .field {
+        flex:1;
+        @include rel();
+        @include size(auto, 100%);
+        @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
+        .canvas {
+          @include pos(absolute, 0px, 0px);
+          @include size(100%, 100%);
+          touch-action: none;
+          z-index:2;
+        }
+        .positionBox {
+          @include pos(absolute, 0px, 0px);
+          @include size(100%, 100%);
+          -webkit-user-drag: none;
+          user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          .player {
+            @include size($playerSize, $playerSize);
+            @include backColor(transparent);
+            @include font($spec, $black, 20px, bold);
+            @include pos(absolute, $trans: translate(-50%, -50%));
+            @include flex(flex, wrap, nowrap, center, center);
+            border:2px solid rgba(138, 137, 137, 0.5);
+            box-shadow:0 5px 5px rgba(0,0,0,.5);
+            border-radius:50%;
+            z-index:8000;
+            cursor: grab;
+            &.remove {
+              &:before, &:after {
+                @include backColor($penRed);
+                color:white;
+                transition:all .5s;
+              }
+            }
+            &:before, &:after {
+              content:attr(myText);
+              @include size(100%, 100%);
+              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%) );
+              @include backColor($white);
+              @include flex(flex, row, nowrap, center, center);
+              @include font($spec, $black, 16px, 300, .01em, 15px,  normal, uppercase,  none,  center );
+              border-radius:50%;
+              z-index:1;
+              transition:all .5s;
+            }
+          }
+        }
+      }
+    }
+  }
 }
