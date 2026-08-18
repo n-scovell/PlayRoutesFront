@@ -1738,7 +1738,7 @@ $fieldSize: 75%;
 
 @mixin boxA() {
   border-radius:3px;
-  border:3px solid rgba(255,255,255,.1);
+  border:2px solid rgba(255,255,255,.1);
   background:rgba(0,0,0,.2);
 }
 .playCreator {
@@ -1775,12 +1775,21 @@ $fieldSize: 75%;
     .topButtonCont {
       flex:1;
       width:100%;
-      max-height:70px;
+      max-height:45px;
+      display:flex;
+      flex-direction:row;
+      flex-wrap:nowrap;
+      gap:$pageCellPadding;
+      order:0;
       button {
+        flex:1;
         @include font($head, $white, 15px, 300, .09em, 20px, normal, uppercase, none, center);
         @include boxA();
         padding:0px 30px;
         height:100%;
+        &.color {
+          background:rgb(58, 163, 204, .5);
+        }
       }
     }
   }
@@ -1788,6 +1797,7 @@ $fieldSize: 75%;
     max-width:250px;
   }
   .secA {
+    // order:3;
     .sectional {
       &.a {
         background:transparent;
@@ -1849,6 +1859,20 @@ $fieldSize: 75%;
             border-radius:50%;
             z-index:8000;
             cursor: grab;
+            transition: border .5s;
+            &.color {
+              transition: border .5s;
+              &.c { border:2px solid rgb(7, 232, 248); }
+              &.g { border:2px solid rgb(7, 232, 248); }
+              &.t { border:2px solid rgb(7, 232, 248); }
+              &.qb { border:2px solid rgb(230, 3, 154); background:rgba(0,0,0,.7) }
+              &.rb { border:2px solid rgb(201, 240, 28); background:rgba(0,0,0,.7) }
+              &.fb { border:2px solid rgb(238, 236, 152); background:rgba(0,0,0,.7) }
+              &.tb { border:2px solid rgb(233, 179, 1); background:rgba(0,0,0,.7) }
+              &.te { border:2px solid rgb(1, 4, 197); background:rgba(0,0,0,.7) }
+              &.sl { border:2px solid rgb(35, 71, 172); background:rgba(0,0,0,.7) }
+              &.wr { border:2px solid rgb(52, 101, 238); background:rgba(0,0,0,.7) }
+            }
             &.remove {
               &:before, &:after {
                 @include backColor($penRed);

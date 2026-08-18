@@ -550,6 +550,10 @@ const showBox = (p:string) => {
 }
 
 
+const colorFlip = ref<boolean>(false)
+const changePosColor = () => {
+  colorFlip.value = !colorFlip.value
+}
 
 </script>
 
@@ -608,9 +612,10 @@ const showBox = (p:string) => {
       </div>
       <div class="secB">
         <div class="topButtonCont">
-          <button>MOVE</button>
-          <button>DELETE</button>
-          <button>CLEAR</button>
+          <button @click="makeActiveTool('select')">MOVE</button>
+          <button @click="makeActiveTool('erase')">DELETE</button>
+          <button @click="clearPlayers()">CLEAR</button>
+          <button :class="{color : colorFlip }" @click="changePosColor()">COLOR/B&W</button>
         </div>
         <div class="sectional">
           <div class="field">
@@ -627,7 +632,7 @@ const showBox = (p:string) => {
               :key="p.id"
               class="player"
               :myText="p.pos"
-              :class="{ remove: activeTool === 'erase' }"
+              :class="[{color: colorFlip }, p.pos, { remove: activeTool === 'erase'} ]"
               :style="{ left: `${p.x * 100}%`, top: `${p.y * 100}%` }"
               @pointerdown="(e) => startDrag(p.id, p.pos, e)"
             >

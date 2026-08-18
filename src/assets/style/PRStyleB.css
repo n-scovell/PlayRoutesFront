@@ -3497,7 +3497,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   width: 100%;
   padding: 15px;
   border-radius: 3px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
 }
 .playCreator .secA .sectional h4, .playCreator .secB .sectional h4, .playCreator .secC .sectional h4 {
@@ -3530,9 +3530,15 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 .playCreator .secA .topButtonCont, .playCreator .secB .topButtonCont, .playCreator .secC .topButtonCont {
   flex: 1;
   width: 100%;
-  max-height: 70px;
+  max-height: 45px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  order: 0;
 }
 .playCreator .secA .topButtonCont button, .playCreator .secB .topButtonCont button, .playCreator .secC .topButtonCont button {
+  flex: 1;
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
@@ -3544,10 +3550,13 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   text-shadow: none;
   text-align: center;
   border-radius: 3px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
   padding: 0px 30px;
   height: 100%;
+}
+.playCreator .secA .topButtonCont button.color, .playCreator .secB .topButtonCont button.color, .playCreator .secC .topButtonCont button.color {
+  background: rgba(58, 163, 204, 0.5);
 }
 .playCreator .secA, .playCreator .secC {
   max-width: 250px;
@@ -3700,6 +3709,47 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   border-radius: 50%;
   z-index: 8000;
   cursor: grab;
+  transition: border 0.5s;
+}
+.playCreator .secB .sectional .field .positionBox .player.color {
+  transition: border 0.5s;
+}
+.playCreator .secB .sectional .field .positionBox .player.color.c {
+  border: 2px solid rgb(7, 232, 248);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.g {
+  border: 2px solid rgb(7, 232, 248);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.t {
+  border: 2px solid rgb(7, 232, 248);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.qb {
+  border: 2px solid rgb(230, 3, 154);
+  background: rgba(0, 0, 0, 0.7);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.rb {
+  border: 2px solid rgb(201, 240, 28);
+  background: rgba(0, 0, 0, 0.7);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.fb {
+  border: 2px solid rgb(238, 236, 152);
+  background: rgba(0, 0, 0, 0.7);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.tb {
+  border: 2px solid rgb(233, 179, 1);
+  background: rgba(0, 0, 0, 0.7);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.te {
+  border: 2px solid rgb(1, 4, 197);
+  background: rgba(0, 0, 0, 0.7);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.sl {
+  border: 2px solid rgb(35, 71, 172);
+  background: rgba(0, 0, 0, 0.7);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.wr {
+  border: 2px solid rgb(52, 101, 238);
+  background: rgba(0, 0, 0, 0.7);
 }
 .playCreator .secB .sectional .field .positionBox .player.remove:before, .playCreator .secB .sectional .field .positionBox .player.remove:after {
   background: #dd1919;
