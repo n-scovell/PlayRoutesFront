@@ -3533,7 +3533,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   max-height: 70px;
 }
 .playCreator .secA, .playCreator .secC {
-  max-width: 310px;
+  max-width: 250px;
 }
 .playCreator .secA .sectional.a {
   background: transparent;
