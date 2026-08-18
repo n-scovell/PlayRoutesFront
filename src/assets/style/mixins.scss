@@ -94,3 +94,9 @@ $hand: "Permanent Marker", cursive;
     caret-animation: $animation;
     caret-shape: $shape;
 }
+
+@mixin boxA() {
+  border-radius:3px;
+  border:2px solid rgba(255,255,255,.1);
+  background:rgba(0,0,0,.2);
+}

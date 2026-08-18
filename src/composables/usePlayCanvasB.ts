@@ -152,7 +152,7 @@ const drawMovements = (e: PointerEvent, canvas: HTMLCanvasElement) => {
     ctx!.lineJoin = 'round'
     ctx!.lineCap = 'round'
     
-    ctx!.lineWidth = canvasMode.value === 'small' ? stroke.width - 3 : stroke.width
+    ctx!.lineWidth = canvasMode.value === 'small' ? stroke.width - 3 : stroke.width - 1
 
     if (stroke.tool === 'chalk') { 
       ctx!.globalAlpha = 0.8

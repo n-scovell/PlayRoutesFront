@@ -648,6 +648,29 @@ form {
       @include flex(flex, column, $gap: 10px);
       cursor:pointer;
     }
+    &.inline {
+      @include flex(flex, row, nowrap, center, center, $gap:0px);
+      height:35px;
+      button {
+        flex:1;
+        max-width:30%;
+        height:100%;
+        margin:0px;
+        @include boxA();
+        @include font($head, $white, 15px, 400, .05em, 20px, normal, uppercase, none, center);
+        &:hover {
+          background:rgba(255,255,255,.2);
+          color:$white;
+        }
+      }
+      label {
+        flex:1;
+        height:100%;
+        input {
+          height:100%;
+        }
+      }
+    }
     .selectHolder {
       @include rel();
       margin:10px 0px;
@@ -1736,11 +1759,7 @@ $fieldSize: 75%;
 // 1
 // 0
 
-@mixin boxA() {
-  border-radius:3px;
-  border:2px solid rgba(255,255,255,.1);
-  background:rgba(0,0,0,.2);
-}
+
 .playCreator {
   @include flex(flex, row, nowrap, center, center, $pageCellPadding);
   padding: $pagePadding;
@@ -1784,14 +1803,90 @@ $fieldSize: 75%;
       button {
         flex:1;
         @include font($head, $white, 15px, 300, .09em, 20px, normal, uppercase, none, center);
+        @include flex(flex, row, nowrap, center, center, 10px);
         @include boxA();
-        padding:0px 30px;
         height:100%;
+        .icon {
+          &.clear {
+            $w:20px;
+            $wB: $w - 10px;
+            width:$wB;
+            height:$w;
+            outline:2px solid $white;
+            border-radius:5px;
+            position:relative;
+            transform:rotate(20deg);
+            &:after {
+              content:' ';
+              width:13px;
+              height:2px;
+              background:$white;
+              position:absolute;
+              top:85%;
+              left:85%;
+              transform:rotate(-20deg);
+            }
+            &:before {
+              content:' ';
+              width:100%;
+              height:22%;
+              background:$white;
+              position:absolute;
+              bottom:0px;
+              left:0px;
+            }
+          }
+          &.trash {
+            $w:20px;
+            $wB: $w - 5px;
+            width:$wB;
+            height:$w;
+            @include flex(flex, column, nowrap, center, center, 2px);
+            div {
+              flex:1;
+              background:$white;
+              &:nth-child(1) {
+                max-height:12%;
+                width:100%;
+                position:relative;
+                &:before {
+                  content:' ';
+                  width:30%;
+                  height:2px;
+                  background:$white;
+                  position:absolute;
+                  top:-2px;
+                  left:50%;
+                  transform:translateX(-50%);
+                }
+              }
+              &:nth-child(2) {
+                $midA: 85%;
+                $midB: 100% - $midA;
+                width:100%;
+                clip-path:polygon(0% 0%, 100% 0%, $midA 100%, $midB 100%);
+              }
+            }
+          }
+          &.pointer {
+            $w:20px;
+            $wB: $w - 5px;
+            $wing: 75%;
+            $midA: 65%;
+            $midB: 100% - $midA;
+            $midTop: 60%;
+            width:$wB;
+            height:$w;
+            background:$white;
+            clip-path:polygon(
+              50% 0%, 100% $wing, $midA $midTop, $midA 100%, $midB 100%, $midB $midTop, 0% $wing
+            );
+            transform:rotate(-15deg);
+          }
+        }
         &.clearBt {
           background:rgba(0, 0, 0, 0.5);
-          &:hover {
-            @include font($head, $white, 18px, 300, .09em, 20px, normal, uppercase, none, center);
-          }
+          
         }
         &.color {
           background:rgba(58, 163, 204, 0.192);
@@ -1871,7 +1966,7 @@ $fieldSize: 75%;
             transition: border .5s;
             &.color {
               transition: border .5s;
-              $brd: 4px;
+              $brd: 3px;
               &.c { border:$brd solid rgb(7, 232, 248); }
               &.g { border:$brd solid rgb(7, 232, 248); }
               &.t { border:$brd solid rgb(7, 232, 248); }

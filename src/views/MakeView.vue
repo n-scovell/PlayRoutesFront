@@ -601,21 +601,28 @@ const changePosColor = () => {
                 </label>
               </div>
             </div>
-            <!-- <div class="inputCont">
-              <label>Formation Name<input placeholder="New Formation" type="text" v-model="newFormation" /></label>
+            <div class="inputCont inline">
+              <button aria-label="Add Formation" @click="addFormation">+NEW</button>
+              <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
             </div>
-            <div class="btCont b">
-              <button aria-label="Add Formation" class="formButton" @click="addFormation">Add Formation</button>
-            </div> -->
           </form>
         </div>
       </div>
       <div class="secB">
         <div class="topButtonCont">
-          <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">MOVE</button>
-          <button :class="{active : activeTool === 'erase'}" @click="makeActiveTool('erase')">DELETE</button>
+          <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">
+            <div class="icon pointer"></div>
+            MOVE
+          </button>
+          <button :class="{active : activeTool === 'erase'}" @click="makeActiveTool('erase')">
+            <div class="icon trash"><div></div><div></div></div>
+            DELETE
+          </button>
           <button :class="{color : colorFlip }" @click="changePosColor()">COLOR/B&W</button>
-          <button class="clearBt" @click="clearPlayers()">CLEAR</button>
+          <button class="clearBt" @click="clearPlayers()">
+            <div class="icon clear"></div>
+            CLEAR
+          </button>
         </div>
         <div class="sectional">
           <div class="field">
