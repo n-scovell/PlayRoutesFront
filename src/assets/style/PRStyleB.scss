@@ -1788,10 +1788,13 @@ $fieldSize: 75%;
         padding:0px 30px;
         height:100%;
         &.clearBt {
-          background:rgba(0, 0, 0, 0.678);
+          background:rgba(0, 0, 0, 0.5);
+          &:hover {
+            @include font($head, $white, 18px, 300, .09em, 20px, normal, uppercase, none, center);
+          }
         }
         &.color {
-          background:rgb(58, 163, 204, .5);
+          background:rgba(58, 163, 204, 0.192);
         }
         &.active {
           background:rgba(97, 97, 97, 0.5);
@@ -1868,16 +1871,17 @@ $fieldSize: 75%;
             transition: border .5s;
             &.color {
               transition: border .5s;
-              &.c { border:2px solid rgb(7, 232, 248); }
-              &.g { border:2px solid rgb(7, 232, 248); }
-              &.t { border:2px solid rgb(7, 232, 248); }
-              &.qb { border:2px solid rgb(230, 3, 154); background:rgba(0,0,0,.7) }
-              &.rb { border:2px solid rgb(201, 240, 28); background:rgba(0,0,0,.7) }
-              &.fb { border:2px solid rgb(238, 236, 152); background:rgba(0,0,0,.7) }
-              &.tb { border:2px solid rgb(233, 179, 1); background:rgba(0,0,0,.7) }
-              &.te { border:2px solid rgb(1, 4, 197); background:rgba(0,0,0,.7) }
-              &.sl { border:2px solid rgb(35, 71, 172); background:rgba(0,0,0,.7) }
-              &.wr { border:2px solid rgb(52, 101, 238); background:rgba(0,0,0,.7) }
+              $brd: 4px;
+              &.c { border:$brd solid rgb(7, 232, 248); }
+              &.g { border:$brd solid rgb(7, 232, 248); }
+              &.t { border:$brd solid rgb(7, 232, 248); }
+              &.qb { border:$brd solid rgb(230, 3, 154); background:rgba(0,0,0,.7) }
+              &.rb { border:$brd solid rgb(201, 240, 28); background:rgba(0,0,0,.7) }
+              &.fb { border:$brd solid rgb(238, 236, 152); background:rgba(0,0,0,.7) }
+              &.tb { border:$brd solid rgb(233, 179, 1); background:rgba(0,0,0,.7) }
+              &.te { border:$brd solid rgb(1, 4, 197); background:rgba(0,0,0,.7) }
+              &.sl { border:$brd solid rgb(35, 71, 172); background:rgba(0,0,0,.7) }
+              &.wr { border:$brd solid rgb(52, 101, 238); background:rgba(0,0,0,.7) }
             }
             &.remove {
               &:before, &:after {
