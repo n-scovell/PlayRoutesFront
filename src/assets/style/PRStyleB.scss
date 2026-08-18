@@ -1790,17 +1790,39 @@ $fieldSize: 75%;
   }
   .secB {
     .sectional {
-      // padding:0px;
+      padding:0px;
       .field {
         flex:1;
         @include rel();
         @include size(auto, 100%);
-        @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
+        // @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
         .canvas {
           @include pos(absolute, 0px, 0px);
           @include size(100%, 100%);
           touch-action: none;
           z-index:2;
+        }
+        .gridBox {
+          @include pos(absolute, 0%, 50%, $trans: translate(-50%,0%));
+          @include size(100%, 100%);
+          @include flex(flex);
+          img {
+            @include size(150px, auto);
+            @include pos(absolute, 40%, 50%, $trans: translate(-50%,-50%));
+            opacity:.4;
+          }
+          .lineOfScrimmage {
+            @include pos(absolute, 65%);
+            @include size(100%, 10px);
+            @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
+          }
+          .gridLine {
+            flex:1;
+            border-right:1px dashed rgba(255,255,255,.9);
+            &:last-child {
+              border-right:none;
+            }
+          }
         }
         .positionBox {
           @include pos(absolute, 0px, 0px);
@@ -1812,11 +1834,11 @@ $fieldSize: 75%;
           -ms-user-select: none;
           .player {
             @include size($playerSize, $playerSize);
-            @include backColor(transparent);
-            @include font($spec, $black, 20px, bold);
+            @include backColor(rgb(54, 54, 54));
+            @include font($spec, transparent, 20px, bold);
             @include pos(absolute, $trans: translate(-50%, -50%));
             @include flex(flex, wrap, nowrap, center, center);
-            border:2px solid rgba(138, 137, 137, 0.5);
+            border:2px solid rgba(231, 231, 231, 0.5);
             box-shadow:0 5px 5px rgba(0,0,0,.5);
             border-radius:50%;
             z-index:8000;
@@ -1831,10 +1853,10 @@ $fieldSize: 75%;
             &:before, &:after {
               content:attr(myText);
               @include size(100%, 100%);
-              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%) );
-              @include backColor($white);
+              @include pos(absolute, 51%, 50%, $trans:translate(-50%,-50%) );
+              @include backColor(transparent);
               @include flex(flex, row, nowrap, center, center);
-              @include font($spec, $black, 16px, 300, .01em, 15px,  normal, uppercase,  none,  center );
+              @include font($head, $white, 11px, 100, .05em, 15px,  normal, uppercase,  none,  center );
               border-radius:50%;
               z-index:1;
               transition:all .5s;

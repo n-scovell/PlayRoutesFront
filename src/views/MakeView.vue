@@ -630,6 +630,11 @@ const showBox = (p:string) => {
             {{ p.pos }}
             </div>
           </div>
+          <div class="gridBox">
+            <img src="@/assets/images/PlayRoutesBW_Orb.png" />
+            <div class="lineOfScrimmage" />
+            <div class="gridLine" v-for="g in 7" :key="g" />
+          </div>
           </div>
         </div>
       </div>
