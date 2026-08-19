@@ -43,22 +43,9 @@
         <div class="deskNav">
             <button aria-label="Menu BT" class="icoBt" v-for="route in routes" :key="route.path">
                 <RouterLink :to="route.path">
-                    <button aria-label="Desktop Button">{{ route.name }}</button>
+                    {{ route.name }}
                 </RouterLink>
             </button>
         </div>
     </nav>
 </template>
-
-<style lang="scss">
-// nav {
-//     position:relative;
-//     top:0px;
-//     left:100px;
-//     button {
-//     color:white;
-//     font-size:25px;
-//     background:none;
-//     }
-// }
-</style>

@@ -188,6 +188,7 @@ h1 {
   max-width: auto;
   min-height: auto;
   max-height: auto;
+  color: #f5f5f5;
 }
 .play-routes header nav .mobNav .icoBt a button {
   width: 100%;
@@ -235,6 +236,9 @@ h1 {
   text-align: left;
   background: transparent;
   cursor: pointer;
+}
+.play-routes header nav .deskNav button.active {
+  background: red;
 }
 .play-routes header .userCont {
   position: relative;
@@ -3506,6 +3510,14 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     align-items: center;
     justify-content: center;
     gap: 8px;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 .playCreator {

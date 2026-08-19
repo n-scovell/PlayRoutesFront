@@ -108,6 +108,7 @@ h1 {
           }
           .icoBt {
             @include size(100%, auto);
+            color:$white;
             a {
               button {
                 @include size(100%, auto);
@@ -124,6 +125,9 @@ h1 {
           @include font($head, $white, 15px, bold, .08em, 20px, normal, uppercase);
           @include backColor();
           cursor:pointer;
+          &.active {
+            background:red;
+          }
         }
       }
     }
@@ -1758,6 +1762,10 @@ $fieldSize: 75%;
 // 1
 // 0
 
+@keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity: 1; }
+}
 
 .playCreator {
   @include flex(flex, row, nowrap, center, center, $pageCellPadding);
@@ -1809,6 +1817,7 @@ $fieldSize: 75%;
       flex-wrap:nowrap;
       gap:$pageCellPadding;
       order:0;
+
       button {
         flex:1;
         @include font($head, $white, 15px, 300, .09em, 20px, normal, uppercase, none, center);
