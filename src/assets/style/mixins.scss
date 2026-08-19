@@ -100,3 +100,8 @@ $hand: "Permanent Marker", cursive;
   border:2px solid rgba(255,255,255,.1);
   background:rgba(0,0,0,.2);
 }
+@mixin boxB() {
+  border-radius:3px;
+  border:2px solid rgba(255,255,255,.1);
+  background:rgba(0,0,0,1);
+}

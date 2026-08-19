@@ -1328,18 +1328,17 @@ $penGreen: #00e913;
 
 
 .errorsShow {
-  @include pos(fixed,0px,0px);
-  @include size(100vw, 100vh);
-  @include backColor(rgba(8, 8, 8, 0));
-  
+  @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+  @include size(auto, auto);
+  padding:20px;
   z-index:999999;
   .errorCont {
-    @include backColor(rgba(0,0,0,.9));
     @include size(auto, auto);
     @include flex(flex, column, nowrap, center, center);
     @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-    border:2px solid rgba(255,255,255,.5);
+    @include boxB();
     padding:30px 50px;
+
     p {
       &.hdr {
         @include font($head, $white, 25px, 400, -.01em, 20px, normal, uppercase, none, left);
@@ -1765,9 +1764,6 @@ $fieldSize: 75%;
   padding: $pagePadding;
   height: $mainHeight;
   min-height:550px;
-  .boardCont, .popCont, .toolCont {
-    display:none;
-  }
   .secA, .secB, .secC {
     flex: 1;
     height:100%;
@@ -1913,7 +1909,7 @@ $fieldSize: 75%;
     }
   }
   .secA, .secC  {
-    max-width:260px;
+    max-width:230px;
   }
   .secA {
     // order:3;
@@ -2089,6 +2085,28 @@ $fieldSize: 75%;
           }
         }
       }
+    }
+  }
+}
+@media only screen and (max-width:1125px) {
+  .playCreator {
+    .secB {
+      min-width:600px;
+    }
+    .secA, .secC  {
+      
+      min-width:220px;
+    }
+  }
+}
+@media only screen and (max-width:5000px) {
+  .playCreator {
+    .secB {
+      max-width:1600px;
+    }
+    .secA, .secC  {
+      
+      max-width:320px;
     }
   }
 }

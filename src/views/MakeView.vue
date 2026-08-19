@@ -628,6 +628,11 @@ const changePosColor = () => {
           </button>
         </div>
         <div class="sectional">
+          <div class="errorsShow" v-if="errorsShow" @click="clearErrors()">
+            <div class="errorCont">
+              <p v-for="(e,index) in errors" :key="'error_'+index" :class="e.cls">{{ e.txt }}</p>
+            </div>
+          </div>
           <p class="success" v-if="playSuccess"><button @click="closeBox()">X</button>PLAY CREATED!</p>
           <p class="pc" v-if="playerCount">Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
           <div class="field">

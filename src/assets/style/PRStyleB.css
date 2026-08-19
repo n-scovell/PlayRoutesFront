@@ -2740,23 +2740,22 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 
 .errorsShow {
-  position: fixed;
-  top: 0px;
-  left: 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   bottom: none;
   right: none;
-  transform: none;
-  width: 100vw;
-  height: 100vh;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
   min-width: 0;
   max-width: auto;
   min-height: auto;
   max-height: auto;
-  background: rgba(8, 8, 8, 0);
+  padding: 20px;
   z-index: 999999;
 }
 .errorsShow .errorCont {
-  background: rgba(0, 0, 0, 0.9);
   width: auto;
   height: auto;
   min-width: 0;
@@ -2775,7 +2774,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   bottom: none;
   right: none;
   transform: translate(-50%, -50%);
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgb(0, 0, 0);
   padding: 30px 50px;
 }
 .errorsShow .errorCont p.hdr {
@@ -3518,9 +3519,6 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   height: 80vh;
   min-height: 550px;
 }
-.playCreator .boardCont, .playCreator .popCont, .playCreator .toolCont {
-  display: none;
-}
 .playCreator .secA, .playCreator .secB, .playCreator .secC {
   flex: 1;
   height: 100%;
@@ -3711,7 +3709,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   background: rgba(97, 97, 97, 0.5);
 }
 .playCreator .secA, .playCreator .secC {
-  max-width: 260px;
+  max-width: 230px;
 }
 .playCreator .secA .sectional.a {
   background: transparent;
@@ -4086,4 +4084,21 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 .playCreator .secC .sectional.pos .colors .posCont button {
   border: none;
+}
+
+@media only screen and (max-width: 1125px) {
+  .playCreator .secB {
+    min-width: 600px;
+  }
+  .playCreator .secA, .playCreator .secC {
+    min-width: 220px;
+  }
+}
+@media only screen and (max-width: 5000px) {
+  .playCreator .secB {
+    max-width: 1600px;
+  }
+  .playCreator .secA, .playCreator .secC {
+    max-width: 320px;
+  }
 }/*# sourceMappingURL=PRStyleB.css.map */
