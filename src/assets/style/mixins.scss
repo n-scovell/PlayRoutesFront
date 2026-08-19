@@ -43,7 +43,7 @@ $hand: "Permanent Marker", cursive;
     max-height: $maxH;
 }
 
-@mixin gridFill($col: 1fr 1ft, $row: 1fr 1fr 1fr, $gap: 0px) {
+@mixin gridFill($col: 1fr 1fr, $row: 1fr 1fr 1fr, $gap: 0px) {
     display: grid;
     grid-template-columns: $col;
     grid-template-rows: $row;

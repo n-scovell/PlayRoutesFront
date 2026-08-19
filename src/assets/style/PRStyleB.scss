@@ -692,7 +692,7 @@ form {
           background:red;
         }
         .short {
-          max-height:200px;
+          max-height:110px;
           overflow-y:scroll;
         }
         &.inactive {
@@ -1777,6 +1777,19 @@ $fieldSize: 75%;
       width:100%;
       padding:15px;
       @include boxA();
+      @include rel();
+      .info {
+        @include size(22px, 22px);
+        display:none;
+        @include backColor($white);
+        @include pos(absolute, 22px, $right:0px, $trans:translate(-50%, -50%));
+        @include font($par, $black, 22px, 333, .02em, 20px, italic, lowercase, none, center);
+        border-radius:50%;
+        outline:2px solid red;
+        &:hover {
+          background:red;
+        }
+      }
       h4 {
         @include rel();
         @include flex(flex, row, nowrap, center, start, 10px);
@@ -1886,7 +1899,9 @@ $fieldSize: 75%;
         }
         &.clearBt {
           background:rgba(0, 0, 0, 0.5);
-          
+          &:hover {
+            background:rgba(0, 0, 0, 0.5);
+          }
         }
         &.color {
           background:rgba(58, 163, 204, 0.192);
@@ -1898,7 +1913,7 @@ $fieldSize: 75%;
     }
   }
   .secA, .secC  {
-    max-width:250px;
+    max-width:260px;
   }
   .secA {
     // order:3;
@@ -1911,6 +1926,30 @@ $fieldSize: 75%;
   .secB {
     .sectional {
       padding:0px;
+      @include rel();
+      
+      .success {
+        @include backColor(rgba(0,0,0,1));
+        @include size(350px, 200px);
+        @include flex(flex, row, nowrap, center, center);
+        @include font($spec, $blueB, 25px, 400);
+        @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+        z-index:99999;
+        button {
+          color:white;
+          font-weight:bold;
+          @include pos(absolute, 15px, $right:5px, $trans:translate(0%,-50%));
+        }
+      }
+      .pc {
+        @include font($par, $white, 11px, 400);
+        @include pos(absolute, $bottom:5px, $left:10px);
+        z-index:99999;
+        .complete {
+          color:$penGreen;
+          font-weight:bold;
+        }
+      }
       .field {
         flex:1;
         @include rel();
@@ -1926,11 +1965,20 @@ $fieldSize: 75%;
           @include pos(absolute, 0%, 50%, $trans: translate(-50%,0%));
           @include size(100%, 100%);
           @include flex(flex);
-          img {
-            @include size(120px, auto);
+          .logoCont {
+            @include rel();
+            @include size(150px, 150px);
             @include pos(absolute, 40%, 50%, $trans: translate(-50%,-50%));
-            opacity:.4;
+            border:5px solid $white;
+            border-radius:50%;
+            mix-blend-mode: saturation;
+            opacity:.3;
+            img {
+              @include size(70%, auto);
+              @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+            }
           }
+          
           .lineOfScrimmage {
             @include pos(absolute, 65%);
             @include size(100%, 10px);
@@ -1996,6 +2044,48 @@ $fieldSize: 75%;
               z-index:1;
               transition:all .5s;
             }
+          }
+        }
+      }
+    }
+  }
+  .secC {
+    .sectional {
+      &.pos {
+        
+        .positions, .pens, .colors {
+          height:100%;
+          @include gridFill(1fr 1fr 1fr 1fr, 1fr 1fr 1fr 1fr, 10px);
+          .posCont {
+            position:relative;
+            button {
+              $w: 35px;
+              border:2px solid $white;
+              @include size($w, $w);
+              position:absolute;
+              top:50%;
+              left:50%;
+              transform:translate(-50%,-50%);
+              border-radius:50%;
+              @include flex(flex, row, nowrap, center, center);
+              @include font($head, $white, 15px, 300, .02em, 20px, normal, uppercase, none, center);
+            }
+          }
+        }
+        .pens, .colors {
+          height:45px;
+          margin-top:30px;
+          margin-bottom:5px;
+          .posCont button {
+            &.white { background:$penWhite; }
+            &.red { background:$penRed; }
+            &.blue { background:$penBlue; }
+            &.yellow { background:$penYellow; }
+          }
+        }
+        .colors {
+          .posCont button {
+            border:none;
           }
         }
       }

@@ -480,7 +480,9 @@
     hasWR.value = 0
     hasSL.value = 0
   }
-
+  const closeBox = () => {
+    playSuccess.value = false;
+  }
   //WATCH
   // watch when a new formation dropdown is chosen
   // watch(() => dropDownsPlayType.value.formation.newValue, (f: string) => {
@@ -563,6 +565,7 @@ const changePosColor = () => {
     <section class="playCreator">
       <div class="secA">
         <div class="sectional a">
+          <button class="info">i</button>
           <Header title="PLAY INFORMATION" icon="clipboard" />
           <form @submit.prevent class="submitForm">
             <div class="inputCont a">
@@ -582,11 +585,11 @@ const changePosColor = () => {
             </div>
             <div class="btCont">
               <button aria-label="Submit Play" class="primaryBt" @click="submitPlay">Submit Play</button>
-              <p class="success" v-if="playSuccess">PLAY CREATED!</p>
             </div>
           </form>
         </div>
         <div class="sectional b">
+          <button class="info">i</button>
           <Header title="FORMATIONS" icon="formation" />
           <form @submit.prevent class="submitForm">
             <div class="inputCont a">
@@ -625,6 +628,8 @@ const changePosColor = () => {
           </button>
         </div>
         <div class="sectional">
+          <p class="success" v-if="playSuccess"><button @click="closeBox()">X</button>PLAY CREATED!</p>
+          <p class="pc" v-if="playerCount">Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
           <div class="field">
             <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
             <div 
@@ -647,7 +652,9 @@ const changePosColor = () => {
             </div>
           </div>
           <div class="gridBox">
-            <img src="@/assets/images/PlayRoutesBWsm.png" />
+            <div class="logoCont">
+              <img src="@/assets/images/PlayRoutesBWsm.png" />
+            </div>
             <div class="lineOfScrimmage" />
             <div class="gridLine" v-for="g in 7" :key="g" />
           </div>
@@ -655,8 +662,45 @@ const changePosColor = () => {
         </div>
       </div>
       <div class="secC">
-        <div class="sectional"></div>
-        <div class="sectional"></div>
+        <div class="sectional pos">
+          <button class="info">i</button>
+          <Header title="POSITIONS" icon="formation" />
+          <div class="positions">
+            <div class="posCont" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
+              <button :aria-label="`${p.pos}`" >{{ p.pos.toUpperCase() }}</button>
+            </div>
+          </div> 
+        </div>
+        <div class="sectional pos">
+          <button class="info">i</button>
+          <Header title="PEN STYLE" icon="formation" />
+          <div class="pens">
+            <div class="posCont">
+              <button aria-label="Pen Stroke" @pointerdown="changeTool('pen')">P</button>
+            </div>
+            <div class="posCont">
+              <button aria-label="Chalk Stroke" @pointerdown="changeTool('chalk')">C</button>
+            </div>
+            <div class="posCont">
+              <button aria-label="Dash Stroke" @pointerdown="changeTool('dash')">D</button>
+            </div>
+          </div> 
+          <Header title="PEN COLOR" icon="formation" />
+          <div class="colors">
+            <div class="posCont">
+              <button class="white" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
+            </div>
+            <div class="posCont">
+              <button class="red" aria-label="Pen Stroke" @pointerdown="changeColor('red')"></button>
+            </div>
+            <div class="posCont">
+              <button class="blue" aria-label="Pen Stroke" @pointerdown="changeColor('blue')"></button>
+            </div>
+            <div class="posCont">
+              <button class="yellow" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -807,6 +851,8 @@ const changePosColor = () => {
         </form>
       </ul>
 
+
+      LAST MENU
       <ul class="toolbox popTools positions" :class="{active: activePanel === 'color'}">
         <h3>Pen Color:</h3>
         <div class="popDisplay">
