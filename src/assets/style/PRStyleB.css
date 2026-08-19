@@ -3709,7 +3709,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   background: rgba(97, 97, 97, 0.5);
 }
 .playCreator .secA, .playCreator .secC {
-  max-width: 230px;
+  max-width: 250px;
 }
 .playCreator .secA .sectional.a {
   background: transparent;
@@ -4091,14 +4091,6 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     min-width: 600px;
   }
   .playCreator .secA, .playCreator .secC {
-    min-width: 220px;
-  }
-}
-@media only screen and (max-width: 5000px) {
-  .playCreator .secB {
-    max-width: 1600px;
-  }
-  .playCreator .secA, .playCreator .secC {
-    max-width: 320px;
+    min-width: 210px;
   }
 }/*# sourceMappingURL=PRStyleB.css.map */
