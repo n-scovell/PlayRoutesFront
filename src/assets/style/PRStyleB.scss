@@ -1757,7 +1757,7 @@ $mobile: 728px;
 //MAKER VARS
 $pagePadding: 25px;
 $pageCellPadding: $pagePadding - 15px;
-$mainHeight: 80vh;
+$mainHeight: 90vh;
 $menuMarBt: 10px;
 $fieldSize: 75%;
 
@@ -1784,6 +1784,7 @@ $fieldSize: 75%;
   padding: $pagePadding;
   height: $mainHeight;
   min-height:550px;
+
   .secA, .secB, .secC, .secD {
     flex: 1;
     height:100%;
@@ -1829,7 +1830,6 @@ $fieldSize: 75%;
       flex-wrap:nowrap;
       gap:$pageCellPadding;
       order:0;
-
       button {
         flex:1;
         @include font($head, $white, 15px, 300, .09em, 20px, normal, uppercase, none, center);
@@ -2138,12 +2138,13 @@ $fieldSize: 75%;
 //     background:green;
 //   }
 // }
+
 @media only screen and (max-width:1014px) {
   .playCreator {
     height: 520px;
     min-height:520px;
     .secB {
-      width:80%;
+      width:60%;
       min-width:550px;
       order:1;
       &.active {
@@ -2162,8 +2163,8 @@ $fieldSize: 75%;
     }
     .secD {
       flex:1;
-      min-width:120px;
-      max-width:120px;
+      min-width:20%;
+      max-width:20%;
       display:block;
       .mobileCont {
         height:100%;
@@ -2183,7 +2184,7 @@ $fieldSize: 75%;
       display:none;
     }
     .secE {
-      $w: 270px;
+      $w: 20%;
       min-width:$w;
       max-width:$w;
       height:100%;
@@ -2205,5 +2206,90 @@ $fieldSize: 75%;
         }
       }
     }
+  }
+}
+@media only screen and (max-width:450px) {
+  .playCreator {
+    all: initial;
+    padding:0px 10px;
+    height:100%;
+    @include flex(flex, column, nowrap, none, start, $pageCellPadding);
+    .secB {
+      all: initial;
+      flex:1;
+      order:1;
+      min-height:250px;
+      max-height:250px;
+      background:blue;
+      @include flex(flex, column, nowrap, none, start, $pageCellPadding);
+      // .topButtonCont {
+      //   all: initial;
+      //   flex:1;
+      //   height:50px;
+      //   background:red;
+      //   @include flex(flex, row, nowrap, center, center, 3px);
+      //   button {
+      //     @include font($head, $white, 12px, 300, .02em, 20px, normal, uppercase, none, center);
+      //   }
+      // }
+      // .sectional {
+      //   all: initial;
+      //   height:250px;
+        
+      // }
+    }
+    .secD {
+      all: initial;
+      padding:10px 0px;
+      .mobileCont {
+        height:50px;
+        @include flex(flex, row, nowrap, center, center, 2px);
+        button {
+          flex:1;
+          height:100%;
+          @include font($head, $white, 12px, 300, .02em, 20px, normal, uppercase, none, center);
+        }
+      }
+    }
+    .secE {
+      all: initial;
+    }
+    // .secD {
+    //   flex:1;
+    //   min-width:100%;
+    //   max-width:100%;
+    //   max-height:50px;
+    //   padding:$pageCellPadding;
+      
+    //   display:block;
+    //   .mobileCont {
+    //     height:100%;
+    //     padding:0px 10px 0px 10px;
+    //     outline:1px solid blue;
+    //     @include flex(flex, row, nowrap, center, start, 5px);
+    //     button {
+    //       flex: 1;
+    //       height:100%;
+    //       @include boxA();
+    //       @include font($head, $white, 12px, 200, .01em, 20px, normal, uppercase, none, center);
+    //       &:hover {
+    //         background:rgba(255,255,255,.3);
+    //       }
+    //     }
+    //   }
+    // }
+    // .secE {
+    //   flex:1;
+    //   background:red;
+    //   width:100%;
+    //   max-width:100%;
+      
+    //   max-height:450px;
+      
+    //   .sectional {
+    //    height:800px;
+
+    //   }
+    // }
   }
 }

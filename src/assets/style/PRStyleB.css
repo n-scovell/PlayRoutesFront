@@ -3540,7 +3540,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   justify-content: center;
   gap: 10px;
   padding: 25px;
-  height: 80vh;
+  height: 90vh;
   min-height: 550px;
 }
 .playCreator .secA, .playCreator .secB, .playCreator .secC, .playCreator .secD {
@@ -4141,7 +4141,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     min-height: 520px;
   }
   .playCreator .secB {
-    width: 80%;
+    width: 60%;
     min-width: 550px;
     order: 1;
   }
@@ -4159,8 +4159,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   }
   .playCreator .secD {
     flex: 1;
-    min-width: 120px;
-    max-width: 120px;
+    min-width: 20%;
+    max-width: 20%;
     display: block;
   }
   .playCreator .secD .mobileCont {
@@ -4196,8 +4196,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     display: none;
   }
   .playCreator .secE {
-    min-width: 270px;
-    max-width: 270px;
+    min-width: 20%;
+    max-width: 20%;
     height: 100%;
     display: block;
   }
@@ -4230,5 +4230,62 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   }
   .playCreator .secE .sectional h4 div img {
     width: 100%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .playCreator {
+    all: initial;
+    padding: 0px 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: none;
+    justify-content: start;
+    gap: 10px;
+  }
+  .playCreator .secB {
+    all: initial;
+    flex: 1;
+    order: 1;
+    min-height: 250px;
+    max-height: 250px;
+    background: blue;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: none;
+    justify-content: start;
+    gap: 10px;
+  }
+  .playCreator .secD {
+    all: initial;
+    padding: 10px 0px;
+  }
+  .playCreator .secD .mobileCont {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+  .playCreator .secD .mobileCont button {
+    flex: 1;
+    height: 100%;
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 12px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: center;
+  }
+  .playCreator .secE {
+    all: initial;
   }
 }/*# sourceMappingURL=PRStyleB.css.map */

@@ -217,7 +217,7 @@
           title: title.value,
           formation: dropDownsPlayType.value.formation.newValue,
           playType: dropDownsPlayType.value.ptype.newValue,
-          description: 'this is a default description for now',
+          description: 'default description',
           grid,
           ownerId: auth.user.id
         })
@@ -227,7 +227,7 @@
           title: title.value,
           formation: dropDownsPlayType.value.formation.newValue,
           playType: dropDownsPlayType.value.ptype.newValue,
-          description: 'this is a default description for now',
+          description: 'default description',
           grid,
           guestId: gst.guest.id
         })
@@ -564,17 +564,51 @@ const formationShow = ref<boolean>(false)
 const positionShow = ref<boolean>(false)
 const penShow = ref<boolean>(false)
 
+
 const showInfo = () => {
-  extendPop.value = true
+  if (extendPop.value && infoShow.value) {
+    extendPop.value = false
+  } else {
+    extendPop.value = true
+  }
+  penShow.value = false
   infoShow.value = true
   formationShow.value = false
+  positionShow.value = false
 }
 const showFormationMenu = () => {
-  extendPop.value = true
+  if (extendPop.value && formationShow.value) {
+    extendPop.value = false
+  } else {
+    extendPop.value = true
+  }
+  penShow.value = false
   formationShow.value = true
   infoShow.value = false
+  positionShow.value = false
 }
-
+const showPositionsMenu = () => {
+  if (extendPop.value && positionShow.value) {
+    extendPop.value = false
+  } else {
+    extendPop.value = true
+  }
+  penShow.value = false
+  positionShow.value = true
+  formationShow.value = false
+  infoShow.value = false
+}
+const showPenMenu = () => {
+  if (extendPop.value && penShow.value) {
+    extendPop.value = false
+  } else {
+    extendPop.value = true
+  }
+  penShow.value = true
+  positionShow.value = false
+  formationShow.value = false
+  infoShow.value = false
+}
 
 </script>
 
@@ -591,16 +625,16 @@ const showFormationMenu = () => {
             <label>Play Name<input placeholder="Name" type="text" v-model="title" /></label>
             </div>
             <div class="inputCont a">
-            <div class="selectHolder">
-            <label>Choose Your Play Type:
-            <button aria-label="Play Type Drop" class="dropDownInd" @pointerdown="showPlayTypes()">{{ dropDownsPlayType.ptype.newValue }}</button>
-            <div class="dropDownCase" v-if="showPlayType">
-            <div>
-            <button :aria-label="`${f} Option`" v-for="f in dropDownsPlayType.ptype.newLst" :key="f" @pointerdown="playTypeValue('ptype', f)">{{f}}</button>
-            </div>
-            </div>
-            </label>
-            </div>
+              <div class="selectHolder">
+              <label>Choose Your Play Type:
+              <button aria-label="Play Type Drop" class="dropDownInd" @pointerdown="showPlayTypes()">{{ dropDownsPlayType.ptype.newValue }}</button>
+              <div class="dropDownCase" v-if="showPlayType">
+              <div>
+              <button :aria-label="`${f} Option`" v-for="f in dropDownsPlayType.ptype.newLst" :key="f" @pointerdown="playTypeValue('ptype', f)">{{f}}</button>
+              </div>
+              </div>
+              </label>
+              </div>
             </div>
             <div class="btCont">
               <button aria-label="Submit Play" class="primaryBt" @click="submitPlay">Submit Play</button>
@@ -729,11 +763,12 @@ const showFormationMenu = () => {
         <div class="mobileCont">
           <button @click="showInfo()">Play<br>Information</button>
           <button @click="showFormationMenu()">Formations</button>
-          <button>Positions</button>
-          <button>Pen<br>Select</button>
+          <button @click="showPositionsMenu()">Positions</button>
+          <button @click="showPenMenu()">Pen<br>Select</button>
         </div>
       </div>
       <div class="secE" v-if="extendPop">
+        <!-- MOBILE PLAY INFO -->
         <div class="sectional" v-if="infoShow">
           <Header title="PLAY INFORMATION" icon="clipboard" />
           <form @submit.prevent class="submitForm">
@@ -757,6 +792,7 @@ const showFormationMenu = () => {
             </div>
           </form>
         </div>
+        <!-- MOBILE FORMATION INFO -->
         <div class="sectional" v-if="formationShow">
           <Header title="FORMATIONS" icon="formation" />
           <form @submit.prevent class="submitForm">
@@ -777,6 +813,44 @@ const showFormationMenu = () => {
               <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
             </div>
           </form>
+        </div>
+        <!-- MOBILE POSITIONS INFO -->
+        <div class="sectional pos" v-if="positionShow">
+          <Header title="POSITIONS" icon="formation" />
+          <div class="positions">
+            <div class="posCont" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
+              <button :aria-label="`${p.pos}`" >{{ p.pos.toUpperCase() }}</button>
+            </div>
+          </div> 
+        </div>
+        <div class="sectional pos" v-if="penShow">
+          <Header title="PEN STYLE" icon="formation" />
+          <div class="pens">
+            <div class="posCont">
+              <button aria-label="Pen Stroke" @pointerdown="changeTool('pen')">P</button>
+            </div>
+            <div class="posCont">
+              <button aria-label="Chalk Stroke" @pointerdown="changeTool('chalk')">C</button>
+            </div>
+            <div class="posCont">
+              <button aria-label="Dash Stroke" @pointerdown="changeTool('dash')">D</button>
+            </div>
+          </div> 
+          <Header title="PEN COLOR" icon="formation" />
+          <div class="colors">
+            <div class="posCont">
+              <button class="white" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
+            </div>
+            <div class="posCont">
+              <button class="red" aria-label="Pen Stroke" @pointerdown="changeColor('red')"></button>
+            </div>
+            <div class="posCont">
+              <button class="blue" aria-label="Pen Stroke" @pointerdown="changeColor('blue')"></button>
+            </div>
+            <div class="posCont">
+              <button class="yellow" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
