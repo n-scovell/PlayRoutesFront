@@ -4268,6 +4268,18 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     justify-content: center;
     gap: 3px;
   }
+  .playCreator .secB .topButtonCont button {
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: left;
+  }
   .playCreator .secB .sectional {
     all: initial;
     flex: 1;
@@ -4280,6 +4292,22 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   .playCreator .secB .sectional .field {
     all: initial;
     height: 100%;
+  }
+  .playCreator .secB .sectional .field .positionBox .player:before {
+    display: none;
+  }
+  .playCreator .secB .sectional .field .positionBox .player {
+    width: 17px;
+    height: 17px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+  }
+  .playCreator .secB .sectional .field .gridBox .logoCont {
+    width: 80px;
+    height: 80px;
+    border-width: 2px;
   }
   .playCreator .secD {
     all: initial;

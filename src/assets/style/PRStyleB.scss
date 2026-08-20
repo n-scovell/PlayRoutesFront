@@ -2226,6 +2226,9 @@ $fieldSize: 75%;
         all: initial;
         height:50px;
         @include flex(flex, row, nowrap, center, center, 3px);
+        button {
+          @include font($head, $white, 14px);
+        }
       }
       .sectional {
         all: initial;
@@ -2237,6 +2240,23 @@ $fieldSize: 75%;
           all: initial;
           height:100%;
           .positionBox {
+            .player {
+              $w:17px;
+              &:before {
+                display:none;
+              }
+              @include size($w, $w);
+              // &.color {
+              //   all: initial;
+              // }
+            }
+          }
+          .gridBox {
+            .logoCont {
+              width:80px;
+              height:80px;
+              border-width:2px;
+            }
           }
         }
       }
