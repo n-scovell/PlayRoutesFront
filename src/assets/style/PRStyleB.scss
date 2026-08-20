@@ -2218,10 +2218,28 @@ $fieldSize: 75%;
       all: initial;
       flex:1;
       order:1;
-      min-height:250px;
-      max-height:250px;
-      background:blue;
+      min-height:350px;
+      max-height:350px;
       @include flex(flex, column, nowrap, none, start, $pageCellPadding);
+      .topButtonCont {
+        flex:1;
+        all: initial;
+        height:50px;
+        @include flex(flex, row, nowrap, center, center, 3px);
+      }
+      .sectional {
+        all: initial;
+        flex:1;
+        position:relative;
+        max-height:250px;
+        @include boxA();
+        .field {
+          all: initial;
+          height:100%;
+          .positionBox {
+          }
+        }
+      }
       // .topButtonCont {
       //   all: initial;
       //   flex:1;

@@ -4248,15 +4248,38 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     all: initial;
     flex: 1;
     order: 1;
-    min-height: 250px;
-    max-height: 250px;
-    background: blue;
+    min-height: 350px;
+    max-height: 350px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: none;
     justify-content: start;
     gap: 10px;
+  }
+  .playCreator .secB .topButtonCont {
+    flex: 1;
+    all: initial;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+  .playCreator .secB .sectional {
+    all: initial;
+    flex: 1;
+    position: relative;
+    max-height: 250px;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .playCreator .secB .sectional .field {
+    all: initial;
+    height: 100%;
   }
   .playCreator .secD {
     all: initial;
