@@ -1,11 +1,12 @@
 <script setup lang="ts">
     import { ref, computed } from 'vue'
     import router from '@/router'
-    import { RouterLink } from 'vue-router'
+    import { RouterLink, useRoute } from 'vue-router'
     import { useAuthStore } from '@/stores/userAuth'
     import { useGuest } from '@/stores/guestStore'
     const auth = useAuthStore()
     const gst = useGuest()
+    const myRoute = useRoute()
     const showNav = ref<boolean>(false)
     const togNav = () => {
         showNav.value = !showNav.value
@@ -41,7 +42,7 @@
             </div>
         </div>
         <div class="deskNav">
-            <button aria-label="Menu BT" class="icoBt" v-for="route in routes" :key="route.path">
+            <button aria-label="Menu BT" class="icoBt" :class="{ active: route.path === myRoute.path }" v-for="route in routes" :key="route.path">
                 <RouterLink :to="route.path">
                     {{ route.name }}
                 </RouterLink>

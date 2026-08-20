@@ -237,8 +237,20 @@ h1 {
   background: transparent;
   cursor: pointer;
 }
+.play-routes header nav .deskNav button a {
+  color: #f5f5f5;
+}
 .play-routes header nav .deskNav button.active {
-  background: red;
+  position: relative;
+}
+.play-routes header nav .deskNav button.active:before {
+  content: " ";
+  width: 100%;
+  height: 2px;
+  background: rgba(226, 226, 226, 0.589);
+  position: absolute;
+  bottom: -7px;
+  left: 0px;
 }
 .play-routes header .userCont {
   position: relative;
@@ -1636,8 +1648,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   overflow: hidden;
 }
 .boardCont .board .player {
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
   min-width: 0;
   max-width: auto;
   min-height: auto;
@@ -3531,7 +3543,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   height: 80vh;
   min-height: 550px;
 }
-.playCreator .secA, .playCreator .secB, .playCreator .secC {
+.playCreator .secA, .playCreator .secB, .playCreator .secC, .playCreator .secD {
   flex: 1;
   height: 100%;
   display: flex;
@@ -3541,7 +3553,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   justify-content: center;
   gap: 10px;
 }
-.playCreator .secA .sectional, .playCreator .secB .sectional, .playCreator .secC .sectional {
+.playCreator .secA .sectional, .playCreator .secB .sectional, .playCreator .secC .sectional, .playCreator .secD .sectional {
   flex: 1;
   width: 100%;
   padding: 15px;
@@ -3550,7 +3562,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   background: rgba(0, 0, 0, 0.2);
   position: relative;
 }
-.playCreator .secA .sectional .info, .playCreator .secB .sectional .info, .playCreator .secC .sectional .info {
+.playCreator .secA .sectional .info, .playCreator .secB .sectional .info, .playCreator .secC .sectional .info, .playCreator .secD .sectional .info {
   width: 22px;
   height: 22px;
   min-width: 0;
@@ -3578,10 +3590,10 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   border-radius: 50%;
   outline: 2px solid red;
 }
-.playCreator .secA .sectional .info:hover, .playCreator .secB .sectional .info:hover, .playCreator .secC .sectional .info:hover {
+.playCreator .secA .sectional .info:hover, .playCreator .secB .sectional .info:hover, .playCreator .secC .sectional .info:hover, .playCreator .secD .sectional .info:hover {
   background: red;
 }
-.playCreator .secA .sectional h4, .playCreator .secB .sectional h4, .playCreator .secC .sectional h4 {
+.playCreator .secA .sectional h4, .playCreator .secB .sectional h4, .playCreator .secC .sectional h4, .playCreator .secD .sectional h4 {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -3601,14 +3613,14 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   text-align: left;
   margin-bottom: 10px;
 }
-.playCreator .secA .sectional h4 div, .playCreator .secB .sectional h4 div, .playCreator .secC .sectional h4 div {
+.playCreator .secA .sectional h4 div, .playCreator .secB .sectional h4 div, .playCreator .secC .sectional h4 div, .playCreator .secD .sectional h4 div {
   flex: 1;
   max-width: 22px;
 }
-.playCreator .secA .sectional h4 div img, .playCreator .secB .sectional h4 div img, .playCreator .secC .sectional h4 div img {
+.playCreator .secA .sectional h4 div img, .playCreator .secB .sectional h4 div img, .playCreator .secC .sectional h4 div img, .playCreator .secD .sectional h4 div img {
   width: 100%;
 }
-.playCreator .secA .topButtonCont, .playCreator .secB .topButtonCont, .playCreator .secC .topButtonCont {
+.playCreator .secA .topButtonCont, .playCreator .secB .topButtonCont, .playCreator .secC .topButtonCont, .playCreator .secD .topButtonCont {
   flex: 1;
   width: 100%;
   max-height: 45px;
@@ -3618,7 +3630,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   gap: 10px;
   order: 0;
 }
-.playCreator .secA .topButtonCont button, .playCreator .secB .topButtonCont button, .playCreator .secC .topButtonCont button {
+.playCreator .secA .topButtonCont button, .playCreator .secB .topButtonCont button, .playCreator .secC .topButtonCont button, .playCreator .secD .topButtonCont button {
   flex: 1;
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
@@ -3641,7 +3653,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   background: rgba(0, 0, 0, 0.2);
   height: 100%;
 }
-.playCreator .secA .topButtonCont button .icon.clear, .playCreator .secB .topButtonCont button .icon.clear, .playCreator .secC .topButtonCont button .icon.clear {
+.playCreator .secA .topButtonCont button .icon.clear, .playCreator .secB .topButtonCont button .icon.clear, .playCreator .secC .topButtonCont button .icon.clear, .playCreator .secD .topButtonCont button .icon.clear {
   width: 10px;
   height: 20px;
   outline: 2px solid #f5f5f5;
@@ -3649,7 +3661,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   position: relative;
   transform: rotate(20deg);
 }
-.playCreator .secA .topButtonCont button .icon.clear:after, .playCreator .secB .topButtonCont button .icon.clear:after, .playCreator .secC .topButtonCont button .icon.clear:after {
+.playCreator .secA .topButtonCont button .icon.clear:after, .playCreator .secB .topButtonCont button .icon.clear:after, .playCreator .secC .topButtonCont button .icon.clear:after, .playCreator .secD .topButtonCont button .icon.clear:after {
   content: " ";
   width: 13px;
   height: 2px;
@@ -3659,7 +3671,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   left: 85%;
   transform: rotate(-20deg);
 }
-.playCreator .secA .topButtonCont button .icon.clear:before, .playCreator .secB .topButtonCont button .icon.clear:before, .playCreator .secC .topButtonCont button .icon.clear:before {
+.playCreator .secA .topButtonCont button .icon.clear:before, .playCreator .secB .topButtonCont button .icon.clear:before, .playCreator .secC .topButtonCont button .icon.clear:before, .playCreator .secD .topButtonCont button .icon.clear:before {
   content: " ";
   width: 100%;
   height: 22%;
@@ -3668,7 +3680,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   bottom: 0px;
   left: 0px;
 }
-.playCreator .secA .topButtonCont button .icon.trash, .playCreator .secB .topButtonCont button .icon.trash, .playCreator .secC .topButtonCont button .icon.trash {
+.playCreator .secA .topButtonCont button .icon.trash, .playCreator .secB .topButtonCont button .icon.trash, .playCreator .secC .topButtonCont button .icon.trash, .playCreator .secD .topButtonCont button .icon.trash {
   width: 15px;
   height: 20px;
   display: flex;
@@ -3678,16 +3690,16 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   justify-content: center;
   gap: 2px;
 }
-.playCreator .secA .topButtonCont button .icon.trash div, .playCreator .secB .topButtonCont button .icon.trash div, .playCreator .secC .topButtonCont button .icon.trash div {
+.playCreator .secA .topButtonCont button .icon.trash div, .playCreator .secB .topButtonCont button .icon.trash div, .playCreator .secC .topButtonCont button .icon.trash div, .playCreator .secD .topButtonCont button .icon.trash div {
   flex: 1;
   background: #f5f5f5;
 }
-.playCreator .secA .topButtonCont button .icon.trash div:nth-child(1), .playCreator .secB .topButtonCont button .icon.trash div:nth-child(1), .playCreator .secC .topButtonCont button .icon.trash div:nth-child(1) {
+.playCreator .secA .topButtonCont button .icon.trash div:nth-child(1), .playCreator .secB .topButtonCont button .icon.trash div:nth-child(1), .playCreator .secC .topButtonCont button .icon.trash div:nth-child(1), .playCreator .secD .topButtonCont button .icon.trash div:nth-child(1) {
   max-height: 12%;
   width: 100%;
   position: relative;
 }
-.playCreator .secA .topButtonCont button .icon.trash div:nth-child(1):before, .playCreator .secB .topButtonCont button .icon.trash div:nth-child(1):before, .playCreator .secC .topButtonCont button .icon.trash div:nth-child(1):before {
+.playCreator .secA .topButtonCont button .icon.trash div:nth-child(1):before, .playCreator .secB .topButtonCont button .icon.trash div:nth-child(1):before, .playCreator .secC .topButtonCont button .icon.trash div:nth-child(1):before, .playCreator .secD .topButtonCont button .icon.trash div:nth-child(1):before {
   content: " ";
   width: 30%;
   height: 2px;
@@ -3697,27 +3709,27 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   left: 50%;
   transform: translateX(-50%);
 }
-.playCreator .secA .topButtonCont button .icon.trash div:nth-child(2), .playCreator .secB .topButtonCont button .icon.trash div:nth-child(2), .playCreator .secC .topButtonCont button .icon.trash div:nth-child(2) {
+.playCreator .secA .topButtonCont button .icon.trash div:nth-child(2), .playCreator .secB .topButtonCont button .icon.trash div:nth-child(2), .playCreator .secC .topButtonCont button .icon.trash div:nth-child(2), .playCreator .secD .topButtonCont button .icon.trash div:nth-child(2) {
   width: 100%;
   clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
 }
-.playCreator .secA .topButtonCont button .icon.pointer, .playCreator .secB .topButtonCont button .icon.pointer, .playCreator .secC .topButtonCont button .icon.pointer {
+.playCreator .secA .topButtonCont button .icon.pointer, .playCreator .secB .topButtonCont button .icon.pointer, .playCreator .secC .topButtonCont button .icon.pointer, .playCreator .secD .topButtonCont button .icon.pointer {
   width: 15px;
   height: 20px;
   background: #f5f5f5;
   clip-path: polygon(50% 0%, 100% 75%, 65% 60%, 65% 100%, 35% 100%, 35% 60%, 0% 75%);
   transform: rotate(-15deg);
 }
-.playCreator .secA .topButtonCont button.clearBt, .playCreator .secB .topButtonCont button.clearBt, .playCreator .secC .topButtonCont button.clearBt {
+.playCreator .secA .topButtonCont button.clearBt, .playCreator .secB .topButtonCont button.clearBt, .playCreator .secC .topButtonCont button.clearBt, .playCreator .secD .topButtonCont button.clearBt {
   background: rgba(0, 0, 0, 0.5);
 }
-.playCreator .secA .topButtonCont button.clearBt:hover, .playCreator .secB .topButtonCont button.clearBt:hover, .playCreator .secC .topButtonCont button.clearBt:hover {
+.playCreator .secA .topButtonCont button.clearBt:hover, .playCreator .secB .topButtonCont button.clearBt:hover, .playCreator .secC .topButtonCont button.clearBt:hover, .playCreator .secD .topButtonCont button.clearBt:hover {
   background: rgba(0, 0, 0, 0.5);
 }
-.playCreator .secA .topButtonCont button.color, .playCreator .secB .topButtonCont button.color, .playCreator .secC .topButtonCont button.color {
+.playCreator .secA .topButtonCont button.color, .playCreator .secB .topButtonCont button.color, .playCreator .secC .topButtonCont button.color, .playCreator .secD .topButtonCont button.color {
   background: rgba(58, 163, 204, 0.192);
 }
-.playCreator .secA .topButtonCont button.active, .playCreator .secB .topButtonCont button.active, .playCreator .secC .topButtonCont button.active {
+.playCreator .secA .topButtonCont button.active, .playCreator .secB .topButtonCont button.active, .playCreator .secC .topButtonCont button.active, .playCreator .secD .topButtonCont button.active {
   background: rgba(97, 97, 97, 0.5);
 }
 .playCreator .secA, .playCreator .secC {
@@ -3725,6 +3737,25 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 .playCreator .secA .sectional.a {
   background: transparent;
+}
+.playCreator .secD {
+  display: none;
+}
+.playCreator .secD .sectional {
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+.playCreator .secE {
+  display: none;
+}
+.playCreator .secE .sectional {
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+.playCreator .secB {
+  max-width: 1250px;
 }
 .playCreator .secB .sectional {
   padding: 0px;
@@ -3921,8 +3952,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   -ms-user-select: none;
 }
 .playCreator .secB .sectional .field .positionBox .player {
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
   min-width: 0;
   max-width: auto;
   min-height: auto;
@@ -4002,7 +4033,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   color: #242222;
   transition: all 0.5s;
 }
-.playCreator .secB .sectional .field .positionBox .player:before, .playCreator .secB .sectional .field .positionBox .player:after {
+.playCreator .secB .sectional .field .positionBox .player:before {
   content: attr(myText);
   width: 100%;
   height: 100%;
@@ -4082,6 +4113,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   margin-top: 30px;
   margin-bottom: 5px;
 }
+.playCreator .secC .sectional.pos .pens .posCont button, .playCreator .secC .sectional.pos .colors .posCont button {
+  border-radius: 0px;
+}
 .playCreator .secC .sectional.pos .pens .posCont button.white, .playCreator .secC .sectional.pos .colors .posCont button.white {
   background: #ffffff;
 }
@@ -4094,15 +4128,107 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 .playCreator .secC .sectional.pos .pens .posCont button.yellow, .playCreator .secC .sectional.pos .colors .posCont button.yellow {
   background: #f3ff44;
 }
+.playCreator .secC .sectional.pos .pens .posCont button {
+  border-radius: 0px;
+}
 .playCreator .secC .sectional.pos .colors .posCont button {
   border: none;
 }
 
-@media only screen and (max-width: 1125px) {
+@media only screen and (max-width: 1014px) {
+  .playCreator {
+    height: 520px;
+    min-height: 520px;
+  }
   .playCreator .secB {
-    min-width: 600px;
+    width: 80%;
+    min-width: 550px;
+    order: 1;
+  }
+  .playCreator .secB.active {
+    width: 5%;
+    min-width: 450px;
+    max-width: 450px;
+  }
+  .playCreator .secB .sectional .field .positionBox .player {
+    width: 21px;
+    height: 21px;
+  }
+  .playCreator .secB .sectional .field .positionBox .player:before {
+    font-size: 10px;
+  }
+  .playCreator .secD {
+    flex: 1;
+    min-width: 120px;
+    max-width: 120px;
+    display: block;
+  }
+  .playCreator .secD .mobileCont {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+  }
+  .playCreator .secD .mobileCont button {
+    flex: 1;
+    width: 100%;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-size: 15px;
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: center;
+  }
+  .playCreator .secD .mobileCont button:hover {
+    background: rgba(255, 255, 255, 0.3);
   }
   .playCreator .secA, .playCreator .secC {
-    min-width: 210px;
+    display: none;
+  }
+  .playCreator .secE {
+    min-width: 270px;
+    max-width: 270px;
+    height: 100%;
+    display: block;
+  }
+  .playCreator .secE .sectional {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+  }
+  .playCreator .secE .sectional h4 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 18px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  .playCreator .secE .sectional h4 div {
+    width: 20px;
+  }
+  .playCreator .secE .sectional h4 div img {
+    width: 100%;
   }
 }/*# sourceMappingURL=PRStyleB.css.map */

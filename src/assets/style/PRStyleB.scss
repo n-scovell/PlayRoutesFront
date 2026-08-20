@@ -125,8 +125,20 @@ h1 {
           @include font($head, $white, 15px, bold, .08em, 20px, normal, uppercase);
           @include backColor();
           cursor:pointer;
+          a {
+            color:$white;
+          }
           &.active {
-            background:red;
+            position:relative;
+            &:before {
+              content:' ';
+              width:100%;
+              height:2px;
+              background:rgba(226, 226, 226, 0.589);
+              position:absolute;
+              bottom:-7px;
+              left:0px;
+            }
           }
         }
       }
@@ -784,7 +796,7 @@ form {
 $toolWidth: 50px;
 $toolBtSize: $toolWidth - 12px;
 $degreeSpin: -45deg;
-$playerSize:30px;
+$playerSize:33px; // the max width and height of the player
 
 //PEN COLORS
 $penRed: #dd1919;
@@ -1772,7 +1784,7 @@ $fieldSize: 75%;
   padding: $pagePadding;
   height: $mainHeight;
   min-height:550px;
-  .secA, .secB, .secC {
+  .secA, .secB, .secC, .secD {
     flex: 1;
     height:100%;
     @include flex(flex, column, nowrap, center, center, $pageCellPadding);
@@ -1928,7 +1940,20 @@ $fieldSize: 75%;
       }
     }
   }
+  .secD {
+    display:none;
+    .sectional {
+      @include boxA();
+    }
+  }
+  .secE {
+    display:none;
+    .sectional {
+      @include boxA();
+    }
+  }
   .secB {
+    max-width:1250px;
     .sectional {
       padding:0px;
       @include rel();
@@ -2038,7 +2063,7 @@ $fieldSize: 75%;
                 transition:all .5s;
               }
             }
-            &:before, &:after {
+            &:before {
               content:attr(myText);
               @include size(100%, 100%);
               @include pos(absolute, 51%, 50%, $trans:translate(-50%,-50%) );
@@ -2057,7 +2082,6 @@ $fieldSize: 75%;
   .secC {
     .sectional {
       &.pos {
-        
         .positions, .pens, .colors {
           height:100%;
           @include gridFill(1fr 1fr 1fr 1fr, 1fr 1fr 1fr 1fr, 10px);
@@ -2082,10 +2106,18 @@ $fieldSize: 75%;
           margin-top:30px;
           margin-bottom:5px;
           .posCont button {
+            border-radius:0px;
             &.white { background:$penWhite; }
             &.red { background:$penRed; }
             &.blue { background:$penBlue; }
             &.yellow { background:$penYellow; }
+          }
+        }
+        .pens {
+          .posCont { 
+            button {
+            border-radius:0px;
+            }
           }
         }
         .colors {
@@ -2097,25 +2129,81 @@ $fieldSize: 75%;
     }
   }
 }
-@media only screen and (max-width:1125px) {
+
+// @media only screen and (max-width:700px) {
+//   .playCreator .secB .sectional .field .positionBox .player {
+//     $w:28px;
+//     width:$w; height:$w;
+//     transition: all .5s;
+//     background:green;
+//   }
+// }
+@media only screen and (max-width:1014px) {
   .playCreator {
+    height: 520px;
+    min-height:520px;
     .secB {
-      min-width:600px;
+      width:80%;
+      min-width:550px;
+      order:1;
+      &.active {
+        width:5%;
+        min-width:450px;
+        max-width:450px;
+      }
+    }
+    .secB .sectional .field .positionBox .player {
+      $w:21px;
+      width:$w;
+      height:$w;
+      &:before {
+        font-size:10px;
+      }
+    }
+    .secD {
+      flex:1;
+      min-width:120px;
+      max-width:120px;
+      display:block;
+      .mobileCont {
+        height:100%;
+        @include flex(flex, column, nowrap, center, start, 10px);
+        button {
+          flex: 1;
+          width:100%;
+          @include boxA();
+          @include font($head, $white, 15px, 200, .01em, 20px, normal, uppercase, none, center);
+          &:hover {
+            background:rgba(255,255,255,.3);
+          }
+        }
+      }
     }
     .secA, .secC  {
-      min-width:210px;
-      
+      display:none;
+    }
+    .secE {
+      $w: 270px;
+      min-width:$w;
+      max-width:$w;
+      height:100%;
+      display:block;
+      .sectional {
+        width:100%;
+        height:auto;
+        padding:15px;
+        h4 {
+          @include flex(flex, row, nowrap, center, start, 10px);
+          @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, left);
+          margin-bottom:10px;
+          div {
+            width:20px;
+            img {
+              width:100%;
+            }
+          }
+        }
+      }
     }
   }
 }
-// @media only screen and (max-width:5000px) {
-//   .playCreator {
-//     .secB {
-//       max-width:1600px;
-//     }
-//     .secA, .secC  {
-//       background:red;
-//       max-width:320px;
-//     }
-//   }
-// }

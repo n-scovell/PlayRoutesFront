@@ -282,27 +282,27 @@
     }
     if (pos === 'g') {
       if (hasG.value === 2) return
-      x = hasG.value === 0 ? .55 : .45
+      x = hasG.value === 0 ? .56 : .44
       hasG.value++
     }
     if (pos === 't') {
       if (hasT.value === 2) return
-      x = hasT.value === 0 ? .6 : .4
+      x = hasT.value === 0 ? .62 : .38
       hasT.value++
     }
     if (pos === 'wr') {
       if (hasWR.value === 2) return
-      x = hasWR.value === 0 ? .79 : .215
+      x = hasWR.value === 0 ? .80 : .20
       hasWR.value++
     }
     if (pos === 'sl') {
       if (hasSL.value === 2) return
-      x = hasSL.value === 0 ? .68 : .32
+      x = hasSL.value === 0 ? .7 : .3
       hasSL.value++
     }
     if (pos === 'te') {
       if (hasTE.value === 2) return
-      x = hasTE.value === 0 ? .64 : .36
+      x = hasTE.value === 0 ? .655 : .345
       hasTE.value++
     }
     if (pos === 'rb') {
@@ -557,6 +557,25 @@ const changePosColor = () => {
   colorFlip.value = !colorFlip.value
 }
 
+
+const extendPop = ref<boolean>(false)
+const infoShow = ref<boolean>(false)
+const formationShow = ref<boolean>(false)
+const positionShow = ref<boolean>(false)
+const penShow = ref<boolean>(false)
+
+const showInfo = () => {
+  extendPop.value = true
+  infoShow.value = true
+  formationShow.value = false
+}
+const showFormationMenu = () => {
+  extendPop.value = true
+  formationShow.value = true
+  infoShow.value = false
+}
+
+
 </script>
 
 <template>
@@ -589,7 +608,6 @@ const changePosColor = () => {
           </form>
         </div>
         <div class="sectional b">
-          <button class="info">i</button>
           <Header title="FORMATIONS" icon="formation" />
           <form @submit.prevent class="submitForm">
             <div class="inputCont a">
@@ -611,7 +629,7 @@ const changePosColor = () => {
           </form>
         </div>
       </div>
-      <div class="secB">
+      <div class="secB" :class="{ active : extendPop }">
         <div class="topButtonCont">
           <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">
             <div class="icon pointer"></div>
@@ -661,7 +679,7 @@ const changePosColor = () => {
               <img src="@/assets/images/PlayRoutesBWsm.png" />
             </div>
             <div class="lineOfScrimmage" />
-            <div class="gridLine" v-for="g in 7" :key="g" />
+            <div class="gridLine" v-for="g in 5" :key="g" />
           </div>
           </div>
         </div>
@@ -705,6 +723,60 @@ const changePosColor = () => {
               <button class="yellow" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="secD">
+        <div class="mobileCont">
+          <button @click="showInfo()">Play<br>Information</button>
+          <button @click="showFormationMenu()">Formations</button>
+          <button>Positions</button>
+          <button>Pen<br>Select</button>
+        </div>
+      </div>
+      <div class="secE" v-if="extendPop">
+        <div class="sectional" v-if="infoShow">
+          <Header title="PLAY INFORMATION" icon="clipboard" />
+          <form @submit.prevent class="submitForm">
+            <div class="inputCont a">
+            <label>Play Name<input placeholder="Name" type="text" v-model="title" /></label>
+            </div>
+            <div class="inputCont a">
+            <div class="selectHolder">
+            <label>Choose Your Play Type:
+            <button aria-label="Play Type Drop" class="dropDownInd" @pointerdown="showPlayTypes()">{{ dropDownsPlayType.ptype.newValue }}</button>
+            <div class="dropDownCase" v-if="showPlayType">
+            <div>
+            <button :aria-label="`${f} Option`" v-for="f in dropDownsPlayType.ptype.newLst" :key="f" @pointerdown="playTypeValue('ptype', f)">{{f}}</button>
+            </div>
+            </div>
+            </label>
+            </div>
+            </div>
+            <div class="btCont">
+              <button aria-label="Submit Play" class="primaryBt" @click="submitPlay">Submit Play</button>
+            </div>
+          </form>
+        </div>
+        <div class="sectional" v-if="formationShow">
+          <Header title="FORMATIONS" icon="formation" />
+          <form @submit.prevent class="submitForm">
+            <div class="inputCont a">
+              <div class="selectHolder">
+                <label>Choose Your Formation:
+                <button aria-label="Formations Select" class="dropDownInd" @pointerdown="showFormations()">{{ dropDownsPlayType.formation.newValue }}</button>
+                <div class="dropDownCase" v-if="showFormation">
+                <div class="short">
+                <button :aria-label="`${f} Formation Option`" v-for="f in dropDownsPlayType.formation.newLst" :key="f" @pointerdown="formationType('formation', f)">{{f}}</button>
+                </div>
+                </div>
+                </label>
+              </div>
+            </div>
+            <div class="inputCont inline">
+              <button aria-label="Add Formation" @click="addFormation">+NEW</button>
+              <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
+            </div>
+          </form>
         </div>
       </div>
     </section>
