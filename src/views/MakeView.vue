@@ -713,7 +713,7 @@ const showPenMenu = () => {
               <img src="@/assets/images/PlayRoutesBWsm.png" />
             </div>
             <div class="lineOfScrimmage" />
-            <div class="gridLine" v-for="g in 5" :key="g" />
+            <div class="gridLine" v-for="g in 6" :key="g" />
           </div>
           </div>
         </div>
