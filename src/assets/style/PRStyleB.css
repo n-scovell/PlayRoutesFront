@@ -4257,6 +4257,11 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     justify-content: start;
     gap: 10px;
   }
+  .playCreator .secB.active {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
   .playCreator .secB .topButtonCont {
     flex: 1;
     all: initial;

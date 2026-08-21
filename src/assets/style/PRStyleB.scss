@@ -2221,6 +2221,11 @@ $fieldSize: 75%;
       min-height:350px;
       max-height:350px;
       @include flex(flex, column, nowrap, none, start, $pageCellPadding);
+      &.active {
+        width:100%;
+        min-width:100%;
+        max-width:100%;
+      }
       .topButtonCont {
         flex:1;
         all: initial;
