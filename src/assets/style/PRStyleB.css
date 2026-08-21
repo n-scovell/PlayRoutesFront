@@ -1474,6 +1474,10 @@ form .inputCont .selectHolder .dropDownCase .short {
   max-height: 110px;
   overflow-y: scroll;
 }
+form .inputCont .selectHolder .dropDownCase .shortMob {
+  max-height: 60vh;
+  overflow-y: scroll;
+}
 form .inputCont .selectHolder .dropDownCase.inactive {
   background: red;
   display: none;

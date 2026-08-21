@@ -711,6 +711,10 @@ form {
           max-height:110px;
           overflow-y:scroll;
         }
+        .shortMob {
+          max-height:60vh;
+          overflow-y:scroll;
+        }
         &.inactive {
           background:red;
           display:none;

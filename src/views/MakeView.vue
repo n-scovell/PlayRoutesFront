@@ -801,7 +801,7 @@ const showPenMenu = () => {
                 <label>Choose Your Formation:
                 <button aria-label="Formations Select" class="dropDownInd" @pointerdown="showFormations()">{{ dropDownsPlayType.formation.newValue }}</button>
                 <div class="dropDownCase" v-if="showFormation">
-                <div class="short">
+                <div class="shortMob">
                 <button :aria-label="`${f} Formation Option`" v-for="f in dropDownsPlayType.formation.newLst" :key="f" @pointerdown="formationType('formation', f)">{{f}}</button>
                 </div>
                 </div>
