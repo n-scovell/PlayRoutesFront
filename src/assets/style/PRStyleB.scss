@@ -2302,6 +2302,21 @@ $fieldSize: 75%;
     }
     .secE {
       all: initial;
+      .positions {
+        height:120px;
+        padding:0px;
+        @include gridFill(1fr 1fr 1fr 1fr 1fr, 1fr 1fr, 5px);
+        .posCont {
+          @include rel();
+          button {
+            @include size(40px, 40px);
+            @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+            @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
+            border:2px solid $white;
+            border-radius:50%;
+          }
+        }
+      }
     }
     // .secD {
     //   flex:1;

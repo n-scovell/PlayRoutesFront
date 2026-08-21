@@ -815,7 +815,7 @@ const showPenMenu = () => {
           </form>
         </div>
         <!-- MOBILE POSITIONS INFO -->
-        <div class="sectional pos" v-if="positionShow">
+        <div class="sectional" v-if="positionShow">
           <Header title="POSITIONS" icon="formation" />
           <div class="positions">
             <div class="posCont" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
@@ -823,7 +823,7 @@ const showPenMenu = () => {
             </div>
           </div> 
         </div>
-        <div class="sectional pos" v-if="penShow">
+        <div class="sectional" v-if="penShow">
           <Header title="PEN STYLE" icon="formation" />
           <div class="pens">
             <div class="posCont">

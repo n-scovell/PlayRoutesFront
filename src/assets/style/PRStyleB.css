@@ -4352,4 +4352,41 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   .playCreator .secE {
     all: initial;
   }
+  .playCreator .secE .positions {
+    height: 120px;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+  }
+  .playCreator .secE .positions .posCont {
+    position: relative;
+  }
+  .playCreator .secE .positions .posCont button {
+    width: 40px;
+    height: 40px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 20px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: center;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+  }
 }/*# sourceMappingURL=PRStyleB.css.map */
