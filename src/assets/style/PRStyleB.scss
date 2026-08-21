@@ -1112,6 +1112,7 @@ $penGreen: #00e913;
 }
 .playsContainer {
   min-height:100vh;
+  padding: 20px 20px;
   &.fav, &.form {
     padding-top:50px;
     .playRows {
@@ -1150,7 +1151,8 @@ $penGreen: #00e913;
     }
   }
   .playRows {
-    @include flex(flex, row, wrap, center, center, 20px);
+    @include flex(flex, row, wrap, center, center, 0px);
+    @include gridFill(1fr 1fr 1fr 1fr, none, 10px);
     .indPlays {
       .register {
         width:100%;
@@ -1163,10 +1165,10 @@ $penGreen: #00e913;
         button {margin:auto;}
       }
       @include rel();
-      flex: 0 1 22%;
-      @include size($minW: 350px, $minH:0px);
-      border-top:1px solid rgba(255,255,255,.3);
-      box-shadow:0 2px 3px rgb(20, 20, 20);
+      // flex: 0 1 22%;
+      // @include size($minW: 350px, $minH:0px);
+      // border-top:1px solid rgba(255,255,255,.3);
+      // box-shadow:0 2px 3px rgb(20, 20, 20);
       cursor:grab;
       &.active {
         outline:3px solid rgba(255, 188, 62, 0.8);
@@ -1182,7 +1184,8 @@ $penGreen: #00e913;
           height:100%;
           
         }
-        @include back(transparent, '@/assets/images/bck_chalkboard_sm.jpg', cover, center, no-repeat);
+        // @include back(transparent, '@/assets/images/bck_chalkboard_sm.jpg', cover, center, no-repeat);
+        @include boxA();
         @include size(100%, 150px);
         @include rel();
         .previewScale {
@@ -1195,10 +1198,11 @@ $penGreen: #00e913;
         }
       }
       .playInfo {
-        @include backColor(rgb(51, 51, 51));
+        @include boxA();
+        // @include backColor(rgb(51, 51, 51));
         padding-bottom:10px;
         text-align:center;
-        border-top:3px solid rgb(46, 45, 45);
+        // border-top:3px solid rgb(46, 45, 45);
         h3 {
           @include font($spec, $white, 20px, bold, .05em, 20px, normal, uppercase, $align:center);
           padding:15px 0px;
@@ -1411,7 +1415,7 @@ $mobile: 728px;
   .playsContainer {
     &.plays {
       .playRows {
-        gap:35px;
+        @include gridFill($col: 1fr, $row: none, $gap: 10px);
         .indPlays {
           opacity:1;
         }

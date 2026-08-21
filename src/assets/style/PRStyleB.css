@@ -2241,6 +2241,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 
 .playsContainer {
   min-height: 100vh;
+  padding: 20px 20px;
 }
 .playsContainer.fav, .playsContainer.form {
   padding-top: 50px;
@@ -2313,7 +2314,11 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: none;
+  gap: 10px;
 }
 .playsContainer .playRows .indPlays .register {
   width: 100%;
@@ -2343,15 +2348,6 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 .playsContainer .playRows .indPlays {
   position: relative;
-  flex: 0 1 22%;
-  width: auto;
-  height: auto;
-  min-width: 350px;
-  max-width: auto;
-  min-height: 0px;
-  max-height: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 2px 3px rgb(20, 20, 20);
   cursor: grab;
 }
 .playsContainer .playRows .indPlays.active {
@@ -2369,12 +2365,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   height: 100%;
 }
 .playsContainer .playRows .indPlays .field {
-  background: transparent;
-  background-image: url("@/assets/images/bck_chalkboard_sm.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  backdrop-filter: blur(none);
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 150px;
   min-width: 0;
@@ -2407,10 +2400,11 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   z-index: 1;
 }
 .playsContainer .playRows .indPlays .playInfo {
-  background: rgb(51, 51, 51);
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
   padding-bottom: 10px;
   text-align: center;
-  border-top: 3px solid rgb(46, 45, 45);
 }
 .playsContainer .playRows .indPlays .playInfo h3 {
   color: #f5f5f5;
@@ -2885,7 +2879,10 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 @media only screen and (max-width: 490px) {
   .playsContainer.plays .playRows {
-    gap: 35px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 10px;
   }
   .playsContainer.plays .playRows .indPlays {
     opacity: 1;
