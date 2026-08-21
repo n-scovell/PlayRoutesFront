@@ -755,8 +755,8 @@ form {
         @include backColor(rgba(255,255,255,.5));
       }
       button {
-        @include font($head, $black, 27px, bold, .01em, 20px, normal, uppercase, none, center);
-        padding:15px 0px;
+        @include font($head, $black, 22px, bold, .01em, 20px, normal, uppercase, none, center);
+        padding:12px 0px;
         width:50%;
         transition: all .3s .1s;
         &:hover {
@@ -769,16 +769,17 @@ form {
       @include flex(flex, column, wrap, stretch, center, 5px);
       margin-bottom:20px;
       label {
-        @include font($par, $white, 25px, 500, .01em, 20px, normal, none, none, left);
+        @include font($par, $white, 16px, 500, .01em, 20px, normal, none, none, left);
         cursor:pointer;
-        text-indent:20px;
-        margin-bottom:10px;
+        text-indent:10px;
+        margin-bottom:0px;
       }
       input, .dropDownInd, textarea {
         @include font($par, $white, 22px, .02em);
         border-bottom:1px solid $grayB;
-        border-radius:50px;
-        padding:15px 0px 15px 30px;
+        border-radius:5px;
+        padding:10px 0px 10px 15px;
+        font-size:16px;
       }
     }
   }
