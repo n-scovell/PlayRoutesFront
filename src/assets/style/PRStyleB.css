@@ -4237,7 +4237,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     width: 100%;
   }
 }
-@media only screen and (max-width: 6700px) {
+@media only screen and (max-width: 670px) {
   .playCreator {
     all: initial;
     padding: 0px 10px;
