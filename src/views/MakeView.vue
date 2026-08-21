@@ -761,10 +761,10 @@ const showPenMenu = () => {
       </div>
       <div class="secD">
         <div class="mobileCont">
-          <button @click="showInfo()">Play<br>Information</button>
-          <button @click="showFormationMenu()">Formations</button>
-          <button @click="showPositionsMenu()">Positions</button>
-          <button @click="showPenMenu()">Pen<br>Select</button>
+          <button @click="showInfo()" class='playInfo'><div>i</div></button>
+          <button @click="showFormationMenu()" class='formations'><div><img src="@/assets/images/formation.png"/></div></button>
+          <button @click="showPositionsMenu()" class='positions'><div></div>></button>
+          <button @click="showPenMenu()" class='penSelect'>Pen<br>Select</button>
         </div>
       </div>
       <div class="secE" v-if="extendPop">

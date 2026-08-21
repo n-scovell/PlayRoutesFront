@@ -4349,6 +4349,63 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     text-shadow: none;
     text-align: center;
   }
+  .playCreator .secD .mobileCont button.playInfo {
+    position: relative;
+  }
+  .playCreator .secD .mobileCont button.playInfo div {
+    color: #f5f5f5;
+    font-family: "Times New Roman";
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 22px;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 30px;
+    height: 30px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+  }
+  .playCreator .secD .mobileCont button.positions {
+    position: relative;
+  }
+  .playCreator .secD .mobileCont button.positions div {
+    width: 30px;
+    height: 40px;
+    outline: 1px solid red;
+  }
+  .playCreator .secD .mobileCont button.formations {
+    position: relative;
+  }
+  .playCreator .secD .mobileCont button.formations div {
+    width: 40px;
+    height: 35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .playCreator .secD .mobileCont button.formations div img {
+    width: 100%;
+  }
   .playCreator .secE {
     all: initial;
   }

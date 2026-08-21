@@ -2297,6 +2297,39 @@ $fieldSize: 75%;
           flex:1;
           height:100%;
           @include font($head, $white, 12px, 300, .02em, 20px, normal, uppercase, none, center);
+          &.playInfo {
+            position:relative;
+            // background:$penRed;
+            div {
+              @include font('Times New Roman', $white, 22px, 600, .02em, 20px, italic);
+              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+              @include flex(flex, row, nowrap, center, center);
+              @include size(30px, 30px);
+              border:2px solid $white;
+              border-radius:50%;
+            }
+          }
+          &.positions {
+            position:relative;
+            div {
+              width:30px;
+              height:40px;
+              outline:1px solid red;
+            }
+          }
+          &.formations {
+            position:relative;
+            // background:$penBlue;
+            div {
+              width:40px;
+              height:35px;
+              position:absolute;
+              top:50%;
+              left:50%;
+              transform:translate(-50%,-50%);
+              img {width:100%;}
+            }
+          }
         }
       }
     }
