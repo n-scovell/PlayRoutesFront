@@ -52,6 +52,7 @@
   const activeTool = ref<'select' | 'erase'>('select')
   const newFormation = ref()
   const title = ref()
+  const activeColor = ref('white')
   const dropDownsPlayType = ref<Ptype>({
       formation: {
           errorOut: false,
@@ -402,6 +403,7 @@
     router.push('/create')
   }
   const changeColor = (prop: ColorType) => {
+
     selectedColor.value = prop
   }
   const changeTool = (prop: ToolType) => {
@@ -614,7 +616,7 @@ const showPenMenu = () => {
 
 <template>
   <main>
-    <!-- <h1>CREATE YOUR PLAY</h1> -->
+    <h1>CREATE YOUR PLAY</h1>
     <section class="playCreator">
       <div class="secA">
         <div class="sectional a">
@@ -763,8 +765,8 @@ const showPenMenu = () => {
         <div class="mobileCont">
           <button @click="showInfo()" class='playInfo'><div>i</div></button>
           <button @click="showFormationMenu()" class='formations'><div><img src="@/assets/images/formation.png"/></div></button>
-          <button @click="showPositionsMenu()" class='positions'><div></div>></button>
-          <button @click="showPenMenu()" class='penSelect'>Pen<br>Select</button>
+          <button @click="showPositionsMenu()" class='positions'><div></div></button>
+          <button @click="showPenMenu()" class='penSelect'><div></div></button>
         </div>
       </div>
       <div class="secE" v-if="extendPop">
@@ -827,28 +829,28 @@ const showPenMenu = () => {
           <Header title="PEN STYLE" icon="formation" />
           <div class="pens">
             <div class="posCont">
-              <button aria-label="Pen Stroke" @pointerdown="changeTool('pen')">P</button>
+              <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')">P</button>
             </div>
             <div class="posCont">
-              <button aria-label="Chalk Stroke" @pointerdown="changeTool('chalk')">C</button>
+              <button aria-label="Chalk Stroke" :class="{ active: selectedTool === 'chalk' }" @pointerdown="changeTool('chalk')">C</button>
             </div>
             <div class="posCont">
-              <button aria-label="Dash Stroke" @pointerdown="changeTool('dash')">D</button>
+              <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')">D</button>
             </div>
           </div> 
           <Header title="PEN COLOR" icon="formation" />
           <div class="colors">
             <div class="posCont">
-              <button class="white" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
+              <button class="white" :class="{ active: selectedColor === 'white' }" aria-label="White Pen Stroke" @pointerdown="changeColor('white')"></button>
             </div>
             <div class="posCont">
-              <button class="red" aria-label="Pen Stroke" @pointerdown="changeColor('red')"></button>
+              <button class="red" :class="{ active: selectedColor === 'red' }" aria-label="Red Pen Stroke" @pointerdown="changeColor('red')"></button>
             </div>
             <div class="posCont">
-              <button class="blue" aria-label="Pen Stroke" @pointerdown="changeColor('blue')"></button>
+              <button class="blue" :class="{ active: selectedColor === 'blue' }" aria-label="Blue Pen Stroke" @pointerdown="changeColor('blue')"></button>
             </div>
             <div class="posCont">
-              <button class="yellow" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
+              <button class="yellow" :class="{ active: selectedColor === 'yellow' }" aria-label="Yellow Pen Stroke" @pointerdown="changeColor('yellow')"></button>
             </div>
           </div>
         </div>

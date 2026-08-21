@@ -4237,7 +4237,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     width: 100%;
   }
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 6700px) {
   .playCreator {
     all: initial;
     padding: 0px 10px;
@@ -4271,6 +4271,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     flex: 1;
     all: initial;
     height: 50px;
+    order: 2;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -4292,6 +4293,7 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   }
   .playCreator .secB .sectional {
     all: initial;
+    order: 1;
     flex: 1;
     position: relative;
     max-height: 250px;
@@ -4384,13 +4386,88 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     border: 2px solid #f5f5f5;
     border-radius: 50%;
   }
+  .playCreator .secD .mobileCont button.penSelect {
+    position: relative;
+  }
+  .playCreator .secD .mobileCont button.penSelect div {
+    margin: auto;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    transform: rotate(-125deg);
+  }
+  .playCreator .secD .mobileCont button.penSelect div:after {
+    content: " ";
+    width: 4px;
+    height: 20px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    background: #f5f5f5;
+    border-radius: 50%;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+  }
+  .playCreator .secD .mobileCont button.penSelect div:before {
+    content: " ";
+    background: #f5f5f5;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+    clip-path: polygon(50% 0%, 70% 30%, 70% 100%, 30% 100%, 30% 30%);
+  }
   .playCreator .secD .mobileCont button.positions {
     position: relative;
   }
   .playCreator .secD .mobileCont button.positions div {
-    width: 30px;
-    height: 40px;
-    outline: 1px solid red;
+    width: 19px;
+    height: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+  }
+  .playCreator .secD .mobileCont button.positions div:before {
+    content: " ";
+    width: 100%;
+    height: 55%;
+    background: #f5f5f5;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    border-radius: 30px 30px 5px 5px;
+  }
+  .playCreator .secD .mobileCont button.positions div:after {
+    content: " ";
+    width: 12px;
+    height: 12px;
+    background: #f5f5f5;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    border-radius: 50%;
   }
   .playCreator .secD .mobileCont button.formations {
     position: relative;
@@ -4445,5 +4522,63 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     text-align: center;
     border: 2px solid #f5f5f5;
     border-radius: 50%;
+  }
+  .playCreator .secE .pens, .playCreator .secE .colors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .playCreator .secE .pens .posCont, .playCreator .secE .colors .posCont {
+    flex: 1;
+    height: 45px;
+    padding: 0px;
+    position: relative;
+  }
+  .playCreator .secE .pens .posCont button, .playCreator .secE .colors .posCont button {
+    width: 100%;
+    height: 40px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 20px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: center;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .playCreator .secE .pens .posCont button.white, .playCreator .secE .colors .posCont button.white {
+    background: #ffffff;
+  }
+  .playCreator .secE .pens .posCont button.red, .playCreator .secE .colors .posCont button.red {
+    background: #dd1919;
+  }
+  .playCreator .secE .pens .posCont button.blue, .playCreator .secE .colors .posCont button.blue {
+    background: #301283;
+  }
+  .playCreator .secE .pens .posCont button.yellow, .playCreator .secE .colors .posCont button.yellow {
+    background: #f3ff44;
+  }
+  .playCreator .secE .pens .posCont button.active, .playCreator .secE .colors .posCont button.active {
+    outline: 1px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
   }
 }/*# sourceMappingURL=PRStyleB.css.map */
