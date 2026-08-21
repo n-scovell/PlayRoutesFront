@@ -2247,6 +2247,7 @@ $fieldSize: 75%;
           .positionBox {
             .player {
               $w:17px;
+              touch-action: none;
               &:before {
                 display:none;
               }

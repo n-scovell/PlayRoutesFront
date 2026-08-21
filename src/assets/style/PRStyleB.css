@@ -4298,6 +4298,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     all: initial;
     height: 100%;
   }
+  .playCreator .secB .sectional .field .positionBox .player {
+    touch-action: none;
+  }
   .playCreator .secB .sectional .field .positionBox .player:before {
     display: none;
   }
