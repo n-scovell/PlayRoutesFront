@@ -735,13 +735,13 @@ const showPenMenu = () => {
           <Header title="PEN STYLE" icon="formation" />
           <div class="pens">
             <div class="posCont">
-              <button aria-label="Pen Stroke" @pointerdown="changeTool('pen')">P</button>
+              <button aria-label="Pen Stroke" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
             </div>
             <div class="posCont">
-              <button aria-label="Chalk Stroke" @pointerdown="changeTool('chalk')">C</button>
+              <button aria-label="Chalk Stroke" @pointerdown="changeTool('chalk')"><img src="@/assets/images/chalk.png" /></button>
             </div>
             <div class="posCont">
-              <button aria-label="Dash Stroke" @pointerdown="changeTool('dash')">D</button>
+              <button aria-label="Dash Stroke" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
             </div>
           </div> 
           <Header title="PEN COLOR" icon="formation" />
@@ -798,6 +798,15 @@ const showPenMenu = () => {
         <div class="sectional" v-if="formationShow">
           <Header title="FORMATIONS" icon="formation" />
           <form @submit.prevent class="submitForm">
+            <div class="inputCont a" style="margin-bottom:0px;">
+              <div class="selectHolder">
+                <label>Create New Formation:</label>
+              </div>
+            </div>
+            <div class="inputCont inline">
+              <button aria-label="Add Formation" @click="addFormation">+NEW</button>
+              <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
+            </div>
             <div class="inputCont a">
               <div class="selectHolder">
                 <label>Choose Your Formation:
@@ -810,10 +819,7 @@ const showPenMenu = () => {
                 </label>
               </div>
             </div>
-            <div class="inputCont inline">
-              <button aria-label="Add Formation" @click="addFormation">+NEW</button>
-              <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
-            </div>
+            
           </form>
         </div>
         <!-- MOBILE POSITIONS INFO -->

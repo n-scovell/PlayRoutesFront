@@ -2106,6 +2106,15 @@ $fieldSize: 75%;
             }
           }
         }
+        .pens {
+          .posCont button {
+            flex:1;
+            
+            img {
+              width:80%;
+            }
+          }
+        }
         .pens, .colors {
           height:45px;
           margin-top:30px;
