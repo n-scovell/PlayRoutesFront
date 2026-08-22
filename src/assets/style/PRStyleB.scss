@@ -1151,7 +1151,7 @@ $penGreen: #00e913;
     }
   }
   .playRows {
-    @include flex(flex, row, wrap, center, center, 0px);
+    // @include flex(flex, row, wrap, center, center, 0px);
     @include gridFill(1fr 1fr 1fr 1fr, none, 10px);
     .indPlays {
       .register {
@@ -1411,11 +1411,11 @@ $mobile: 728px;
   }
 }
 
-@media only screen and (max-width:490px) {
+@media only screen and (max-width:890px) {
   .playsContainer {
-    &.plays {
+    &.plays, &.fav {
       .playRows {
-        @include gridFill($col: 1fr, $row: none, $gap: 10px);
+        @include gridFill($col: 1fr 1fr, $row: none, $gap: 10px);
         .indPlays {
           opacity:1;
         }
@@ -1443,6 +1443,16 @@ $mobile: 728px;
     z-index:99999;
     .b {
       animation: turnObj 3s 0s infinite;
+    }
+  }
+}
+
+@media only screen and (max-width:450px) {
+  .playsContainer {
+    &.plays, &.fav, &.form {
+      .playRows {
+        @include gridFill($col: 1fr, $row: none, $gap: 10px);
+      }
     }
   }
 }

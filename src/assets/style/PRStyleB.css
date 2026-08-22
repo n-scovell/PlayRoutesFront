@@ -2309,12 +2309,6 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   padding-bottom: 0px;
 }
 .playsContainer .playRows {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: none;
@@ -2877,14 +2871,14 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     transform: rotate(0deg);
   }
 }
-@media only screen and (max-width: 490px) {
-  .playsContainer.plays .playRows {
+@media only screen and (max-width: 890px) {
+  .playsContainer.plays .playRows, .playsContainer.fav .playRows {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: none;
     gap: 10px;
   }
-  .playsContainer.plays .playRows .indPlays {
+  .playsContainer.plays .playRows .indPlays, .playsContainer.fav .playRows .indPlays {
     opacity: 1;
   }
   .flipPhoneText {
@@ -2918,6 +2912,14 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   }
   .flipPhone .b {
     animation: turnObj 3s 0s infinite;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .playsContainer.plays .playRows, .playsContainer.fav .playRows, .playsContainer.form .playRows {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 10px;
   }
 }
 @media only screen and (min-width: 1600px) {
