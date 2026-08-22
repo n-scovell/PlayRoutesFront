@@ -36,6 +36,7 @@
         <div class="mobNav" :class="{show : showNav}">
             <button aria-label="Close Menu" class="close" @click="togNav()">✕</button>
             <div class="icoBt" v-for="route in routes" :key="route.path">
+                <div class="icon"></div>
                 <RouterLink :to="route.path">
                     <button aria-label="Close Menu"  @click="alertMe()">{{ route.name }}</button>
                 </RouterLink>

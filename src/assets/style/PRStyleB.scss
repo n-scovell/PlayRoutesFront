@@ -100,7 +100,7 @@ h1 {
             transition: all .5s;
           }
           .close {
-            @include pos(absolute, 20px, $right:15px, $trans:translate(-50%, 0%));
+            @include pos(absolute, 20px, $left:45px, $trans:translate(-50%, 0%));
             @include size(40px, 40px);
             @include font($par, $white, 15px, bold, .02em, 20px, normal, uppercase, none, center);
             border:3px solid white;
@@ -109,6 +109,13 @@ h1 {
           .icoBt {
             @include size(100%, auto);
             color:$white;
+            @include flex(flex, row, nowrap, center, left, 10px);
+            .icon {
+              width:40px;
+              height:40px;
+              outline:1px solid red;
+              display:none;
+            }
             a {
               button {
                 @include size(100%, auto);
@@ -1762,7 +1769,8 @@ $mobile: 728px;
           display:none;
         }
         .mobNav {
-          @include flex(flex, column, nowrap, center, center, 8px);
+          @include flex(flex, column, nowrap, center, start, 8px);
+          padding-top:90px;
         }
       }
     }

@@ -69,13 +69,12 @@ const logoutGuest = () => {
       <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink></span> 
     </h3>
     <div class="userDrop" v-if="showDrop">
-
       <button v-for="route in routes" :key="route.path" v-if="!gst.guest">
           <RouterLink :to="route.path">
               <div>{{ route.name }}</div>
           </RouterLink>
       </button>
-      <button @click="logoutGuest()">GUEST LOGOUT</button>
+      <button @click="logoutGuest()" v-if="gst.guest">GUEST LOGOUT</button>
       <button v-if="auth.user" @pointerdown="signOut">Log Out</button>
     </div>
   </div>

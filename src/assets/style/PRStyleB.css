@@ -158,9 +158,9 @@ h1 {
 .play-routes header nav .mobNav .close {
   position: absolute;
   top: 20px;
-  left: none;
+  left: 45px;
   bottom: none;
-  right: 15px;
+  right: none;
   transform: translate(-50%, 0%);
   width: 40px;
   height: 40px;
@@ -189,6 +189,18 @@ h1 {
   min-height: auto;
   max-height: auto;
   color: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+}
+.play-routes header nav .mobNav .icoBt .icon {
+  width: 40px;
+  height: 40px;
+  outline: 1px solid red;
+  display: none;
 }
 .play-routes header nav .mobNav .icoBt a button {
   width: 100%;
@@ -3524,8 +3536,9 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     gap: 8px;
+    padding-top: 90px;
   }
 }
 @keyframes fadeIn {
