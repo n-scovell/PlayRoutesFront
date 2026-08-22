@@ -4655,6 +4655,15 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     border: 2px solid #f5f5f5;
     border-radius: 50%;
   }
+  .playCreator .secE .pens .posCont button img {
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+  }
   .playCreator .secE .pens, .playCreator .secE .colors {
     display: flex;
     flex-direction: row;

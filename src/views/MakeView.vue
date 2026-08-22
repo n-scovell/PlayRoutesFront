@@ -829,13 +829,13 @@ const showPenMenu = () => {
           <Header title="PEN STYLE" icon="formation" />
           <div class="pens">
             <div class="posCont">
-              <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')">P</button>
+              <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
             </div>
             <div class="posCont">
-              <button aria-label="Chalk Stroke" :class="{ active: selectedTool === 'chalk' }" @pointerdown="changeTool('chalk')">C</button>
+              <button aria-label="Chalk Stroke" :class="{ active: selectedTool === 'chalk' }" @pointerdown="changeTool('chalk')"><img src="@/assets/images/chalk.png" /></button>
             </div>
             <div class="posCont">
-              <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')">D</button>
+              <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
             </div>
           </div> 
           <Header title="PEN COLOR" icon="formation" />

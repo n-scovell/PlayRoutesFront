@@ -2468,6 +2468,16 @@ $fieldSize: 75%;
           }
         }
       }
+      .pens {
+        .posCont {
+          button {
+            img {
+              width:40%;
+              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+            }
+          }
+        }
+      }
       .pens, .colors {
         @include flex(flex, row, nowrap, center, center, 10px);
         margin-bottom:15px;
