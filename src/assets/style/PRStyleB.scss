@@ -2175,14 +2175,12 @@ $fieldSize: 75%;
   .playCreator {
     height: 520px;
     min-height:520px;
+    @include flex(flex, row, nowrap, center, left, 10px);
     .secB {
-      width:60%;
-      min-width:550px;
       order:1;
+      flex:1;
       &.active {
         width:5%;
-        min-width:350px;
-        max-width:350px;
       }
     }
     .secB .sectional .field .positionBox .player {
@@ -2195,8 +2193,8 @@ $fieldSize: 75%;
     }
     .secD {
       flex:1;
-      min-width:20%;
-      max-width:20%;
+      min-width:10%;
+      max-width:10%;
       display:block;
       .mobileCont {
         height:100%;
@@ -2299,8 +2297,8 @@ $fieldSize: 75%;
     }
     .secE {
       $w: 20%;
-      min-width:$w;
-      max-width:$w;
+      min-width:250px;
+      max-width:350px;
       height:100%;
       display:block;
       .sectional {
@@ -2318,6 +2316,56 @@ $fieldSize: 75%;
             }
           }
         }
+        .positions {
+          height:210px;
+          padding:0px;
+          @include gridFill(1fr 1fr 1fr 1fr, 1fr 1fr 1fr, 15px);
+          .posCont {
+            
+            @include rel();
+            button {
+              @include size(40px, 40px);
+              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+              @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
+              border:2px solid $white;
+              border-radius:50%;
+            }
+          }
+        }
+        .pens {
+        .posCont {
+          button {
+            img {
+              width:40%;
+              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+            }
+          }
+        }
+      }
+      .pens, .colors {
+      @include flex(flex, row, nowrap, center, center, 10px);
+      margin-bottom:15px;
+      .posCont {
+      flex:1;
+      height:45px;
+      padding:0px;
+      position:relative;
+      button {
+      @include size(100%, 40px);
+      @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+      @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
+      @include boxA();
+      &.white {background:$penWhite;}
+      &.red {background:$penRed;}
+      &.blue {background:$penBlue;}
+      &.yellow {background:$penYellow;}
+      &.active {
+      outline:1px solid rgba(255,255,255,.8);
+      outline-offset:2px;
+      }
+      }
+      }
+      }
       }
     }
   }

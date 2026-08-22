@@ -4165,16 +4165,19 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   .playCreator {
     height: 520px;
     min-height: 520px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
   }
   .playCreator .secB {
-    width: 60%;
-    min-width: 550px;
     order: 1;
+    flex: 1;
   }
   .playCreator .secB.active {
     width: 5%;
-    min-width: 350px;
-    max-width: 350px;
   }
   .playCreator .secB .sectional .field .positionBox .player {
     width: 21px;
@@ -4185,8 +4188,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   }
   .playCreator .secD {
     flex: 1;
-    min-width: 20%;
-    max-width: 20%;
+    min-width: 10%;
+    max-width: 10%;
     display: block;
   }
   .playCreator .secD .mobileCont {
@@ -4354,8 +4357,8 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     display: none;
   }
   .playCreator .secE {
-    min-width: 20%;
-    max-width: 20%;
+    min-width: 250px;
+    max-width: 350px;
     height: 100%;
     display: block;
   }
@@ -4388,6 +4391,110 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   }
   .playCreator .secE .sectional h4 div img {
     width: 100%;
+  }
+  .playCreator .secE .sectional .positions {
+    height: 210px;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 15px;
+  }
+  .playCreator .secE .sectional .positions .posCont {
+    position: relative;
+  }
+  .playCreator .secE .sectional .positions .posCont button {
+    width: 40px;
+    height: 40px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 20px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: center;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+  }
+  .playCreator .secE .sectional .pens .posCont button img {
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+  }
+  .playCreator .secE .sectional .pens, .playCreator .secE .sectional .colors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .playCreator .secE .sectional .pens .posCont, .playCreator .secE .sectional .colors .posCont {
+    flex: 1;
+    height: 45px;
+    padding: 0px;
+    position: relative;
+  }
+  .playCreator .secE .sectional .pens .posCont button, .playCreator .secE .sectional .colors .posCont button {
+    width: 100%;
+    height: 40px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 20px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: center;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .playCreator .secE .sectional .pens .posCont button.white, .playCreator .secE .sectional .colors .posCont button.white {
+    background: #ffffff;
+  }
+  .playCreator .secE .sectional .pens .posCont button.red, .playCreator .secE .sectional .colors .posCont button.red {
+    background: #dd1919;
+  }
+  .playCreator .secE .sectional .pens .posCont button.blue, .playCreator .secE .sectional .colors .posCont button.blue {
+    background: #301283;
+  }
+  .playCreator .secE .sectional .pens .posCont button.yellow, .playCreator .secE .sectional .colors .posCont button.yellow {
+    background: #f3ff44;
+  }
+  .playCreator .secE .sectional .pens .posCont button.active, .playCreator .secE .sectional .colors .posCont button.active {
+    outline: 1px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
   }
 }
 @media only screen and (max-width: 670px) {
