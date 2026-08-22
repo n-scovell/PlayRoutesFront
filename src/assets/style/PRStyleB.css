@@ -3995,43 +3995,41 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 }
 .playCreator .secB .sectional .field .positionBox .player.color {
   transition: border 0.5s;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0);
+  border: 3px solid rgba(231, 231, 231, 0.2);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.c {
-  border: 3px solid rgb(7, 232, 248);
+  background: rgb(7, 232, 248);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.g {
-  border: 3px solid rgb(7, 232, 248);
+  background: rgb(7, 232, 248);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.t {
-  border: 3px solid rgb(7, 232, 248);
+  background: rgb(7, 232, 248);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.qb {
-  border: 3px solid rgb(230, 3, 154);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(240, 4, 4);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.rb {
-  border: 3px solid rgb(201, 240, 28);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(201, 240, 28);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.fb {
-  border: 3px solid rgb(238, 236, 152);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(238, 236, 152);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.tb {
-  border: 3px solid rgb(233, 179, 1);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(233, 179, 1);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.te {
-  border: 3px solid rgb(1, 4, 197);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(5, 175, 27);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.sl {
-  border: 3px solid rgb(35, 71, 172);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(223, 172, 4);
 }
 .playCreator .secB .sectional .field .positionBox .player.color.wr {
-  border: 3px solid rgb(52, 101, 238);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(8, 43, 138);
+}
+.playCreator .secB .sectional .field .positionBox .player.color.c:before, .playCreator .secB .sectional .field .positionBox .player.color.g:before, .playCreator .secB .sectional .field .positionBox .player.color.t:before, .playCreator .secB .sectional .field .positionBox .player.color.rb:before, .playCreator .secB .sectional .field .positionBox .player.color.tb:before {
+  color: #242222;
 }
 .playCreator .secB .sectional .field .positionBox .player.remove:before, .playCreator .secB .sectional .field .positionBox .player.remove:after {
   background: rgb(143, 142, 142);
@@ -4112,6 +4110,10 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   text-transform: uppercase;
   text-shadow: none;
   text-align: center;
+}
+.playCreator .secC .sectional.pos .positions .posCont button.active, .playCreator .secC .sectional.pos .pens .posCont button.active, .playCreator .secC .sectional.pos .colors .posCont button.active {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 3px;
 }
 .playCreator .secC .sectional.pos .pens .posCont button {
   flex: 1;

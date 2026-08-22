@@ -735,28 +735,28 @@ const showPenMenu = () => {
           <Header title="PEN STYLE" icon="formation" />
           <div class="pens">
             <div class="posCont">
-              <button aria-label="Pen Stroke" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
+              <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
             </div>
             <div class="posCont">
-              <button aria-label="Chalk Stroke" @pointerdown="changeTool('chalk')"><img src="@/assets/images/chalk.png" /></button>
+              <button aria-label="Chalk Stroke" :class="{ active: selectedTool === 'chalk' }" @pointerdown="changeTool('chalk')"><img src="@/assets/images/chalk.png" /></button>
             </div>
             <div class="posCont">
-              <button aria-label="Dash Stroke" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
+              <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
             </div>
           </div> 
           <Header title="PEN COLOR" icon="formation" />
           <div class="colors">
             <div class="posCont">
-              <button class="white" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
+              <button class="white" :class="{ active: selectedColor === 'white' }" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
             </div>
             <div class="posCont">
-              <button class="red" aria-label="Pen Stroke" @pointerdown="changeColor('red')"></button>
+              <button class="red" :class="{ active: selectedColor === 'red' }" aria-label="Pen Stroke" @pointerdown="changeColor('red')"></button>
             </div>
             <div class="posCont">
-              <button class="blue" aria-label="Pen Stroke" @pointerdown="changeColor('blue')"></button>
+              <button class="blue" :class="{ active: selectedColor === 'blue' }" aria-label="Pen Stroke" @pointerdown="changeColor('blue')"></button>
             </div>
             <div class="posCont">
-              <button class="yellow" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
+              <button class="yellow" :class="{ active: selectedColor === 'yellow' }" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
             </div>
           </div>
         </div>
