@@ -10,7 +10,7 @@ const images = import.meta.glob<string>(
 </script>
 <template>
     <h4>
-      <div>
-        <img :src="images[`/src/assets/images/${icon}.png`]" />
-      </div>{{title}}</h4>
+      <div><img :src="images[`/src/assets/images/${icon}.png`]" :class="icon" /></div>
+      {{title}}
+    </h4>
 </template>

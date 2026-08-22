@@ -728,11 +728,11 @@ const showPenMenu = () => {
             <div class="posCont" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
               <button :aria-label="`${p.pos}`" >{{ p.pos.toUpperCase() }}</button>
             </div>
-          </div> 
+          </div> t
         </div>
         <div class="sectional pos">
           <button class="info">i</button>
-          <Header title="PEN STYLE" icon="formation" />
+          <Header title="PEN STYLE" icon="pentool" />
           <div class="pens">
             <div class="posCont">
               <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
@@ -744,7 +744,7 @@ const showPenMenu = () => {
               <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
             </div>
           </div> 
-          <Header title="PEN COLOR" icon="formation" />
+          <Header title="PEN COLOR" icon="colorstool" />
           <div class="colors">
             <div class="posCont">
               <button class="white" :class="{ active: selectedColor === 'white' }" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
@@ -763,10 +763,10 @@ const showPenMenu = () => {
       </div>
       <div class="secD">
         <div class="mobileCont">
-          <button @click="showInfo()" class='playInfo'><div>i</div></button>
-          <button @click="showFormationMenu()" class='formations'><div><img src="@/assets/images/formation.png"/></div></button>
-          <button @click="showPositionsMenu()" class='positions'><div></div></button>
-          <button @click="showPenMenu()" class='penSelect'><div></div></button>
+          <button :class="{active : infoShow}" @click="showInfo()" class='playInfo'><div>i</div></button>
+          <button :class="{active : formationShow}" @click="showFormationMenu()" class='formations'><div><img src="@/assets/images/formation.png"/></div></button>
+          <button :class="{active : positionShow}" @click="showPositionsMenu()" class='positions'><div></div></button>
+          <button :class="{active : penShow}" @click="showPenMenu()" class='penSelect'><div></div></button>
         </div>
       </div>
       <div class="secE" v-if="extendPop">
@@ -832,7 +832,7 @@ const showPenMenu = () => {
           </div> 
         </div>
         <div class="sectional" v-if="penShow">
-          <Header title="PEN STYLE" icon="formation" />
+          <Header title="PEN STYLE" icon="pentool" />
           <div class="pens">
             <div class="posCont">
               <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
@@ -844,7 +844,7 @@ const showPenMenu = () => {
               <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
             </div>
           </div> 
-          <Header title="PEN COLOR" icon="formation" />
+          <Header title="PEN COLOR" icon="colorstool" />
           <div class="colors">
             <div class="posCont">
               <button class="white" :class="{ active: selectedColor === 'white' }" aria-label="White Pen Stroke" @pointerdown="changeColor('white')"></button>

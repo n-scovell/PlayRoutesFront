@@ -3638,6 +3638,13 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 .playCreator .secA .sectional h4 div img, .playCreator .secB .sectional h4 div img, .playCreator .secC .sectional h4 div img, .playCreator .secD .sectional h4 div img {
   width: 100%;
 }
+.playCreator .secA .sectional h4 div img.colorstool, .playCreator .secB .sectional h4 div img.colorstool, .playCreator .secC .sectional h4 div img.colorstool, .playCreator .secD .sectional h4 div img.colorstool {
+  width: 130%;
+}
+.playCreator .secA .sectional h4 div img.pentool, .playCreator .secB .sectional h4 div img.pentool, .playCreator .secC .sectional h4 div img.pentool, .playCreator .secD .sectional h4 div img.pentool {
+  width: 65%;
+  transform: rotate(-150deg);
+}
 .playCreator .secA .topButtonCont, .playCreator .secB .topButtonCont, .playCreator .secC .topButtonCont, .playCreator .secD .topButtonCont {
   flex: 1;
   width: 100%;
@@ -4392,6 +4399,14 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
   .playCreator .secE .sectional h4 div img {
     width: 100%;
   }
+  .playCreator .secE .sectional h4 div img.colors {
+    outline: 1px solid red;
+    width: 100%;
+  }
+  .playCreator .secE .sectional h4 div img.pentool {
+    width: 80%;
+    transform: rotate(-150deg);
+  }
   .playCreator .secE .sectional .positions {
     height: 210px;
     padding: 0px;
@@ -4610,6 +4625,20 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
     text-transform: uppercase;
     text-shadow: none;
     text-align: center;
+  }
+  .playCreator .secD .mobileCont button.active {
+    outline-offset: 2px;
+  }
+  .playCreator .secD .mobileCont button.active:before {
+    content: " ";
+    width: 70%;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
   }
   .playCreator .secD .mobileCont button.playInfo {
     position: relative;

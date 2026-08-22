@@ -1830,6 +1830,13 @@ $fieldSize: 75%;
           max-width:22px;
           img {
             width:100%;
+            &.colorstool {
+              width:130%;
+            }
+            &.pentool {
+              width:65%;
+              transform:rotate(-150deg);
+            }
           }
         }
       }
@@ -2313,6 +2320,14 @@ $fieldSize: 75%;
             width:20px;
             img {
               width:100%;
+              &.colors {
+                outline:1px solid red;
+                width:100%;
+              }
+              &.pentool {
+                width:80%;
+                transform:rotate(-150deg);
+              }
             }
           }
         }
@@ -2441,6 +2456,21 @@ $fieldSize: 75%;
           flex:1;
           height:100%;
           @include font($head, $white, 12px, 300, .02em, 20px, normal, uppercase, none, center);
+          &.active {
+            // outline:1px solid $white;
+            outline-offset:2px;
+            &:before {
+              content:' ';
+              width:70%;
+              height:15px;
+              background:rgba(255,255,255,.6);
+              position:absolute;
+              top:100%;
+              left:50%;
+              transform:translate(-50%, 0%);
+              clip-path:polygon(0% 0%, 100% 0%, 50% 100%);
+            }
+          }
           &.playInfo {
             position:relative;
             div {
