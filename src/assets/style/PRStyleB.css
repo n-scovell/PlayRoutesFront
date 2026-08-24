@@ -1728,13 +1728,16 @@ form .inputCont select option:hover {
 }
 .userLogin .loggedIn, .playerLogin .loggedIn, .guestLogin .loggedIn {
   height: auto;
-  padding: 10px 0px 50px;
+  padding: 10px 0px 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+.userLogin .loggedIn img, .playerLogin .loggedIn img, .guestLogin .loggedIn img {
+  margin: auto;
 }
 .userLogin .loggedIn h3, .playerLogin .loggedIn h3, .guestLogin .loggedIn h3 {
   color: #f5f5f5;
@@ -1852,7 +1855,7 @@ form .inputCont select option:hover {
 }
 .loginChoice .selection {
   flex: 1;
-  max-width: 250px;
+  max-width: 33.33%;
   min-width: 250px;
   height: auto;
   padding: 30px 20px;
@@ -1931,6 +1934,7 @@ form .inputCont select option:hover {
   text-transform: none;
   text-shadow: none;
   text-align: center;
+  height: 30px;
 }
 .loginChoice .selection .txt button {
   position: relative;

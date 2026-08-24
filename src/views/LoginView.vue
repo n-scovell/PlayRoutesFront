@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
 import { useGuest } from '../stores/guestStore'
 
@@ -12,16 +12,30 @@ const userPassword = ref('')
 const userLoading = ref(false)
 const showUserMessage = ref(false)
 
+
+const playername = ref('')
+const selectedPlay = ref('')
+const team = ref('')
+const pin = ref('')
+
 const guestName = ref('')
 const guestemail = ref('')
 const guestdescription = ref('')
+
+
 
 const error = ref<string | null>(null)
 
 
 
 
-const clearGuest = () => {
+const clearAll = () => {
+  userEmail.value = ''
+  userPassword.value = ''
+  playername.value = ''
+  selectedPlay.value = ''
+  team.value = ''
+  pin.value = ''
   guestName.value = ''
   guestemail.value = ''
   guestdescription.value = ''
@@ -62,10 +76,7 @@ const closeLogin = () => {
 
 
 // PLAYER LOGIN
-const playername = ref('')
-const selectedPlay = ref('')
-const team = ref('')
-const pin = ref('')
+
 const positions = ref([
   { id: 'QB', name: 'Quarterback' },
   { id: 'RB', name: 'Running Back' },
@@ -83,9 +94,12 @@ const positions = ref([
 const userSignIn = async () => {
   userLoading.value = true
   error.value = null
+  if (auth.player) auth.playerLogout()
   try {
     await auth.login(userEmail.value, userPassword.value)
     showUserMessage.value = true
+    userEmail.value = ''
+    userPassword.value = ''
     clearGuest()
   } catch (err: any) {
     if (!userEmail.value || !userPassword.value) {
@@ -95,18 +109,69 @@ const userSignIn = async () => {
       error.value = err.message || 'Login failed'
     }
   } finally {
-    
     userLoading.value = false
     guestAccount.emptyGuest()
   }  
 }
-const playerSignIn = () => {
-  auth.playerLogin(team.value, pin.value, playername.value, selectedPlay.value)
+const playerSignIn = async () => {
+  error.value = null
+  if (auth.user) auth.logout()
+  try {
+    await auth.playerLogin(team.value, pin.value, playername.value, selectedPlay.value)
+    showUserMessage.value = true
+    playername.value = ''
+    selectedPlay.value = ''
+    team.value = ''
+    pin.value = ''
+  } catch (err: any) {
+    if (!team.value || !pin.value) {
+      if (!team.value) error.value = 'Team is blank'
+      if (!pin.value) error.value = 'Pin is blank'
+    } else {
+      error.value = err.message || 'Login failed'
+    }
+  }
 }
-const guestSignIn = () => {
-  guestAccount.createGuest(guestName.value, guestemail.value, guestdescription.value)
-  clearInp()
+const guestSignIn = async () => {
+  error.value = null
+  if (!guestName.value || !guestemail.value) return
+  try {
+    await guestAccount.createGuest(guestName.value, guestemail.value, guestdescription.value)
+    showUserMessage.value = true
+    guestName.value = ''
+    guestemail.value = ''
+    guestdescription.value = ''
+  } catch (err: any) {
+    if (!guestName.value || !guestemail.value) {
+      if (!guestName.value) error.value = 'Name is blank'
+      if (!guestemail.value) error.value = 'Email is blank'
+    } else {
+      error.value = err.message || 'Login failed'
+    }
+  }
 }
+
+  onMounted(() => {
+    if (auth.user || auth.player || guestAccount.guest) {
+    showUserMessage.value = true
+    }
+  })
+
+  watch(
+  [
+    () => auth.user,
+    () => guestAccount.guest,
+    () => auth.player
+  ],
+  ([user, guest, player]) => {
+    if (!user || !guest || !player) {
+      showUserMessage.value = false
+    }
+  }
+)
+
+
+
 
 </script>
 
@@ -116,8 +181,8 @@ const guestSignIn = () => {
 
       <h1>Choose Your Access</h1>
       <h2>Select how you want to continue</h2>
-
-      <div class="selection" @click="chooseLogin('user')">
+ 
+      <div class="selection" @click="chooseLogin('user')" >
         <div class="txt">
           <div class="iconCont">
             <img alt="PRArrow" src="@/assets/images/user.png" />
@@ -172,11 +237,12 @@ const guestSignIn = () => {
         </div>
         <div class="btCont">
           <button :disabled="userLoading" class="primaryBt b" @click="userSignIn">{{ userLoading ? 'Logging in...' : 'Login' }}</button>
-          <button type="button" class="primaryBt b" @click="signOut">Log Out</button>
+          <button type="button" class="formButton" @click="clearAll()">CLEAR</button>
         </div>
       </form>
       <div class="loggedIn" v-if="showUserMessage" >
-        <h3><span>YOU ARE LOGGED IN AS: </span>{{ auth.user?.name }}</h3>
+        <img alt="PRArrow" src="@/assets/images/success.png" />
+        <h3><span>YOU ARE LOGGED IN: </span>{{ auth.user?.name }}</h3>
       </div>
       <div class="loggedIn" v-if="error" >
         <h3>{{error}}</h3>
@@ -185,7 +251,7 @@ const guestSignIn = () => {
 
     <div class="playerLogin" :class="{active:playerLogin}">
       <button class="goBack" @click="closeLogin()"></button>
-      <form class="signIn" @submit.prevent>
+      <form class="signIn" @submit.prevent v-if="!showUserMessage">
         <img alt="PRArrow" src="@/assets/images/player.png" />
         <h3>Player Login</h3>
         <div class="inputCont">
@@ -207,13 +273,21 @@ const guestSignIn = () => {
         </div>
         <div class="btCont">
           <button class="primaryBt" type="button" @click="playerSignIn()">SUBMIT</button>
+          <button type="button" class="formButton" @click="clearAll()">CLEAR</button>
         </div>
       </form>
+      <div class="loggedIn" v-if="showUserMessage" >
+        <img alt="PRArrow" src="@/assets/images/success.png" />
+        <h3><span>YOU ARE LOGGED IN: </span>{{ auth.pName }}</h3>
+      </div>
+      <div class="loggedIn" v-if="error" >
+        <h3>{{error}}</h3>
+      </div>
     </div>
 
     <div class="guestLogin" :class="{active:guestLogin}">
       <button class="goBack" @click="closeLogin()"></button>
-      <form class="signIn" @submit.prevent v-if="!auth.user">
+      <form class="signIn" @submit.prevent v-if="!showUserMessage">
         <img alt="PRArrow" src="@/assets/images/guest.png" />
         <h3>Guest Login</h3>
         <div class="inputCont">
@@ -227,9 +301,16 @@ const guestSignIn = () => {
         </div>
         <div class="btCont">
         <button type="button" class="primaryBt" @click="guestSignIn()">PROCEED</button>
-        <button type="button" class="formButton" @click="clearGuest()">CLEAR</button>
+        <button type="button" class="formButton" @click="clearAll()">CLEAR</button>
         </div>
       </form>
+      <div class="loggedIn" v-if="showUserMessage" >
+        <img alt="PRArrow" src="@/assets/images/success.png" />
+        <h3><span>YOU ARE LOGGED IN: </span>{{ guestAccount.guest?.name }}</h3>
+      </div>
+      <div class="loggedIn" v-if="error" >
+        <h3>{{error}}</h3>
+      </div>
     </div>
 
 

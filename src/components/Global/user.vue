@@ -63,7 +63,7 @@ const logoutGuest = () => {
 </script>
 <template>
   <div class="userCont">
-    <div class="avatarCont" v-if="auth.user || gst.guest?.name || auth.player">
+    <div class="avatarCont" v-if="auth.user || gst.guest || auth.player">
       <button aria-label="Reveal Drop"  class="avatar" @pointerdown="revealDrop">
         <img alt="User Logo" :src="imgSrc" />
       </button>

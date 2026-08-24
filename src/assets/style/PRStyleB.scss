@@ -858,10 +858,12 @@ form {
   transition: all .5s 0s;
   .loggedIn {
     height:auto;
-    padding:10px 0px 50px;
-    @include flex(flex, row, nowrap, center, center, 10px);
+    padding:10px 0px 20px;
+    @include flex(flex, column, nowrap, center, center, 10px);
+    img {
+      margin:auto;
+    }
     h3 {
-
       @include font($head, $white, 21px, bold, .1em, 20px, normal, uppercase, none, center);
       span {
         @include font($head, $white, 20px, 300, .01em, 20px, normal, uppercase, none, center);
@@ -917,7 +919,7 @@ form {
   }
   .selection {
     flex:1;
-    max-width:250px;
+    max-width:33.33%;
     min-width:250px;
     height:auto;
     padding:30px 20px;
@@ -950,6 +952,7 @@ form {
       }
       p, ul li {
         @include font($par, $white, 15px, bold, .02em, 20px, normal, none, none, center);
+        height:30px;
       }
       button {
         position:relative;
