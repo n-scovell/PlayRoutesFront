@@ -1740,7 +1740,7 @@ form .inputCont select option:hover {
   margin: auto;
 }
 .userLogin .loggedIn h3, .playerLogin .loggedIn h3, .guestLogin .loggedIn h3 {
-  color: #f5f5f5;
+  color: #dd1919;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
@@ -1863,10 +1863,10 @@ form .inputCont select option:hover {
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: end;
+  justify-content: start;
   gap: 20px;
   position: relative;
   top: none;
@@ -1888,12 +1888,14 @@ form .inputCont select option:hover {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  text-align: left;
+  width: 100%;
 }
 .loginChoice .selection .txt .iconCont {
   width: 80px;
   height: 80px;
-  min-width: 0;
-  max-width: auto;
+  min-width: 80px;
+  max-width: 80px;
   min-height: auto;
   max-height: auto;
   position: relative;
@@ -1912,6 +1914,7 @@ form .inputCont select option:hover {
   height: auto;
 }
 .loginChoice .selection .txt h3 {
+  flex: 1;
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
@@ -1924,6 +1927,7 @@ form .inputCont select option:hover {
   text-align: center;
 }
 .loginChoice .selection .txt p, .loginChoice .selection .txt ul li {
+  flex: 1;
   color: #f5f5f5;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -3266,21 +3270,21 @@ form .inputCont select option:hover {
     right: none;
     transform: translate(-50%, 0%);
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: left;
-    justify-content: start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
     transition: all 0.5s 0.2s;
   }
   .loginChoice .selection {
     flex: 1;
     max-width: 100%;
-    min-width: 250px;
+    min-width: 350px;
     height: auto;
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: start;
@@ -3292,13 +3296,16 @@ form .inputCont select option:hover {
     right: none;
     transform: none;
   }
+  .loginChoice .selection.c {
+    margin-bottom: 50px;
+  }
   .loginChoice .selection .txt {
     flex: 1;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     gap: 20px;
   }
   .loginChoice .selection .txt .iconCont {

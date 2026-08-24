@@ -864,7 +864,7 @@ form {
       margin:auto;
     }
     h3 {
-      @include font($head, $white, 21px, bold, .1em, 20px, normal, uppercase, none, center);
+      @include font($head, $penRed, 21px, bold, .1em, 20px, normal, uppercase, none, center);
       span {
         @include font($head, $white, 20px, 300, .01em, 20px, normal, uppercase, none, center);
       }
@@ -893,7 +893,7 @@ form {
     padding-left:0px;
   }
 }
-.loginChoice {
+.loginChoice { // larged
   @include size(90%, 350px, 200px, 80vw);
   @include pos(fixed, 120px, 50%, $trans:translate(-50%,0%));
   @include flex(flex, row, wrap, center, center, 10px);
@@ -924,7 +924,7 @@ form {
     height:auto;
     padding:30px 20px;
     @include boxA();
-    @include flex(flex, column, nowrap, center, end, 20px);
+    @include flex(flex, row, nowrap, center, start, 20px);
     @include pos();
     left:0px;
     cursor:pointer;
@@ -934,9 +934,11 @@ form {
     .txt {
       flex:1;
       @include flex(flex, column, nowrap, center, center, 10px);
+      text-align:left;
+      width:100%;
       .iconCont {
         $w:80px;
-        @include size($w, $w);
+        @include size($w, $w, $w, $w);
         @include rel();
         img {
           height:100%;
@@ -948,9 +950,11 @@ form {
         }
       }
       h3 {
+        flex:1;
         @include font($head, $white, 30px, bold, .02em, 20px, normal, uppercase, none, center);
       }
       p, ul li {
+        flex:1;
         @include font($par, $white, 15px, bold, .02em, 20px, normal, none, none, center);
         height:30px;
       }
@@ -1596,22 +1600,25 @@ $mobile: 728px;
 
     }
   }
-  .loginChoice {
+  .loginChoice { //mobile
     @include size(90%, auto, 200px, 90vw);
     @include pos(relative, 20px, 50%, $trans:translate(-50%,0%));
-    @include flex(flex, row, wrap, left, start, 10px);
+    @include flex(flex, column, nowrap, center, center, 10px);
     transition:all .5s .2s;
     .selection {
       flex:1;
       max-width:100%;
-      min-width:250px;
+      min-width:350px;
       height:auto;
       padding:20px;
-      @include flex(flex, column, nowrap, center, start, 10px);
+      @include flex(flex, row, nowrap, center, start, 10px);
       @include pos();
+      &.c {
+        margin-bottom:50px;
+      }
       .txt {
         flex:1;
-        @include flex(flex, row, nowrap, center, center, 20px);
+        @include flex(flex, row, nowrap, center, start, 20px);
         .iconCont {
           $w:80px;
           @include size($w, $w);

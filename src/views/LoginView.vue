@@ -98,9 +98,7 @@ const userSignIn = async () => {
   try {
     await auth.login(userEmail.value, userPassword.value)
     showUserMessage.value = true
-    userEmail.value = ''
-    userPassword.value = ''
-    clearGuest()
+    clearAll()
   } catch (err: any) {
     if (!userEmail.value || !userPassword.value) {
       if (!userEmail.value) error.value = 'Username is blank'
@@ -119,10 +117,7 @@ const playerSignIn = async () => {
   try {
     await auth.playerLogin(team.value, pin.value, playername.value, selectedPlay.value)
     showUserMessage.value = true
-    playername.value = ''
-    selectedPlay.value = ''
-    team.value = ''
-    pin.value = ''
+    clearAll()
   } catch (err: any) {
     if (!team.value || !pin.value) {
       if (!team.value) error.value = 'Team is blank'
@@ -138,9 +133,7 @@ const guestSignIn = async () => {
   try {
     await guestAccount.createGuest(guestName.value, guestemail.value, guestdescription.value)
     showUserMessage.value = true
-    guestName.value = ''
-    guestemail.value = ''
-    guestdescription.value = ''
+    clearAll()
   } catch (err: any) {
     if (!guestName.value || !guestemail.value) {
       if (!guestName.value) error.value = 'Name is blank'
@@ -170,13 +163,10 @@ const guestSignIn = async () => {
   }
 )
 
-
-
-
 </script>
 
 <template>
-  <main style="min-height:100vh; overflow:hidden"> 
+  <main style="min-height:90vh; overflow:hidden"> 
     <div class="loginChoice" :class="{active: clearChoice}">
 
       <h1>Choose Your Access</h1>
@@ -189,7 +179,7 @@ const guestSignIn = async () => {
           </div>
           <div>
           <h3>USER LOGIN</h3>
-          <p>Login as the user and create plays, formations!</p>
+          <p>Login as the user and create<br> plays, formations!</p>
           <button class="primaryBt b" >Continue as User</button>
           </div>
         </div>
@@ -202,20 +192,20 @@ const guestSignIn = async () => {
           </div>
           <div>
           <h3>PLAYER LOGIN</h3>
-          <p>Acces your teams playbook!</p>
+          <p>Acces your <br>teams playbook!</p>
           <button class="primaryBt b" >Continue as Player</button>
           </div>
         </div>
       </div>
 
-      <div class="selection" @click="chooseLogin('guest')">
+      <div class="selection c" @click="chooseLogin('guest')">
         <div class="txt">
           <div class="iconCont">
             <img alt="PRArrow" src="@/assets/images/guest.png" />
           </div>
           <div>
           <h3>GUEST LOGIN</h3>
-          <p>Go ahead and check out Player Routes!</p>
+          <p>Go ahead and check<br> out Player Routes!</p>
           <button class="primaryBt b" >Continue as Guest</button>
           </div>
         </div>
@@ -237,7 +227,7 @@ const guestSignIn = async () => {
         </div>
         <div class="btCont">
           <button :disabled="userLoading" class="primaryBt b" @click="userSignIn">{{ userLoading ? 'Logging in...' : 'Login' }}</button>
-          <button type="button" class="formButton" @click="clearAll()">CLEAR</button>
+          <button type="button" class="primaryBt b" @click="clearAll()">CLEAR</button>
         </div>
       </form>
       <div class="loggedIn" v-if="showUserMessage" >
@@ -272,8 +262,8 @@ const guestSignIn = async () => {
           <label>Pin Number:<input placeholder="Pin" type="text" v-model="pin" /></label>
         </div>
         <div class="btCont">
-          <button class="primaryBt" type="button" @click="playerSignIn()">SUBMIT</button>
-          <button type="button" class="formButton" @click="clearAll()">CLEAR</button>
+          <button class="primaryBt b" type="button" @click="playerSignIn()">SUBMIT</button>
+          <button type="button" class="primaryBt b" @click="clearAll()">CLEAR</button>
         </div>
       </form>
       <div class="loggedIn" v-if="showUserMessage" >
@@ -300,8 +290,8 @@ const guestSignIn = async () => {
         <label>Describe Usage:</label><input placeholder="Tell us who you are" type="text" v-model="guestdescription" />
         </div>
         <div class="btCont">
-        <button type="button" class="primaryBt" @click="guestSignIn()">PROCEED</button>
-        <button type="button" class="formButton" @click="clearAll()">CLEAR</button>
+        <button type="button" class="primaryBt b" @click="guestSignIn()">PROCEED</button>
+        <button type="button" class="primaryBt b" @click="clearAll()">CLEAR</button>
         </div>
       </form>
       <div class="loggedIn" v-if="showUserMessage" >
