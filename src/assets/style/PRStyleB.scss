@@ -1562,6 +1562,26 @@ $mobile: 728px;
 }
 
 @media only screen and (max-width:890px) {
+  .userLogin, .playerLogin, .guestLogin {
+    @include pos(absolute, 120px, -100%, $trans:translate(0%,0%));
+    @include size(90%, auto, 350px, 50vw);
+    @include boxA();
+    padding:20px;
+    transition: all .5s 0s;
+    form {
+      text-align:center;
+      img {margin:auto; max-height:50px;}
+      h3 {font-size:20px;}
+    }
+    &.active {
+      @include pos(absolute, 120px, 50%, $trans:translate(-50%,0%));
+      transition:all .5s 0s ease-in;
+    }
+    .goBack {
+      @include pos(absolute, $top: 5px, $left: 15px, $trans:translate(0%,0%));
+
+    }
+  }
   .loginChoice {
     @include size(90%, auto, 200px, 90vw);
     @include pos(relative, 20px, 50%, $trans:translate(-50%,0%));

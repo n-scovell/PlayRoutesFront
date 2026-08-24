@@ -3169,6 +3169,52 @@ form .inputCont select option:hover {
   }
 }
 @media only screen and (max-width: 890px) {
+  .userLogin, .playerLogin, .guestLogin {
+    position: absolute;
+    top: 120px;
+    left: -100%;
+    bottom: none;
+    right: none;
+    transform: translate(0%, 0%);
+    width: 90%;
+    height: auto;
+    min-width: 350px;
+    max-width: 50vw;
+    min-height: auto;
+    max-height: auto;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: all 0.5s 0s;
+  }
+  .userLogin form, .playerLogin form, .guestLogin form {
+    text-align: center;
+  }
+  .userLogin form img, .playerLogin form img, .guestLogin form img {
+    margin: auto;
+    max-height: 50px;
+  }
+  .userLogin form h3, .playerLogin form h3, .guestLogin form h3 {
+    font-size: 20px;
+  }
+  .userLogin.active, .playerLogin.active, .guestLogin.active {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, 0%);
+    transition: all 0.5s 0s ease-in;
+  }
+  .userLogin .goBack, .playerLogin .goBack, .guestLogin .goBack {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    bottom: none;
+    right: none;
+    transform: translate(0%, 0%);
+  }
   .loginChoice {
     width: 90%;
     height: auto;

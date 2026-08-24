@@ -107,11 +107,11 @@ const guestSignIn = () => {
 <template>
   <main style="min-height:100vh;"> 
     <div class="loginChoice" :class="{active: clearChoice}">
-      
+
       <h1>Choose Your Access</h1>
       <h2>Select how you want to continue</h2>
 
-      <div class="selection">
+      <div class="selection" @click="chooseLogin('user')">
         <div class="txt">
           <div class="iconCont">
             <img alt="PRArrow" src="@/assets/images/user.png" />
@@ -119,12 +119,12 @@ const guestSignIn = () => {
           <div>
           <h3>USER LOGIN</h3>
           <p>Login as the user and create plays, formations!</p>
-          <button class="primaryBt b" @click="chooseLogin('user')">Continue as User</button>
+          <button class="primaryBt b" >Continue as User</button>
           </div>
         </div>
       </div>
 
-      <div class="selection">
+      <div class="selection" @click="chooseLogin('player')">
         <div class="txt">
           <div class="iconCont">
             <img alt="PRArrow" class='a' src="@/assets/images/player.png" />
@@ -132,12 +132,12 @@ const guestSignIn = () => {
           <div>
           <h3>PLAYER LOGIN</h3>
           <p>Acces your teams playbook!</p>
-          <button class="primaryBt b" @click="chooseLogin('player')">Continue as Player</button>
+          <button class="primaryBt b" >Continue as Player</button>
           </div>
         </div>
       </div>
 
-      <div class="selection">
+      <div class="selection" @click="chooseLogin('guest')">
         <div class="txt">
           <div class="iconCont">
             <img alt="PRArrow" src="@/assets/images/guest.png" />
@@ -145,7 +145,7 @@ const guestSignIn = () => {
           <div>
           <h3>GUEST LOGIN</h3>
           <p>Go ahead and check out Player Routes!</p>
-          <button class="primaryBt b" @click="chooseLogin('guest')">Continue as Guest</button>
+          <button class="primaryBt b" >Continue as Guest</button>
           </div>
         </div>
       </div>
