@@ -73,15 +73,26 @@ const logoutGuest = () => {
       <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink></span> 
     </h3>
     <div class="userDrop" v-if="showDrop">
-      <button v-if="auth.player">PLAYER: {{ auth.pName }}</button>
+      <div class="profileInfo">
+        <div v-if="auth.player" class="userIcon">{{ auth.pName[0] }}</div>
+        <div v-if="auth.user" class="userIcon">{{ auth.user.name?.[0] }}</div>
+        <div class="txt" v-if="auth.user">
+          <p>{{ auth.user.name }}</p>
+          <p>{{ auth.user?.team }} &#8226; COACH</p>
+        </div>
+        <div class="txt" v-if="auth.player">
+          <p>{{ auth.pName }}</p>
+          <p>{{ auth.player?.team }} &#8226; {{ auth.pPos }}</p>
+        </div>
+      </div>
       <button v-for="route in routes" :key="route.path" v-if="!gst.guest">
           <RouterLink :to="route.path">
               <div>{{ route.name }}</div>
           </RouterLink>
       </button>
-      <button @click="logoutGuest()" v-if="gst.guest">GUEST LOGOUT</button>
-      <button v-if="auth.player" @pointerdown="signOut">LOGOUT</button>
-      <button v-if="auth.user" @pointerdown="signOut">Logout</button>
+      <button @click="logoutGuest()" class="primaryBt" v-if="gst.guest">GUEST LOGOUT</button>
+      <button v-if="auth.player" class="primaryBt" @pointerdown="signOut">PLAYER LOGOUT</button>
+      <button v-if="auth.user" class="primaryBt" @pointerdown="signOut">Logout</button>
     </div>
   </div>
 </template>

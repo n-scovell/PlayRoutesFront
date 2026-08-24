@@ -100,7 +100,7 @@ export const useAuthStore = defineStore('auth', () => {
 }
 
 
-async function playerLogin(team: any, teamPin: any, playername: string, pos: string) {
+async function playerLogin(team: any, teamPin: any, playername: string, myPos: string) {
     const res = await fetch('https://play-route-back.vercel.app/api/users', {
     method: 'POST',
     headers: {
@@ -114,7 +114,7 @@ async function playerLogin(team: any, teamPin: any, playername: string, pos: str
   })
   const data = await res.json()
   pName.value = playername
-  pPos.value = pos
+  pPos.value = myPos
   if (!res.ok) {
     throw new Error(data.error || 'Login for player failed')
   }
@@ -129,6 +129,8 @@ async function playerLogin(team: any, teamPin: any, playername: string, pos: str
 function playerLogout() {
   const playStore = usePlayStore()
   playStore.clearPlays()
+  pName.value = ''
+  pPos.value = ''
   player.value = null
 }
   function logout() {
@@ -190,6 +192,7 @@ function playerLogout() {
     token,
     player,
     pName,
+    pPos,
     isAuthenticated,
     userId,
     userName,

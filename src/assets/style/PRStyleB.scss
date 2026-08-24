@@ -172,14 +172,34 @@ h1 {
         display: none;
       }
       .userDrop {
-        @include pos(absolute, 100%, $right: 0px, $trans: translate(0%, 0%));
-        @include size(200px, auto);
+        @include pos(absolute, 130%, $right: 0px, $trans: translate(0%, 0%));
+        @include size(100%, auto, 350px, 450px);
         @include flex(flex, column, nowrap, $gap:10px);
-        @include backColor(rgba(0,0,0, .8));
+        @include backColor(rgba(0,0,0, .9));
         z-index:1000;
-        padding:20px;
+        padding:20px 20px;
+        .profileInfo {
+          width:100%;
+          height:auto;
+          padding:0px 0px 15px;
+          background:rgb(43, 42, 42, .0);
+          @include flex(flex, row, nowrap, center, start, 10px);
+          border-bottom:2px solid rgba(255,255,255,.5);
+          margin-bottom:15px;
+          .userIcon {
+            $w:50px;
+            @include size($w, $w);
+            @include flex(flex, row, nowrap, center, center, 0px);
+            @include font($par, $blueB, 30px, bold, .02em, 20px, italic, uppercase, none, center);
+            @include backColor(rgba(255,255,255,.8));
+            border-radius:50%;
+          }
+          .txt {
+            @include font($par, $white, 15px, bold, .05em, 20px, normal, uppercase, none, left);
+          }
+        }
         button {
-          @include font($head, $white, 20px, bold, .01em, 20px, normal, uppercase, none);
+          @include font($head, $black, 20px, bold, .01em, 20px, normal, uppercase, none, center);
           a {
             color:inherit;
           }
