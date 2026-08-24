@@ -74,18 +74,32 @@ h1 {
   text-align: center;
   padding: 9px 30px;
 }
+.primaryBt:hover {
+  background: rgb(1, 121, 190);
+  color: #f5f5f5;
+}
 .primaryBt.b {
   padding: 9px 10px;
   color: #242222;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
-  font-weight: bold;
+  font-weight: 400;
   font-size: 21px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-shadow: none;
   text-align: center;
+  transition: all 0.2s;
+}
+.primaryBt.b:hover {
+  background: rgb(1, 121, 190);
+  color: #f5f5f5;
+  transition: all 0.2s;
+}
+.primaryBt:hover {
+  background: rgb(1, 121, 190);
+  color: #f5f5f5;
 }
 
 .play-routes .page {
@@ -1717,9 +1731,12 @@ form .inputCont select option:hover {
 }
 .userLogin form img, .playerLogin form img, .guestLogin form img {
   margin: auto;
+  max-height: 60px;
 }
 .userLogin form h3, .playerLogin form h3, .guestLogin form h3 {
   text-align: center;
+  font-style: normal;
+  text-transform: uppercase;
 }
 .userLogin.active, .playerLogin.active, .guestLogin.active {
   position: absolute;
@@ -1772,7 +1789,7 @@ form .inputCont select option:hover {
 .loginChoice {
   width: 90%;
   height: 350px;
-  min-width: 300px;
+  min-width: 200px;
   max-width: 80vw;
   min-height: auto;
   max-height: auto;
@@ -1891,6 +1908,12 @@ form .inputCont select option:hover {
   text-transform: none;
   text-shadow: none;
   text-align: center;
+}
+.loginChoice .selection .txt button {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
 }
 
 .flipPhoneText {
@@ -3156,6 +3179,110 @@ form .inputCont select option:hover {
   }
 }
 @media only screen and (max-width: 890px) {
+  .loginChoice {
+    width: 90%;
+    height: auto;
+    min-width: 200px;
+    max-width: 90vw;
+    min-height: auto;
+    max-height: auto;
+    position: relative;
+    top: 20px;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, 0%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: left;
+    justify-content: start;
+    gap: 10px;
+    transition: all 0.5s 0.2s;
+  }
+  .loginChoice .selection {
+    flex: 1;
+    max-width: 100%;
+    min-width: 250px;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    position: relative;
+    top: none;
+    left: none;
+    bottom: none;
+    right: none;
+    transform: none;
+  }
+  .loginChoice .selection .txt {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .loginChoice .selection .txt .iconCont {
+    width: 80px;
+    height: 80px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    position: relative;
+  }
+  .loginChoice .selection .txt .iconCont img {
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: none;
+    right: none;
+    transform: translate(-50%, -50%);
+  }
+  .loginChoice .selection .txt .iconCont img.a {
+    width: 90%;
+    height: auto;
+  }
+  .loginChoice .selection .txt h3 {
+    color: #f5f5f5;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size: 20px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: none;
+    text-align: left;
+  }
+  .loginChoice .selection .txt p {
+    color: #f5f5f5;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size: 14px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: left;
+    margin: 10px 0px;
+    height: 30px;
+  }
+  .loginChoice .selection .txt button {
+    font-size: 18px;
+    position: relative;
+    left: 0%;
+    transform: translateX(0%);
+    margin-top: 0px;
+  }
   .playsContainer.plays .playRows, .playsContainer.fav .playRows {
     display: grid;
     grid-template-columns: 1fr 1fr;

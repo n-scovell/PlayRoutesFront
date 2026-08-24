@@ -107,40 +107,50 @@ const guestSignIn = () => {
 <template>
   <main style="min-height:100vh;"> 
     <div class="loginChoice" :class="{active: clearChoice}">
+      
       <h1>Choose Your Access</h1>
       <h2>Select how you want to continue</h2>
+
       <div class="selection">
         <div class="txt">
           <div class="iconCont">
             <img alt="PRArrow" src="@/assets/images/user.png" />
           </div>
+          <div>
           <h3>USER LOGIN</h3>
           <p>Login as the user and create plays, formations!</p>
+          <button class="primaryBt b" @click="chooseLogin('user')">Continue as User</button>
+          </div>
         </div>
-        <button class="primaryBt b" @click="chooseLogin('user')">Continue as User</button>
       </div>
+
       <div class="selection">
         <div class="txt">
           <div class="iconCont">
             <img alt="PRArrow" class='a' src="@/assets/images/player.png" />
           </div>
+          <div>
           <h3>PLAYER LOGIN</h3>
           <p>Acces your teams playbook!</p>
+          <button class="primaryBt b" @click="chooseLogin('player')">Continue as Player</button>
+          </div>
         </div>
-        <button class="primaryBt b" @click="chooseLogin('player')">Continue as Player</button>
       </div>
+
       <div class="selection">
         <div class="txt">
           <div class="iconCont">
             <img alt="PRArrow" src="@/assets/images/guest.png" />
           </div>
+          <div>
           <h3>GUEST LOGIN</h3>
           <p>Go ahead and check out Player Routes!</p>
+          <button class="primaryBt b" @click="chooseLogin('guest')">Continue as Guest</button>
+          </div>
         </div>
-        <button class="primaryBt b" @click="chooseLogin('guest')">Continue as Guest</button>
       </div>
-    </div>
 
+    </div>
 
     // LOGIN SCREENS
     <div class="userLogin" :class="{active:userLogin}">
@@ -155,29 +165,8 @@ const guestSignIn = () => {
           <label>Password:</label><input placeholder="Password" type="password" v-model="userPassword" />
         </div>
         <div class="btCont">
-          <button :disabled="userLoading" class="formButton" @click="userSignIn">{{ userLoading ? 'Logging in...' : 'Login' }}</button>
-          <button type="button" class="formButton" @click="signOut">Log Out</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="guestLogin" :class="{active:guestLogin}">
-      <button class="goBack" @click="closeLogin()"></button>
-      <form class="signIn" @submit.prevent v-if="!auth.user">
-        <img alt="PRArrow" src="@/assets/images/guest.png" />
-        <h3>Guest Login</h3>
-        <div class="inputCont">
-        <label>Guest Name:</label><input placeholder="Guest" type="text" v-model="guestName" />
-        </div>
-        <div class="inputCont">
-        <label>Guest Email:</label><input placeholder="Email" type="email" v-model="guestemail" />
-        </div>
-        <div class="inputCont">
-        <label>Describe Usage:</label><input placeholder="Tell us who you are" type="text" v-model="guestdescription" />
-        </div>
-        <div class="btCont">
-        <button type="button" class="formButton" @click="guestSignIn()">PROCEED</button>
-        <button type="button" class="formButton" @click="clearGuest()">CLEAR</button>
+          <button :disabled="userLoading" class="primaryBt b" @click="userSignIn">{{ userLoading ? 'Logging in...' : 'Login' }}</button>
+          <button type="button" class="primaryBt b" @click="signOut">Log Out</button>
         </div>
       </form>
     </div>
@@ -205,9 +194,32 @@ const guestSignIn = () => {
           <label>Pin Number:<input placeholder="Pin" type="text" v-model="pin" /></label>
         </div>
         <div class="btCont">
-          <button class="formButton" type="button" @click="playerSignIn()">SUBMIT</button>
+          <button class="primaryBt" type="button" @click="playerSignIn()">SUBMIT</button>
         </div>
       </form>
     </div>
+
+    <div class="guestLogin" :class="{active:guestLogin}">
+      <button class="goBack" @click="closeLogin()"></button>
+      <form class="signIn" @submit.prevent v-if="!auth.user">
+        <img alt="PRArrow" src="@/assets/images/guest.png" />
+        <h3>Guest Login</h3>
+        <div class="inputCont">
+        <label>Guest Name:</label><input placeholder="Guest" type="text" v-model="guestName" />
+        </div>
+        <div class="inputCont">
+        <label>Guest Email:</label><input placeholder="Email" type="email" v-model="guestemail" />
+        </div>
+        <div class="inputCont">
+        <label>Describe Usage:</label><input placeholder="Tell us who you are" type="text" v-model="guestdescription" />
+        </div>
+        <div class="btCont">
+        <button type="button" class="primaryBt" @click="guestSignIn()">PROCEED</button>
+        <button type="button" class="formButton" @click="clearGuest()">CLEAR</button>
+        </div>
+      </form>
+    </div>
+
+
   </main>
 </template>

@@ -69,9 +69,23 @@ h1 {
   @include backColor($white);
   @include font($head, $black, 30px, bold, .02em, 20px, normal, uppercase, $align:center);
   padding:9px 30px;
+  &:hover {
+    @include backColor($blueB);
+    color:$white;
+  }
   &.b {
     padding:9px 10px;
-    @include font($head, $black, 21px, bold, .02em, 20px, normal, uppercase, $align:center);
+    @include font($head, $black, 21px, 400, .02em, 20px, normal, uppercase, $align:center);
+    transition:all .2s;
+    &:hover {
+      @include backColor($blueB);
+      color:$white;
+      transition:all .2s;
+    }
+  }
+  &:hover {
+    @include backColor($blueB);
+    color:$white;
   }
 }
 
@@ -844,9 +858,11 @@ form {
   transition: all .5s .2s;
   form {
     text-align:center;
-    img {margin:auto;}
+    img {margin:auto; max-height:60px;}
     h3 {
       text-align:center;
+      font-style:normal;
+      text-transform:uppercase;
     }
   }
   &.active {
@@ -864,7 +880,7 @@ form {
   }
 }
 .loginChoice {
-  @include size(90%, 350px, 300px, 80vw);
+  @include size(90%, 350px, 200px, 80vw);
   @include pos(absolute, 45%, 50%, $trans:translate(-50%,-50%));
   @include flex(flex, row, wrap, center, center, 10px);
   transition:all .5s .2s;
@@ -923,6 +939,12 @@ form {
       }
       p, ul li {
         @include font($par, $white, 15px, bold, .02em, 20px, normal, none, none, center);
+      }
+      button {
+        position:relative;
+        left:50%;
+        transform:translateX(-50%);
+        margin-top:20px;
       }
     }
   }
@@ -1540,6 +1562,53 @@ $mobile: 728px;
 }
 
 @media only screen and (max-width:890px) {
+  .loginChoice {
+    @include size(90%, auto, 200px, 90vw);
+    @include pos(relative, 20px, 50%, $trans:translate(-50%,0%));
+    @include flex(flex, row, wrap, left, start, 10px);
+    transition:all .5s .2s;
+    .selection {
+      flex:1;
+      max-width:100%;
+      min-width:250px;
+      height:auto;
+      padding:20px;
+      @include flex(flex, column, nowrap, center, start, 10px);
+      @include pos();
+      .txt {
+        flex:1;
+        @include flex(flex, row, nowrap, center, center, 20px);
+        .iconCont {
+          $w:80px;
+          @include size($w, $w);
+          @include rel();
+          img {
+            height:80%;
+            @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+            &.a {
+              width:90%;
+              height:auto;
+            }
+          }
+        }
+        h3 {
+          @include font($head, $white, 20px, bold, .02em, 20px, normal, uppercase, none, left);
+        }
+        p {
+          @include font($par, $white, 14px, bold, .02em, 20px, normal, none, none, left);
+          margin:10px 0px;
+          height:30px;
+        }
+        button {
+          font-size:18px;
+          position:relative;
+          left:0%;
+          transform:translateX(0%);
+          margin-top:0px;
+        }
+      }
+    }
+  }
   .playsContainer {
     &.plays, &.fav {
       .playRows {
