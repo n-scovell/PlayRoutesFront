@@ -74,6 +74,19 @@ h1 {
   text-align: center;
   padding: 9px 30px;
 }
+.primaryBt.b {
+  padding: 9px 10px;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 21px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
 
 .play-routes .page {
   padding-bottom: 0px;
@@ -1680,6 +1693,158 @@ form .inputCont select option:hover {
     font-size: 16px;
   }
 }
+.userLogin, .playerLogin, .guestLogin {
+  position: absolute;
+  top: 45%;
+  left: -100%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 350px;
+  min-width: 300px;
+  max-width: 30vw;
+  min-height: auto;
+  max-height: auto;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.5s 0.2s;
+}
+.userLogin.active, .playerLogin.active, .guestLogin.active {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  transition: all 1s 0.2s ease-in;
+}
+
+.loginChoice {
+  width: 90%;
+  height: 350px;
+  min-width: 300px;
+  max-width: 80vw;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.5s 0.2s;
+}
+.loginChoice.active {
+  left: 200%;
+  position: fixed;
+  transition: all 1s 0.2s ease-in;
+}
+.loginChoice h1 {
+  flex: 0 0 100%;
+  background: none;
+  text-align: center;
+  font-size: 30px;
+  margin: 0px 0px -10px;
+}
+.loginChoice h2 {
+  flex: 0 0 100%;
+  background: none;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+.loginChoice .selection {
+  flex: 1;
+  max-width: 250px;
+  min-width: 250px;
+  height: auto;
+  padding: 30px 20px;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: end;
+  gap: 20px;
+  position: relative;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  left: 0px;
+  cursor: pointer;
+}
+.loginChoice .selection:hover {
+  border: 2px solid rgb(1, 121, 190);
+}
+.loginChoice .selection .txt {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.loginChoice .selection .txt .iconCont {
+  width: 80px;
+  height: 80px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: relative;
+}
+.loginChoice .selection .txt .iconCont img {
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+}
+.loginChoice .selection .txt .iconCont img.a {
+  width: 100%;
+  height: auto;
+}
+.loginChoice .selection .txt h3 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.loginChoice .selection .txt p, .loginChoice .selection .txt ul li {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+}
+
 .flipPhoneText {
   display: none;
 }

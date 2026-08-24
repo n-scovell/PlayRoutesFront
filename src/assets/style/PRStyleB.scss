@@ -17,6 +17,13 @@ $blueC: #445ef1;
 $rustRed: rgb(207, 18, 18);
 $rustYellow: rgb(241, 220, 23);
 $rustBlue: rgb(13, 126, 192);
+
+//PEN COLORS
+$penRed: #dd1919;
+$penWhite: #ffffff;
+$penBlue: #301283;
+$penYellow: #f3ff44;
+$penGreen: #00e913;
  
 $headerHeight: 80px;
 $avatarSize: 50px;
@@ -62,6 +69,10 @@ h1 {
   @include backColor($white);
   @include font($head, $black, 30px, bold, .02em, 20px, normal, uppercase, $align:center);
   padding:9px 30px;
+  &.b {
+    padding:9px 10px;
+    @include font($head, $black, 21px, bold, .02em, 20px, normal, uppercase, $align:center);
+  }
 }
 
 
@@ -825,9 +836,80 @@ form {
 
 
 
-
-
-
+.userLogin, .playerLogin, .guestLogin {
+  @include pos(absolute, 45%, -100%, $trans:translate(-50%,-50%));
+  @include size(90%, 350px, 300px, 30vw);
+  @include boxA();
+  transition: all .5s .2s;
+  &.active {
+    @include pos(absolute, 45%, 50%, $trans:translate(-50%,-50%));
+    transition:all 1s .2s ease-in;
+  }
+}
+.loginChoice {
+  @include size(90%, 350px, 300px, 80vw);
+  @include pos(absolute, 45%, 50%, $trans:translate(-50%,-50%));
+  @include flex(flex, row, wrap, center, center, 10px);
+  transition:all .5s .2s;
+  &.active {
+    left:200%;
+    position:fixed;
+    transition:all 1s .2s ease-in;
+  }
+  h1 {
+    flex: 0 0 100%;
+    background:none;
+    text-align:center;
+    font-size:30px;
+    margin:0px 0px -10px;
+  }
+  h2 {
+    flex: 0 0 100%;
+    background:none;
+    text-align:center;
+    margin:0px;
+    padding:0px;
+    margin-bottom:20px;
+  }
+  .selection {
+    flex:1;
+    max-width:250px;
+    min-width:250px;
+    height:auto;
+    padding:30px 20px;
+    @include boxA();
+    @include flex(flex, column, nowrap, center, end, 20px);
+    @include pos();
+    left:0px;
+    cursor:pointer;
+    &:hover {
+      border:2px solid $blueB;
+    }
+    .txt {
+      flex:1;
+      @include flex(flex, column, nowrap, center, center, 10px);
+      .iconCont {
+        $w:80px;
+        @include size($w, $w);
+        @include rel();
+        img {
+          height:100%;
+          @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+          &.a {
+            width:100%;
+            height:auto;
+          }
+        }
+      }
+      h3 {
+        @include font($head, $white, 30px, bold, .02em, 20px, normal, uppercase, none, center);
+      }
+      p, ul li {
+        @include font($par, $white, 15px, bold, .02em, 20px, normal, none, none, center);
+      }
+    }
+  }
+}
 
 
 
@@ -837,12 +919,7 @@ $toolBtSize: $toolWidth - 12px;
 $degreeSpin: -45deg;
 $playerSize:33px; // the max width and height of the player
 
-//PEN COLORS
-$penRed: #dd1919;
-$penWhite: #ffffff;
-$penBlue: #301283;
-$penYellow: #f3ff44;
-$penGreen: #00e913;
+
 
 .flipPhoneText {
   display:none;

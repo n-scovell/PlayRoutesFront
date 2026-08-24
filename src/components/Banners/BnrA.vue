@@ -23,11 +23,11 @@ const gst = useGuest()
               <button aria-label="Creat Play Button" class="primaryBt">REGISTER</button>
             </RouterLink>
             <RouterLink to="/login"> 
-              <button aria-label="Creat Play Button" class="primaryBt">USER LOGIN</button>
+              <button aria-label="Creat Play Button" class="primaryBt">USER/PLAYER LOGIN</button>
             </RouterLink>
-            <RouterLink to="/playerlog"> 
+            <!-- <RouterLink to="/playerlog"> 
               <button aria-label="Creat Play Button" class="primaryBt">PLAYER LOGIN</button>
-            </RouterLink>
+            </RouterLink> -->
           </div>
 
 
