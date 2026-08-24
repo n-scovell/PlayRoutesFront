@@ -838,12 +838,29 @@ form {
 
 .userLogin, .playerLogin, .guestLogin {
   @include pos(absolute, 45%, -100%, $trans:translate(-50%,-50%));
-  @include size(90%, 350px, 300px, 30vw);
+  @include size(90%, auto, 300px, 30vw);
   @include boxA();
+  padding:20px;
   transition: all .5s .2s;
+  form {
+    text-align:center;
+    img {margin:auto;}
+    h3 {
+      text-align:center;
+    }
+  }
   &.active {
     @include pos(absolute, 45%, 50%, $trans:translate(-50%,-50%));
     transition:all 1s .2s ease-in;
+  }
+  .goBack {
+    @include pos(absolute, $bottom: 5px, $left: 15px, $trans:translate(0%,0%));
+    @include size(30px, 50px);
+    @include font($head, $white, 20px, bold, .02em, 20px, normal, uppercase, none, left);
+    @include back(transparent, '@/assets/images/goback.png', 100% auto, 0px 49%, no-repeat);
+    @include flex(flex, row, nowrap, center, center,0px);
+    cursor:pointer;
+    padding-left:0px;
   }
 }
 .loginChoice {

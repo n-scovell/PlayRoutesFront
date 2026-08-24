@@ -37,36 +37,28 @@ const positions = ref([
 <template>
   <main style="min-height:100vh">
   <h1>Login as player!</h1>
-  <form class="signUp" @submit.prevent>
-        <h3>Login:</h3>
-
-        <div class="inputCont">
-            <label>Player Name:<input placeholder="Player Name" type="input" v-model="playername" /></label>
-        </div>
-
-        <div class="inputCont a">
-          <label>Player Position:
-          <select id="city-select" v-model="selectedPlay" >
-            <option value="" disabled>Please select one</option>
-            <option v-for="p in positions" :key="p.id" :value="p.id">
-              {{p.id}} - {{ p.name }}
-            </option>
-          </select>
-          </label>
-        </div>
-
-        <div class="inputCont">
-            <label>Team Name:<input placeholder="Team Name" type="input" v-model="team" /></label>
-        </div>
-
-        <div class="inputCont">
-            <label>Pin Number:<input placeholder="Pin" type="text" v-model="pin" /></label>
-        </div>
-
-        <div class="btCont">
-          <button class="formButton" type="button" @click="playerLogin()">SUBMIT</button>
-        </div>
-
-      </form>
+    <form class="signUp" @submit.prevent>
+      <h3>Login:</h3>
+      <div class="inputCont">
+        <label>Player Name:<input placeholder="Player Name" type="input" v-model="playername" /></label>
+      </div>
+      <div class="inputCont a">
+        <label>Player Position:
+        <select id="city-select" v-model="selectedPlay" >
+          <option value="" disabled>Please select one</option>
+          <option v-for="p in positions" :key="p.id" :value="p.id">{{p.id}} - {{ p.name }}</option>
+        </select>
+        </label>
+      </div>
+      <div class="inputCont">
+      <label>Team Name:<input placeholder="Team Name" type="input" v-model="team" /></label>
+      </div>
+      <div class="inputCont">
+        <label>Pin Number:<input placeholder="Pin" type="text" v-model="pin" /></label>
+      </div>
+      <div class="btCont">
+        <button class="formButton" type="button" @click="playerLogin()">SUBMIT</button>
+      </div>
+    </form>
   </main>
 </template>

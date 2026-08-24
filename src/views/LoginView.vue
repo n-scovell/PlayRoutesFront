@@ -5,50 +5,38 @@ import { useGuest } from '../stores/guestStore'
 
 const guestAccount = useGuest()
 const auth = useAuthStore()
-const email = ref('')
-const guest = ref('')
+
+
+const userEmail = ref('')
+const userPassword = ref('')
+const userLoading = ref(false)
+const showUserMessage = ref(false)
+
+const guestName = ref('')
 const guestemail = ref('')
 const guestdescription = ref('')
-const password = ref('')
+
 const error = ref<string | null>(null)
-const loading = ref(false)
-const charged = ref(false)
-const showMessage = ref(false)
+
+
 
 
 const clearGuest = () => {
-  guest.value = ''
+  guestName.value = ''
   guestemail.value = ''
   guestdescription.value = ''
 }
 
 const clearInp = () => {
-  guest.value = ''
+  guestName.value = ''
   guestemail.value = ''
   guestdescription.value = ''
-  email.value = ''
-  password.value = ''
+  userEmail.value = ''
+  userPassword.value = ''
 }
 
-const signIn = async () => {
-  loading.value = true
-  error.value = null
-  try {
-    await auth.login(email.value, password.value)
-    charged.value = true
-    showMessage.value = true
-    clearGuest()
-  } catch (err: any) {
-    error.value = err.message || 'Login failed'
-  } finally {
-    guestAccount.emptyGuest()
-    loading.value = false
-  }  
-}
-const signGuest = () => {
-  guestAccount.createGuest(guest.value, guestemail.value, guestdescription.value)
-  clearInp()
-}
+
+
 const signOut = () => {
   auth.logout()
   clearInp()
@@ -65,12 +53,59 @@ const chooseLogin = (p: string) => {
   if (p === 'player') playerLogin.value = true
   if (p === 'guest') guestLogin.value = true
 }
+const closeLogin = () => {
+  clearChoice.value = false
+  userLogin.value = false
+  playerLogin.value = false
+  guestLogin.value = false
+}
+
+
+// PLAYER LOGIN
+const playername = ref('')
+const selectedPlay = ref('')
+const team = ref('')
+const pin = ref('')
+const positions = ref([
+  { id: 'QB', name: 'Quarterback' },
+  { id: 'RB', name: 'Running Back' },
+  { id: 'FB', name: 'Full Back' },
+  { id: 'TB', name: 'Tail Back' },
+  { id: 'WR', name: 'Wide Receiver' },
+  { id: 'SL', name: 'Slot Reciever' },
+  { id: 'TE', name: 'Tight End' },
+  { id: 'C', name: 'Center' },
+  { id: 'Q', name: 'Guard' },
+  { id: 'T', name: 'Tackle' },
+])
+
+// SIGN IN FUNCTIONS
+const userSignIn = async () => {
+  userLoading.value = true
+  error.value = null
+  try {
+    await auth.login(userEmail.value, userPassword.value)
+    showUserMessage.value = true
+    clearGuest()
+  } catch (err: any) {
+    error.value = err.message || 'Login failed'
+  } finally {
+    userLoading.value = false
+    guestAccount.emptyGuest()
+  }  
+}
+const playerSignIn = () => {
+  auth.playerLogin(team.value, pin.value, playername.value, selectedPlay.value)
+}
+const guestSignIn = () => {
+  guestAccount.createGuest(guestName.value, guestemail.value, guestdescription.value)
+  clearInp()
+}
 
 </script>
 
 <template>
   <main style="min-height:100vh;"> 
-
     <div class="loginChoice" :class="{active: clearChoice}">
       <h1>Choose Your Access</h1>
       <h2>Select how you want to continue</h2>
@@ -106,98 +141,73 @@ const chooseLogin = (p: string) => {
       </div>
     </div>
 
+
+    // LOGIN SCREENS
     <div class="userLogin" :class="{active:userLogin}">
+      <button class="goBack" @click="closeLogin()"></button>
       <form class="signIn" @submit.prevent>
-        <h3>USER!</h3>
+        <img alt="PRArrow" src="@/assets/images/user.png" />
+        <h3>User Login</h3>
         <div class="inputCont">
-          <label>Email:</label><input placeholder="Email" type="email" v-model="email" />
+          <label>Email:</label><input placeholder="Email" type="email" v-model="userEmail" />
         </div>
         <div class="inputCont">
-          <label>Password:</label><input placeholder="Password" type="password" v-model="password" />
+          <label>Password:</label><input placeholder="Password" type="password" v-model="userPassword" />
         </div>
         <div class="btCont">
-          <button :disabled="loading" class="formButton" @click="signIn">{{ loading ? 'Logging in...' : 'Login' }}</button>
+          <button :disabled="userLoading" class="formButton" @click="userSignIn">{{ userLoading ? 'Logging in...' : 'Login' }}</button>
           <button type="button" class="formButton" @click="signOut">Log Out</button>
         </div>
       </form>
     </div>
 
     <div class="guestLogin" :class="{active:guestLogin}">
-      <form class="signIn" @submit.prevent>
-        <h3>GUEST!</h3>
+      <button class="goBack" @click="closeLogin()"></button>
+      <form class="signIn" @submit.prevent v-if="!auth.user">
+        <img alt="PRArrow" src="@/assets/images/guest.png" />
+        <h3>Guest Login</h3>
         <div class="inputCont">
-          <label>Email:</label><input placeholder="Email" type="email" v-model="email" />
+        <label>Guest Name:</label><input placeholder="Guest" type="text" v-model="guestName" />
         </div>
         <div class="inputCont">
-          <label>Password:</label><input placeholder="Password" type="password" v-model="password" />
+        <label>Guest Email:</label><input placeholder="Email" type="email" v-model="guestemail" />
+        </div>
+        <div class="inputCont">
+        <label>Describe Usage:</label><input placeholder="Tell us who you are" type="text" v-model="guestdescription" />
         </div>
         <div class="btCont">
-          <button :disabled="loading" class="formButton" @click="signIn">{{ loading ? 'Logging in...' : 'Login' }}</button>
-          <button type="button" class="formButton" @click="signOut">Log Out</button>
+        <button type="button" class="formButton" @click="guestSignIn()">PROCEED</button>
+        <button type="button" class="formButton" @click="clearGuest()">CLEAR</button>
         </div>
       </form>
     </div>
 
     <div class="playerLogin" :class="{active:playerLogin}">
+      <button class="goBack" @click="closeLogin()"></button>
       <form class="signIn" @submit.prevent>
-        <h3>PLAYER!</h3>
+        <img alt="PRArrow" src="@/assets/images/player.png" />
+        <h3>Player Login</h3>
         <div class="inputCont">
-          <label>Email:</label><input placeholder="Email" type="email" v-model="email" />
+          <label>Player Name:<input placeholder="Player Name" type="input" v-model="playername" /></label>
+        </div>
+        <div class="inputCont a">
+          <label>Player Position:
+            <select id="city-select" v-model="selectedPlay" >
+              <option value="" disabled>Please select one</option>
+              <option v-for="p in positions" :key="p.id" :value="p.id">{{p.id}} - {{ p.name }}</option>
+            </select>
+          </label>
         </div>
         <div class="inputCont">
-          <label>Password:</label><input placeholder="Password" type="password" v-model="password" />
+          <label>Team Name:<input placeholder="Team Name" type="input" v-model="team" /></label>
+        </div>
+        <div class="inputCont">
+          <label>Pin Number:<input placeholder="Pin" type="text" v-model="pin" /></label>
         </div>
         <div class="btCont">
-          <button :disabled="loading" class="formButton" @click="signIn">{{ loading ? 'Logging in...' : 'Login' }}</button>
-          <button type="button" class="formButton" @click="signOut">Log Out</button>
+          <button class="formButton" type="button" @click="playerSignIn()">SUBMIT</button>
         </div>
       </form>
     </div>
-    <!-- <form class="signIn" @submit.prevent>
-      <h3>Welcome back!</h3>
-      <div class="inputCont">
-            <label>Email:</label><input placeholder="Email" type="email" v-model="email" />
-      </div>
-      <div class="inputCont">
-            <label>Password:</label><input placeholder="Password" type="password" v-model="password" />
-      </div>
-      <div class="btCont">
-        <button :disabled="loading" class="formButton" @click="signIn">{{ loading ? 'Logging in...' : 'Login' }}</button>
-        <button type="button" class="formButton" @click="signOut">Log Out</button>
-      </div>
-    </form>
-    <form class="signIn" @submit.prevent v-if="!auth.user">
-      <h3>Preview As Guest!</h3>
-      <p></p>
-      <div class="inputCont">
-          <label>Guest Name:</label><input placeholder="Guest" type="text" v-model="guest" />
-      </div>
-      <div class="inputCont">
-          <label>Guest Email:</label><input placeholder="Email" type="email" v-model="guestemail" />
-      </div>
-      <div class="inputCont">
-          <label>Describe Usage:</label><input placeholder="Tell us who you are" type="text" v-model="guestdescription" />
-      </div>
-      <div class="btCont">
-        <button type="button" class="formButton" @click="signGuest()">PROCEED</button>
-        <button type="button" class="formButton" @click="clearGuest()">CLEAR</button>
-      </div>
-    </form> -->
-
-    <!-- <div v-if="showMessage && auth.user" class="messageToUser">
-      Welcome back {{ auth.user.name }}
-    </div> -->
-
-    <!-- <Teleport to="body" >
-      <div class="messageOutput" :class="{green: auth.user}" v-if="showMessage">
-        <p v-if="error" style="color:red">{{ error }}</p>
-        <h3 v-if="auth.user">Welcome back coach:</h3>
-        <h4>{{ auth.user?.name }}</h4>
-        <div class="btCont">
-          <RouterLink to="/create"><button>CREATE PLAYS</button></RouterLink>
-          <RouterLink to="/plays"><button>PLAYBOOK</button></RouterLink>
-        </div>
-      </div>
-    </Teleport> -->
   </main>
 </template>

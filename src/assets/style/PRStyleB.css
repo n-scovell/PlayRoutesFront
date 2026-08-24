@@ -1701,7 +1701,7 @@ form .inputCont select option:hover {
   right: none;
   transform: translate(-50%, -50%);
   width: 90%;
-  height: 350px;
+  height: auto;
   min-width: 300px;
   max-width: 30vw;
   min-height: auto;
@@ -1709,7 +1709,17 @@ form .inputCont select option:hover {
   border-radius: 3px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
   transition: all 0.5s 0.2s;
+}
+.userLogin form, .playerLogin form, .guestLogin form {
+  text-align: center;
+}
+.userLogin form img, .playerLogin form img, .guestLogin form img {
+  margin: auto;
+}
+.userLogin form h3, .playerLogin form h3, .guestLogin form h3 {
+  text-align: center;
 }
 .userLogin.active, .playerLogin.active, .guestLogin.active {
   position: absolute;
@@ -1719,6 +1729,44 @@ form .inputCont select option:hover {
   right: none;
   transform: translate(-50%, -50%);
   transition: all 1s 0.2s ease-in;
+}
+.userLogin .goBack, .playerLogin .goBack, .guestLogin .goBack {
+  position: absolute;
+  top: none;
+  left: 15px;
+  bottom: 5px;
+  right: none;
+  transform: translate(0%, 0%);
+  width: 30px;
+  height: 50px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  background: transparent;
+  background-image: url("@/assets/images/goback.png");
+  background-size: 100% auto;
+  background-position: 0px 49%;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  cursor: pointer;
+  padding-left: 0px;
 }
 
 .loginChoice {
