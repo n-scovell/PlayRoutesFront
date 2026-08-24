@@ -791,6 +791,9 @@ form {
     select option {
       @include backColor(rgba(0,0,0,.1));
       color:$black;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0;
       &:hover {
         @include backColor(red);
       }

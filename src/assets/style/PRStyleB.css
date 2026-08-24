@@ -1609,6 +1609,10 @@ form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont
 form .inputCont select option {
   background: rgba(0, 0, 0, 0.1);
   color: #242222;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 form .inputCont select option:hover {
   background: red;
