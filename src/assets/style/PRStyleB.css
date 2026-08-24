@@ -1709,11 +1709,11 @@ form .inputCont select option:hover {
 }
 .userLogin, .playerLogin, .guestLogin {
   position: absolute;
-  top: 45%;
+  top: 120px;
   left: -100%;
   bottom: none;
   right: none;
-  transform: translate(-50%, -50%);
+  transform: translate(0%, 0%);
   width: 90%;
   height: auto;
   min-width: 300px;
@@ -1724,7 +1724,7 @@ form .inputCont select option:hover {
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
   padding: 20px;
-  transition: all 0.5s 0.2s;
+  transition: all 0.5s 0s;
 }
 .userLogin form, .playerLogin form, .guestLogin form {
   text-align: center;
@@ -1740,12 +1740,12 @@ form .inputCont select option:hover {
 }
 .userLogin.active, .playerLogin.active, .guestLogin.active {
   position: absolute;
-  top: 45%;
+  top: 120px;
   left: 50%;
   bottom: none;
   right: none;
-  transform: translate(-50%, -50%);
-  transition: all 1s 0.2s ease-in;
+  transform: translate(-50%, 0%);
+  transition: all 0.5s 0s ease-in;
 }
 .userLogin .goBack, .playerLogin .goBack, .guestLogin .goBack {
   position: absolute;
@@ -1754,26 +1754,16 @@ form .inputCont select option:hover {
   bottom: 5px;
   right: none;
   transform: translate(0%, 0%);
-  width: 30px;
-  height: 50px;
+  width: 20px;
+  height: 30px;
   min-width: 0;
   max-width: auto;
   min-height: auto;
   max-height: auto;
-  color: #f5f5f5;
-  font-family: "Fjalla One", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: bold;
-  font-size: 20px;
-  font-style: normal;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  text-shadow: none;
-  text-align: left;
   background: transparent;
   background-image: url("@/assets/images/goback.png");
   background-size: 100% auto;
-  background-position: 0px 49%;
+  background-position: 0px 45%;
   background-repeat: no-repeat;
   backdrop-filter: blur(none);
   display: flex;
@@ -1805,12 +1795,12 @@ form .inputCont select option:hover {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  transition: all 0.5s 0.2s;
+  transition: all 0.5s 0s;
 }
 .loginChoice.active {
   left: 200%;
   position: fixed;
-  transition: all 1s 0.2s ease-in;
+  transition: all 0.2s 0.2s ease-in;
 }
 .loginChoice h1 {
   flex: 0 0 100%;
