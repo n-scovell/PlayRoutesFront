@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/userAuth'
 import { useGuest } from '@/stores/guestStore'
+import { RouterLink } from 'vue-router'
 const auth = useAuthStore()
 const gst = useGuest()
 </script>
@@ -15,8 +16,10 @@ const gst = useGuest()
         <h3>That's OK!</h3>
         <h4>We get it! You want to be sure of what <strong>Player Routes</strong> <br>does and how it can help you get the <strong>W</strong>.</h4>
         <h5>So go ahead and use it as a guest</h5>
-        <h5 class="highlight">For the time being.</h5>
-        <button aria-label="Use As Guest" v-if="!gst.guest" type="button" class="primaryBt">Use as Guest</button>
+        <h5 class="highlight">For the time being.</h5> 
+        <RouterLink to="/login">
+          <button aria-label="Use As Guest" v-if="!gst.guest" type="button" class="primaryBt">Use as Guest</button>
+        </RouterLink>
       </div>
       <div class="right">
         <ul>
