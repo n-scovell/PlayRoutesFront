@@ -1784,11 +1784,11 @@ form .inputCont select option:hover {
   min-height: auto;
   max-height: auto;
   position: absolute;
-  top: 45%;
+  top: 120px;
   left: 50%;
   bottom: none;
   right: none;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1799,7 +1799,6 @@ form .inputCont select option:hover {
 }
 .loginChoice.active {
   left: 200%;
-  position: fixed;
   transition: all 0.2s 0.2s ease-in;
 }
 .loginChoice h1 {
