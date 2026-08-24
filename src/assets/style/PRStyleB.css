@@ -1783,7 +1783,7 @@ form .inputCont select option:hover {
   max-width: 80vw;
   min-height: auto;
   max-height: auto;
-  position: absolute;
+  position: fixed;
   top: 120px;
   left: 50%;
   bottom: none;

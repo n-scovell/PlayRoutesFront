@@ -105,7 +105,7 @@ const guestSignIn = () => {
 </script>
 
 <template>
-  <main style="min-height:100vh;"> 
+  <main style="min-height:100vh; overflow:hidden"> 
     <div class="loginChoice" :class="{active: clearChoice}">
 
       <h1>Choose Your Access</h1>

@@ -881,7 +881,7 @@ form {
 }
 .loginChoice {
   @include size(90%, 350px, 200px, 80vw);
-  @include pos(absolute, 120px, 50%, $trans:translate(-50%,0%));
+  @include pos(fixed, 120px, 50%, $trans:translate(-50%,0%));
   @include flex(flex, row, wrap, center, center, 10px);
   transition:all .5s 0s;
   &.active {
