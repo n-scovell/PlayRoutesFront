@@ -11,6 +11,10 @@ export const usePlayStore = defineStore(
     const loading = ref(false)
     const error = ref<string | null>(null)
 
+    // async function fetchTeamPlays() {
+
+    // }
+
     async function fetchPlays() {
       const auth = useAuthStore()
       if (!auth.userId || !auth.token) {
@@ -38,6 +42,33 @@ export const usePlayStore = defineStore(
         loading.value = false
       }
     }
+
+
+
+    async function fetchTeamPlays(id: string, token: string) {
+      try {
+        error.value = null
+        const res = await fetch(
+          `https://play-route-back.vercel.app/api/play?userId=${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        )
+        const data = await res.json()
+        if (!res.ok) {
+          throw new Error(data.error || 'Failed to fetch plays')
+        }
+        plays.value = data
+        console.log(plays.value)
+      } catch (err: any) {
+        error.value = err.message
+      }
+    }
+
+    
+
     async function createPlay(payload: any) {
       const auth = useAuthStore()
       if (!auth.token || !auth.userId) {
@@ -96,7 +127,8 @@ export const usePlayStore = defineStore(
       fetchPlays,
       createPlay,
       clearPlays,
-      deletePlay
+      deletePlay,
+      fetchTeamPlays
     }
   },
   {

@@ -13,8 +13,11 @@
     }
     const routes = computed(() => {
         return router.getRoutes().filter(route => {
-            if (!auth.user && !gst.guest) {
+            if (!auth.user && !gst.guest && !auth.player) {
                 if (route.name === 'Home' || route.name === 'Login' ) return true
+            }
+            if (auth.player) {
+                if (route.name === 'Playbook') return true
             }
             if (auth.user) {
                 if (route.meta.active === 'topNav') return true

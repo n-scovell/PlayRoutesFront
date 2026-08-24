@@ -39,7 +39,12 @@ const routes: RouteRecordRaw[] = [
   //   meta: { icon: 'badges',  transition: 'slide-left', active: 'topNav' },
   //   component: () => import('../views/PlayerView.vue')
   // },
-  
+  {
+    path: '/playerlog',
+    name: 'Player Login',
+    meta: { icon: 'create',  transition: 'slide-left', active: 'sideNav' },
+    component: () => import('../views/PlayerLoginView.vue')
+  },
   {
     path: '/register',
     name: 'Register',
@@ -52,18 +57,18 @@ const routes: RouteRecordRaw[] = [
     meta: { icon: 'login',  transition: 'slide-left', active: 'sideNav' },
     component: () => import('../views/LoginView.vue')
   }, 
-  {
-    path: '/profile',
-    name: 'Profile',
-    meta: { icon: 'user_ico',  transition: 'slide-left', active: 'avatar' },
-    component: () => import('../views/ProfileView.vue')
-  },
-  {
-    path: '/badges',
-    name: 'Badges',
-    meta: { icon: 'badges',  transition: 'slide-left', active: 'avatar' },
-    component: () => import('../views/BadgesView.vue')
-  },
+  // {
+  //   path: '/profile',
+  //   name: 'Profile',
+  //   meta: { icon: 'user_ico',  transition: 'slide-left', active: 'avatar' },
+  //   component: () => import('../views/ProfileView.vue')
+  // },
+  // {
+  //   path: '/badges',
+  //   name: 'Badges',
+  //   meta: { icon: 'badges',  transition: 'slide-left', active: 'avatar' },
+  //   component: () => import('../views/BadgesView.vue')
+  // },
   
   // {
   //   path: '/formations',

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useAuthStore } from '../stores/userAuth'
 import { usePlayStore } from '@/stores/playStore'
 import { useGuest } from '@/stores/guestStore' 
 import { useFavorites } from '@/stores/favStore'
@@ -27,6 +28,7 @@ interface Play {
   grid: Grid
 }
 
+const auth = useAuthStore()
 const gst = useGuest()
 const playsStore = usePlayStore()
 const favPlays = useFavorites()
@@ -174,8 +176,8 @@ const showMenu = (i: number) => {
           <div class="playInfo">
             <h3>{{ p.title }}</h3>
             <h4> {{ p.formation }} - {{ p.playType }} </h4>
-            <button class="menuHam" :class="{active: popMenu === index}" @click="showMenu(index)"><div></div><div></div><div></div></button>
-            <div class="menuPop" :class="{active: popMenu === index}">
+            <button v-if="auth.user" class="menuHam" :class="{active: popMenu === index}" @click="showMenu(index)"><div></div><div></div><div></div></button>
+            <div class="menuPop" :class="{active: popMenu === index}" v-if="auth.user">
               <button class="fav" @click="addFav(p.id)">ADD FAV.</button>
               <button class="del" @click.self="triggerPrompt(p)">DELETE</button>
             </div>

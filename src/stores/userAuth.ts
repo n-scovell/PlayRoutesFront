@@ -11,12 +11,23 @@ export const useAuthStore = defineStore('auth', () => {
     id: string
     email: string
     name?: string
+    teamPin?: string
     sport?: string
     team?: string
   }
 
+  type PlayerSession = {
+    team: string
+    sport?: string
+    token?: string
+  }
+
   const user = ref<User | null>(null)
   const token = ref<string | null>(null)
+
+  const player = ref<PlayerSession | null>(null)
+  const pName = ref<string>('')
+  const pPos = ref<string>('')
 
   const isAuthenticated = computed(() => !!token.value)
 
@@ -29,6 +40,7 @@ export const useAuthStore = defineStore('auth', () => {
   email: string,
   password: string,
   name: string,
+  teamPin: string,
   sport: string,
   team: string
 ) {
@@ -40,6 +52,7 @@ export const useAuthStore = defineStore('auth', () => {
     body: JSON.stringify({
       email,
       password,
+      teamPin,
       name,
       sport,
       team,
@@ -62,6 +75,7 @@ export const useAuthStore = defineStore('auth', () => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      action: 'login',
       email,
       password,
     }),
@@ -85,6 +99,38 @@ export const useAuthStore = defineStore('auth', () => {
   await playerStore.fetchPlayers()
 }
 
+
+async function playerLogin(team: any, teamPin: any, playername: string, pos: string) {
+    const res = await fetch('https://play-route-back.vercel.app/api/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      action: 'player-login',
+      team,
+      teamPin,
+    }),
+  })
+  const data = await res.json()
+  pName.value = playername
+  pPos.value = pos
+  if (!res.ok) {
+    throw new Error(data.error || 'Login for player failed')
+  }
+  player.value = data.user
+  const playStore = usePlayStore()
+  await playStore.fetchTeamPlays(
+    data.user.id,
+    data.token
+  )
+}
+
+function playerLogout() {
+  const playStore = usePlayStore()
+  playStore.clearPlays()
+  player.value = null
+}
   function logout() {
     const playStore = usePlayStore()
     const formStore = useFormation()
@@ -93,14 +139,17 @@ export const useAuthStore = defineStore('auth', () => {
     formStore.clearFormations()
     favStore.clearFavorites()
     user.value = null
+    player.value = null
     token.value = null
     localStorage.removeItem('token')
+
   }
 
   async function updateUser(updates: {
   id?: string
   name?: string
   sport?: string
+  teamPin?: string
   team?: string
   password?: string
 }) {
@@ -139,18 +188,19 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     user,
     token,
-
+    player,
+    pName,
     isAuthenticated,
-
     userId,
     userName,
     teamName,
     sport,
-
+    playerLogout,
     createUser,
     login,
     logout,
-    updateUser
+    updateUser,
+    playerLogin
   }
 }, {
   persist: true

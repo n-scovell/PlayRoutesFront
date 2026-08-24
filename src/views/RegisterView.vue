@@ -1,26 +1,23 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
-import { useGuest } from '../stores/guestStore'
+
 const auth = useAuthStore()
-const gst = useGuest()
 const showModal = ref<boolean>(false)
 const name = ref('')
 const email = ref('')
 const sport = ref('')
 const team = ref('')
+const pin = ref('')
 const password = ref('')
 const code = ref("")
-
-onMounted(() => {
-  // gst.emptyGuest()
-})
 
 async function checkSignUp() {
   try {
     const formData = {
       email: email.value,
       password: password.value,
+      teamPin: pin.value,
       name: name.value,
       sport: sport.value,
       team: team.value,
@@ -63,6 +60,7 @@ async function verifyCode() {
   }
   showModal.value = false
   auth.login(email.value, password.value)
+  clearMe()
 }
 const cancelcode = () => {
   showModal.value = false
@@ -72,6 +70,7 @@ const clearMe = () => {
   name.value = ''
   email.value = ''
   sport.value = ''
+  pin.value = ''
   password.value = ''
   team.value = ''
 }
@@ -103,6 +102,9 @@ const clearMe = () => {
         </div>
         <div class="inputCont">
             <label>Sport:<input placeholder="Sport" type="text" v-model="sport" /></label>
+        </div>
+        <div class="inputCont">
+            <label>Team Pin Number:<input placeholder="Team Pin" type="text" v-model="pin" /></label>
         </div>
         <div class="inputCont">
             <label>Team Name:<input placeholder="Team Name" type="text" v-model="team" /></label>

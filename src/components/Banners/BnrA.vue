@@ -11,7 +11,33 @@ const gst = useGuest()
           <img alt="PRArrow" src="@/assets/images/PlayRoutesBW.png" />
           <h3>PLAYER <span class="alt">ROUTES</span></h3>
           <h4>PLAN, PREPARE, PERFORM</h4>
-          <div class="btCont" v-if="!auth.user">
+
+          <div class="btCont" v-if="auth.user || auth.player || gst.guest">
+            <RouterLink to="/create"> 
+              <button aria-label="Creat Play Button" class="primaryBt">CREATE PLAY</button>
+            </RouterLink>
+          </div>
+          
+          <div class="btCont" v-else-if="!auth.user || !auth.player">
+            <RouterLink to="/register"> 
+              <button aria-label="Creat Play Button" class="primaryBt">REGISTER</button>
+            </RouterLink>
+            <RouterLink to="/login"> 
+              <button aria-label="Creat Play Button" class="primaryBt">USER LOGIN</button>
+            </RouterLink>
+            <RouterLink to="/playerlog"> 
+              <button aria-label="Creat Play Button" class="primaryBt">PLAYER LOGIN</button>
+            </RouterLink>
+          </div>
+
+
+          <!-- 
+          <div class="btCont" v-if="auth.player">
+            <RouterLink to="/playerlog">
+              <button  aria-label="Register Button" class="primaryBt">
+                <span>PLAYER</span>
+              </button>
+            </RouterLink>
             <RouterLink to="/register">
               <button  aria-label="Register Button" class="primaryBt">
                 <span v-if="gst.guest">GUEST REGISTER</span>
@@ -25,11 +51,13 @@ const gst = useGuest()
               <button aria-label="Guest Button" class="primaryBt">GUEST</button>
             </RouterLink>
           </div>
+
           <div class="btCont" v-else>
             <RouterLink to="/create"> 
               <button aria-label="Creat Play Button" class="primaryBt">CREATE PLAY</button>
             </RouterLink>
-          </div>
+          </div> 
+          -->
         </div>
         <img alt="PR Field" src="@/assets/images/PRBack.JPG" width="100%" class="fieldImage" />
       </section>

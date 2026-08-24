@@ -665,7 +665,7 @@ form {
   }
   .inputCont {
     @include flex(flex, column, wrap, stretch, center, 5px);
-    margin-bottom:5px;
+    margin-bottom:15px;
     label {
       @include font($head, $white, 15px, 500, .01em, 20px, normal, uppercase, none, left);
       @include flex(flex, column, $gap: 10px);
@@ -729,7 +729,7 @@ form {
         
       }
     }
-    input, .dropDownInd, textarea {
+    input, .dropDownInd, textarea, select {
       @include backColor(rgba(0,0,0,.1));
       @include font($par, $white, 12px, .05em);
       @include size(100%, auto);
@@ -741,6 +741,13 @@ form {
       }
       &:focus {
         @include backColor(rgba(255,255,255,.4));
+      }
+    }
+    select option {
+      @include backColor(rgba(0,0,0,.1));
+      color:$black;
+      &:hover {
+        @include backColor(red);
       }
     }
   }

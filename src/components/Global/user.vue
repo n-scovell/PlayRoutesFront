@@ -16,6 +16,9 @@
     if (auth.user) {
       return new URL(`../../assets/icons/alph/${auth.teamName![0]}.png`, import.meta.url).href
     }
+    if (auth.player) {
+      return new URL(`../../assets/icons/alph/${auth.player.team![0]}.png`, import.meta.url).href
+    }
     if (gst.guest?.name) {
       return new URL(`../../assets/icons/alph/${gst.guest.name![0]}.png`, import.meta.url).href
     }
@@ -34,6 +37,7 @@
   const signOut = () => {
     showDrop.value = false
     auth.logout()
+    auth.playerLogout()
   }
   const routes = computed(() => {
     return router.getRoutes().filter(route => {
@@ -59,7 +63,7 @@ const logoutGuest = () => {
 </script>
 <template>
   <div class="userCont">
-    <div class="avatarCont" v-if="auth.user || gst.guest?.name">
+    <div class="avatarCont" v-if="auth.user || gst.guest?.name || auth.player">
       <button aria-label="Reveal Drop"  class="avatar" @pointerdown="revealDrop">
         <img alt="User Logo" :src="imgSrc" />
       </button>
@@ -69,13 +73,15 @@ const logoutGuest = () => {
       <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink></span> 
     </h3>
     <div class="userDrop" v-if="showDrop">
+      <button v-if="auth.player">PLAYER: {{ auth.pName }}</button>
       <button v-for="route in routes" :key="route.path" v-if="!gst.guest">
           <RouterLink :to="route.path">
               <div>{{ route.name }}</div>
           </RouterLink>
       </button>
       <button @click="logoutGuest()" v-if="gst.guest">GUEST LOGOUT</button>
-      <button v-if="auth.user" @pointerdown="signOut">Log Out</button>
+      <button v-if="auth.player" @pointerdown="signOut">LOGOUT</button>
+      <button v-if="auth.user" @pointerdown="signOut">Logout</button>
     </div>
   </div>
 </template>

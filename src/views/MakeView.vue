@@ -416,6 +416,7 @@
     if (auth.user) {
       formload = {
         formationName: newFormation.value,
+        pursuit: 'offense',
         grid: {
           players: players.value
         },
@@ -426,6 +427,7 @@
     if (gst.guest) {
       formload = {
         formationName: newFormation.value,
+        pursuit: 'offense',
         grid: {
           players: players.value
         },
