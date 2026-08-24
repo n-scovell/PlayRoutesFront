@@ -856,6 +856,18 @@ form {
   @include boxA();
   padding:20px;
   transition: all .5s 0s;
+  .loggedIn {
+    height:auto;
+    padding:10px 0px 50px;
+    @include flex(flex, row, nowrap, center, center, 10px);
+    h3 {
+
+      @include font($head, $white, 21px, bold, .1em, 20px, normal, uppercase, none, center);
+      span {
+        @include font($head, $white, 20px, 300, .01em, 20px, normal, uppercase, none, center);
+      }
+    }
+  }
   form {
     text-align:center;
     img {margin:auto; max-height:60px;}

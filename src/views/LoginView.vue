@@ -88,8 +88,14 @@ const userSignIn = async () => {
     showUserMessage.value = true
     clearGuest()
   } catch (err: any) {
-    error.value = err.message || 'Login failed'
+    if (!userEmail.value || !userPassword.value) {
+      if (!userEmail.value) error.value = 'Username is blank'
+      if (!userPassword.value) error.value = 'Password is blank'
+    } else {
+      error.value = err.message || 'Login failed'
+    }
   } finally {
+    
     userLoading.value = false
     guestAccount.emptyGuest()
   }  
@@ -169,6 +175,12 @@ const guestSignIn = () => {
           <button type="button" class="primaryBt b" @click="signOut">Log Out</button>
         </div>
       </form>
+      <div class="loggedIn" v-if="showUserMessage" >
+        <h3><span>YOU ARE LOGGED IN AS: </span>{{ auth.user?.name }}</h3>
+      </div>
+      <div class="loggedIn" v-if="error" >
+        <h3>{{error}}</h3>
+      </div>
     </div>
 
     <div class="playerLogin" :class="{active:playerLogin}">
