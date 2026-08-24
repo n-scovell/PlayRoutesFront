@@ -864,7 +864,16 @@ form {
       margin:auto;
     }
     h3 {
+      position:relative;
       @include font($head, $penRed, 21px, bold, .1em, 20px, normal, uppercase, none, center);
+      @include flex(flex, row, nowrap, center, start, 10px);
+      &:before {
+        content:' ';
+        $w:20px;
+        @include size($w,$w);
+        @include back(transparent, '@/assets/images/error.png', 100% auto, center center, no-repeat);
+      }
+      
       span {
         @include font($head, $white, 20px, 300, .01em, 20px, normal, uppercase, none, center);
       }

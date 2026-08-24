@@ -1740,6 +1740,7 @@ form .inputCont select option:hover {
   margin: auto;
 }
 .userLogin .loggedIn h3, .playerLogin .loggedIn h3, .guestLogin .loggedIn h3 {
+  position: relative;
   color: #dd1919;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
@@ -1750,6 +1751,27 @@ form .inputCont select option:hover {
   text-transform: uppercase;
   text-shadow: none;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+.userLogin .loggedIn h3:before, .playerLogin .loggedIn h3:before, .guestLogin .loggedIn h3:before {
+  content: " ";
+  width: 20px;
+  height: 20px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/images/error.png");
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
 }
 .userLogin .loggedIn h3 span, .playerLogin .loggedIn h3 span, .guestLogin .loggedIn h3 span {
   color: #f5f5f5;

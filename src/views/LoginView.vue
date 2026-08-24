@@ -116,8 +116,9 @@ const playerSignIn = async () => {
   if (auth.user) auth.logout()
   try {
     await auth.playerLogin(team.value, pin.value, playername.value, selectedPlay.value)
-    showUserMessage.value = true
+
     clearAll()
+    showUserMessage.value = true
   } catch (err: any) {
     if (!team.value || !pin.value) {
       if (!team.value) error.value = 'Team is blank'
@@ -216,7 +217,7 @@ const guestSignIn = async () => {
     // LOGIN SCREENS
     <div class="userLogin" :class="{active:userLogin}">
       <button class="goBack" @click="closeLogin()"></button>
-      <form class="signIn" @submit.prevent>
+      <form class="signIn" @submit.prevent v-if="!showUserMessage">
         <img alt="PRArrow" src="@/assets/images/user.png" />
         <h3>User Login</h3>
         <div class="inputCont">
