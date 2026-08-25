@@ -194,9 +194,9 @@ const registerProcess = async (val: number) => {
     } else if (step.value === 3) {
       await checkValue(code.value, 'code')
       await verifyCode()
-      await auth.login(email.value, password.value)
+      // await auth.login(email.value, password.value)
+      // clearMe()
       step.value = val
-      clearMe()
     }
   } catch (err: any) {
     error.value = err.message || 'Something went wrong'
@@ -269,7 +269,6 @@ const showPinInfo = () => {
           <strong>PASSWORD</strong>
           <p>Ensure your password has:</p>
           <ul>
-            <li></li>
             <li>10 Characters</li>
             <li>1 Capital Letter</li>
             <li>1 Lowecase Letter</li>
@@ -359,13 +358,29 @@ const showPinInfo = () => {
   </div>
 
   <div class="userLogin" :class="{active : step === 4}">
-    <form class="signIn" @submit.prevent>
+    <form  @submit.prevent>
       <img alt="PRArrow" src="@/assets/images/user.png" />
-      <h3>STEP 4: ACCOUNT IS MADE</h3>
-      <p>Congratulations on becoming a playbook wizard!</p>
-      <RouterLink to="/create"> 
-        <button class="primaryBt a" type="button">CREATE</button>
-      </RouterLink>
+      <h3>STEP 4: SELECT PAYMENT PLAN</h3>
+      <p>Setup your payment process to access Player Routes!</p>
+      <div class="paymentCont">
+        <div class="plan">
+          <img alt="PRArrow" src="@/assets/images/user.png" />
+          <h4>COACH PLAN</h4>
+          <h5>$6.00/monthly</h5>
+          <p>So on and so on</p>
+          <a class="primaryBt b" href="https://buy.stripe.com/test_5kQ5kw6WC4UrblEerQ3ks00" target="_blank">SELECT</a>
+        </div>
+        <!-- <div class="plan">
+          <img alt="PRArrow" src="@/assets/images/user.png" />
+          <h4>TEAM PLAN</h4>
+          <h5>$10.00/monthly</h5>
+          <p>So on and so on</p>
+          <a class="primaryBt b" href="" target="_blank">SELECT</a>
+        </div> -->
+      </div>
+      <div class="btCont">
+        <button class="primaryBt b" type="button" style="max-width:200px;" @click="registerProcess(2)">BACK</button>
+      </div>
     </form>
     <div class="loggedIn" v-if="error" >
         <h3>{{error}}</h3>

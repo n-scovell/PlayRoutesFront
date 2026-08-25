@@ -668,6 +668,29 @@ form {
       top:20px;
     }
   }
+  .paymentCont {
+    @include size(100%, auto);
+    @include flex(flex, row, nowrap, center, center, 10px);
+    padding:0px 30px;
+    margin-bottom:20px;
+    .plan {
+      flex:1;
+      border:1px solid $white;
+      text-align:center;
+      padding:20px;
+      
+      @include flex(flex, column, nowrap, center, center, 10px);
+      h4 {
+        @include font($spec, $white, 22px, 400, .02em, 20px, normal, uppercase, none, center);
+      }
+      h5 {
+        @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, center);
+      }
+      p {
+        @include font($par, $white, 15px, 400, .02em, 20px, normal, none, none, center);
+      }
+    }
+  }
   &.submitPlay {
     @include size(90%, auto);
     padding:20px;
