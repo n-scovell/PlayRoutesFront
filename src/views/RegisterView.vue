@@ -15,6 +15,16 @@ const passwordRepeat = ref('')
 const code = ref("")
 const selectedSport = ref("")
 
+const error = ref<string | null>(null)
+const step = ref<number>(0)
+
+const hasCap = ref<boolean>(false)
+const hasLow = ref<boolean>(false)
+const hasSpec = ref<boolean>(false)
+const hasNumb = ref<boolean>(false)
+const hasLen = ref<boolean>(false)
+const allClear = ref<boolean>(false)
+
 const sportChoice = ref([
   { id: 'tackle', name: 'Tackle Football' },
   { id: 'flag', name: 'Flag Football' },
@@ -63,15 +73,14 @@ async function verifyCode() {
   )
   const data = await res.json()
   if (!res.ok) {
-    alert(data.error)
-    return
+    if (data.error === 'Server error') {
+      throw new Error('Account already assigned to this email.')
+    } 
   }
-  showModal.value = false
-  auth.login(email.value, password.value)
-  clearMe()
 }
 const cancelcode = () => {
-  showModal.value = false
+  clearMe()
+  step.value = 0
 }
 
 const clearMe = () => {
@@ -82,18 +91,6 @@ const clearMe = () => {
   password.value = ''
   team.value = ''
 }
-
-
-
-const error = ref<string | null>(null)
-const step = ref<number>(0)
-
-const hasCap = ref<boolean>(false)
-const hasLow = ref<boolean>(false)
-const hasSpec = ref<boolean>(false)
-const hasNumb = ref<boolean>(false)
-const hasLen = ref<boolean>(false)
-const allClear = ref<boolean>(false)
 
 const verifyPass = (a: string) => {
   hasCap.value = !/[A-Z]/.test(a) ? false : true
@@ -193,8 +190,11 @@ const registerProcess = async (val: number) => {
       checkSignUp()
       step.value = val
     } else if (step.value === 3) {
+      await checkValue(code.value, 'code')
       await verifyCode()
+      await auth.login(email.value, password.value)
       step.value = val
+      clearMe()
     }
   } catch (err: any) {
     error.value = err.message || 'Something went wrong'
@@ -326,6 +326,7 @@ const goBackOne = (val: number) => {
         <label>Verify:</label><input placeholder="Verify Code" type="text" v-model="code" />
       </div>
       <div class="btCont">
+        <button class="primaryBt b" type="button" v-if="error" @click="registerProcess(0)">GO BACK</button>
         <button class="primaryBt b" type="button" @click="registerProcess(4)">VERIFY</button>
         <button class="primaryBt b" type="button" @click="cancelcode">CANCEL</button>
       </div>
