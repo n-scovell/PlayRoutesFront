@@ -274,7 +274,7 @@ const showPinInfo = () => {
             <li>1 Capital Letter</li>
             <li>1 Lowecase Letter</li>
             <li>1 Number</li>
-            <li>1 Character - !@#$%?</li>
+            <li>1 Special - !@#$%?</li>
           </ul>
         </div>
         <label>Password:<input placeholder="Password" type="password" v-model="password" /></label>
