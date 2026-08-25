@@ -1455,13 +1455,13 @@ form .inputCont {
 }
 form .inputCont label {
   color: #f5f5f5;
-  font-family: "Fjalla One", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   font-style: normal;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: none;
   text-shadow: none;
   text-align: left;
   display: flex;
@@ -1471,6 +1471,21 @@ form .inputCont label {
   justify-content: start;
   gap: 10px;
   cursor: pointer;
+}
+form .inputCont .processList {
+  width: 100%;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 2px;
+}
+form .inputCont .processList li {
+  flex: 0 0 20%;
+  height: 5px;
+  background: #00e913;
 }
 form .inputCont.inline {
   display: flex;
@@ -1593,15 +1608,15 @@ form .inputCont input, form .inputCont .dropDownInd, form .inputCont textarea, f
   max-height: auto;
   caret-color: #242222;
   caret-animation: revert;
-  caret-shape: underscore;
+  caret-shape: bar;
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 8px 0px 8px 10px;
 }
 form .inputCont input::-moz-placeholder, form .inputCont .dropDownInd::-moz-placeholder, form .inputCont textarea::-moz-placeholder, form .inputCont select::-moz-placeholder {
-  color: transparent;
+  color: #242222;
 }
 form .inputCont input::placeholder, form .inputCont .dropDownInd::placeholder, form .inputCont textarea::placeholder, form .inputCont select::placeholder {
-  color: transparent;
+  color: #242222;
 }
 form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont textarea:focus, form .inputCont select:focus {
   background: rgba(255, 255, 255, 0.4);
@@ -1613,9 +1628,6 @@ form .inputCont select option {
        appearance: none;
   -webkit-appearance: none;
   border-radius: 0;
-}
-form .inputCont select option:hover {
-  background: red;
 }
 
 @media only screen and (max-width: 690px) {
@@ -1732,7 +1744,7 @@ form .inputCont select option:hover {
 }
 .userLogin .loggedIn, .playerLogin .loggedIn, .guestLogin .loggedIn {
   height: auto;
-  padding: 10px 0px 20px;
+  padding: 10px 20px 20px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -1745,14 +1757,14 @@ form .inputCont select option:hover {
 }
 .userLogin .loggedIn h3, .playerLogin .loggedIn h3, .guestLogin .loggedIn h3 {
   position: relative;
-  color: #dd1919;
-  font-family: "Fjalla One", sans-serif;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-  font-weight: bold;
-  font-size: 21px;
+  font-weight: 400;
+  font-size: 14px;
   font-style: normal;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   text-shadow: none;
   text-align: center;
   display: flex;
@@ -1777,6 +1789,27 @@ form .inputCont select option:hover {
   background-repeat: no-repeat;
   backdrop-filter: blur(none);
 }
+.userLogin .loggedIn h3.spec, .playerLogin .loggedIn h3.spec, .guestLogin .loggedIn h3.spec {
+  padding: 0px 150px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 0px;
+}
+.userLogin .loggedIn h3.spec strong, .playerLogin .loggedIn h3.spec strong, .guestLogin .loggedIn h3.spec strong {
+  color: #f5f5f5;
+  font-family: "Permanent Marker", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 17px;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+}
 .userLogin .loggedIn h3 span, .playerLogin .loggedIn h3 span, .guestLogin .loggedIn h3 span {
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
@@ -1791,6 +1824,19 @@ form .inputCont select option:hover {
 }
 .userLogin form, .playerLogin form, .guestLogin form {
   text-align: center;
+}
+.userLogin form p, .playerLogin form p, .guestLogin form p {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  margin-bottom: 20px;
 }
 .userLogin form img, .playerLogin form img, .guestLogin form img {
   margin: auto;
@@ -1892,7 +1938,7 @@ form .inputCont select option:hover {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   gap: 20px;
   position: relative;
   top: none;
@@ -1902,6 +1948,23 @@ form .inputCont select option:hover {
   transform: none;
   left: 0px;
   cursor: pointer;
+}
+.loginChoice .selection .wide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  position: relative;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  left: 0px;
 }
 .loginChoice .selection:hover {
   border: 2px solid rgb(1, 121, 190);
@@ -2560,10 +2623,12 @@ form .inputCont select option:hover {
   text-transform: uppercase;
   text-shadow: none;
   text-align: left;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+       appearance: none;
   background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 @supports ((-webkit-appearance: base-select) or (-moz-appearance: base-select) or (appearance: base-select)) {
   .sorters select, .sorters select::picker(select) {

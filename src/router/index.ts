@@ -40,12 +40,6 @@ const routes: RouteRecordRaw[] = [
   //   component: () => import('../views/PlayerView.vue')
   // },
   {
-    path: '/playerlog',
-    name: 'Player Login',
-    meta: { icon: 'create',  transition: 'slide-left', active: 'sideNav' },
-    component: () => import('../views/PlayerLoginView.vue')
-  },
-  {
     path: '/register',
     name: 'Register',
     meta: { icon: 'create',  transition: 'slide-left', active: 'sideNav' },
