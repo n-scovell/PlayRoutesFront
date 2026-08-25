@@ -73,7 +73,7 @@ h1 {
     @include backColor($blueB);
     color:$white;
   }
-  &.b {
+  &.b, &.cancel {
     padding:9px 10px;
     @include font($head, $black, 21px, 400, .02em, 20px, normal, uppercase, $align:center);
     transition:all .2s;
@@ -81,6 +81,16 @@ h1 {
       @include backColor($blueB);
       color:$white;
       transition:all .2s;
+    }
+  }
+  &.cancel {
+    
+    @include backColor($black);
+    border:1px solid rgba(255,255,255,.5);
+    color:$white;
+    &:hover {
+      @include backColor($black);
+      border:1px solid rgba(255,255,255,1);
     }
   }
   &:hover {
@@ -710,7 +720,53 @@ form {
   }
   .inputCont {
     @include flex(flex, column, wrap, stretch, center, 5px);
+    @include rel();
     margin-bottom:15px;
+    .infoBt {
+      $w:20px;
+      @include size($w, $w);
+      @include pos(absolute, 35px, 105%, $trans:translate(-50%,0%));
+      @include font('Times New Roman', $black, 15px, bold, .02em, 20px, italic, none, none, center);
+      background:$white;
+      border-radius:50%;
+    }
+    .popUp {
+      $a: 95%;
+      $b: 23%;
+      $p: 5%;
+      $c: $b - $p;
+      $d: $b + $p;
+      @include pos(absolute, 0px, $right:5px, $trans:translate(0%,0%));
+      @include size(auto, auto);
+      @include flex(flex, column, nowrap, right, center, 0px);
+      @include font($par, $white, 17px, 300, .01em, 20px, normal, none, none, right);
+      background:$blueB;
+      clip-path:polygon(
+        0% 0%, 
+        $a 0%, 
+        $a $c,
+        100% $b,
+        $a $d,
+        $a 100%, 
+        0% 100%
+      );
+      padding:30px 30px 30px 15px;
+      z-index:99999;
+      p {
+        @include font($par, $white, 14px, 300, .01em, 20px, normal, none, none, right);
+      }
+      ul {
+        margin:-10px 0px 0px;
+        padding:0px;
+        li {
+          @include font($par, $white, 14px, 300, .01em, 20px, normal, none, none, right);
+          margin-bottom:3px;
+        }
+      }
+      strong {
+        font-weight:bold;
+      }
+    }
     label {
       @include font($par, $white, 14px, 500, .01em, 20px, normal, none, none, left);
       @include flex(flex, column, $gap: 10px);
@@ -876,16 +932,15 @@ form {
     h3 {
       position:relative;
       @include font($par, $white, 14px, 400, .01em, 20px, normal, none, none, center);
-      @include flex(flex, row, nowrap, center, start, 10px);
+      @include flex(flex, column, nowrap, center, start, 10px);
       &:before {
         content:' ';
         $w:20px;
         @include size($w,$w);
         @include back(transparent, '@/assets/images/error.png', 100% auto, center center, no-repeat);
       }
-
       &.spec {
-        padding:0px 150px;
+        padding:0px 10px;
         @include flex(flex, column, nowrap, center, start, 0px);
         strong {
           @include font($hand, $white, 17px, 400, .1em, 20px, normal, none, none, center);

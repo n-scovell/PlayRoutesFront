@@ -89,7 +89,9 @@ const clearMe = () => {
   sport.value = ''
   pin.value = ''
   password.value = ''
+  passwordRepeat.value = ''
   team.value = ''
+  code.value = ''
 }
 
 const verifyPass = (a: string) => {
@@ -97,7 +99,7 @@ const verifyPass = (a: string) => {
   hasLow.value = !/[a-z]/.test(a) ? false : true
   hasSpec.value = !/[^a-zA-Z0-9]/.test(a) ? false : true
   hasNumb.value = !/[0-9]/.test(a) ? false : true
-  hasLen.value = a.length < 8 ? false : true
+  hasLen.value = a.length < 10 ? false : true
   return (
     hasCap.value &&
     hasLow.value &&
@@ -205,6 +207,11 @@ const goBackOne = (val: number) => {
   step.value = val
 }
 
+const showinfo = ref<boolean>(false)
+const showPinInfo = () => {
+  showinfo.value = !showinfo.value
+}
+
 </script>
 <template>
   <main style="min-height:100vh">
@@ -222,7 +229,7 @@ const goBackOne = (val: number) => {
         <div>
         <h3>REGISTER NEW USER</h3>
         <p>Join Player Routes and take<br> your playbook to a new level!</p>
-        <button class="primaryBt b" >Continue as User</button>
+        <button class="primaryBt b" >NEW USER</button>
         </div>
       </div>
     </div>
@@ -250,14 +257,26 @@ const goBackOne = (val: number) => {
       <img alt="PRArrow" src="@/assets/images/user.png" />
       <h3>STEP 1: ACCOUNT SETUP</h3>
       <p>Create your login information</p>
+      <div class="loggedIn" v-if="error" >
+        <h3>{{error}}</h3>
+      </div>
       <div class="inputCont">
         <label>Email:<input placeholder="Email" type="email" v-model="email" /></label>
       </div>
-      <!-- <div class="inputCont">
-        <label>Name:<input placeholder="Name" type="text" v-model="name" /></label>
-      </div> -->
-      
       <div class="inputCont">
+        <button class="infoBt" @click="showPinInfo()">i</button>
+        <div v-if="showinfo" class="popUp info">
+          <strong>PASSWORD</strong>
+          <p>Ensure your password has:</p>
+          <ul>
+            <li></li>
+            <li>10 Characters</li>
+            <li>1 Capital Letter</li>
+            <li>1 Lowecase Letter</li>
+            <li>1 Number</li>
+            <li>1 Character - !@#$%?</li>
+          </ul>
+        </div>
         <label>Password:<input placeholder="Password" type="password" v-model="password" /></label>
       </div>
       <div class="inputCont" v-if="password.length >= 1" >
@@ -269,16 +288,16 @@ const goBackOne = (val: number) => {
           <li v-if="hasNumb"></li>
           <li v-if="hasLen"></li>
         </ul>
-        
       </div>
       <div class="inputCont" >
         <label>Repeat Password:<input placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
       </div>
-      <button class="primaryBt b" @click="registerProcess(2)">>>></button>
+      <div class="btCont">
+        <button class="primaryBt b" @click="registerProcess(2)">NEXT</button>
+        <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
+      </div>
     </form>
-    <div class="loggedIn" v-if="error" >
-        <h3>{{error}}</h3>
-    </div>
+    
   </div>
 
   <div class="userLogin" :class="{active : step === 2}">
@@ -286,6 +305,10 @@ const goBackOne = (val: number) => {
       <img alt="PRArrow" src="@/assets/images/user.png" />
       <h3>STEP 2: TEAM SETUP</h3>
       <p>Create your team information</p>
+      <div class="loggedIn" v-if="error" >
+        <h3 v-if="error.includes('luggage')" class="spec"><strong><em>12345?!</em></strong>{{error}}</h3>
+        <h3 v-else>{{error}}</h3>
+      </div>
       <div class="inputCont">
         <label>Team Name:<input placeholder="Team Name" type="text" v-model="team" /></label>
       </div>
@@ -301,20 +324,20 @@ const goBackOne = (val: number) => {
         </label>
       </div>
       <div class="inputCont">
+        <button class="infoBt" @click="showPinInfo()">i</button>
+        <div v-if="showinfo" class="popUp info">
+          <strong>PIN NUMBER:</strong>
+          The pin number is your specific number that allows players/coaches to read the {{ team }} playbook.
+        </div>
         <label>Team Pin:<input placeholder="Team Pin" type="password" v-model="pin" maxlength="15" /></label>
       </div>
       <div class="btCont">
-        <button class="primaryBt b" @click="goBackOne(1)"><<<</button>
-        <button class="primaryBt b" @click="registerProcess(3)">>>></button>
+        <button class="primaryBt b" @click="goBackOne(1)">BACK</button>
+        <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
+        <button class="primaryBt b" @click="registerProcess(3)">NEXT</button>
       </div>
     </form>
-    <div class="loggedIn" v-if="error" >
-        <h3 v-if="error.includes('luggage')" class="spec">
-          <strong><em>12345?!</em></strong>
-          {{error}}
-        </h3>
-        <h3 v-else>{{error}}</h3>
-    </div>
+    
   </div>
 
   <div class="userLogin" :class="{active : step === 3}">
@@ -322,18 +345,17 @@ const goBackOne = (val: number) => {
       <img alt="PRArrow" src="@/assets/images/user.png" />
       <h3>STEP 3: VERIFY ACCOUNT</h3>
       <p>A verification number was sent to: {{email}}</p>
+      <div class="loggedIn" v-if="error" >
+        <h3>{{error}}</h3>
+      </div>
       <div class="inputCont">
         <label>Verify:</label><input placeholder="Verify Code" type="text" v-model="code" />
       </div>
       <div class="btCont">
-        <button class="primaryBt b" type="button" v-if="error" @click="registerProcess(0)">GO BACK</button>
         <button class="primaryBt b" type="button" @click="registerProcess(4)">VERIFY</button>
-        <button class="primaryBt b" type="button" @click="cancelcode">CANCEL</button>
+        <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
       </div>
     </form>
-    <div class="loggedIn" v-if="error" >
-        <h3>{{error}}</h3>
-    </div>
   </div>
 
   <div class="userLogin" :class="{active : step === 4}">
@@ -341,11 +363,9 @@ const goBackOne = (val: number) => {
       <img alt="PRArrow" src="@/assets/images/user.png" />
       <h3>STEP 4: ACCOUNT IS MADE</h3>
       <p>Congratulations on becoming a playbook wizard!</p>
-      <div class="btCont">
-        <RouterLink to="/create"> 
-         <button class="primaryBt b" type="button">CREATE PLAYS</button>
-        </RouterLink>
-      </div>
+      <RouterLink to="/create"> 
+        <button class="primaryBt a" type="button">CREATE</button>
+      </RouterLink>
     </form>
     <div class="loggedIn" v-if="error" >
         <h3>{{error}}</h3>
