@@ -223,6 +223,7 @@ const registerProcess = async (val: number) => {
       await verifyCode()
       step.value = val
     } else if (step.value === 4) {
+      alert('process 5 should appear')
       await auth.login(email.value, password.value)
       clearMe()
       step.value = val
@@ -276,9 +277,13 @@ async function startCheckout(plan: string) {
   }
 }
 
-onMounted(() => {
-  window.addEventListener('message', handlePaymentMessage)
+onUnmounted(() => {
+  window.removeEventListener(
+    'message',
+    handlePaymentMessage
+  )
 })
+
 function handlePaymentMessage(event: MessageEvent) {
   if (event.origin !== 'https://www.playerroutes.com') {
     return
@@ -436,7 +441,7 @@ function handlePaymentMessage(event: MessageEvent) {
   <div class="userLogin" :class="{active : step === 4}">
     <form  @submit.prevent>
       <img alt="PRArrow" src="@/assets/images/user.png" />
-      <h3>STEP 4: SELECT PAYMENT PLAN</h3>
+      <h3>STEP {{step}}: SELECT PAYMENT PLAN</h3>
       <p>Setup your payment process to access Player Routes!</p>
       <div class="loggedIn" v-if="error" >
         <h3>{{error}}</h3>
