@@ -51,12 +51,12 @@ const routes: RouteRecordRaw[] = [
     meta: { icon: 'login',  transition: 'slide-left', active: 'sideNav' },
     component: () => import('../views/LoginView.vue')
   }, 
-  // {
-  //   path: '/profile',
-  //   name: 'Profile',
-  //   meta: { icon: 'user_ico',  transition: 'slide-left', active: 'avatar' },
-  //   component: () => import('../views/ProfileView.vue')
-  // },
+  {
+    path: '/profile',
+    name: 'Profile',
+    meta: { icon: 'user_ico',  transition: 'slide-left', active: 'avatar' },
+    component: () => import('../views/ProfileView.vue')
+  },
   // {
   //   path: '/badges',
   //   name: 'Badges',

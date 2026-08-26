@@ -97,6 +97,22 @@ h1 {
   color: #f5f5f5;
   transition: all 0.2s;
 }
+.primaryBt.c {
+  padding: 12px 10px;
+  margin: 10px 0px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 .primaryBt.cancel {
   background: #242222;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -377,12 +393,40 @@ h1 {
   background: rgba(43, 42, 42, 0);
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: start;
   gap: 10px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.5);
   margin-bottom: 15px;
+}
+.play-routes header .userCont .userDrop .profileInfo.user {
+  border-bottom: none;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+.play-routes header .userCont .userDrop .profileInfo .accountButtons {
+  flex: 0 0 100%;
+  height: auto;
+  padding: 10px 0px 10px 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: left;
+  justify-content: start;
+  gap: 10px;
+}
+.play-routes header .userCont .userDrop .profileInfo .accountButtons button {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 22px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
 }
 .play-routes header .userCont .userDrop .profileInfo .userIcon {
   width: 50px;
@@ -1339,6 +1383,19 @@ form.signUp:before, form.signIn:before {
   opacity: 1;
   transition: opacity 0.3s 0.5s;
 }
+form.profileForm {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: left;
+  justify-content: start;
+  gap: 0px;
+}
+form.profileForm .inputCont {
+  flex: 0 0 50%;
+  padding: 10px;
+}
 form.signIn:before {
   display: none;
 }
@@ -2051,6 +2108,370 @@ form .inputCont select option {
   padding-left: 0px;
 }
 
+.profileCont {
+  width: 100%;
+  height: auto;
+  min-width: 220px;
+  max-width: 70vw;
+  min-height: auto;
+  max-height: auto;
+  margin: 20px auto 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: left;
+  justify-content: center;
+  gap: 10px;
+}
+.profileCont .selection {
+  flex: 1;
+  height: 100%;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 30px 10px 10px;
+}
+.profileCont .selection.a {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+.profileCont .selection.b {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: left;
+  justify-content: stretch;
+  gap: 10px;
+  padding: 20px;
+}
+.profileCont .selection.b .top {
+  flex: 0 0 10%;
+  position: relative;
+}
+.profileCont .selection.b .top h4, .profileCont .selection.b .top h5, .profileCont .selection.b .top .primaryBt {
+  flex: 1;
+}
+.profileCont .selection.b .top h4 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 22px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: left;
+}
+.profileCont .selection.b .top h5 {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: left;
+}
+.profileCont .selection.b .top .primaryBt {
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: none;
+  bottom: none;
+  right: 0px;
+  transform: translate(0%, -50%);
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: center;
+  background: rgb(1, 121, 190);
+  padding: 0px 15px;
+  border-radius: 8px;
+}
+.profileCont .selection.b form {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  gap: 0px;
+}
+.profileCont .selection.b form .inp {
+  flex: 0 0 50%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: left;
+  justify-content: center;
+  gap: 5px;
+}
+.profileCont .selection.b form .inp label {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: left;
+}
+.profileCont .selection.b form .inp input {
+  background: rgba(0, 0, 0, 0.1);
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 0.05em;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  caret-color: #242222;
+  caret-animation: revert;
+  caret-shape: bar;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 0px 8px 10px;
+}
+.profileCont .selection.b form .inp small {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: -0.05em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: left;
+}
+.profileCont .selection.b .quickActions {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: stretch;
+  gap: 10px;
+}
+.profileCont .selection.b .quickActions div {
+  flex: 1;
+  height: 150px;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+.profileCont .selection .iconCont {
+  width: 90px;
+  height: 90px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+}
+.profileCont .selection .iconCont img {
+  width: 100%;
+}
+.profileCont .selection .txt {
+  width: 90%;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+.profileCont .selection .txt h3 {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: center;
+  margin: 10px 0px 5px;
+}
+.profileCont .selection .txt h4 {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: center;
+}
+.profileCont .selection .teamInfo {
+  width: 90%;
+  height: 50px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.profileCont .selection .teamInfo div {
+  flex: 1;
+  height: auto;
+}
+.profileCont .selection .teamInfo div h5 {
+  color: #f5f5f5;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 25px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.profileCont .selection .teamInfo div p {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+}
+.profileCont .selection .primaryBt {
+  width: 90%;
+}
+.profileCont .selection .userPlan {
+  width: 90%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px 0px 0px;
+}
+.profileCont .selection .userPlan .manage {
+  width: 100%;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: center;
+  margin: 22px 0px 11px;
+  padding: 10px 0px;
+  border-radius: 22px;
+  background: #242222;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+.profileCont .selection .userPlan.TEAM {
+  background: rgb(22, 18, 29);
+  border: 2px solid rgb(1, 121, 190);
+}
+.profileCont .selection .userPlan.TEAM h4 .icon {
+  background: rgb(1, 115, 209);
+  background-image: url("@/assets/images/TEAM.png");
+  background-size: 55% 45%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+}
+.profileCont .selection .userPlan.TEAM h4 button {
+  background: rgb(1, 115, 209);
+}
+.profileCont .selection .userPlan.COACH {
+  background: rgba(0, 128, 0, 0.445);
+  border: 2px solid rgba(0, 128, 0, 0.8);
+}
+.profileCont .selection .userPlan.COACH h4 button {
+  background: rgba(0, 199, 0, 0.753);
+}
+.profileCont .selection .userPlan h4 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  height: 30px;
+}
+.profileCont .selection .userPlan h4 .icon {
+  flex: 1;
+  max-width: 30px;
+  height: 100%;
+  background: #f5f5f5;
+  border-radius: 50%;
+  background: red;
+}
+.profileCont .selection .userPlan h4 button {
+  flex: 1;
+  height: 100%;
+  border-radius: 16px;
+  margin-left: 15%;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+
 .loginChoice {
   width: 90%;
   height: 350px;
@@ -2071,6 +2492,32 @@ form .inputCont select option {
   justify-content: center;
   gap: 10px;
   transition: all 0.5s 0s;
+}
+.loginChoice.profile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: left;
+  justify-content: center;
+  gap: 10px;
+}
+.loginChoice.profile .selection {
+  max-width: 50%;
+  min-width: 250px;
+}
+.loginChoice.profile .selection .txt .iconCont {
+  outline: 1px solid red;
+}
+.loginChoice.profile .selection .txt {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: left;
+  justify-content: start;
+  gap: 10px;
+}
+.loginChoice.profile .selection .txt * {
+  text-align: left;
 }
 .loginChoice.active {
   left: 200%;

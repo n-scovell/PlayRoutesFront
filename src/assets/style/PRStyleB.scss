@@ -83,6 +83,14 @@ h1 {
       transition:all .2s;
     }
   }
+  &.c {
+    padding:12px 10px;
+    margin:10px 0px;
+
+    @include font($head, $white, 15px, 300, .02em, 20px, normal, uppercase, $align:center);
+    background:rgba(0,0,0,.5);
+    border:1px solid rgba(255,255,255,.3);
+  }
   &.cancel {
     
     @include backColor($black);
@@ -218,9 +226,23 @@ h1 {
           height:auto;
           padding:0px 0px 15px;
           background:rgb(43, 42, 42, .0);
-          @include flex(flex, row, nowrap, center, start, 10px);
+          @include flex(flex, row, wrap, center, start, 10px);
           border-bottom:2px solid rgba(255,255,255,.5);
           margin-bottom:15px;
+          &.user {
+            border-bottom:none;
+            margin-bottom:0px;
+            padding:0px;
+          }
+          .accountButtons {
+            flex:0 0 100%;
+            height:auto;
+            padding:10px 0px 10px 30px;
+            @include flex(flex, column, nowrap, left, start, 10px);
+            button {
+              @include font($head, $white, 22px, 300);
+            }
+          }
           .userIcon {
             $w:50px;
             @include size($w, $w);
@@ -659,6 +681,14 @@ form {
       transition: opacity .3s .5s;
     }
   }
+  &.profileForm {
+    padding:20px;
+    @include flex(flex, row, wrap, left, start, 0px);
+    .inputCont {
+      flex: 0 0 50%;
+      padding:10px;
+    }
+  }
   &.signIn {
     &:before {
       display:none;
@@ -667,7 +697,7 @@ form {
       position:relative;
       top:20px;
     }
-  }
+  } 
   .paymentCont {
     @include size(100%, auto);
     @include flex(flex, row, nowrap, center, center, 10px);
@@ -1002,11 +1032,192 @@ form {
     padding-left:0px;
   }
 }
+.profileCont {
+  @include size(100%, auto, 220px, 70vw);
+  margin:20px auto 0px;
+  @include flex(flex, row, nowrap, left, center, 10px);
+  .selection {
+    flex:1;
+    height:100%;
+    @include boxA();
+    padding:30px 10px 10px;
+    &.a {
+      max-width:350px;
+      @include flex(flex, column, nowrap, center, start, 10px);
+    }
+    &.b {
+      @include flex(flex, column, nowrap, left, stretch, 10px);
+      padding:20px;
+      .top {
+        flex:0 0 10%;
+        position:relative;
+        h4, h5, .primaryBt {flex:1;}
+        h4 {
+          @include font($head, $white, 22px, 500, .02em, 20px, normal, capitalize, none, left);
+        }
+        h5 {
+          @include font($par, $white, 14px, 400, .02em, 20px, normal, capitalize, none, left);
+        }
+        .primaryBt {
+          @include size(auto, 100%);
+          @include pos(absolute, 50%, $right:0px, $trans:translate(0%,-50%));
+          @include font($par, $white, 14px, bold, .05em, 20px, normal, capitalize, none, center);
+          background:$blueB;
+          padding:0px 15px;
+          border-radius:8px;
+        }
+      }
+      form {
+        flex:1;
+        @include flex(flex,row,wrap,center,start,0px);
+        .inp {
+          flex:0 0 50%;
+          padding:10px;
+          @include flex(flex, column, nowrap, left, center, 5px);
+          label {
+            @include font($par, $white, 14px, 500, .05em, 20px, normal, capitalize, none, left);
+          }
+          input {
+            @include backColor(rgba(0,0,0,.1));
+            @include font($par, $white, 12px, .05em);
+            @include size(100%, auto);
+            @include inpCaret($black, revert, bar);
+            border:1px solid $grayB;
+            padding:8px 0px 8px 10px;
+          }
+          small {
+            @include font($par, $white, 11px, 500, -.05em, 20px, normal, capitalize, none, left);
+          }
+        }
+      }
+      .quickActions {
+        flex:1;
+        @include flex(flex, row, wrap, center, stretch, 10px);
+        div {
+          flex:1;
+          height:150px;
+          @include boxA();
+        }
+      }
+    }
+    
+    .iconCont {
+      $w:90px;
+      @include size($w, $w);
+      img {
+        width:100%;
+      }
+    }
+    .txt {
+      width:90%;
+      text-align:center;
+      padding-bottom:20px;
+      border-bottom:2px solid rgba(255,255,255,.1);
+      h3 {
+        @include font($head, $white, 20px, 600, .05em, 20px, normal, capitalize, none, center);
+        margin:10px 0px 5px;
+      }
+      h4 {
+        @include font($par, $white, 15px, 500, .02em, 20px, normal, capitalize, none, center);
+      }
+    }
+    .teamInfo {
+      @include size(90%, 50px);
+      @include flex(flex, wrap, nowrap, center, center, 10px);
+      div {
+        flex:1;
+        height:auto;
+        h5 {
+          @include font($spec, $white, 25px, 300, .02em, 20px, normal, uppercase, none, center);
+        }
+        p {
+          @include font($par, $white, 12px, 500, .02em, 20px, normal, none, none, center);
+        }
+      }
+    }
+    .primaryBt {
+      width:90%;
+    }
+    .userPlan {
+      @include size(90%, auto);
+      border-radius:5px;
+      padding:15px;
+      margin:10px 0px 0px;
+      .manage {
+        width:100%;
+        @include font($par, $white, 15px, 600, .02em, 20px, normal, capitalize, none, center);
+        margin:22px 0px 11px;
+        padding:10px 0px;
+        border-radius:22px;
+        background:$black;
+        border:2px solid rgba(255,255,255,.4);
+      }
+      &.TEAM {
+        background:$blueA;
+        border:2px solid $blueB;
+        h4 {
+          .icon {
+            @include back(rgb(1, 115, 209), '@/assets/images/TEAM.png', 55% 45%, center center, no-repeat);
+          }
+          button {
+            background:rgb(1, 115, 209);
+          }
+        }
+      }
+      &.COACH {
+        background:rgba(0, 128, 0, 0.445);
+        border:2px solid rgba(0, 128, 0, 0.8);
+        h4 {
+          button {
+            background:rgba(0, 199, 0, 0.753);
+          }
+        }
+      }
+      h4 {
+        @include flex(flex, row, nowrap, center, start, 10px);
+        @include font($par, $white, 12px, 600, .02em, 20px, normal, uppercase, none, left);
+        height:30px;
+        .icon {
+          flex:1;
+          max-width:30px;
+          height:100%;
+          background:$white;
+          border-radius:50%;
+          background:red;
+        }
+        button {
+          flex:1;
+          height:100%;
+          
+          border-radius:16px;
+          margin-left:15%;
+          @include font($par, $white, 12px, 600, .02em, 20px, normal, uppercase, none, center);
+        }
+      }
+      
+    }
+  }
+}
 .loginChoice { // larged
   @include size(90%, 350px, 200px, 80vw);
   @include pos(fixed, 120px, 50%, $trans:translate(-50%,0%));
   @include flex(flex, row, wrap, center, center, 10px);
   transition:all .5s 0s;
+  &.profile {
+    @include flex(flex, row, wrap, left, center, 10px);
+    .selection {
+      max-width:50%;
+      min-width:250px;
+      .txt {
+        .iconCont {
+          outline:1px solid red;
+        }
+        @include flex(flex, column, wrap, left, start, 10px);
+        * {text-align:left;}
+
+      }
+    }
+  }
   &.active {
     left:200%;
     transition:all .2s .2s ease-in;

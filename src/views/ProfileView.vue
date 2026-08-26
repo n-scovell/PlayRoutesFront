@@ -4,62 +4,76 @@ import { useAuthStore } from '../stores/userAuth'
 
 const auth = useAuthStore()
 
-
-
-const name = ref('')
-const password = ref('')
-const team = ref('')
-const sport = ref('')
-
-
-
-async function sendMe() {
-  if (!auth.user) return
-  await auth.updateUser({
-    id: auth.user.id,
-    name: name.value,
-    sport: sport.value,
-    team: team.value,
-    password: password.value
-  })
-}
+const name = ref<any>(auth.user?.name)
+const email = ref<any>(auth.user?.email)
+const team = ref<any>(auth.user?.team)
+const sport = ref<any>(auth.user?.sport)
+const pin = ref<any>(123245)
 
 </script>
 <template>
-  <main class="profile">
-  <h1>YOUR PROFILE</h1>
-    <form class="signIn" @submit.prevent>
-      <div class="inputCont">
-        <label>Name:</label><input :placeholder="auth.user!.name" type="text" v-model="name" />
+  <main>
+    <h1>PROFILE</h1>
+    <div class="profileCont">
+      <div class="selection a">
+        <div class="iconCont">
+          <img alt="PRArrow" src="@/assets/images/user.png" />
+        </div>
+        <div class="txt">
+          <h3>Coach {{ auth.user?.name }}</h3>
+          <h4>{{ auth.user?.team }}</h4>
+          
+        </div>
+        <div class="teamInfo">
+            <div>
+              <h5>10</h5>
+              <p>Total Plays</p>
+            </div>
+            <div>
+              <h5>5</h5>
+              <p>Total Plays</p>
+            </div>
+            <div>
+              <h5>5</h5>
+              <p>Favorites</p>
+            </div>
+        </div>
+        <div class="userPlan" :class="auth.user?.plan">
+          <h4><div class="icon"></div> Pro {{ auth.user?.plan }} Plan <button>ACTIVE</button></h4>
+          <button class="manage">Manage Subscription</button>
+        </div>
+        <button class="primaryBt c">LOG OUT</button>
       </div>
-      <div class="inputCont">
-        <label>Sport:</label><input :placeholder="auth.user!.sport" type="text" v-model="sport" />
+      <div class="selection b">
+        <div class="top">
+          <h4>Account Information</h4>
+          <h5>Keep your profile and team details up to date</h5>
+          <button class="primaryBt">Save Changes</button>
+        </div>
+        <form  @submit.prevent>
+          <div class="inp">
+            <label>Full Name:</label><input :placeholder="auth.user?.name" type="text" v-model="name" />
+          </div>
+          <div class="inp">
+            <label>Email:</label><input :placeholder="auth.user?.email" type="email" v-model="email" />
+          </div>
+          <div class="inp">
+            <label>Team Name:</label><input :placeholder="auth.user?.team" type="text" v-model="team" />
+          </div>
+          <div class="inp">
+            <label>Sport:</label><input :placeholder="auth.user?.sport" type="text" v-model="sport" />
+          </div>
+          <div class="inp">
+            <label>Assistant/Player PIN:</label><input placeholder="123456" type="password" v-model="pin" />
+            <small>Share this PIN with your players & assistant coaches so they can access the playbook.</small>
+          </div>
+        </form>
+        <div class="quickActions">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
-      <div class="inputCont">
-        <label>Team Name:</label><input :placeholder="auth.user!.team" type="text" v-model="team" />
-      </div>
-      <div class="inputCont">
-        <label>Password:</label><input placeholder="Password" type="text" v-model="password" />
-      </div>
-      <div class="btCont">
-        <button type="button" class="formButton" @click="sendMe">Update User</button>
-      </div>
-    </form>
+    </div>
   </main>
 </template>
-<style lang="scss">
-.signIn {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  max-width:400px;
-  width:50%;
-  height:auto;
-  /* outline:1px solid red; */
-  .btCont {
-    margin-top:-10px;
-    gap:10px;
-  }
-}
-</style>

@@ -14,6 +14,7 @@ export const useAuthStore = defineStore('auth', () => {
     teamPin?: string
     sport?: string
     team?: string
+    plan?: 'COACH' | 'TEAM'
   }
 
   type PlayerSession = {

@@ -73,7 +73,7 @@ const logoutGuest = () => {
       <span v-else style="margin-right:5px;"><RouterLink to="/">SIGN UP</RouterLink></span> 
     </h3>
     <div class="userDrop" v-if="showDrop">
-      <div class="profileInfo">
+      <div class="profileInfo" :class="{user : auth.user}">
         <div v-if="auth.player" class="userIcon">{{ auth.pName[0] }}</div>
         <div v-if="auth.user" class="userIcon">{{ auth.user.name?.[0] }}</div>
         <div class="txt" v-if="auth.user">
@@ -81,18 +81,27 @@ const logoutGuest = () => {
           <p>{{ auth.user?.team }} &#8226; COACH</p>
         </div>
         <div class="txt" v-if="auth.player">
+          
           <p>{{ auth.pName }}</p>
           <p>{{ auth.player?.team }} &#8226; {{ auth.pPos }}</p>
         </div>
+        <div class="accountButtons">
+          <RouterLink to="/profile">
+            <button v-if="auth.user">PROFILE</button>
+          </RouterLink>
+          <button v-if="auth.user" @pointerdown="signOut">LOG OUT</button>
+        </div>
       </div>
-      <button v-for="route in routes" :key="route.path" v-if="!gst.guest">
+     
+      <!-- <button v-for="route in routes" :key="route.path" v-if="!gst.guest">
           <RouterLink :to="route.path">
               <div>{{ route.name }}</div>
           </RouterLink>
-      </button>
+      </button> -->
+      
       <button @click="logoutGuest()" class="primaryBt" v-if="gst.guest">GUEST LOGOUT</button>
       <button v-if="auth.player" class="primaryBt" @pointerdown="signOut">PLAYER LOGOUT</button>
-      <button v-if="auth.user" class="primaryBt" @pointerdown="signOut">Logout</button>
+      <!-- <button v-if="auth.user" class="primaryBt" @pointerdown="signOut">Logout</button> -->
     </div>
   </div>
 </template>
