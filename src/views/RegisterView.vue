@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/userAuth'
 
@@ -221,8 +221,10 @@ const registerProcess = async (val: number) => {
     } else if (step.value === 3) {
       await checkValue(code.value, 'code')
       await verifyCode()
-      // await auth.login(email.value, password.value)
-      // clearMe()
+      step.value = val
+    } else if (step.value === 4) {
+      await auth.login(email.value, password.value)
+      clearMe()
       step.value = val
     }
   } catch (err: any) {
@@ -240,7 +242,9 @@ const showPinInfo = () => {
 }
 
 async function startCheckout(plan: string) {
-  const res = await fetch('https://play-route-back.vercel.app/api/stripe',
+
+  const res = await fetch(
+    'https://play-route-back.vercel.app/api/stripe',
     {
       method: 'POST',
       headers: {
@@ -253,12 +257,35 @@ async function startCheckout(plan: string) {
       }),
     }
   )
+
   const data = await res.json()
+
   if (!res.ok) {
     error.value = data.error
     return
   }
-  window.location.href = data.url
+
+  const checkoutWindow = window.open(
+    data.url,
+    '_blank'
+  )
+
+  if (!checkoutWindow) {
+    error.value = 'Please allow popups to complete payment.'
+    return
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('message', handlePaymentMessage)
+})
+function handlePaymentMessage(event: MessageEvent) {
+  if (event.origin !== 'https://www.playerroutes.com') {
+    return
+  }
+  if (event.data?.type === 'STRIPE_PAYMENT_SUCCESS') {
+    registerProcess(5)
+  }
 }
 
 </script>
@@ -411,6 +438,9 @@ async function startCheckout(plan: string) {
       <img alt="PRArrow" src="@/assets/images/user.png" />
       <h3>STEP 4: SELECT PAYMENT PLAN</h3>
       <p>Setup your payment process to access Player Routes!</p>
+      <div class="loggedIn" v-if="error" >
+        <h3>{{error}}</h3>
+      </div>
       <div class="paymentCont">
         <div class="plan">
           <img alt="PRArrow" src="@/assets/images/user.png" />
@@ -424,23 +454,23 @@ async function startCheckout(plan: string) {
           >
             SELECT
           </button>
-          
         </div>
-        <!-- <div class="plan">
-          <img alt="PRArrow" src="@/assets/images/user.png" />
-          <h4>TEAM PLAN</h4>
-          <h5>$10.00/monthly</h5>
-          <p>So on and so on</p>
-          <a class="primaryBt b" href="" target="_blank">SELECT</a>
-        </div> -->
       </div>
       <div class="btCont">
         <button class="primaryBt b" type="button" style="max-width:200px;" @click="registerProcess(2)">BACK</button>
       </div>
     </form>
-    <div class="loggedIn" v-if="error" >
-        <h3>{{error}}</h3>
-    </div>
+  </div>
+
+  <div class="userLogin" :class="{active : step === 5}">
+    <form  @submit.prevent>
+      <img alt="PRArrow" src="@/assets/images/user.png" />
+      <h3>STEP 5: ALL DONE</h3>
+      <p>Your account is now active and good to go!</p>
+      <RouterLink to="/create"> 
+        <button class="primaryBt b" type="button" style="max-width:200px;">CREATE</button>
+      </RouterLink>
+    </form>
   </div>
 
   <!-- <div v-if="showModal" class="loginCreds">
