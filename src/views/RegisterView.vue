@@ -390,7 +390,7 @@ function handlePaymentMessage(event: MessageEvent) {
         </ul>
       </div>
       <div class="inputCont" >
-        <label>Repeat Password:<input placeholder="Repeat Password" type="text" v-model="passwordRepeat" /></label>
+        <label>Repeat Password:<input placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
       </div>
       <div class="btCont">
         <button class="primaryBt b" @click="registerProcess(2)">NEXT</button>
@@ -484,7 +484,7 @@ function handlePaymentMessage(event: MessageEvent) {
       <div class="paymentCont">
         <div class="plan">
           <img alt="PRArrow" src="@/assets/images/user.png" />
-          <h4>COACH PLAN</h4>
+          <h4>TEAM PLAN</h4>
           <h5>$10.00/monthly</h5>
           <p>So on and so on</p>
           <button
