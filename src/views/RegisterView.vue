@@ -481,6 +481,21 @@ function handlePaymentMessage(event: MessageEvent) {
           </button>
         </div>
       </div>
+      <div class="paymentCont">
+        <div class="plan">
+          <img alt="PRArrow" src="@/assets/images/user.png" />
+          <h4>COACH PLAN</h4>
+          <h5>$10.00/monthly</h5>
+          <p>So on and so on</p>
+          <button
+            class="primaryBt b"
+            type="button"
+            @click="startCheckout('TEAM')"
+          >
+            SELECT
+          </button>
+        </div>
+      </div>
       <div class="btCont">
         <button class="primaryBt b" type="button" style="max-width:200px;" @click="registerProcess(2)">BACK</button>
       </div>
