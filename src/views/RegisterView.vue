@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/userAuth'
 
@@ -223,7 +223,6 @@ const registerProcess = async (val: number) => {
       await verifyCode()
       step.value = val
     } else if (step.value === 4) {
-      alert('process 5 should appear')
       await auth.login(email.value, password.value)
       clearMe()
       step.value = val
@@ -277,6 +276,21 @@ async function startCheckout(plan: string) {
   }
 }
 
+onMounted(() => {
+  window.addEventListener('message', handlePaymentMessage)
+
+  const params = new URLSearchParams(window.location.search)
+
+  if (params.get('payment') === 'success' && window.opener) {
+    window.opener.postMessage(
+      { type: 'STRIPE_PAYMENT_SUCCESS' },
+      'https://www.playerroutes.com'
+    )
+
+    window.close()
+  }
+})
+
 onUnmounted(() => {
   window.removeEventListener(
     'message',
@@ -285,10 +299,16 @@ onUnmounted(() => {
 })
 
 function handlePaymentMessage(event: MessageEvent) {
-  if (event.origin !== 'https://www.playerroutes.com') {
+
+  if (
+    event.origin !== 'https://www.playerroutes.com'
+  ) {
     return
   }
-  if (event.data?.type === 'STRIPE_PAYMENT_SUCCESS') {
+
+  if (
+    event.data?.type === 'STRIPE_PAYMENT_SUCCESS'
+  ) {
     registerProcess(5)
   }
 }
@@ -477,45 +497,5 @@ function handlePaymentMessage(event: MessageEvent) {
       </RouterLink>
     </form>
   </div>
-
-  <!-- <div v-if="showModal" class="loginCreds">
-    <div class="content">
-      <form class="verify" @submit.prevent>
-        <h3>SENT CODE TO VERIFY</h3>
-        <div class="inputCont">
-            <label>Verify:</label><input placeholder="Verify Code" type="text" v-model="code" />
-        </div>
-        <div class="btCont">
-          <button class="formButton" type="button" @click="verifyCode">VERIFY</button>
-          <button class="formButton" type="button" @click="cancelcode">CANCEL</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <form class="signUp" @submit.prevent>
-        <h3>Want to join?</h3>
-        <div class="inputCont">
-            <label>Email:<input placeholder="Email" type="email" v-model="email" /></label>
-        </div>
-        <div class="inputCont">
-            <label>Name:<input placeholder="Coach Name" type="text" v-model="name" /></label>
-        </div>
-        <div class="inputCont">
-            <label>Sport:<input placeholder="Sport" type="text" v-model="sport" /></label>
-        </div>
-        <div class="inputCont">
-            <label>Team Pin Number:<input placeholder="Team Pin" type="text" v-model="pin" /></label>
-        </div>
-        <div class="inputCont">
-            <label>Team Name:<input placeholder="Team Name" type="text" v-model="team" /></label>
-        </div>
-        <div class="inputCont">
-            <label>Pasword:<input placeholder="Password" type="text" v-model="password" /></label>
-        </div>
-        <div class="btCont">
-          <button class="formButton" type="button" @click="checkSignUp">NEW USER</button>
-          <button class="formButton" type="button" @click="clearMe">CLEAR</button>
-        </div>
-      </form> -->
   </main>
 </template>
