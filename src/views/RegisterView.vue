@@ -59,6 +59,7 @@ async function checkSignUp() {
     console.log(err.message)
   }
 }
+const registrationUserId = ref('')
 async function verifyCode() {
   const res = await fetch(
     "https://play-route-back.vercel.app/api/auth/verify-code",
@@ -71,13 +72,39 @@ async function verifyCode() {
       }),
     }
   )
+
   const data = await res.json()
+
   if (!res.ok) {
     if (data.error === 'Server error') {
       throw new Error('Account already assigned to this email.')
-    } 
+    }
+
+    throw new Error(data.error || 'Verification failed')
   }
+
+  // NEW
+  registrationUserId.value = data.user.id
 }
+// async function verifyCode() {
+//   const res = await fetch(
+//     "https://play-route-back.vercel.app/api/auth/verify-code",
+//     {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         email: email.value,
+//         code: code.value,
+//       }),
+//     }
+//   )
+//   const data = await res.json()
+//   if (!res.ok) {
+//     if (data.error === 'Server error') {
+//       throw new Error('Account already assigned to this email.')
+//     } 
+//   }
+// }
 const cancelcode = () => {
   clearMe()
   step.value = 0
@@ -212,6 +239,28 @@ const showPinInfo = () => {
   showinfo.value = !showinfo.value
 }
 
+async function startCheckout(plan: string) {
+  const res = await fetch('https://play-route-back.vercel.app/api/stripe',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'create-checkout',
+        userId: registrationUserId.value,
+        plan,
+      }),
+    }
+  )
+  const data = await res.json()
+  if (!res.ok) {
+    error.value = data.error
+    return
+  }
+  window.location.href = data.url
+}
+
 </script>
 <template>
   <main style="min-height:100vh">
@@ -289,7 +338,7 @@ const showPinInfo = () => {
         </ul>
       </div>
       <div class="inputCont" >
-        <label>Repeat Password:<input placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
+        <label>Repeat Password:<input placeholder="Repeat Password" type="text" v-model="passwordRepeat" /></label>
       </div>
       <div class="btCont">
         <button class="primaryBt b" @click="registerProcess(2)">NEXT</button>
@@ -368,7 +417,14 @@ const showPinInfo = () => {
           <h4>COACH PLAN</h4>
           <h5>$6.00/monthly</h5>
           <p>So on and so on</p>
-          <a class="primaryBt b" href="https://buy.stripe.com/test_5kQ5kw6WC4UrblEerQ3ks00" target="_blank">SELECT</a>
+          <button
+            class="primaryBt b"
+            type="button"
+            @click="startCheckout('COACH')"
+          >
+            SELECT
+          </button>
+          
         </div>
         <!-- <div class="plan">
           <img alt="PRArrow" src="@/assets/images/user.png" />

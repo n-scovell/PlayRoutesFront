@@ -37,13 +37,13 @@ export const useAuthStore = defineStore('auth', () => {
   const sport = computed(() => user.value?.sport || null)
   
   async function createUser(
-  email: string,
-  password: string,
-  name: string,
-  teamPin: string,
-  sport: string,
-  team: string
-) {
+    email: string,
+    password: string,
+    name: string,
+    teamPin: string,
+    sport: string,
+    team: string
+  ) {
   const res = await fetch('https://play-route-back.vercel.app/api/users', {
     method: 'POST',
     headers: {
