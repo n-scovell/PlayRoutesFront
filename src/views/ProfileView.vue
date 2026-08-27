@@ -10,6 +10,31 @@ const team = ref<any>(auth.user?.team)
 const sport = ref<any>(auth.user?.sport)
 const pin = ref<any>(123245)
 
+
+const selectedPlay = ref([
+ {
+  head: 'Change Password',
+  par: 'Update your password to keep your account secure.',
+  bt: 'Change Password',
+  ico: 'user'
+ },
+  {
+  head: 'Change Password',
+  par: 'Update your password to keep your account secure.',
+  bt: 'Change Password',
+  ico: 'user'
+ },
+  {
+  head: 'Change Password',
+  par: 'Update your password to keep your account secure.',
+  bt: 'Change Password',
+  ico: 'user'
+ },
+])
+
+const images = import.meta.glob<string>('@/assets/images/*.png', { eager: true, query: '?url', import: 'default'})
+
+
 </script>
 <template>
   <main>
@@ -22,7 +47,6 @@ const pin = ref<any>(123245)
         <div class="txt">
           <h3>Coach {{ auth.user?.name }}</h3>
           <h4>{{ auth.user?.team }}</h4>
-          
         </div>
         <div class="teamInfo">
             <div>
@@ -69,9 +93,17 @@ const pin = ref<any>(123245)
           </div>
         </form>
         <div class="quickActions">
-          <div></div>
-          <div></div>
-          <div></div>
+          <h3>Quick Actions</h3>
+          <div class="action" v-for="a in selectedPlay" :key="a.head">
+            <div class="secA">
+              <div class="icon"><img :src="images[`/src/assets/images/${a.ico}.png`]" :class="a.ico" /></div>
+              <div class="info">
+                <h5>{{ a.head }}</h5>
+                <p>{{ a.par }}</p>
+              </div>
+            </div>
+            <button>{{ a.bt }}</button>
+          </div>
         </div>
       </div>
     </div>

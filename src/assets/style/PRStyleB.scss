@@ -1033,19 +1033,21 @@ form {
   }
 }
 .profileCont {
-  @include size(100%, auto, 220px, 70vw);
+  @include size(100%, auto, 350px, 70vw);
   margin:20px auto 0px;
   @include flex(flex, row, nowrap, left, center, 10px);
   .selection {
     flex:1;
-    height:100%;
+    height:auto;
     @include boxA();
     padding:30px 10px 10px;
     &.a {
       max-width:350px;
+      min-width:340px;
       @include flex(flex, column, nowrap, center, start, 10px);
     }
     &.b {
+      min-width:850px;
       @include flex(flex, column, nowrap, left, stretch, 10px);
       padding:20px;
       .top {
@@ -1093,10 +1095,43 @@ form {
       .quickActions {
         flex:1;
         @include flex(flex, row, wrap, center, stretch, 10px);
-        div {
+        h3 {
+          flex: 0 0 100%;
+          @include font($head, $white, 22px, 500, .02em, 20px, normal, capitalize, none, left);
+        }
+        .action {
           flex:1;
           height:150px;
           @include boxA();
+          @include flex(flex, column, wrap, center, stretch, 5px);
+          padding:15px;
+          .secA {
+            flex:1;
+            @include flex(flex, row, wrap, center, start, 15px);
+            .icon {
+              flex:1;
+              max-width:70px;
+              text-align:center;
+              img {width:80%;}
+            }
+            .info {
+              flex:1;
+              h5 {
+                @include font($head, $white, 20px, 500, .01em, 20px, normal, capitalize, none, left);
+                margin-bottom:5px;
+              }
+              p {
+                @include font($par, $white, 12px, 500, .01em, 20px, normal, capitalize, none, left);
+              }
+            }
+          }
+          button {
+            width:100%;
+            padding:10px 15px;
+            background:rgba(0,0,0,.4);
+            border-radius:8px;
+            @include font($par, $white, 13px, bold, .01em, 20px, normal, capitalize, none, center);
+          }
         }
       }
     }
@@ -1195,6 +1230,62 @@ form {
         }
       }
       
+    }
+  }
+}
+
+@media only screen and (max-width:1100px) {
+  .profileCont {
+    @include size(100%, auto, 290px, 70vw);
+    margin:10px auto 0px;
+    @include flex(flex, column, nowrap, center, center, 10px);
+    .selection {
+
+      &.a {
+        max-width:350px;
+        min-width:340px;
+        @include flex(flex, column, nowrap, center, start, 10px);
+      }
+      &.b {
+        min-width:340px;
+        @include flex(flex, column, nowrap, left, stretch, 10px);
+        padding:20px;
+        .top {
+          @include flex(flex, column, nowrap, left, stretch, 30px);
+          
+          h4 {
+            margin-bottom:-20px;
+            text-align:center;
+          }
+          h5 {
+            height:77px;
+            padding:0px 30px;
+            text-align:center;
+          }
+          .primaryBt {
+            position:relative;
+            padding:10px;
+          }
+        }
+        form {
+          .inp {
+            flex: 0 0 100%;
+            input {
+              font-size:16px;
+            }
+            small {
+              font-size:13px;
+              letter-spacing:.02em;
+            }
+          }
+        }
+        .quickActions {
+          @include flex(flex, column, nowrap, left, stretch, 10px);
+          .action {
+            flex: 0 0 100%;
+          }
+        }
+      }
     }
   }
 }
