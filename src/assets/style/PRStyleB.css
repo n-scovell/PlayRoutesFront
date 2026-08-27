@@ -2232,23 +2232,24 @@ form .inputCont select option {
   flex: 0 0 100%;
   position: relative;
 }
+.profileCont .selection.b form .inp.a label {
+  flex: 0 0 100%;
+}
 .profileCont .selection.b form .inp.a .gen {
-  position: absolute;
-  top: 32px;
-  right: 11px;
+  margin: 5px 0px;
   padding: 8px 10px;
-  background: rgba(0, 0, 0, 0.5);
+  background: #f5f5f5;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  color: #f5f5f5;
-  font-family: "Inter", sans-serif;
+  color: #242222;
+  font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 18px;
   font-style: normal;
   letter-spacing: 0.05em;
   text-transform: capitalize;
   text-shadow: none;
-  text-align: left;
+  text-align: center;
 }
 .profileCont .selection.b form .inp.a .gen.a {
   background: rgba(11, 110, 28, 0.548);

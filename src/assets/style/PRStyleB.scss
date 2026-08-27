@@ -1079,14 +1079,16 @@ form {
           &.a {
             flex: 0 0 100%;
             @include rel();
+            label {
+              flex:0 0 100%;
+            }
             .gen {
-              position:absolute;
-              top:32px;
-              right:11px;
+              margin:5px 0px;
               padding:8px 10px;
-              background:rgba(0,0,0,.5);
+              background:$white;
               border:1px solid rgba(255,255,255,.5);
-              @include font($par, $white, 12px, bold, .05em, 20px, normal, capitalize, none, left);
+              @include font($head, $black, 18px, bold, .05em, 20px, normal, capitalize, none, center);
+              
               &.a {
                 background:rgba(11, 110, 28, 0.548);
                 color:$white

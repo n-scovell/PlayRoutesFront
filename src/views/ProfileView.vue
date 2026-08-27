@@ -102,6 +102,7 @@ const checkPassword = async (oldPass: string, newPass: string) => {
   return true
 }
 const updatePassword = async () => {
+
   error.value = null
   try {
     await checkPassword(password.value, newPassword.value) 
@@ -199,14 +200,14 @@ const updatePin = async () => {
               <div class="inp a">
                 <label>Current Password</label><input placeholder="" type="password" v-model="password" />
               </div>
-              <div class="inp a">
-                <button class="gen" @click="passChangeCheck()" v-if="!areYouSurePass">NEW PASSWORD</button>
+              <div class="inp a">                
+                <label>New Password</label>
+                <input placeholder="" type="password" v-model="newPassword" />
+                <button class="gen" @click="passChangeCheck()" v-if="!areYouSurePass">CREATE NEW PASSWORD</button>
                 <button class="gen a" @click="updatePassword()" v-if="areYouSurePass">READY</button>
-                <label>New Password</label><input placeholder="" type="password" v-model="newPassword" />
               </div>
-              <div class="error" v-if="error">{{ error }}</div>
+              <div class="error" v-if="error">ddd{{ error }}</div>
             </form>
-            <!-- <button class="primaryBt b" @click="updatePin()" v-if="areYouSure">ARE YOU SURE?</button> -->
           </div>
           <div class="action" v-for="a in selectedPlay" :key="a.head">
             <div class="secA">
