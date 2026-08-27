@@ -2228,6 +2228,32 @@ form .inputCont select option {
   justify-content: center;
   gap: 5px;
 }
+.profileCont .selection.b form .inp.a {
+  flex: 0 0 100%;
+  position: relative;
+}
+.profileCont .selection.b form .inp.a .gen {
+  position: absolute;
+  top: 32px;
+  right: 11px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  text-shadow: none;
+  text-align: left;
+}
+.profileCont .selection.b form .inp.a .gen.a {
+  background: rgba(11, 110, 28, 0.548);
+  color: #f5f5f5;
+}
 .profileCont .selection.b form .inp label {
   color: #f5f5f5;
   font-family: "Inter", sans-serif;
@@ -2269,9 +2295,9 @@ form .inputCont select option {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 13px;
   font-style: normal;
-  letter-spacing: -0.05em;
+  letter-spacing: 0.01em;
   text-transform: capitalize;
   text-shadow: none;
   text-align: left;
@@ -2297,6 +2323,19 @@ form .inputCont select option {
   text-transform: capitalize;
   text-shadow: none;
   text-align: left;
+}
+.profileCont .selection.b .quickActions .actionForm {
+  flex: 0 0 100%;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  padding: 15px;
 }
 .profileCont .selection.b .quickActions .action {
   flex: 1;

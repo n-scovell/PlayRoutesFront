@@ -1076,6 +1076,23 @@ form {
           flex:0 0 50%;
           padding:10px;
           @include flex(flex, column, nowrap, left, center, 5px);
+          &.a {
+            flex: 0 0 100%;
+            @include rel();
+            .gen {
+              position:absolute;
+              top:32px;
+              right:11px;
+              padding:8px 10px;
+              background:rgba(0,0,0,.5);
+              border:1px solid rgba(255,255,255,.5);
+              @include font($par, $white, 12px, bold, .05em, 20px, normal, capitalize, none, left);
+              &.a {
+                background:rgba(11, 110, 28, 0.548);
+                color:$white
+              }
+            }
+          }
           label {
             @include font($par, $white, 14px, 500, .05em, 20px, normal, capitalize, none, left);
           }
@@ -1088,7 +1105,7 @@ form {
             padding:8px 0px 8px 10px;
           }
           small {
-            @include font($par, $white, 11px, 500, -.05em, 20px, normal, capitalize, none, left);
+            @include font($par, $white, 13px, 500, .01em, 20px, normal, capitalize, none, left);
           }
         }
       }
@@ -1098,6 +1115,12 @@ form {
         h3 {
           flex: 0 0 100%;
           @include font($head, $white, 22px, 500, .02em, 20px, normal, capitalize, none, left);
+        }
+        .actionForm {
+          flex: 0 0 100%;
+          @include boxA();
+          @include size(100%, auto);
+          padding:15px;
         }
         .action {
           flex:1;

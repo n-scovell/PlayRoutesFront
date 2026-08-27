@@ -86,25 +86,7 @@ async function verifyCode() {
   // NEW
   registrationUserId.value = data.user.id
 }
-// async function verifyCode() {
-//   const res = await fetch(
-//     "https://play-route-back.vercel.app/api/auth/verify-code",
-//     {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         email: email.value,
-//         code: code.value,
-//       }),
-//     }
-//   )
-//   const data = await res.json()
-//   if (!res.ok) {
-//     if (data.error === 'Server error') {
-//       throw new Error('Account already assigned to this email.')
-//     } 
-//   }
-// }
+
 const cancelcode = () => {
   clearMe()
   step.value = 0
