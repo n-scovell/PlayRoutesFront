@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { usePlayStore } from './playStore'
 import { useFormation } from './formStore'
 import { useFavorites } from './favStore'
-import { useBadges } from './badgeStore'
+// import { useBadges } from './badgeStore'
 import { usePlayers } from './playerStore'
 
 export const useAuthStore = defineStore('auth', () => {
@@ -91,12 +91,12 @@ export const useAuthStore = defineStore('auth', () => {
   const formStore = useFormation()
   const favStore = useFavorites()
   const playStore = usePlayStore()
-  const badgeStore = useBadges()
+  // const badgeStore = useBadges()
   const playerStore = usePlayers()
   await playStore.fetchPlays()
   await formStore.fetchFormations()
   await favStore.fetchFavorites()
-  await badgeStore.fetchBadges()
+  // await badgeStore.fetchBadges()
   await playerStore.fetchPlayers()
 }
 
