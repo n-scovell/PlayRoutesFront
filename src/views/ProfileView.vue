@@ -36,7 +36,19 @@ const images = import.meta.glob<string>('@/assets/images/*.png', { eager: true, 
 
 const updateMyAccount = async () => {
   try {
-    await auth.updateUser({ id: auth.user?.id, name: name.value, sport: sport.value, teamPin: pin.value, team: team.value })
+    console.log({
+      id: auth.user?.id,
+      name: name.value,
+      sport: sport.value,
+      teamPin: pin.value,
+      team: team.value
+    })
+    await auth.updateUser({
+      name: name.value,
+      sport: sport.value,
+      teamPin: pin.value,
+      team: team.value
+    })
   } catch  (error:any) {
     alert(error)
   }

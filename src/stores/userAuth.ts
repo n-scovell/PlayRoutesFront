@@ -148,11 +148,11 @@ function playerLogout() {
 
   }
 
-  async function updateUser(updates: {
+  async function updateUser(updates: { 
       id?: string
       name?: string
       sport?: string
-      teamPin?: string
+      teamPin?: string | number
       team?: string
       password?: string
     }) {
@@ -178,6 +178,7 @@ function playerLogout() {
       ...user.value,
       ...data,
     }
+    alert('updated account')
     return data
   }
 
