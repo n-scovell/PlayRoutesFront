@@ -66,7 +66,6 @@ const updateMyAccount = async () => {
         <div class="txt">
           <h3>Coach {{ auth.user?.name }}</h3>
           <h4>{{ auth.user?.team }}</h4>
-          <h3>{{ auth.user?.id }}</h3>
         </div>
         <div class="teamInfo">
             <div>
