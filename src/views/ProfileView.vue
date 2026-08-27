@@ -34,6 +34,13 @@ const selectedPlay = ref([
 
 const images = import.meta.glob<string>('@/assets/images/*.png', { eager: true, query: '?url', import: 'default'})
 
+const updateMyAccount = async () => {
+  try {
+    await auth.updateUser({ id: auth.user?.id, name: name.value, sport: sport.value, teamPin: pin.value, team: team.value })
+  } catch  (error:any) {
+    alert(error)
+  }
+}
 
 </script>
 <template>
@@ -47,6 +54,7 @@ const images = import.meta.glob<string>('@/assets/images/*.png', { eager: true, 
         <div class="txt">
           <h3>Coach {{ auth.user?.name }}</h3>
           <h4>{{ auth.user?.team }}</h4>
+          <h3>{{ auth.user?.id }}</h3>
         </div>
         <div class="teamInfo">
             <div>
@@ -72,7 +80,7 @@ const images = import.meta.glob<string>('@/assets/images/*.png', { eager: true, 
         <div class="top">
           <h4>Account Information</h4>
           <h5>Keep your profile and team details up to date</h5>
-          <button class="primaryBt">Save Changes</button>
+          <button class="primaryBt" @click="updateMyAccount()">Save Changes</button>
         </div>
         <form  @submit.prevent>
           <div class="inp">
