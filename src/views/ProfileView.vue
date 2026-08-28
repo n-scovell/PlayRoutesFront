@@ -73,8 +73,19 @@ const updateMyAccount = async () => {
 const pinChangeCheck = async() => {
   areYouSure.value = true
 }
-const passChangeCheck = async() => {
-  areYouSurePass.value = true
+
+const passChangeCheck = async () => {
+  error.value = null
+  if (!password.value || !newPassword.value) {
+    error.value = 'Please enter both passwords'
+    return
+  }
+  try {
+    await checkPassword(password.value, newPassword.value)
+    areYouSurePass.value = true
+  } catch (err: any) {
+    error.value = err.message || 'Something went wrong'
+  }
 }
 
 const checkPassword = async (oldPass: string, newPass: string) => {
@@ -102,14 +113,13 @@ const checkPassword = async (oldPass: string, newPass: string) => {
   return true
 }
 const updatePassword = async () => {
-
   error.value = null
   try {
     await checkPassword(password.value, newPassword.value) 
-    await auth.updateUser({password: newPassword.value})
-    alert('password is updated')
-  } catch  (error:any) {
-    error.value = error.message || 'Something went wrong'
+    await auth.updatePassword(newPassword.value)
+    error.value = 'Successfully changed password.'
+  } catch (err: any) {
+    error.value = err.message || 'Something went wrong'
   }
 }
 
@@ -206,7 +216,7 @@ const updatePin = async () => {
                 <button class="gen" @click="passChangeCheck()" v-if="!areYouSurePass">CREATE NEW PASSWORD</button>
                 <button class="gen a" @click="updatePassword()" v-if="areYouSurePass">READY</button>
               </div>
-              <div class="error" v-if="error">ddd{{ error }}</div>
+              <div class="error" v-if="error">{{ error }}</div>
             </form>
           </div>
           <div class="action" v-for="a in selectedPlay" :key="a.head">

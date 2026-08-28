@@ -178,11 +178,36 @@ function playerLogout() {
       ...user.value,
       ...data,
     }
-    alert('updated account')
     return data
   }
 
- 
+
+  async function updatePassword(password: string) {
+  if (!user.value) return
+
+  const res = await fetch(
+    'https://play-route-back.vercel.app/api/users',
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'update-password',
+        id: user.value.id,
+        password,
+      }),
+    }
+  )
+
+  const data = await res.json()
+  alert('done')
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to update password')
+  }
+
+  return data
+}
 
   return {
     user,
@@ -200,7 +225,8 @@ function playerLogout() {
     login,
     logout,
     updateUser,
-    playerLogin
+    playerLogin,
+    updatePassword
   }
 }, {
   persist: true

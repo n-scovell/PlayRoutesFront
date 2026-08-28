@@ -1072,6 +1072,11 @@ form {
       form {
         flex:1;
         @include flex(flex,row,wrap,center,start,0px);
+        .error {
+          flex: 0 0 100%;
+          padding:13px;
+          @include font($par, $white, 13px, 500, .05em, 20px, normal, capitalize, none, center);
+        }
         .inp {
           flex:0 0 50%;
           padding:10px;
