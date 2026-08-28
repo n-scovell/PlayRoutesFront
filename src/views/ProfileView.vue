@@ -29,8 +29,6 @@ const email = ref<any>(auth.user?.email)
 const team = ref<any>(auth.user?.team)
 const sport = ref<any>(auth.user?.sport)
 const pin = ref<any>()
-const showModal = ref<boolean>(false)
-
 
 const selectedPlay = ref([
 //  {
@@ -70,9 +68,7 @@ const updateMyAccount = async () => {
 
 
 
-const pinChangeCheck = async() => {
-  areYouSure.value = true
-}
+
 
 const passChangeCheck = async () => {
   error.value = null
@@ -123,12 +119,58 @@ const updatePassword = async () => {
   }
 }
 
+const checkPin = async (a: string) => {
+  if (!a) {
+    throw new Error('You need a pin number')
+  }
+  if (a === '12345') {
+    throw new Error(`That's the kind of thing an idiot has on his luggage!`)
+  }
+  if (a === '123456') {
+    throw new Error(`Adding six is pathetic.`)
+  }
+  if (a === '1234567') {
+    throw new Error(`Do... do you not understand what a pin is?`)
+  }
+  if (a === '12345678') {
+    throw new Error(`Oh come on!`)
+  }
+  if (a === '123456789') {
+    throw new Error(`This is getting ridiculous.`)
+  }
+  if (a === '12345678910') {
+    throw new Error(`Now you're just playing with me.`)
+  }
+  if (a.length <= 4) {
+    throw new Error('Pin Number Needs At Least 5 Numbers')
+  }
+  return true
+}
+const pinChangeCheck = async() => {
+  error.value = null
+  try {
+    await checkPin(pin.value)
+    areYouSure.value = true
+  } catch (err: any) {
+    error.value = err.message || 'Something went wrong'
+  } 
+}
+let pinChangeLocked = ref<boolean>(false)
 const updatePin = async () => {
   error.value = null
   try {
+    await checkPin(pin.value)
     await auth.updateUser( { teamPin: pin.value, } )
-  } catch  (error:any) {
-    error.value = error.message || 'Something went wrong'
+    error.value = `Team Pin Number Has Been Changed for the ${team.value}`
+    areYouSure.value = false
+    pinChangeLocked.value = true
+    setTimeout(() => {
+      pinChangeLocked.value = false
+    }, 2 * 60 * 1000)
+
+
+  } catch (err: any) {
+    error.value = err.message || 'Something went wrong'
   }
 }
 
@@ -189,21 +231,18 @@ const updatePin = async () => {
           <div class="inp">
             <label>Sport:</label><input :placeholder="auth.user?.sport" type="text" v-model="sport" />
           </div>
-          <!-- <div class="inp">
-            <label>Assistant/Player PIN:</label><input placeholder="123456" type="password" v-model="pin" />
-            <small>Share this PIN with your players & assistant coaches so they can access the playbook.</small>
-          </div> -->
         </form>
         <div class="quickActions">
           <h3>Quick Actions</h3>
           <div class="actionForm" v-if="showActionForm">
             <form @submit.prevent v-if="chosenAction === 'Change Pin'">
               <div class="inp a">
-                <button class="gen" @click="pinChangeCheck()" v-if="!areYouSure">GENERATE PIN</button>
-                <button class="gen a" @click="updatePin()" v-if="areYouSure">ARE YOU SURE</button>
                 <label>Assistant/Player PIN:</label><input placeholder="" type="password" v-model="pin" />
                 <small>Share this PIN with your players & assistant coaches so they can access the playbook.</small>
+                <button class="gen" :class="{disabled : pinChangeLocked}" @click="pinChangeCheck()" :disabled="pinChangeLocked" v-if="!areYouSure"><span v-if="pinChangeLocked">DISABLED FOR 2 MINUTES</span><span v-else>GENERATE PIN</span></button>
+                <button class="gen a" @click="updatePin()" v-if="areYouSure">ARE YOU SURE</button>
               </div>
+              <div class="error" v-if="error">{{ error }}</div>
             </form>
 
             <form @submit.prevent v-if="chosenAction === 'Change Password'">

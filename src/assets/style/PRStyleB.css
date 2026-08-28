@@ -2265,6 +2265,9 @@ form .inputCont select option {
   text-shadow: none;
   text-align: center;
 }
+.profileCont .selection.b form .inp.a .gen.disabled {
+  opacity: 1;
+}
 .profileCont .selection.b form .inp.a .gen.a {
   background: rgba(11, 110, 28, 0.548);
   color: #f5f5f5;

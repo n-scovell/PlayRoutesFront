@@ -1081,6 +1081,7 @@ form {
           flex:0 0 50%;
           padding:10px;
           @include flex(flex, column, nowrap, left, center, 5px);
+          
           &.a {
             flex: 0 0 100%;
             @include rel();
@@ -1093,7 +1094,9 @@ form {
               background:$white;
               border:1px solid rgba(255,255,255,.5);
               @include font($head, $black, 18px, bold, .05em, 20px, normal, capitalize, none, center);
-              
+              &.disabled {
+                opacity:1;
+              }
               &.a {
                 background:rgba(11, 110, 28, 0.548);
                 color:$white
