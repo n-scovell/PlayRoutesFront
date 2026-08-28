@@ -144,7 +144,9 @@ const close = () => {
     .mdlCont {
         width:85vw;
         height:85vh;
-        background:white;
+        border-radius:3px;
+        border:2px solid rgba(255,255,255,.1);
+        background:rgb(34, 34, 34);
         position:absolute;
         top:5%;
         left:50%;
@@ -160,6 +162,7 @@ const close = () => {
             background-image:url('@/assets/images/bck_chalkboard.jpg');
             background-size:cover;
             background-repeat:no-repeat;
+            opacity:.2;
             z-index:0;
         }
         .lineOfScrimmage {
@@ -225,36 +228,37 @@ const close = () => {
         }
         .btCont {
             position:absolute;
-            bottom:0px;
-            right:0px;
+            bottom:5px;
+            right:5px;
             display:flex;
             flex-direction:row;
             flex-wrap: nowrap;
             gap:5px;
             z-index:999999;
             button {
-                background:white;
-                padding:5px 10px;
+                background:rgba(255,255,255,.5);
+                padding:15px 15px;
                 font-family:"Inter", sans-serif;
-                font-size:13px;
+                font-size:16px;
                 font-weight:bold;
                 color:black;
             }
         }
         .mdlClose {
             position:absolute;
-            top:0px;
-            right:-1px;
+            top:11px;
+            right:5px;
             padding:5px;
             width:40px;
             height:40px;
-            background:rgb(255,255,255,1);
+            border-radius:50%;
+            background:rgb(0,0,0,.5);
             backdrop-filter: blur(2px);
             display:flex;
             align-items:center;
             justify-content:center;
             font-size:20px;
-            color:black;
+            color:white;
             font-weight:bold;
             z-index:999999;
         }
