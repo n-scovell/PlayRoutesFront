@@ -37,7 +37,7 @@ async function checkSignUp() {
       password: password.value,
       teamPin: pin.value,
       name: name.value,
-      sport: sport.value,
+      sport: selectedSport.value,
       team: team.value,
     }
     const res = await fetch(

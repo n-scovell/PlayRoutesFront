@@ -201,7 +201,6 @@ function playerLogout() {
   )
 
   const data = await res.json()
-  alert('done')
   if (!res.ok) {
     throw new Error(data.error || 'Failed to update password')
   }
