@@ -1425,37 +1425,53 @@ form .paymentCont .plan {
   text-align: center;
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: start;
   gap: 10px;
 }
-form .paymentCont .plan h4 {
+form .paymentCont .plan .icon {
+  flex: 1;
+  max-width: 80px;
+  position: relative;
+}
+form .paymentCont .plan .icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+form .paymentCont .plan .content {
+  flex: 1;
+  padding: 0px 20px;
+}
+form .paymentCont .plan .content h4 {
   color: #f5f5f5;
   font-family: "Racing Sans One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 25px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-shadow: none;
-  text-align: center;
+  text-align: left;
 }
-form .paymentCont .plan h5 {
+form .paymentCont .plan .content h5 {
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-shadow: none;
-  text-align: center;
+  text-align: left;
 }
-form .paymentCont .plan p {
+form .paymentCont .plan .content p {
+  margin: 5px 0px 15px;
   color: #f5f5f5;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -1465,7 +1481,10 @@ form .paymentCont .plan p {
   letter-spacing: 0.02em;
   text-transform: none;
   text-shadow: none;
-  text-align: center;
+  text-align: left;
+}
+form .paymentCont .plan .content button {
+  width: 100%;
 }
 form.submitPlay {
   width: 90%;

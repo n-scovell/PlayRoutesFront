@@ -450,7 +450,7 @@ function handlePaymentMessage(event: MessageEvent) {
   </div>
 
   <div class="userLogin" :class="{active : step === 4}">
-    <form  @submit.prevent>
+    <form @submit.prevent>
       <PaymentIcon />
       <h3>STEP {{step}}: SELECT PAYMENT PLAN</h3>
       <p>Setup your payment process to access Player Routes!</p>
@@ -459,32 +459,36 @@ function handlePaymentMessage(event: MessageEvent) {
       </div>
       <div class="paymentCont">
         <div class="plan">
-          <CoachIcon />
-          <h4>COACH PLAN</h4>
-          <h5>$6.00/monthly</h5>
-          <p>So on and so on</p>
-          <button
-            class="primaryBt b"
-            type="button"
-            @click="startCheckout('COACH')"
-          >
-            SELECT
-          </button>
+          <div class='icon'><CoachIcon /></div>
+          <div class="content">
+            <h4>COACH PLAN</h4>
+            <h5>$6.00/monthly</h5>
+            <p>So on and so on</p>
+            <button
+              class="primaryBt b"
+              type="button"
+              @click="startCheckout('COACH')"
+            >
+              SELECT
+            </button>
+          </div>
         </div>
       </div>
       <div class="paymentCont">
         <div class="plan">
-          <TeamIcon />
-          <h4>TEAM PLAN</h4>
-          <h5>$10.00/monthly</h5>
-          <p>So on and so on</p>
-          <button
-            class="primaryBt b"
-            type="button"
-            @click="startCheckout('TEAM')"
-          >
-            SELECT
-          </button>
+          <div class='icon'><TeamIcon /></div>
+          <div class="content">
+            <h4>TEAM PLAN</h4>
+            <h5>$10.00/monthly</h5>
+            <p>So on and so on</p>
+            <button
+              class="primaryBt b"
+              type="button"
+              @click="startCheckout('TEAM')"
+            >
+              SELECT
+            </button>
+          </div>
         </div>
       </div>
       <div class="btCont">

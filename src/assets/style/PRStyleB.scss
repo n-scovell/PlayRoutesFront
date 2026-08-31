@@ -708,17 +708,36 @@ form {
       border:1px solid $white;
       text-align:center;
       padding:20px;
+      @include flex(flex, row, nowrap, left, start, 10px);
+      .icon {
+        flex:1;
+        max-width:80px;
+        position:relative;
+        svg {
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+        }
+      }
+      .content {
+        flex:1;
+        padding:0px 20px;
+        h4 {
+          @include font($spec, $white, 25px, 400, .02em, 20px, normal, uppercase, none, left);
+        }
+        h5 {
+          @include font($head, $white, 20px, 400, .02em, 20px, normal, uppercase, none, left);
+        }
+        p {
+          margin:5px 0px 15px;
+          @include font($par, $white, 15px, 400, .02em, 20px, normal, none, none, left);
+        }
+        button {
+          width:100%;
+        }
+      }
       
-      @include flex(flex, column, nowrap, center, center, 10px);
-      h4 {
-        @include font($spec, $white, 22px, 400, .02em, 20px, normal, uppercase, none, center);
-      }
-      h5 {
-        @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, center);
-      }
-      p {
-        @include font($par, $white, 15px, 400, .02em, 20px, normal, none, none, center);
-      }
     }
   }
   &.submitPlay {
