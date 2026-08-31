@@ -8,7 +8,7 @@
 </script>
 <template>
   <section class="coachShot">
-    <img src="@/assets/images/WizardPR.png" />
+    <img src="@/assets/images/WizardPR.jpg" />
     <div class="txt">
       <div>
         <h3>BECOME THE PLAY MAKING</h3><h2>WIZARD</h2>

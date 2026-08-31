@@ -5,6 +5,10 @@ import { usePlayStore } from '@/stores/playStore'
 import { useFormation } from '@/stores/formStore'
 import { useFavorites } from '@/stores/favStore'
 
+import UserIcon from '@/assets/icons/ico_user.svg'
+import PinIcon from '@/assets/icons/ico_pin.svg'
+import PasswordIcon from '@/assets/icons/ico_password.svg'
+
 const auth = useAuthStore()
 const fav = useFavorites()
 const playsStore = usePlayStore()
@@ -31,23 +35,17 @@ const sport = ref<any>(auth.user?.sport)
 const pin = ref<any>()
 
 const selectedPlay = ref([
-//  {
-//   head: 'Change Password',
-//   par: 'Update your password to keep your account secure.',
-//   bt: 'Change Password',
-//   ico: 'user'
-//  },
   {
   head: 'Change Team Pin',
   par: 'Update your pin access number.',
   bt: 'Change Pin',
-  ico: 'user'
+  ico: 'pin'
  },
   {
   head: 'Change Password',
   par: 'Update your password to keep your account secure.',
   bt: 'Change Password',
-  ico: 'user'
+  ico: 'password'
  },
 ])
 
@@ -186,7 +184,7 @@ const updatePin = async () => {
     <div class="profileCont">
       <div class="selection a">
         <div class="iconCont">
-          <img alt="PRArrow" src="@/assets/images/user.png" />
+          <UserIcon />
         </div>
         <div class="txt">
           <h3>Coach {{ auth.user?.name }}</h3>
@@ -260,7 +258,10 @@ const updatePin = async () => {
           </div>
           <div class="action" v-for="a in selectedPlay" :key="a.head">
             <div class="secA">
-              <div class="icon"><img :src="images[`/src/assets/images/${a.ico}.png`]" :class="a.ico" /></div>
+              <div class="icon">
+                <PinIcon  :class="a.ico" v-if="a.ico === 'pin'" />
+                <PasswordIcon :class="a.ico" v-if="a.ico === 'password'" />
+              </div>
               <div class="info">
                 <h5>{{ a.head }}</h5>
                 <p>{{ a.par }}</p>
