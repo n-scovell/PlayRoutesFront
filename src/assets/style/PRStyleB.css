@@ -2820,6 +2820,7 @@ form .inputCont select option {
   min-height: auto;
   max-height: auto;
   position: relative;
+  text-align: center;
 }
 .loginChoice .selection .txt .iconCont img {
   height: 100%;

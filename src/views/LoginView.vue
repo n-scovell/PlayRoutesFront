@@ -3,6 +3,10 @@ import { ref, watch, onMounted } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
 import { useGuest } from '../stores/guestStore'
 
+import UserIcon from '@/assets/icons/ico_user.svg'
+import HelmetIcon from '@/assets/icons/ico_helmet.svg'
+import GuestIcon from '@/assets/icons/ico_guest.svg'
+
 const guestAccount = useGuest()
 const auth = useAuthStore()
 
@@ -176,7 +180,7 @@ const guestSignIn = async () => {
       <div class="selection" @click="chooseLogin('user')" >
         <div class="txt">
           <div class="iconCont">
-            <img alt="PRArrow" src="@/assets/images/user.png" />
+            <UserIcon />
           </div>
           <div>
           <h3>USER LOGIN</h3>
@@ -189,7 +193,7 @@ const guestSignIn = async () => {
       <div class="selection" @click="chooseLogin('player')">
         <div class="txt">
           <div class="iconCont">
-            <img alt="PRArrow" class='a' src="@/assets/images/player.png" />
+            <HelmetIcon class="a" />
           </div>
           <div>
           <h3>PLAYER LOGIN</h3>
@@ -202,7 +206,7 @@ const guestSignIn = async () => {
       <div class="selection c" @click="chooseLogin('guest')">
         <div class="txt">
           <div class="iconCont">
-            <img alt="PRArrow" src="@/assets/images/guest.png" />
+            <GuestIcon />
           </div>
           <div>
           <h3>GUEST LOGIN</h3>
@@ -218,7 +222,7 @@ const guestSignIn = async () => {
     <div class="userLogin" :class="{active:userLogin}">
       <button class="goBack" @click="closeLogin()"></button>
       <form class="signIn" @submit.prevent v-if="!showUserMessage">
-        <img alt="PRArrow" src="@/assets/images/user.png" />
+        <UserIcon />
         <h3>User Login</h3>
         <div class="inputCont">
           <label>Email:</label><input placeholder="Email" type="email" v-model="userEmail" />
@@ -243,7 +247,8 @@ const guestSignIn = async () => {
     <div class="playerLogin" :class="{active:playerLogin}">
       <button class="goBack" @click="closeLogin()"></button>
       <form class="signIn" @submit.prevent v-if="!showUserMessage">
-        <img alt="PRArrow" src="@/assets/images/player.png" />
+        <!-- <img alt="PRArrow" src="@/assets/images/player.png" /> -->
+        <HelmetIcon class="a" />
         <h3>Player Login</h3>
         <div class="inputCont">
           <label>Player Name:<input placeholder="Player Name" type="input" v-model="playername" /></label>
@@ -279,7 +284,8 @@ const guestSignIn = async () => {
     <div class="guestLogin" :class="{active:guestLogin}">
       <button class="goBack" @click="closeLogin()"></button>
       <form class="signIn" @submit.prevent v-if="!showUserMessage">
-        <img alt="PRArrow" src="@/assets/images/guest.png" />
+        <GuestIcon />
+        <!-- <img alt="PRArrow" src="@/assets/images/guest.png" /> -->
         <h3>Guest Login</h3>
         <div class="inputCont">
         <label>Guest Name:</label><input placeholder="Guest" type="text" v-model="guestName" />

@@ -1391,6 +1391,10 @@ form {
         $w:80px;
         @include size($w, $w, $w, $w);
         @include rel();
+        text-align:center;
+        // svg {
+           
+        // }
         img {
           height:100%;
           @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));

@@ -2,6 +2,10 @@
 import { useAuthStore } from '@/stores/userAuth'
 import { useGuest } from '@/stores/guestStore'
 import { RouterLink } from 'vue-router'
+
+import PlayIcon from '@/assets/icons/ico_play.svg'
+import FormationIcon from '@/assets/icons/ico_formations.svg'
+import PlaybookIcon from '@/assets/icons/ico_playbook.svg'
 const auth = useAuthStore()
 const gst = useGuest()
 </script>
@@ -24,10 +28,10 @@ const gst = useGuest()
       <div class="right">
         <ul>
           <h3>You'll have access to:</h3>
-          <li> <img alt="Clipboard" src="@/assets/images/clipboard.png" class="ico" /> <strong>4</strong> Plays</li>
-          <li> <img alt="Formation" src="@/assets/images/formation.png" class="ico" /> <strong>2</strong> Formations</li>
+          <li> <PlayIcon class="ico" /> <strong>4</strong> Plays</li>
+          <li> <FormationIcon class="ico" /> <strong>2</strong> Formations</li>
           <li>
-            <img alt="Playbook" src="@/assets/images/playbook.png" class="ico" />
+            <PlaybookIcon class="ico" />
             <div>
               Playbook access
               <p>Without enlarging or play sharing</p>

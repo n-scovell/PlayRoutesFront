@@ -3,6 +3,14 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/userAuth'
 
+import UserIcon from '@/assets/icons/ico_user.svg'
+import RegisterIcon from '@/assets/icons/ico_register.svg'
+import AccountIcon from '@/assets/icons/ico_account.svg'
+import TeamIcon from '@/assets/icons/ico_team.svg'
+import VerifyIcon from '@/assets/icons/ico_verify.svg'
+import PaymentIcon from '@/assets/icons/ico_payment.svg'
+import CoachIcon from '@/assets/icons/ico_coach.svg'
+
 const auth = useAuthStore()
 const showModal = ref<boolean>(false)
 const name = ref('')
@@ -301,13 +309,13 @@ function handlePaymentMessage(event: MessageEvent) {
   
   <div class="loginChoice"  :class="{active: step !== 0}">
 
-    <h1>Player Routes Registration {{ step }}</h1>
+    <h1>Player Routes Registration</h1>
     <h2>or do you need to login?</h2>
 
     <div class="selection" @click="registerProcess(1)" >
       <div class="txt">
         <div class="iconCont">
-          <img alt="PRArrow" src="@/assets/images/user.png" />
+          <UserIcon />
         </div>
         <div>
         <h3>REGISTER NEW USER</h3>
@@ -322,7 +330,7 @@ function handlePaymentMessage(event: MessageEvent) {
         <button class="wide">
           <div class="txt">
             <div class="iconCont">
-              <img alt="PRArrow" src="@/assets/images/user.png" />
+              <RegisterIcon />
             </div>
             <div>
             <h3>USER LOGIN</h3>
@@ -337,7 +345,7 @@ function handlePaymentMessage(event: MessageEvent) {
 
   <div class="userLogin" :class="{active : step === 1}">
     <form class="signIn" @submit.prevent>
-      <img alt="PRArrow" src="@/assets/images/user.png" />
+      <AccountIcon />
       <h3>STEP 1: ACCOUNT SETUP</h3>
       <p>Create your login information</p>
       <div class="loggedIn" v-if="error" >
@@ -384,7 +392,7 @@ function handlePaymentMessage(event: MessageEvent) {
 
   <div class="userLogin" :class="{active : step === 2}">
     <form class="signIn" @submit.prevent>
-      <img alt="PRArrow" src="@/assets/images/user.png" />
+      <TeamIcon />
       <h3>STEP 2: TEAM SETUP</h3>
       <p>Create your team information</p>
       <div class="loggedIn" v-if="error" >
@@ -424,7 +432,8 @@ function handlePaymentMessage(event: MessageEvent) {
 
   <div class="userLogin" :class="{active : step === 3}">
     <form class="signIn" @submit.prevent>
-      <img alt="PRArrow" src="@/assets/images/user.png" />
+
+      <VerifyIcon />
       <h3>STEP 3: VERIFY ACCOUNT</h3>
       <p>A verification number was sent to: {{email}}</p>
       <div class="loggedIn" v-if="error" >
@@ -442,7 +451,7 @@ function handlePaymentMessage(event: MessageEvent) {
 
   <div class="userLogin" :class="{active : step === 4}">
     <form  @submit.prevent>
-      <img alt="PRArrow" src="@/assets/images/user.png" />
+      <PaymentIcon />
       <h3>STEP {{step}}: SELECT PAYMENT PLAN</h3>
       <p>Setup your payment process to access Player Routes!</p>
       <div class="loggedIn" v-if="error" >
@@ -450,7 +459,7 @@ function handlePaymentMessage(event: MessageEvent) {
       </div>
       <div class="paymentCont">
         <div class="plan">
-          <img alt="PRArrow" src="@/assets/images/user.png" />
+          <CoachIcon />
           <h4>COACH PLAN</h4>
           <h5>$6.00/monthly</h5>
           <p>So on and so on</p>
@@ -465,7 +474,7 @@ function handlePaymentMessage(event: MessageEvent) {
       </div>
       <div class="paymentCont">
         <div class="plan">
-          <img alt="PRArrow" src="@/assets/images/user.png" />
+          <TeamIcon />
           <h4>TEAM PLAN</h4>
           <h5>$10.00/monthly</h5>
           <p>So on and so on</p>
