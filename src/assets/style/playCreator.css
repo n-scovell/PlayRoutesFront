@@ -6,6 +6,9 @@
     opacity: 1;
   }
 }
+.playMaker * {
+  touch-action: none;
+}
 .playMaker {
   display: flex;
   flex-direction: row;
@@ -27,7 +30,7 @@
   gap: 10px;
 }
 .playMaker section.a, .playMaker section.c {
-  max-width: 260px;
+  max-width: 320px;
 }
 .playMaker section.d {
   display: none;
@@ -38,6 +41,30 @@
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
   position: relative;
+}
+.playMaker section .block.active {
+  flex: 1;
+}
+.playMaker section .block.active .makerHeader {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+  display: none;
 }
 .playMaker section .block.smallIcon .makerHeader .iconBox img {
   width: 35px;
@@ -246,9 +273,6 @@
   z-index: 1;
   transition: all 0.5s;
 }
-.playMaker section .block.active {
-  flex: 0 0 85%;
-}
 .playMaker section .block.topBar {
   flex: 0 0 50px;
   display: flex;
@@ -284,7 +308,7 @@
   padding: 0px;
 }
 .playMaker section .block .sectional.active {
-  height: 85%;
+  height: 100%;
   padding: 15px;
 }
 .playMaker section .block .sectional textarea {
@@ -375,32 +399,37 @@
   border: 2px solid #f5f5f5;
 }
 .playMaker section .block .makerHeader {
-  width: 100%;
   padding: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   gap: 5px;
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 22px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-shadow: none;
-  text-align: left;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .playMaker section .block .makerHeader .iconBox {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   position: relative;
 }
 .playMaker section .block .makerHeader .iconBox img {
-  width: 25px;
+  width: 60%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -490,5 +519,57 @@
   }
   .playMaker section.b .block.topBar {
     order: 2;
+  }
+}
+@media screen and (min-width: 300px) {
+  .playMaker section .block .field .positionBox .player {
+    width: 15px;
+    height: 15px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    transition: all 0.3s;
+  }
+}
+@media screen and (min-width: 550px) {
+  .playMaker section .block .field .positionBox .player {
+    width: 31px;
+    height: 31px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    transition: all 0.3s;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .playMaker section .block .field .positionBox .player {
+    width: 45px;
+    height: 45px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    transition: all 0.3s;
+  }
+}
+@media screen and (min-width: 2000px) {
+  .playMaker section .block .field .positionBox .player {
+    width: 55px;
+    height: 55px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    transition: all 0.3s;
+  }
+}
+@media screen and (max-width: 600px) {
+  .playMaker section .block .field .positionBox .player {
+    background: rgba(255, 255, 255, 0.7);
+  }
+  .playMaker section .block .field .positionBox .player:before {
+    display: none;
   }
 }/*# sourceMappingURL=playCreator.css.map */
