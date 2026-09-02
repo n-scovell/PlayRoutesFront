@@ -645,7 +645,6 @@ const changeDropAll = (p: keyof SpecialMob) => {
 <template>
   <main>
     <h1>CREATE YOUR PLAY</h1>
-
     <div class="playMaker">
       <section class="a">
         <div class="block a" :class="{active: dropChoiceAll.playInformation}">
@@ -677,6 +676,7 @@ const changeDropAll = (p: keyof SpecialMob) => {
           <div class="sectional" :class="{active : dropChoiceAll.formations }">
             <form @submit.prevent>
               <div class="inputCont inline">
+                <p>Add Formation:</p>
                 <button aria-label="Add Formation" @click="addFormation">+NEW</button>
                 <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
               </div>

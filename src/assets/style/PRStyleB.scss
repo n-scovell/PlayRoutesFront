@@ -830,8 +830,14 @@ form {
       }
     }
     &.inline {
-      @include flex(flex, row, nowrap, center, center, $gap:0px);
+      @include flex(flex, row, wrap, center, center, $gap:0px);
       height:35px;
+      margin-bottom:30px;
+      p {
+        flex: 0 0 100%;
+        @include font($par, $white, 14px, 500, .01em, 20px, normal, none, none, left);
+        margin:0px 0px 5px;
+      }
       button {
         flex:1;
         max-width:30%;
