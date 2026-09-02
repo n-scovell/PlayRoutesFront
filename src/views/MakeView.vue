@@ -220,7 +220,7 @@
           title: title.value,
           formation: dropDownsPlayType.value.formation.newValue,
           playType: dropDownsPlayType.value.ptype.newValue,
-          description: description.value,
+          description: 'this is working',
           grid,
           ownerId: auth.user.id
         })
@@ -230,7 +230,7 @@
           title: title.value,
           formation: dropDownsPlayType.value.formation.newValue,
           playType: dropDownsPlayType.value.ptype.newValue,
-          description: description.value,
+          description: 'this is working',
           grid,
           guestId: gst.guest.id
         })
@@ -617,59 +617,23 @@ const showPenMenu = () => {
 }
 
 
-
-interface Special {
-  playInformation: boolean
-  formations: boolean
-}
-interface SpecialRight {
-  positions: boolean
-  pen: boolean
-}
 interface SpecialMob {
   playInformation: boolean
   formations: boolean
   positions: boolean
   pen: boolean
 }
-
-const dropChoice = ref<Special>({
-  playInformation: true,
-  formations: false,
-})
-const dropChoiceRight = ref<SpecialRight>({
-  positions: true,
-  pen: false,
-})
 const dropChoiceAll = ref<SpecialMob>({
-  playInformation: true,
+  playInformation: false,
   formations: false,
   positions: false,
   pen: false,
 })
-// const resetDrops = () => {
-//   (Object.keys(dropChoice.value) as (keyof Special)[]).forEach(key => {
-//     dropChoice.value[key] = false
-//   })
-// }
-// const resetDropsRight = () => {
-//   (Object.keys(dropChoiceRight.value) as (keyof SpecialRight)[]).forEach(key => {
-//     dropChoiceRight.value[key] = false
-//   })
-// }
 const resetDropsAll = () => {
   (Object.keys(dropChoiceAll.value) as (keyof SpecialMob)[]).forEach(key => {
     dropChoiceAll.value[key] = false
   })
 }
-// const changeDrop = (p: keyof Special) => {
-//   resetDrops()
-//   dropChoice.value[p] = true
-// }
-// const changeDropRight = (p: keyof SpecialRight) => {
-//   resetDropsRight()
-//   dropChoiceRight.value[p] = true
-// }
 const changeDropAll = (p: keyof SpecialMob) => {
   resetDropsAll()
   dropChoiceAll.value[p] = true
@@ -684,7 +648,7 @@ const changeDropAll = (p: keyof SpecialMob) => {
 
     <div class="playMaker">
       <section class="a">
-        <div class="block" :class="{active: dropChoiceAll.playInformation}">
+        <div class="block a" :class="{active: dropChoiceAll.playInformation}">
           <Header title="PLAY INFORMATION" icon="play" :drop="dropChoiceAll.playInformation" @click="changeDropAll('playInformation')" />
           <div class="sectional" :class="{active : dropChoiceAll.playInformation }">
             <form @submit.prevent>
@@ -707,9 +671,8 @@ const changeDropAll = (p: keyof SpecialMob) => {
               </div>
             </form>
           </div>
-          
         </div>
-        <div class="block" :class="{active: dropChoiceAll.formations}">
+        <div class="block a" :class="{active: dropChoiceAll.formations}">
           <Header title="FORMATIONS" icon="formations" :drop="dropChoiceAll.formations" @click="changeDropAll('formations')" />
           <div class="sectional" :class="{active : dropChoiceAll.formations }">
             <form @submit.prevent>
@@ -732,44 +695,6 @@ const changeDropAll = (p: keyof SpecialMob) => {
             </form>
           </div>
         </div>
-      </section>
-      <section class="b">
-        <div class="block topBar">
-          <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">
-            <div class="icon pointer"></div>
-            MOVE
-          </button>
-          <button :class="{active : activeTool === 'erase'}" @click="makeActiveTool('erase')">
-            <div class="icon trash"><div></div><div></div></div>
-            DELETE
-          </button>
-          <button :class="{color : colorFlip }" @click="changePosColor()">COLOR/B&W</button>
-          <button class="clearBt" @click="clearPlayers()">
-            <div class="icon clear"></div>
-            CLEAR
-          </button>
-        </div>
-        <div class="block">
-          <p class="pc" v-if="playerCount">Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
-          <div class="field">
-            <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
-            <div class="positionBox" ref="container" @pointermove="onDrag" @pointerup="stopDrag" @pointercancel="stopDrag">
-              <div v-for="p in players" :key="p.id" class="player" :myText="p.pos"
-                :class="[{color: colorFlip }, p.pos, { remove: activeTool === 'erase'} ]"
-                :style="{ left: `${p.x * 100}%`, top: `${p.y * 100}%` }"
-                @pointerdown="(e) => startDrag(p.id, p.pos, e)"
-              >
-              {{ p.pos }}
-              </div>
-            </div>
-            <div class="gridBox">
-              <div class="lineOfScrimmage" />
-              <div class="gridLine" v-for="g in 6" :key="g" />
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="c">
         <div class="block" :class="{active: dropChoiceAll.positions}" >
           <Header title="Position Selection" icon="helmet" :drop="dropChoiceAll.positions" @click="changeDropAll('positions')" />
           <div class="sectional" :class="{active : dropChoiceAll.positions}">
@@ -813,6 +738,86 @@ const changeDropAll = (p: keyof SpecialMob) => {
           </div>
         </div>
       </section>
+      <section class="b">
+        <div class="block topBar">
+          <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">
+            <div class="icon pointer"></div>
+            MOVE
+          </button>
+          <button :class="{active : activeTool === 'erase'}" @click="makeActiveTool('erase')">
+            <div class="icon trash"><div></div><div></div></div>
+            DELETE
+          </button>
+          <button :class="{color : colorFlip }" @click="changePosColor()">COLOR/B&W</button>
+          <button class="clearBt" @click="clearPlayers()">
+            <div class="icon clear"></div>
+            CLEAR
+          </button>
+        </div>
+        <div class="block">
+          <p class="pc" v-if="playerCount">Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
+          <div class="field">
+            <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
+            <div class="positionBox" ref="container" @pointermove="onDrag" @pointerup="stopDrag" @pointercancel="stopDrag">
+              <div v-for="p in players" :key="p.id" class="player" :myText="p.pos"
+                :class="[{color: colorFlip }, p.pos, { remove: activeTool === 'erase'} ]"
+                :style="{ left: `${p.x * 100}%`, top: `${p.y * 100}%` }"
+                @pointerdown="(e) => startDrag(p.id, p.pos, e)"
+              >
+              {{ p.pos }}
+              </div>
+            </div>
+            <div class="gridBox">
+              <div class="lineOfScrimmage" />
+              <div class="gridLine" v-for="g in 6" :key="g" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <section class="c">
+        <div class="block" :class="{active: dropChoiceAll.positions}" >
+          <Header title="Position Selection" icon="helmet" :drop="dropChoiceAll.positions" @click="changeDropAll('positions')" />
+          <div class="sectional" :class="{active : dropChoiceAll.positions}">
+            <div class="positionContainer">
+              <div class="posCont" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
+                <button class="pos" :aria-label="`${p.pos}`" >{{ p.pos.toUpperCase() }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block smallIcon" :class="{active: dropChoiceAll.pen}">
+          <Header title="Pen Selection" icon="penB" :drop="dropChoiceAll.pen" @click="changeDropAll('pen')" />
+          <div class="sectional" :class="{active : dropChoiceAll.pen}">
+            <div class="pens">
+              <h4>STYLE</h4>
+              <div class="posCont">
+                <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
+              </div>
+              <div class="posCont">
+                <button aria-label="Chalk Stroke" :class="{ active: selectedTool === 'chalk' }" @pointerdown="changeTool('chalk')"><img src="@/assets/images/chalk.png" /></button>
+              </div>
+              <div class="posCont">
+                <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
+              </div>
+            </div> 
+            <div class="colors">
+              <h4>COLORS</h4>
+              <div class="posCont">
+                <button class="white" :class="{ active: selectedColor === 'white' }" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
+              </div>
+              <div class="posCont">
+                <button class="red" :class="{ active: selectedColor === 'red' }" aria-label="Pen Stroke" @pointerdown="changeColor('red')"></button>
+              </div>
+              <div class="posCont">
+                <button class="blue" :class="{ active: selectedColor === 'blue' }" aria-label="Pen Stroke" @pointerdown="changeColor('blue')"></button>
+              </div>
+              <div class="posCont">
+                <button class="yellow" :class="{ active: selectedColor === 'yellow' }" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
       <section class="d">
         <Header title="PLAY INFORMATION" icon="play" :drop="dropChoiceAll.playInformation" @click="changeDropAll('playInformation')" />
         <Header title="FORMATIONS" icon="formations" :drop="dropChoiceAll.formations" @click="changeDropAll('formations')" />
