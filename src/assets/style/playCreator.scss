@@ -16,7 +16,7 @@ $fieldSize: 75%;
   @include flx(row, nowrap, stretch, center, $pagePadding);
   padding:$pagePadding + 10px;
   height:$mainHeight;
-  max-height:550px;
+  max-height:950px;
   section {
     flex:1;
     @include flx(column, nowrap, stretch, start, $pagePadding);
