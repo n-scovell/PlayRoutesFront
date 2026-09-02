@@ -11,6 +11,7 @@ export const useFormation = defineStore(
     const loading = ref(false)
     const error = ref<string | null>(null)
     const addedForm = ref(false)
+    const alreadyExists = ref<boolean>(false)
 
     async function fetchFormations() {
       const auth = useAuthStore()
@@ -41,12 +42,18 @@ export const useFormation = defineStore(
         loading.value = false
       }
     }
+
   async function createFormation(payload: any) {    
       const auth = useAuthStore()
-      // const badges = useBadges()
       if (!auth.token || !auth.userId) {
         throw new Error("Not authenticated")
       }
+      const exists = formations.value.some( p => p.formationName.trim().toLowerCase() === payload.formationName.trim().toLowerCase() )
+      if (exists) {
+        alreadyExists.value = true
+        return
+      }
+      alreadyExists.value = false
       const res = await fetch("https://play-route-back.vercel.app/api/formation", {
         method: "POST",
         headers: {
@@ -62,11 +69,6 @@ export const useFormation = defineStore(
       if (!data?.id) {
         throw new Error("Invalid formation response from server")
       }
-      const exists = formations.value.some(p => p.id === data.id)
-      if (!exists) {
-        formations.value.unshift(data)
-      }
-      // await badges.checkFormationBadges()
       return data
   }
 
@@ -82,6 +84,7 @@ export const useFormation = defineStore(
   }
 
     return {
+      alreadyExists,
       formations,
       addedForm,
       fetchFormations,

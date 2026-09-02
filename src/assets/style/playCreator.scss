@@ -18,6 +18,7 @@ $fieldSize: 75%;
   padding:$pagePadding + 10px;
   height:$mainHeight;
   max-height:950px;
+  min-height:800px;
   section {
     flex:1;
     @include flx(column, nowrap, stretch, start, $pagePadding);
@@ -50,6 +51,7 @@ $fieldSize: 75%;
           }
         }
       }
+      
       .pc {
         @include pos(absolute, $bottom: 5px, $left: 5px);
         @include font($par, $white, 13px, 600, .01em, 20px, normal, none, none, left);
@@ -57,6 +59,35 @@ $fieldSize: 75%;
           color:$penGreen;
         }
       }
+
+      .messaging {
+        @include pos(absolute, 0px, 0px);
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,.8);
+        @include flx(row, nowrap, center, center, 0px);
+        @include font($head, $white, 25px, 300, .01em, 20px, normal, none, none, center);
+        z-index:99999;
+        .makerHeader {
+          width:550px;
+          height:300px;
+          @include flx(column, nowrap, center, center, 20px);
+          .iconBox {
+            width:90px;
+            height:90px;
+            img {
+              width:100%;
+            }
+          }
+        }
+        ul {
+          li {
+            @include font($head, $white, 25px, 300, .01em, 20px, normal, none, none, left);
+            margin:5px;
+          }
+        }
+      }
+
       .field {
         @include pos(absolute, 0px, 0px);
         width:100%;
@@ -159,6 +190,15 @@ $fieldSize: 75%;
           flex:1;
           @include boxA();
           @include font($head, $white, 16px, 400, .02em, 20px, normal, uppercase, none, center);
+          &.clearBt {
+            max-width:130px;
+          }
+          &.active {
+            background:rgba(255,255,255,.5);
+          }
+          &.color {
+            background:$blueB;
+          }
         }
       }
       .sectional {
@@ -171,7 +211,7 @@ $fieldSize: 75%;
         }
         textarea {
           resize: vertical;
-          min-height:28px;
+          min-height:100px;
         }
         .pens, .colors {
           width:100%;

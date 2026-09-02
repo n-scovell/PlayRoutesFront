@@ -220,7 +220,7 @@
           title: title.value,
           formation: dropDownsPlayType.value.formation.newValue,
           playType: dropDownsPlayType.value.ptype.newValue,
-          description: 'this is working',
+          description: description.value,
           grid,
           ownerId: auth.user.id
         })
@@ -230,15 +230,19 @@
           title: title.value,
           formation: dropDownsPlayType.value.formation.newValue,
           playType: dropDownsPlayType.value.ptype.newValue,
-          description: 'this is working',
+          description: description.value,
           grid,
           guestId: gst.guest.id
         })
       }
       // Only happens if API succeeded
-      playSuccess.value = true
-      clearPlayers()
-      title.value = ''
+      if (!plays.playAlreadyExists) {
+        playSuccess.value = true
+        clearPlayers()
+        title.value = ''
+        description.value = ''
+      }
+      
     } catch (err: any) {
       if (err.message === 'Guest play limit reached') {
 
@@ -447,8 +451,8 @@
       console.error(err)
     }
     
-    dropDownsPlayType.value.formation.newLst.push(newFormation.value)
-    dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
+    // dropDownsPlayType.value.formation.newLst.push(newFormation.value)
+    // dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
     newFormation.value = ""
     router.push('/create')
   }
@@ -504,7 +508,6 @@
 
   watch(() => dropDownsPlayType.value.formation.newValue, (f: string) => {
   clearPlayers()
-  
   let myForm
   if (auth.user) {
     myForm = forms.formations.find(
@@ -525,7 +528,6 @@
         x: player.x,
         y: player.y
       })
-
       playerCount.value++
     }
   }
@@ -533,6 +535,10 @@
 
   //OnMOUNTED
   onMounted(async () => {
+    plays.playAlreadyExists = false
+    forms.alreadyExists = false
+    playSuccess.value = false
+    errorsShow.value = false
     if (auth.user) {
       if (!forms.formations.length) {
         await forms.fetchFormations()
@@ -564,59 +570,6 @@ const changePosColor = () => {
 }
 
 
-const extendPop = ref<boolean>(false)
-const infoShow = ref<boolean>(false)
-const formationShow = ref<boolean>(false)
-const positionShow = ref<boolean>(false)
-const penShow = ref<boolean>(false)
-
-
-const showInfo = () => {
-  if (extendPop.value && infoShow.value) {
-    extendPop.value = false
-  } else {
-    extendPop.value = true
-  }
-  penShow.value = false
-  infoShow.value = true
-  formationShow.value = false
-  positionShow.value = false
-}
-const showFormationMenu = () => {
-  if (extendPop.value && formationShow.value) {
-    extendPop.value = false
-  } else {
-    extendPop.value = true
-  }
-  penShow.value = false
-  formationShow.value = true
-  infoShow.value = false
-  positionShow.value = false
-}
-const showPositionsMenu = () => {
-  if (extendPop.value && positionShow.value) {
-    extendPop.value = false
-  } else {
-    extendPop.value = true
-  }
-  penShow.value = false
-  positionShow.value = true
-  formationShow.value = false
-  infoShow.value = false
-}
-const showPenMenu = () => {
-  if (extendPop.value && penShow.value) {
-    extendPop.value = false
-  } else {
-    extendPop.value = true
-  }
-  penShow.value = true
-  positionShow.value = false
-  formationShow.value = false
-  infoShow.value = false
-}
-
-
 interface SpecialMob {
   playInformation: boolean
   formations: boolean
@@ -639,12 +592,18 @@ const changeDropAll = (p: keyof SpecialMob) => {
   dropChoiceAll.value[p] = true
 }
 
+const closeMessage = () => {
+  plays.playAlreadyExists = false
+  forms.alreadyExists = false
+  playSuccess.value = false
+  errorsShow.value = false
+}
 
 </script>
 
 <template>
   <main>
-    <h1>CREATE YOUR PLAY</h1>
+    <h1>CREATE YOUR PLAY {{ plays.playAlreadyExists }}</h1>
     <div class="playMaker">
       <section class="a">
         <div class="block a" :class="{active: dropChoiceAll.playInformation}">
@@ -681,16 +640,21 @@ const changeDropAll = (p: keyof SpecialMob) => {
                 <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
               </div>
               <div class="inputCont a">
-                <div class="selectHolder">
-                  <label>Choose Your Formation:
-                  <button aria-label="Formations Select" class="dropDownInd" @pointerdown="showFormations()">{{ dropDownsPlayType.formation.newValue }}</button>
-                    <div class="dropDownCase" v-if="showFormation">
-                      <div class="short">
-                      <button :aria-label="`${f} Formation Option`" v-for="f in dropDownsPlayType.formation.newLst" :key="f" @pointerdown="formationType('formation', f)">{{f}}</button>
-                      </div>
+
+                <ul class="formationBox">
+                  <li v-for="f in forms.formations" :key="f">
+                    <button @click="formationType('formation', f.formationName)">
+                    <div class='formationShow'>
+                      <div class='play' 
+                      v-for="p in f.grid.players" 
+                      :style="{ left: `${p.x * 100}%`, top: `${p.y * 100}%` }"
+                      ></div>
+                      
                     </div>
-                  </label>
-                </div>
+                    {{ f.formationName }}
+                    </button>
+                  </li>
+                </ul>
               </div>
             </form>
           </div>
@@ -755,6 +719,16 @@ const changeDropAll = (p: keyof SpecialMob) => {
           </button>
         </div>
         <div class="block">
+          <button class="messaging" v-if="playSuccess || errorsShow || forms.alreadyExists || plays.playAlreadyExists" @click="closeMessage()">
+            <span v-if="playSuccess">
+              <Header title="PLAY HAS BEEN CREATED" icon="pr" :drop="dropChoiceAll.pen" /> 
+            </span>
+            <span v-if="plays.playAlreadyExists">PLAY TITLE ALREADY EXISTS</span>
+            <span v-if="forms.alreadyExists">FORMATION NAME ALREADY EXISTS</span>
+            <ul v-if="errorsShow">
+              <li v-for="e in errors" :key="e.txt">{{ e.txt }}</li>
+            </ul>
+          </button>
           <p class="pc" v-if="playerCount">Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
           <div class="field">
             <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
@@ -774,50 +748,6 @@ const changeDropAll = (p: keyof SpecialMob) => {
           </div>
         </div>
       </section>
-      <!-- <section class="c">
-        <div class="block" :class="{active: dropChoiceAll.positions}" >
-          <Header title="Position Selection" icon="helmet" :drop="dropChoiceAll.positions" @click="changeDropAll('positions')" />
-          <div class="sectional" :class="{active : dropChoiceAll.positions}">
-            <div class="positionContainer">
-              <div class="posCont" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
-                <button class="pos" :aria-label="`${p.pos}`" >{{ p.pos.toUpperCase() }}</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="block smallIcon" :class="{active: dropChoiceAll.pen}">
-          <Header title="Pen Selection" icon="penB" :drop="dropChoiceAll.pen" @click="changeDropAll('pen')" />
-          <div class="sectional" :class="{active : dropChoiceAll.pen}">
-            <div class="pens">
-              <h4>STYLE</h4>
-              <div class="posCont">
-                <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
-              </div>
-              <div class="posCont">
-                <button aria-label="Chalk Stroke" :class="{ active: selectedTool === 'chalk' }" @pointerdown="changeTool('chalk')"><img src="@/assets/images/chalk.png" /></button>
-              </div>
-              <div class="posCont">
-                <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
-              </div>
-            </div> 
-            <div class="colors">
-              <h4>COLORS</h4>
-              <div class="posCont">
-                <button class="white" :class="{ active: selectedColor === 'white' }" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
-              </div>
-              <div class="posCont">
-                <button class="red" :class="{ active: selectedColor === 'red' }" aria-label="Pen Stroke" @pointerdown="changeColor('red')"></button>
-              </div>
-              <div class="posCont">
-                <button class="blue" :class="{ active: selectedColor === 'blue' }" aria-label="Pen Stroke" @pointerdown="changeColor('blue')"></button>
-              </div>
-              <div class="posCont">
-                <button class="yellow" :class="{ active: selectedColor === 'yellow' }" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> -->
       <section class="d">
         <Header title="PLAY INFORMATION" icon="play" :drop="dropChoiceAll.playInformation" @click="changeDropAll('playInformation')" />
         <Header title="FORMATIONS" icon="formations" :drop="dropChoiceAll.formations" @click="changeDropAll('formations')" />

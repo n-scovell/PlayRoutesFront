@@ -10,6 +10,7 @@ export const usePlayStore = defineStore(
     const plays = ref<any[]>([])
     const loading = ref(false)
     const error = ref<string | null>(null)
+    const playAlreadyExists = ref<boolean>(false)
 
     // async function fetchTeamPlays() {
 
@@ -72,8 +73,14 @@ export const usePlayStore = defineStore(
     async function createPlay(payload: any) {
       const auth = useAuthStore()
       if (!auth.token || !auth.userId) {
-      throw new Error("Not authenticated")
+        throw new Error("Not authenticated")
       }
+      const exists = plays.value.some( p => p.title.trim().toLowerCase() === payload.title.trim().toLowerCase() )
+      if (exists) {
+        playAlreadyExists.value = true
+        return
+      }
+      playAlreadyExists.value = false
       loading.value = true
       const res = await fetch("https://play-route-back.vercel.app/api/play", {
         method: "POST",
@@ -92,10 +99,10 @@ export const usePlayStore = defineStore(
         throw new Error("Invalid play response from server")
       }
       // 🔥 prevent duplicates (optional but useful)
-      const exists = plays.value.some(p => p.id === data.id)
-      if (!exists) {
-        plays.value.unshift(data)
-      }
+      // const exists = plays.value.some(p => p.id === data.id)
+      // if (!exists) {
+      //   plays.value.unshift(data)
+      // }
       loading.value = false
       return data
   }
@@ -123,7 +130,7 @@ export const usePlayStore = defineStore(
       loading,
       error,
       deleting,
-
+      playAlreadyExists,
       fetchPlays,
       createPlay,
       clearPlays,

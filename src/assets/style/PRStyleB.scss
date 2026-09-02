@@ -769,6 +769,39 @@ form {
     @include flex(flex, column, wrap, stretch, center, 5px);
     @include rel();
     margin-bottom:15px;
+    .formationBox {
+      width:100%;
+      height:300px;
+      @include boxA();
+      margin:10px 0px 0px;
+      padding:10px;
+      overflow-y:scroll;
+      li {
+        border-bottom:1px solid rgba(255,255,255,.2);
+        padding:10px 0px;
+        button {
+          width:100%;
+          height:100%;
+          @include font($head, $white, 15px, 300, .05em, 20px, normal, uppercase, none, left);
+          @include flx(row, nowrap, center, stretch, 11px);
+          .formationShow {
+            outline:1px solid rgba(255,255,255,.3);
+            height:40px;
+            width:80px;
+            position:relative;
+            .play {
+              $w:2px;
+              width:$w;
+              height:$w;
+              background:$white;
+              border-radius:50%;
+              position:absolute;
+              transform:translate(-50%,-50%);
+            }
+          }
+        }
+      }
+    }
     .infoBt {
       $w:20px;
       @include size($w, $w);
@@ -2470,382 +2503,381 @@ $mobile: 728px;
 }
 
 
-//MAKER VARS
-$pagePadding: 25px;
-$pageCellPadding: $pagePadding - 15px;
-$mainHeight: 85vh;
-$menuMarBt: 10px;
-$fieldSize: 75%;
-@keyframes fadeIn {
-  from { opacity:0; }
-  to { opacity: 1; }
-}
+// $pagePadding: 25px;
+// $pageCellPadding: $pagePadding - 15px;
+// $mainHeight: 85vh;
+// $menuMarBt: 10px;
+// $fieldSize: 75%;
+// @keyframes fadeIn {
+//   from { opacity:0; }
+//   to { opacity: 1; }
+// }
 
-.playCreator {
-  @include flex(flex, row, nowrap, center, center, $pageCellPadding);
-  padding: $pagePadding;
-  height: $mainHeight;
-  min-height:550px;
-  max-height:650px;
-  .secA, .secB, .secC, .secD {
-    flex: 1;
-    height:100%;
-    @include flex(flex, column, nowrap, center, center, $pageCellPadding);
-    .sectional {
-      flex:1;
-      width:100%;
-      padding:15px;
-      @include boxA();
-      @include rel();
-      h4 {
-        background:red;
-        @include rel();
-        @include flex(flex, row, nowrap, center, start, 10px);
-        @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, left);
-        margin-bottom:10px;
-        div {
-          flex: 1;
-          max-width:22px;
-          img {
-            width:100%;
-            &.colorstool {
-              width:130%;
-            }
-            &.pentool {
-              width:65%;
-              transform:rotate(-150deg);
-            }
-          }
-        }
-      }
-    }
-    .topButtonCont {
-      flex:1;
-      width:100%;
-      max-height:45px;
-      display:flex;
-      flex-direction:row;
-      flex-wrap:nowrap;
-      gap:$pageCellPadding;
-      order:0;
-      button {
-        flex:1;
-        @include font($head, $white, 15px, 300, .09em, 20px, normal, uppercase, none, center);
-        @include flex(flex, row, nowrap, center, center, 10px);
-        @include boxA();
-        height:100%;
-        .icon {
-          &.clear {
-            $w:20px;
-            $wB: $w - 10px;
-            width:$wB;
-            height:$w;
-            outline:2px solid $white;
-            border-radius:5px;
-            position:relative;
-            transform:rotate(20deg);
-            &:after {
-              content:' ';
-              width:13px;
-              height:2px;
-              background:$white;
-              position:absolute;
-              top:85%;
-              left:85%;
-              transform:rotate(-20deg);
-            }
-            &:before {
-              content:' ';
-              width:100%;
-              height:22%;
-              background:$white;
-              position:absolute;
-              bottom:0px;
-              left:0px;
-            }
-          }
-          &.trash {
-            $w:20px;
-            $wB: $w - 5px;
-            width:$wB;
-            height:$w;
-            @include flex(flex, column, nowrap, center, center, 2px);
-            div {
-              flex:1;
-              background:$white;
-              &:nth-child(1) {
-                max-height:12%;
-                width:100%;
-                position:relative;
-                &:before {
-                  content:' ';
-                  width:30%;
-                  height:2px;
-                  background:$white;
-                  position:absolute;
-                  top:-2px;
-                  left:50%;
-                  transform:translateX(-50%);
-                }
-              }
-              &:nth-child(2) {
-                $midA: 85%;
-                $midB: 100% - $midA;
-                width:100%;
-                clip-path:polygon(0% 0%, 100% 0%, $midA 100%, $midB 100%);
-              }
-            }
-          }
-          &.pointer {
-            $w:20px;
-            $wB: $w - 5px;
-            $wing: 75%;
-            $midA: 65%;
-            $midB: 100% - $midA;
-            $midTop: 60%;
-            width:$wB;
-            height:$w;
-            background:$white;
-            clip-path:polygon(
-              50% 0%, 100% $wing, $midA $midTop, $midA 100%, $midB 100%, $midB $midTop, 0% $wing
-            );
-            transform:rotate(-15deg);
-          }
-        }
-        &.clearBt {
-          background:rgba(0, 0, 0, 0.5);
-          &:hover {
-            background:rgba(0, 0, 0, 0.5);
-          }
-        }
-        &.color {
-          background:rgba(58, 163, 204, 0.192);
-        }
-        &.active {
-          background:rgba(97, 97, 97, 0.5);
-        }
-      }
-    }
-  }
-  .secA, .secC  {
-    max-width:250px;
-  }
-  .secA {
-    // order:3;
-    .sectional {
-      &.a {
-        background:transparent;
-      }
-    }
-  }
-  .secD {
-    display:none;
-    .sectional {
-      @include boxA();
-    }
-  }
-  .secE {
-    display:none;
-    .sectional {
-      @include boxA();
-    }
-  }
-  .secB {
-    max-width:1250px;
-    .sectional {
-      padding:0px;
-      @include rel();
+// .playCreator {
+//   @include flex(flex, row, nowrap, center, center, $pageCellPadding);
+//   padding: $pagePadding;
+//   height: $mainHeight;
+//   min-height:550px;
+//   max-height:650px;
+//   .secA, .secB, .secC, .secD {
+//     flex: 1;
+//     height:100%;
+//     @include flex(flex, column, nowrap, center, center, $pageCellPadding);
+//     .sectional {
+//       flex:1;
+//       width:100%;
+//       padding:15px;
+//       @include boxA();
+//       @include rel();
+//       h4 {
+//         background:red;
+//         @include rel();
+//         @include flex(flex, row, nowrap, center, start, 10px);
+//         @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, left);
+//         margin-bottom:10px;
+//         div {
+//           flex: 1;
+//           max-width:22px;
+//           img {
+//             width:100%;
+//             &.colorstool {
+//               width:130%;
+//             }
+//             &.pentool {
+//               width:65%;
+//               transform:rotate(-150deg);
+//             }
+//           }
+//         }
+//       }
+//     }
+//     .topButtonCont {
+//       flex:1;
+//       width:100%;
+//       max-height:45px;
+//       display:flex;
+//       flex-direction:row;
+//       flex-wrap:nowrap;
+//       gap:$pageCellPadding;
+//       order:0;
+//       button {
+//         flex:1;
+//         @include font($head, $white, 15px, 300, .09em, 20px, normal, uppercase, none, center);
+//         @include flex(flex, row, nowrap, center, center, 10px);
+//         @include boxA();
+//         height:100%;
+//         .icon {
+//           &.clear {
+//             $w:20px;
+//             $wB: $w - 10px;
+//             width:$wB;
+//             height:$w;
+//             outline:2px solid $white;
+//             border-radius:5px;
+//             position:relative;
+//             transform:rotate(20deg);
+//             &:after {
+//               content:' ';
+//               width:13px;
+//               height:2px;
+//               background:$white;
+//               position:absolute;
+//               top:85%;
+//               left:85%;
+//               transform:rotate(-20deg);
+//             }
+//             &:before {
+//               content:' ';
+//               width:100%;
+//               height:22%;
+//               background:$white;
+//               position:absolute;
+//               bottom:0px;
+//               left:0px;
+//             }
+//           }
+//           &.trash {
+//             $w:20px;
+//             $wB: $w - 5px;
+//             width:$wB;
+//             height:$w;
+//             @include flex(flex, column, nowrap, center, center, 2px);
+//             div {
+//               flex:1;
+//               background:$white;
+//               &:nth-child(1) {
+//                 max-height:12%;
+//                 width:100%;
+//                 position:relative;
+//                 &:before {
+//                   content:' ';
+//                   width:30%;
+//                   height:2px;
+//                   background:$white;
+//                   position:absolute;
+//                   top:-2px;
+//                   left:50%;
+//                   transform:translateX(-50%);
+//                 }
+//               }
+//               &:nth-child(2) {
+//                 $midA: 85%;
+//                 $midB: 100% - $midA;
+//                 width:100%;
+//                 clip-path:polygon(0% 0%, 100% 0%, $midA 100%, $midB 100%);
+//               }
+//             }
+//           }
+//           &.pointer {
+//             $w:20px;
+//             $wB: $w - 5px;
+//             $wing: 75%;
+//             $midA: 65%;
+//             $midB: 100% - $midA;
+//             $midTop: 60%;
+//             width:$wB;
+//             height:$w;
+//             background:$white;
+//             clip-path:polygon(
+//               50% 0%, 100% $wing, $midA $midTop, $midA 100%, $midB 100%, $midB $midTop, 0% $wing
+//             );
+//             transform:rotate(-15deg);
+//           }
+//         }
+//         &.clearBt {
+//           background:rgba(0, 0, 0, 0.5);
+//           &:hover {
+//             background:rgba(0, 0, 0, 0.5);
+//           }
+//         }
+//         &.color {
+//           background:rgba(58, 163, 204, 0.192);
+//         }
+//         &.active {
+//           background:rgba(97, 97, 97, 0.5);
+//         }
+//       }
+//     }
+//   }
+//   .secA, .secC  {
+//     max-width:250px;
+//   }
+//   .secA {
+//     // order:3;
+//     .sectional {
+//       &.a {
+//         background:transparent;
+//       }
+//     }
+//   }
+//   .secD {
+//     display:none;
+//     .sectional {
+//       @include boxA();
+//     }
+//   }
+//   .secE {
+//     display:none;
+//     .sectional {
+//       @include boxA();
+//     }
+//   }
+//   .secB {
+//     max-width:1250px;
+//     .sectional {
+//       padding:0px;
+//       @include rel();
       
-      .success {
-        @include backColor(rgba(0,0,0,1));
-        @include size(350px, 200px);
-        @include flex(flex, row, nowrap, center, center);
-        @include font($spec, $blueB, 25px, 400);
-        @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-        z-index:99999;
-        button {
-          color:white;
-          font-weight:bold;
-          @include pos(absolute, 15px, $right:5px, $trans:translate(0%,-50%));
-        }
-      }
-      .pc {
-        @include font($par, $white, 11px, 400);
-        @include pos(absolute, $bottom:5px, $left:10px);
-        z-index:99999;
-        .complete {
-          color:$penGreen;
-          font-weight:bold;
-        }
-      }
-      .field {
-        flex:1;
-        @include rel();
-        @include size(auto, 100%);
-        // @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
-        .canvas {
-          @include pos(absolute, 0px, 0px);
-          @include size(100%, 100%);
-          touch-action: none;
-          z-index:2;
-        }
-        .gridBox {
-          @include pos(absolute, 0%, 50%, $trans: translate(-50%,0%));
-          @include size(100%, 100%);
-          @include flex(flex);
-          .logoCont {
-            @include rel();
-            @include size(150px, 150px);
-            @include pos(absolute, 40%, 50%, $trans: translate(-50%,-50%));
-            border:5px solid $white;
-            border-radius:50%;
-            mix-blend-mode: saturation;
-            opacity:.3;
-            img {
-              @include size(70%, auto);
-              @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
-            }
-          }
+//       .success {
+//         @include backColor(rgba(0,0,0,1));
+//         @include size(350px, 200px);
+//         @include flex(flex, row, nowrap, center, center);
+//         @include font($spec, $blueB, 25px, 400);
+//         @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//         z-index:99999;
+//         button {
+//           color:white;
+//           font-weight:bold;
+//           @include pos(absolute, 15px, $right:5px, $trans:translate(0%,-50%));
+//         }
+//       }
+//       .pc {
+//         @include font($par, $white, 11px, 400);
+//         @include pos(absolute, $bottom:5px, $left:10px);
+//         z-index:99999;
+//         .complete {
+//           color:$penGreen;
+//           font-weight:bold;
+//         }
+//       }
+//       .field {
+//         flex:1;
+//         @include rel();
+//         @include size(auto, 100%);
+//         // @include back($black, '@/assets/images/bck_chalkboard.jpg', cover, 0px 0px, no-repeat);
+//         .canvas {
+//           @include pos(absolute, 0px, 0px);
+//           @include size(100%, 100%);
+//           touch-action: none;
+//           z-index:2;
+//         }
+//         .gridBox {
+//           @include pos(absolute, 0%, 50%, $trans: translate(-50%,0%));
+//           @include size(100%, 100%);
+//           @include flex(flex);
+//           .logoCont {
+//             @include rel();
+//             @include size(150px, 150px);
+//             @include pos(absolute, 40%, 50%, $trans: translate(-50%,-50%));
+//             border:5px solid $white;
+//             border-radius:50%;
+//             mix-blend-mode: saturation;
+//             opacity:.3;
+//             img {
+//               @include size(70%, auto);
+//               @include pos(absolute, 50%, 50%, $trans: translate(-50%,-50%));
+//             }
+//           }
           
-          .lineOfScrimmage {
-            @include pos(absolute, 65%);
-            @include size(100%, 10px);
-            @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
-          }
-          .gridLine {
-            flex:1;
-            border-right:1px dashed rgba(255,255,255,.9);
-            &:last-child {
-              border-right:none;
-            }
-          }
-        }
-        .positionBox {
-          @include pos(absolute, 0px, 0px);
-          @include size(100%, 100%);
-          -webkit-user-drag: none;
-          user-select: none;
-          -moz-user-select: none;
-          -webkit-user-select: none;
-          -ms-user-select: none;
-          .player {
-            @include size($playerSize, $playerSize);
-            @include backColor(rgb(54, 54, 54));
-            @include font($spec, transparent, 20px, bold);
-            @include pos(absolute, $trans: translate(-50%, -50%));
-            @include flex(flex, wrap, nowrap, center, center);
-            border:2px solid rgba(231, 231, 231, 0.5);
-            box-shadow:0 5px 5px rgba(0,0,0,.5);
-            border-radius:50%;
-            z-index:8000;
-            cursor: grab;
-            transition: border .5s;
-            &.color {
-              transition: border .5s;
-              box-shadow:0 5px 5px rgba(0,0,0,0);
-              border:3px solid rgba(231, 231, 231, .2);
-              &.c { background:rgb(7, 232, 248); }
-              &.g { background:rgb(7, 232, 248); }
-              &.t { background:rgb(7, 232, 248); }
-              &.qb { background:rgb(240, 4, 4); }
-              &.rb { background:rgb(201, 240, 28); }
-              &.fb { background:rgb(238, 236, 152); }
-              &.tb { background:rgb(233, 179, 1); }
-              &.te { background:rgb(5, 175, 27); }
-              &.sl { background:rgb(223, 172, 4); }
-              &.wr { background:rgb(8, 43, 138); }
-              &.c, &.g, &.t, &.rb, &.tb {
-                &:before {
-                  color:$black;
-                }
-              }
-            }
-            &.remove {
-              &:before, &:after {
-                @include backColor(rgb(143, 142, 142));
-                color:$black;
-                transition:all .5s;
-              }
-            }
-            &:before {
-              content:attr(myText);
-              @include size(100%, 100%);
-              @include pos(absolute, 51%, 50%, $trans:translate(-50%,-50%) );
-              @include backColor(transparent);
-              @include flex(flex, row, nowrap, center, center);
-              @include font($head, $white, 11px, 100, .05em, 15px,  normal, uppercase,  none,  center );
-              border-radius:50%;
-              z-index:1;
-              transition:all .5s;
-            }
-          }
-        }
-      }
-    }
-  }
-  .secC {
-    .sectional {
-      &.pos {
-        .positions, .pens, .colors {
-          height:100%;
-          @include gridFill(1fr 1fr 1fr 1fr, 1fr 1fr 1fr 1fr, 10px);
-          .posCont {
-            position:relative;
-            button {
-              $w: 35px;
-              border:2px solid $white;
-              @include size($w, $w);
-              position:absolute;
-              top:50%;
-              left:50%;
-              transform:translate(-50%,-50%);
-              border-radius:50%;
-              @include flex(flex, row, nowrap, center, center);
-              @include font($head, $white, 15px, 300, .02em, 20px, normal, uppercase, none, center);
-              &.active {
-                outline:1px solid rgba(255,255,255,.5);
-                outline-offset:3px;
-              }
-            }
-          }
-        }
-        .pens {
-          .posCont button {
-            flex:1;
+//           .lineOfScrimmage {
+//             @include pos(absolute, 65%);
+//             @include size(100%, 10px);
+//             @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
+//           }
+//           .gridLine {
+//             flex:1;
+//             border-right:1px dashed rgba(255,255,255,.9);
+//             &:last-child {
+//               border-right:none;
+//             }
+//           }
+//         }
+//         .positionBox {
+//           @include pos(absolute, 0px, 0px);
+//           @include size(100%, 100%);
+//           -webkit-user-drag: none;
+//           user-select: none;
+//           -moz-user-select: none;
+//           -webkit-user-select: none;
+//           -ms-user-select: none;
+//           .player {
+//             @include size($playerSize, $playerSize);
+//             @include backColor(rgb(54, 54, 54));
+//             @include font($spec, transparent, 20px, bold);
+//             @include pos(absolute, $trans: translate(-50%, -50%));
+//             @include flex(flex, wrap, nowrap, center, center);
+//             border:2px solid rgba(231, 231, 231, 0.5);
+//             box-shadow:0 5px 5px rgba(0,0,0,.5);
+//             border-radius:50%;
+//             z-index:8000;
+//             cursor: grab;
+//             transition: border .5s;
+//             &.color {
+//               transition: border .5s;
+//               box-shadow:0 5px 5px rgba(0,0,0,0);
+//               border:3px solid rgba(231, 231, 231, .2);
+//               &.c { background:rgb(7, 232, 248); }
+//               &.g { background:rgb(7, 232, 248); }
+//               &.t { background:rgb(7, 232, 248); }
+//               &.qb { background:rgb(240, 4, 4); }
+//               &.rb { background:rgb(201, 240, 28); }
+//               &.fb { background:rgb(238, 236, 152); }
+//               &.tb { background:rgb(233, 179, 1); }
+//               &.te { background:rgb(5, 175, 27); }
+//               &.sl { background:rgb(223, 172, 4); }
+//               &.wr { background:rgb(8, 43, 138); }
+//               &.c, &.g, &.t, &.rb, &.tb {
+//                 &:before {
+//                   color:$black;
+//                 }
+//               }
+//             }
+//             &.remove {
+//               &:before, &:after {
+//                 @include backColor(rgb(143, 142, 142));
+//                 color:$black;
+//                 transition:all .5s;
+//               }
+//             }
+//             &:before {
+//               content:attr(myText);
+//               @include size(100%, 100%);
+//               @include pos(absolute, 51%, 50%, $trans:translate(-50%,-50%) );
+//               @include backColor(transparent);
+//               @include flex(flex, row, nowrap, center, center);
+//               @include font($head, $white, 11px, 100, .05em, 15px,  normal, uppercase,  none,  center );
+//               border-radius:50%;
+//               z-index:1;
+//               transition:all .5s;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+//   .secC {
+//     .sectional {
+//       &.pos {
+//         .positions, .pens, .colors {
+//           height:100%;
+//           @include gridFill(1fr 1fr 1fr 1fr, 1fr 1fr 1fr 1fr, 10px);
+//           .posCont {
+//             position:relative;
+//             button {
+//               $w: 35px;
+//               border:2px solid $white;
+//               @include size($w, $w);
+//               position:absolute;
+//               top:50%;
+//               left:50%;
+//               transform:translate(-50%,-50%);
+//               border-radius:50%;
+//               @include flex(flex, row, nowrap, center, center);
+//               @include font($head, $white, 15px, 300, .02em, 20px, normal, uppercase, none, center);
+//               &.active {
+//                 outline:1px solid rgba(255,255,255,.5);
+//                 outline-offset:3px;
+//               }
+//             }
+//           }
+//         }
+//         .pens {
+//           .posCont button {
+//             flex:1;
             
-            img {
-              width:80%;
-            }
-          }
-        }
-        .pens, .colors {
-          height:45px;
-          margin-top:30px;
-          margin-bottom:5px;
-          .posCont button {
-            border-radius:0px;
-            &.white { background:$penWhite; }
-            &.red { background:$penRed; }
-            &.blue { background:$penBlue; }
-            &.yellow { background:$penYellow; }
-          }
-        }
-        .pens {
-          .posCont { 
-            button {
-            border-radius:0px;
-            }
-          }
-        }
-        .colors {
-          .posCont button {
-            border:none;
-          }
-        }
-      }
-    }
-  }
-}
+//             img {
+//               width:80%;
+//             }
+//           }
+//         }
+//         .pens, .colors {
+//           height:45px;
+//           margin-top:30px;
+//           margin-bottom:5px;
+//           .posCont button {
+//             border-radius:0px;
+//             &.white { background:$penWhite; }
+//             &.red { background:$penRed; }
+//             &.blue { background:$penBlue; }
+//             &.yellow { background:$penYellow; }
+//           }
+//         }
+//         .pens {
+//           .posCont { 
+//             button {
+//             border-radius:0px;
+//             }
+//           }
+//         }
+//         .colors {
+//           .posCont button {
+//             border:none;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 // @media only screen and (max-width:700px) {
 //   .playCreator .secB .sectional .field .positionBox .player {
@@ -2856,435 +2888,435 @@ $fieldSize: 75%;
 //   }
 // }
 
-@media only screen and (max-width:1014px) {
-  .playCreator {
-    height: 520px;
-    min-height:520px;
-    @include flex(flex, row, nowrap, center, left, 10px);
-    .secB {
-      order:1;
-      flex:1;
-      &.active {
-        width:5%;
-      }
-    }
-    .secB .sectional .field .positionBox .player {
-      $w:21px;
-      width:$w;
-      height:$w;
-      &:before {
-        font-size:10px;
-      }
-    }
-    .secD {
-      flex:1;
-      min-width:10%;
-      max-width:10%;
-      display:block;
-      .mobileCont {
-        height:100%;
-        @include flex(flex, column, nowrap, center, start, 10px);
-        button {
-          flex: 1;
-          width:100%;
-          @include boxA();
-          @include font($head, $white, 15px, 200, .01em, 20px, normal, uppercase, none, center);
-          &:hover {
-            background:rgba(255,255,255,.3);
-          }
-          &.playInfo {
-            position:relative;
-            div {
-              @include font('Times New Roman', $white, 22px, 600, .02em, 20px, italic);
-              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-              @include flex(flex, row, nowrap, center, center);
-              @include size(30px, 30px);
-              border:2px solid $white;
-              border-radius:50%;
-            }
-          }
-          &.penSelect {
-            position:relative;
-            div {
-              margin:auto;
-              position:relative;
-              @include size(30px, 30px);
-              transform:rotate(-125deg);
-              &:after {
-                content:' ';
-                $w:4px;
-                @include size($w, 20px);
-                background:$white;
-                border-radius:50%;
-                @include pos(absolute, 20%, 50%, $trans:translate(-50%,-50%));
-              }
-              &:before {
-                $a: 70%;
-                $b: 100% - $a;
-                $c: 30%;
-                content:' ';
-                background:$white;
-                @include size(100%, 100%);
-                @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-                clip-path:polygon(50% 0%, $a $c, $a 100%, $b 100%, $b $c);
-              }
-            }
-          }
-          &.positions {
-            position:relative;
-            div {
-              width:19px;
-              height:32px;
-              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-              &:before {
-                content:' ';
-                width:100%;
-                height:55%;
-                background:$white;
-                position:absolute;
-                bottom:0px;
-                left:50%;
-                transform:translate(-50%,0%);
-                border-radius:30px 30px 5px 5px;
-              }
-              &:after {
-                $w: 12px;
-                content:' ';
-                width: $w;
-                height: $w;
-                background:$white;
-                position:absolute;
-                top:0px;
-                left:50%;
-                transform:translate(-50%,0%);
-                border-radius:50%;
-              }
-            }
-          }
-          &.formations {
-            position:relative;
-            // background:$penBlue;
-            div {
-              width:40px;
-              height:35px;
-              position:absolute;
-              top:50%;
-              left:50%;
-              transform:translate(-50%,-50%);
-              img {width:100%;}
-            }
-          }
-        }
-      }
-    }
-    .secA, .secC  {
-      display:none;
-    }
-    .secE {
-      $w: 20%;
-      min-width:250px;
-      max-width:350px;
-      height:100%;
-      display:block;
-      .sectional {
-        width:100%;
-        height:auto;
-        padding:15px;
-        h4 {
-          @include flex(flex, row, nowrap, center, start, 10px);
-          @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, left);
-          margin-bottom:10px;
-          div {
-            width:20px;
-            img {
-              width:100%;
-              &.colors {
-                outline:1px solid red;
-                width:100%;
-              }
-              &.pentool {
-                width:80%;
-                transform:rotate(-150deg);
-              }
-            }
-          }
-        }
-        .positions {
-          height:210px;
-          padding:0px;
-          @include gridFill(1fr 1fr 1fr 1fr, 1fr 1fr 1fr, 15px);
-          .posCont {
+// @media only screen and (max-width:1014px) {
+//   .playCreator {
+//     height: 520px;
+//     min-height:520px;
+//     @include flex(flex, row, nowrap, center, left, 10px);
+//     .secB {
+//       order:1;
+//       flex:1;
+//       &.active {
+//         width:5%;
+//       }
+//     }
+//     .secB .sectional .field .positionBox .player {
+//       $w:21px;
+//       width:$w;
+//       height:$w;
+//       &:before {
+//         font-size:10px;
+//       }
+//     }
+//     .secD {
+//       flex:1;
+//       min-width:10%;
+//       max-width:10%;
+//       display:block;
+//       .mobileCont {
+//         height:100%;
+//         @include flex(flex, column, nowrap, center, start, 10px);
+//         button {
+//           flex: 1;
+//           width:100%;
+//           @include boxA();
+//           @include font($head, $white, 15px, 200, .01em, 20px, normal, uppercase, none, center);
+//           &:hover {
+//             background:rgba(255,255,255,.3);
+//           }
+//           &.playInfo {
+//             position:relative;
+//             div {
+//               @include font('Times New Roman', $white, 22px, 600, .02em, 20px, italic);
+//               @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//               @include flex(flex, row, nowrap, center, center);
+//               @include size(30px, 30px);
+//               border:2px solid $white;
+//               border-radius:50%;
+//             }
+//           }
+//           &.penSelect {
+//             position:relative;
+//             div {
+//               margin:auto;
+//               position:relative;
+//               @include size(30px, 30px);
+//               transform:rotate(-125deg);
+//               &:after {
+//                 content:' ';
+//                 $w:4px;
+//                 @include size($w, 20px);
+//                 background:$white;
+//                 border-radius:50%;
+//                 @include pos(absolute, 20%, 50%, $trans:translate(-50%,-50%));
+//               }
+//               &:before {
+//                 $a: 70%;
+//                 $b: 100% - $a;
+//                 $c: 30%;
+//                 content:' ';
+//                 background:$white;
+//                 @include size(100%, 100%);
+//                 @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//                 clip-path:polygon(50% 0%, $a $c, $a 100%, $b 100%, $b $c);
+//               }
+//             }
+//           }
+//           &.positions {
+//             position:relative;
+//             div {
+//               width:19px;
+//               height:32px;
+//               @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//               &:before {
+//                 content:' ';
+//                 width:100%;
+//                 height:55%;
+//                 background:$white;
+//                 position:absolute;
+//                 bottom:0px;
+//                 left:50%;
+//                 transform:translate(-50%,0%);
+//                 border-radius:30px 30px 5px 5px;
+//               }
+//               &:after {
+//                 $w: 12px;
+//                 content:' ';
+//                 width: $w;
+//                 height: $w;
+//                 background:$white;
+//                 position:absolute;
+//                 top:0px;
+//                 left:50%;
+//                 transform:translate(-50%,0%);
+//                 border-radius:50%;
+//               }
+//             }
+//           }
+//           &.formations {
+//             position:relative;
+//             // background:$penBlue;
+//             div {
+//               width:40px;
+//               height:35px;
+//               position:absolute;
+//               top:50%;
+//               left:50%;
+//               transform:translate(-50%,-50%);
+//               img {width:100%;}
+//             }
+//           }
+//         }
+//       }
+//     }
+//     .secA, .secC  {
+//       display:none;
+//     }
+//     .secE {
+//       $w: 20%;
+//       min-width:250px;
+//       max-width:350px;
+//       height:100%;
+//       display:block;
+//       .sectional {
+//         width:100%;
+//         height:auto;
+//         padding:15px;
+//         h4 {
+//           @include flex(flex, row, nowrap, center, start, 10px);
+//           @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, left);
+//           margin-bottom:10px;
+//           div {
+//             width:20px;
+//             img {
+//               width:100%;
+//               &.colors {
+//                 outline:1px solid red;
+//                 width:100%;
+//               }
+//               &.pentool {
+//                 width:80%;
+//                 transform:rotate(-150deg);
+//               }
+//             }
+//           }
+//         }
+//         .positions {
+//           height:210px;
+//           padding:0px;
+//           @include gridFill(1fr 1fr 1fr 1fr, 1fr 1fr 1fr, 15px);
+//           .posCont {
             
-            @include rel();
-            button {
-              @include size(40px, 40px);
-              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-              @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
-              border:2px solid $white;
-              border-radius:50%;
-            }
-          }
-        }
-        .pens {
-        .posCont {
-          button {
-            img {
-              width:40%;
-              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-            }
-          }
-        }
-      }
-      .pens, .colors {
-      @include flex(flex, row, nowrap, center, center, 10px);
-      margin-bottom:15px;
-      .posCont {
-      flex:1;
-      height:45px;
-      padding:0px;
-      position:relative;
-      button {
-      @include size(100%, 40px);
-      @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-      @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
-      @include boxA();
-      &.white {background:$penWhite;}
-      &.red {background:$penRed;}
-      &.blue {background:$penBlue;}
-      &.yellow {background:$penYellow;}
-      &.active {
-      outline:1px solid rgba(255,255,255,.8);
-      outline-offset:2px;
-      }
-      }
-      }
-      }
-      }
-    }
-  }
-}
-@media only screen and (max-width:670px) {
-  .playCreator {
-    all: initial;
-    padding:0px 10px;
-    height:100%;
-    @include flex(flex, column, nowrap, none, start, $pageCellPadding);
-    .secB {
-      all: initial;
-      flex:1;
-      order:1;
-      min-height:350px;
-      max-height:350px;
-      @include flex(flex, column, nowrap, none, start, $pageCellPadding);
-      &.active {
-        width:100%;
-        min-width:100%;
-        max-width:100%;
-      }
-      .topButtonCont {
-        flex:1;
-        all: initial;
-        height:50px;
-        order:2;
-        @include flex(flex, row, nowrap, center, center, 3px);
-        button {
-          @include font($head, $white, 14px);
-        }
-      }
-      .sectional {
-        all: initial;
-        order:1;
-        flex:1;
-        position:relative;
-        max-height:250px;
-        @include boxA();
-        .field {
-          all: initial;
-          height:100%;
-          .positionBox {
-            .player {
-              $w:17px;
-              touch-action: none;
-              &:before {
-                display:none;
-              }
-              @include size($w, $w);
-              // &.color {
-              //   all: initial;
-              // }
-            }
-          }
-          .gridBox {
-            .logoCont {
-              width:80px;
-              height:80px;
-              border-width:2px;
-            }
-          }
-        }
-      }
-    }
-    .secD {
-      all: initial;
-      padding:10px 0px;
-      .mobileCont {
-        height:50px;
-        @include flex(flex, row, nowrap, center, center, 2px);
-        button {
-          flex:1;
-          height:100%;
-          @include font($head, $white, 12px, 300, .02em, 20px, normal, uppercase, none, center);
-          &.active {
-            // outline:1px solid $white;
-            outline-offset:2px;
-            &:before {
-              content:' ';
-              width:70%;
-              height:15px;
-              background:rgba(255,255,255,.6);
-              position:absolute;
-              top:100%;
-              left:50%;
-              transform:translate(-50%, 0%);
-              clip-path:polygon(0% 0%, 100% 0%, 50% 100%);
-            }
-          }
-          &.playInfo {
-            position:relative;
-            div {
-              @include font('Times New Roman', $white, 22px, 600, .02em, 20px, italic);
-              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-              @include flex(flex, row, nowrap, center, center);
-              @include size(30px, 30px);
-              border:2px solid $white;
-              border-radius:50%;
-            }
-          }
-          &.penSelect {
-            position:relative;
-            div {
-              margin:auto;
-              position:relative;
-              @include size(30px, 30px);
-              transform:rotate(-125deg);
-              &:after {
-                content:' ';
-                $w:4px;
-                @include size($w, 20px);
-                background:$white;
-                border-radius:50%;
-                @include pos(absolute, 20%, 50%, $trans:translate(-50%,-50%));
-              }
-              &:before {
-                $a: 70%;
-                $b: 100% - $a;
-                $c: 30%;
-                content:' ';
-                background:$white;
-                @include size(100%, 100%);
-                @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-                clip-path:polygon(50% 0%, $a $c, $a 100%, $b 100%, $b $c);
-              }
-            }
-          }
-          &.positions {
-            position:relative;
-            div {
-              width:19px;
-              height:32px;
-              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-              &:before {
-                content:' ';
-                width:100%;
-                height:55%;
-                background:$white;
-                position:absolute;
-                bottom:0px;
-                left:50%;
-                transform:translate(-50%,0%);
-                border-radius:30px 30px 5px 5px;
-              }
-              &:after {
-                $w: 12px;
-                content:' ';
-                width: $w;
-                height: $w;
-                background:$white;
-                position:absolute;
-                top:0px;
-                left:50%;
-                transform:translate(-50%,0%);
-                border-radius:50%;
-              }
-            }
-          }
-          &.formations {
-            position:relative;
-            // background:$penBlue;
-            div {
-              width:40px;
-              height:35px;
-              position:absolute;
-              top:50%;
-              left:50%;
-              transform:translate(-50%,-50%);
-              img {width:100%;}
-            }
-          }
-        }
-      }
-    }
-    .secE {
-      all: initial;
-      .positions {
-        height:120px;
-        padding:0px;
-        @include gridFill(1fr 1fr 1fr 1fr 1fr, 1fr 1fr, 5px);
-        .posCont {
-          @include rel();
-          button {
-            @include size(40px, 40px);
-            @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-            @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
-            border:2px solid $white;
-            border-radius:50%;
-          }
-        }
-      }
-      .pens {
-        .posCont {
-          button {
-            img {
-              width:40%;
-              @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-            }
-          }
-        }
-      }
-      .pens, .colors {
-        @include flex(flex, row, nowrap, center, center, 10px);
-        margin-bottom:15px;
-        .posCont {
-          flex:1;
-          height:45px;
-          padding:0px;
-          position:relative;
-          button {
-            @include size(100%, 40px);
-            @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
-            @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
-            @include boxA();
-            &.white {background:$penWhite;}
-            &.red {background:$penRed;}
-            &.blue {background:$penBlue;}
-            &.yellow {background:$penYellow;}
-            &.active {
-              outline:1px solid rgba(255,255,255,.8);
-              outline-offset:2px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+//             @include rel();
+//             button {
+//               @include size(40px, 40px);
+//               @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//               @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
+//               border:2px solid $white;
+//               border-radius:50%;
+//             }
+//           }
+//         }
+//         .pens {
+//         .posCont {
+//           button {
+//             img {
+//               width:40%;
+//               @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//             }
+//           }
+//         }
+//       }
+//       .pens, .colors {
+//       @include flex(flex, row, nowrap, center, center, 10px);
+//       margin-bottom:15px;
+//       .posCont {
+//       flex:1;
+//       height:45px;
+//       padding:0px;
+//       position:relative;
+//       button {
+//       @include size(100%, 40px);
+//       @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//       @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
+//       @include boxA();
+//       &.white {background:$penWhite;}
+//       &.red {background:$penRed;}
+//       &.blue {background:$penBlue;}
+//       &.yellow {background:$penYellow;}
+//       &.active {
+//       outline:1px solid rgba(255,255,255,.8);
+//       outline-offset:2px;
+//       }
+//       }
+//       }
+//       }
+//       }
+//     }
+//   }
+// }
+// @media only screen and (max-width:670px) {
+//   .playCreator {
+//     all: initial;
+//     padding:0px 10px;
+//     height:100%;
+//     @include flex(flex, column, nowrap, none, start, $pageCellPadding);
+//     .secB {
+//       all: initial;
+//       flex:1;
+//       order:1;
+//       min-height:350px;
+//       max-height:350px;
+//       @include flex(flex, column, nowrap, none, start, $pageCellPadding);
+//       &.active {
+//         width:100%;
+//         min-width:100%;
+//         max-width:100%;
+//       }
+//       .topButtonCont {
+//         flex:1;
+//         all: initial;
+//         height:50px;
+//         order:2;
+//         @include flex(flex, row, nowrap, center, center, 3px);
+//         button {
+//           @include font($head, $white, 14px);
+//         }
+//       }
+//       .sectional {
+//         all: initial;
+//         order:1;
+//         flex:1;
+//         position:relative;
+//         max-height:250px;
+//         @include boxA();
+//         .field {
+//           all: initial;
+//           height:100%;
+//           .positionBox {
+//             .player {
+//               $w:17px;
+//               touch-action: none;
+//               &:before {
+//                 display:none;
+//               }
+//               @include size($w, $w);
+//               // &.color {
+//               //   all: initial;
+//               // }
+//             }
+//           }
+//           .gridBox {
+//             .logoCont {
+//               width:80px;
+//               height:80px;
+//               border-width:2px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//     .secD {
+//       all: initial;
+//       padding:10px 0px;
+//       .mobileCont {
+//         height:50px;
+//         @include flex(flex, row, nowrap, center, center, 2px);
+//         button {
+//           flex:1;
+//           height:100%;
+//           @include font($head, $white, 12px, 300, .02em, 20px, normal, uppercase, none, center);
+//           &.active {
+//             // outline:1px solid $white;
+//             outline-offset:2px;
+//             &:before {
+//               content:' ';
+//               width:70%;
+//               height:15px;
+//               background:rgba(255,255,255,.6);
+//               position:absolute;
+//               top:100%;
+//               left:50%;
+//               transform:translate(-50%, 0%);
+//               clip-path:polygon(0% 0%, 100% 0%, 50% 100%);
+//             }
+//           }
+//           &.playInfo {
+//             position:relative;
+//             div {
+//               @include font('Times New Roman', $white, 22px, 600, .02em, 20px, italic);
+//               @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//               @include flex(flex, row, nowrap, center, center);
+//               @include size(30px, 30px);
+//               border:2px solid $white;
+//               border-radius:50%;
+//             }
+//           }
+//           &.penSelect {
+//             position:relative;
+//             div {
+//               margin:auto;
+//               position:relative;
+//               @include size(30px, 30px);
+//               transform:rotate(-125deg);
+//               &:after {
+//                 content:' ';
+//                 $w:4px;
+//                 @include size($w, 20px);
+//                 background:$white;
+//                 border-radius:50%;
+//                 @include pos(absolute, 20%, 50%, $trans:translate(-50%,-50%));
+//               }
+//               &:before {
+//                 $a: 70%;
+//                 $b: 100% - $a;
+//                 $c: 30%;
+//                 content:' ';
+//                 background:$white;
+//                 @include size(100%, 100%);
+//                 @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//                 clip-path:polygon(50% 0%, $a $c, $a 100%, $b 100%, $b $c);
+//               }
+//             }
+//           }
+//           &.positions {
+//             position:relative;
+//             div {
+//               width:19px;
+//               height:32px;
+//               @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//               &:before {
+//                 content:' ';
+//                 width:100%;
+//                 height:55%;
+//                 background:$white;
+//                 position:absolute;
+//                 bottom:0px;
+//                 left:50%;
+//                 transform:translate(-50%,0%);
+//                 border-radius:30px 30px 5px 5px;
+//               }
+//               &:after {
+//                 $w: 12px;
+//                 content:' ';
+//                 width: $w;
+//                 height: $w;
+//                 background:$white;
+//                 position:absolute;
+//                 top:0px;
+//                 left:50%;
+//                 transform:translate(-50%,0%);
+//                 border-radius:50%;
+//               }
+//             }
+//           }
+//           &.formations {
+//             position:relative;
+//             // background:$penBlue;
+//             div {
+//               width:40px;
+//               height:35px;
+//               position:absolute;
+//               top:50%;
+//               left:50%;
+//               transform:translate(-50%,-50%);
+//               img {width:100%;}
+//             }
+//           }
+//         }
+//       }
+//     }
+//     .secE {
+//       all: initial;
+//       .positions {
+//         height:120px;
+//         padding:0px;
+//         @include gridFill(1fr 1fr 1fr 1fr 1fr, 1fr 1fr, 5px);
+//         .posCont {
+//           @include rel();
+//           button {
+//             @include size(40px, 40px);
+//             @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//             @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
+//             border:2px solid $white;
+//             border-radius:50%;
+//           }
+//         }
+//       }
+//       .pens {
+//         .posCont {
+//           button {
+//             img {
+//               width:40%;
+//               @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//             }
+//           }
+//         }
+//       }
+//       .pens, .colors {
+//         @include flex(flex, row, nowrap, center, center, 10px);
+//         margin-bottom:15px;
+//         .posCont {
+//           flex:1;
+//           height:45px;
+//           padding:0px;
+//           position:relative;
+//           button {
+//             @include size(100%, 40px);
+//             @include pos(absolute, 50%, 50%, $trans:translate(-50%,-50%));
+//             @include font($head, $white, 20px, 300, .02em, 20px, normal, uppercase, none, center);
+//             @include boxA();
+//             &.white {background:$penWhite;}
+//             &.red {background:$penRed;}
+//             &.blue {background:$penBlue;}
+//             &.yellow {background:$penYellow;}
+//             &.active {
+//               outline:1px solid rgba(255,255,255,.8);
+//               outline-offset:2px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
