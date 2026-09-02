@@ -5002,38 +5002,8 @@ form .inputCont select option {
   background: rgba(0, 0, 0, 0.2);
   position: relative;
 }
-.playCreator .secA .sectional .info, .playCreator .secB .sectional .info, .playCreator .secC .sectional .info, .playCreator .secD .sectional .info {
-  width: 22px;
-  height: 22px;
-  min-width: 0;
-  max-width: auto;
-  min-height: auto;
-  max-height: auto;
-  display: none;
-  background: #f5f5f5;
-  position: absolute;
-  top: 22px;
-  left: none;
-  bottom: none;
-  right: 0px;
-  transform: translate(-50%, -50%);
-  color: #242222;
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 333;
-  font-size: 22px;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  text-transform: lowercase;
-  text-shadow: none;
-  text-align: center;
-  border-radius: 50%;
-  outline: 2px solid red;
-}
-.playCreator .secA .sectional .info:hover, .playCreator .secB .sectional .info:hover, .playCreator .secC .sectional .info:hover, .playCreator .secD .sectional .info:hover {
-  background: red;
-}
 .playCreator .secA .sectional h4, .playCreator .secB .sectional h4, .playCreator .secC .sectional h4, .playCreator .secD .sectional h4 {
+  background: red;
   position: relative;
   display: flex;
   flex-direction: row;

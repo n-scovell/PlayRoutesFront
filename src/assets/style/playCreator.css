@@ -1,0 +1,494 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.playMaker {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  height: 85vh;
+  max-height: 550px;
+}
+.playMaker section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 10px;
+}
+.playMaker section.a, .playMaker section.c {
+  max-width: 260px;
+}
+.playMaker section.d {
+  display: none;
+}
+.playMaker section .block {
+  flex: 1;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.playMaker section .block.smallIcon .makerHeader .iconBox img {
+  width: 35px;
+}
+.playMaker section .block .pc {
+  position: absolute;
+  top: none;
+  left: 5px;
+  bottom: 5px;
+  right: none;
+  transform: none;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+.playMaker section .block .pc span {
+  color: #00e913;
+}
+.playMaker section .block .field {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+}
+.playMaker section .block .field .canvas, .playMaker section .block .field .positionBox, .playMaker section .block .field .gridBox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+}
+.playMaker section .block .field .canvas {
+  z-index: 2;
+  touch-action: none;
+}
+.playMaker section .block .field .gridBox {
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+}
+.playMaker section .block .field .gridBox .lineOfScrimmage {
+  position: absolute;
+  top: 65%;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 10px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/maker/line.png");
+  background-size: contain;
+  background-position: center -5px;
+  background-repeat: repeat-x;
+  backdrop-filter: blur(none);
+}
+.playMaker section .block .field .gridBox .gridLine {
+  flex: 1;
+  height: 100%;
+  border-right: 1px dashed rgba(255, 255, 255, 0.4);
+}
+.playMaker section .block .field .gridBox .gridLine:last-child {
+  border-right: none;
+}
+.playMaker section .block .field .positionBox {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.playMaker section .block .field .positionBox .player {
+  width: 30px;
+  height: 30px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(54, 54, 54);
+  color: transparent;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 2px solid rgba(231, 231, 231, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: 8000;
+  cursor: grab;
+  transition: border 0.5s;
+}
+.playMaker section .block .field .positionBox .player.color {
+  transition: border 0.5s;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0);
+  border: 3px solid rgba(231, 231, 231, 0.2);
+}
+.playMaker section .block .field .positionBox .player.color.c {
+  background: rgb(7, 232, 248);
+}
+.playMaker section .block .field .positionBox .player.color.g {
+  background: rgb(7, 232, 248);
+}
+.playMaker section .block .field .positionBox .player.color.t {
+  background: rgb(7, 232, 248);
+}
+.playMaker section .block .field .positionBox .player.color.qb {
+  background: rgb(240, 4, 4);
+}
+.playMaker section .block .field .positionBox .player.color.rb {
+  background: rgb(201, 240, 28);
+}
+.playMaker section .block .field .positionBox .player.color.fb {
+  background: rgb(238, 236, 152);
+}
+.playMaker section .block .field .positionBox .player.color.tb {
+  background: rgb(233, 179, 1);
+}
+.playMaker section .block .field .positionBox .player.color.te {
+  background: rgb(5, 175, 27);
+}
+.playMaker section .block .field .positionBox .player.color.sl {
+  background: rgb(223, 172, 4);
+}
+.playMaker section .block .field .positionBox .player.color.wr {
+  background: rgb(8, 43, 138);
+}
+.playMaker section .block .field .positionBox .player.color.c:before, .playMaker section .block .field .positionBox .player.color.g:before, .playMaker section .block .field .positionBox .player.color.t:before, .playMaker section .block .field .positionBox .player.color.rb:before, .playMaker section .block .field .positionBox .player.color.tb:before {
+  color: #242222;
+}
+.playMaker section .block .field .positionBox .player.remove:before, .playMaker section .block .field .positionBox .player.remove:after {
+  background: rgb(143, 142, 142);
+  color: #242222;
+  transition: all 0.5s;
+}
+.playMaker section .block .field .positionBox .player:before {
+  content: attr(myText);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.5s;
+}
+.playMaker section .block.active {
+  flex: 0 0 85%;
+}
+.playMaker section .block.topBar {
+  flex: 0 0 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 10px;
+  background: none;
+  border: none;
+  border-radius: 0px;
+  inset: clear;
+}
+.playMaker section .block.topBar button {
+  flex: 1;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.playMaker section .block .sectional {
+  height: 0px;
+  overflow: hidden;
+  padding: 0px;
+}
+.playMaker section .block .sectional.active {
+  height: 85%;
+  padding: 15px;
+}
+.playMaker section .block .sectional textarea {
+  resize: vertical;
+  min-height: 28px;
+}
+.playMaker section .block .sectional .pens, .playMaker section .block .sectional .colors {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.playMaker section .block .sectional .pens h4, .playMaker section .block .sectional .colors h4 {
+  flex: 0 0 100%;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+.playMaker section .block .sectional .pens .posCont, .playMaker section .block .sectional .colors .posCont {
+  flex: 1;
+  height: 40px;
+}
+.playMaker section .block .sectional .pens .posCont button, .playMaker section .block .sectional .colors .posCont button {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #f5f5f5;
+}
+.playMaker section .block .sectional .pens .posCont button.active, .playMaker section .block .sectional .colors .posCont button.active {
+  outline: 1px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
+}
+.playMaker section .block .sectional .pens .posCont button.white, .playMaker section .block .sectional .pens .posCont button.red, .playMaker section .block .sectional .pens .posCont button.blue, .playMaker section .block .sectional .pens .posCont button.yellow, .playMaker section .block .sectional .colors .posCont button.white, .playMaker section .block .sectional .colors .posCont button.red, .playMaker section .block .sectional .colors .posCont button.blue, .playMaker section .block .sectional .colors .posCont button.yellow {
+  border: 2px solid transparent;
+}
+.playMaker section .block .sectional .pens .posCont button.white, .playMaker section .block .sectional .colors .posCont button.white {
+  background: #ffffff;
+}
+.playMaker section .block .sectional .pens .posCont button.red, .playMaker section .block .sectional .colors .posCont button.red {
+  background: #dd1919;
+}
+.playMaker section .block .sectional .pens .posCont button.blue, .playMaker section .block .sectional .colors .posCont button.blue {
+  background: #301283;
+}
+.playMaker section .block .sectional .pens .posCont button.yellow, .playMaker section .block .sectional .colors .posCont button.yellow {
+  background: #f3ff44;
+}
+.playMaker section .block .sectional .pens .posCont button img, .playMaker section .block .sectional .colors .posCont button img {
+  height: 50%;
+}
+.playMaker section .block .positionContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: left;
+  justify-content: center;
+  gap: 20px;
+}
+.playMaker section .block .positionContainer .posCont {
+  width: 50px;
+  height: 50px;
+}
+.playMaker section .block .positionContainer .posCont .pos {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #f5f5f5;
+}
+.playMaker section .block .makerHeader {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+.playMaker section .block .makerHeader .iconBox {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+.playMaker section .block .makerHeader .iconBox img {
+  width: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 1000px) {
+  .playMaker {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: left;
+    justify-content: start;
+    gap: 10px;
+    height: 85vh;
+    max-height: 90vh;
+  }
+  .playMaker section.a, .playMaker section.c {
+    flex: 1;
+    min-width: 100%;
+    order: 2;
+    height: 500px;
+  }
+  .playMaker section.a .block, .playMaker section.c .block {
+    display: none;
+  }
+  .playMaker section.a .block.active, .playMaker section.c .block.active {
+    display: block;
+  }
+  .playMaker section.a .block .sectional form, .playMaker section.c .block .sectional form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: left;
+    justify-content: start;
+    gap: 0px;
+  }
+  .playMaker section.a .block .sectional form .inputCont, .playMaker section.c .block .sectional form .inputCont {
+    margin-right: 5%;
+    flex: 0 0 45%;
+  }
+  .playMaker section.a .makerHeader, .playMaker section.c .makerHeader {
+    display: none;
+  }
+  .playMaker section.d {
+    order: 1;
+    display: block;
+    flex: 0 0 100%;
+    max-height: 55px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .playMaker section.d .makerHeader {
+    flex: 1;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: 55px;
+    color: transparent;
+  }
+  .playMaker section.d .makerHeader span {
+    display: none;
+  }
+  .playMaker section.d .makerHeader .iconBox {
+    width: 70px;
+    height: 44px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+  }
+  .playMaker section.d .makerHeader .iconBox img {
+    height: 80%;
+    max-width: 40px;
+  }
+  .playMaker section.b {
+    order: 3;
+    flex: 0 0 100%;
+    max-height: 400px;
+  }
+  .playMaker section.b .block.topBar {
+    order: 2;
+  }
+}/*# sourceMappingURL=playCreator.css.map */

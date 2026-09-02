@@ -5,32 +5,7 @@
 @import "./mixins";
 // @import "./vars";
 
-$white: #f5f5f5;
-$black: #242222;
-$blackB: rgba(0,0,0, .9);
-$gray: #a3a3a3;
-$grayB: rgba(255,255,255,.3);
-$grayC: rgba(255,255,255,.1);
-$blueA: rgba(22, 18, 29, 1);
-$blueB: rgb(1, 121, 190);
-$blueC: #445ef1;
-$rustRed: rgb(207, 18, 18);
-$rustYellow: rgb(241, 220, 23);
-$rustBlue: rgb(13, 126, 192);
 
-//PEN COLORS
-$penRed: #dd1919;
-$penWhite: #ffffff;
-$penBlue: #301283;
-$penYellow: #f3ff44;
-$penGreen: #00e913;
- 
-$headerHeight: 80px;
-$avatarSize: 50px;
-$addedPlayerXS: 10px;
-$addedPlayerModal: 30px;
-
-$cc: translate(-50%,-50%);
 
 //UNIVERSALS
 * {
@@ -2516,19 +2491,8 @@ $fieldSize: 75%;
       padding:15px;
       @include boxA();
       @include rel();
-      .info {
-        @include size(22px, 22px);
-        display:none;
-        @include backColor($white);
-        @include pos(absolute, 22px, $right:0px, $trans:translate(-50%, -50%));
-        @include font($par, $black, 22px, 333, .02em, 20px, italic, lowercase, none, center);
-        border-radius:50%;
-        outline:2px solid red;
-        &:hover {
-          background:red;
-        }
-      }
       h4 {
+        background:red;
         @include rel();
         @include flex(flex, row, nowrap, center, start, 10px);
         @include font($head, $white, 18px, 400, .02em, 20px, normal, uppercase, none, left);
