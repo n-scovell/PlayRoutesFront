@@ -374,7 +374,7 @@ $player-sizes: (
   @media screen and (min-width: #{$bp}px) {
     .playMaker section .block .field .positionBox .player {
       @include size(map-get($props, size), map-get($props, size));
-      transition: all .1s;
+      // transition: all .1s;
     }
   }
 }

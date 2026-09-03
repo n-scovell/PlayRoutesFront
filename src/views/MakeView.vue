@@ -441,6 +441,7 @@
       }
       await gst.createGuestFormation(formload)
       gst.getGuestFormations(gst.guest?.id)
+      forms.fetchFormations()
     }
     } catch (err: any) {
       if (err.message === 'Guest formation limit reached') {

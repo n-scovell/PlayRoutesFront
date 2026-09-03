@@ -597,7 +597,6 @@
     max-width: auto;
     min-height: auto;
     max-height: auto;
-    transition: all 0.1s;
   }
 }
 @media screen and (min-width: 550px) {
@@ -608,7 +607,6 @@
     max-width: auto;
     min-height: auto;
     max-height: auto;
-    transition: all 0.1s;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -619,7 +617,6 @@
     max-width: auto;
     min-height: auto;
     max-height: auto;
-    transition: all 0.1s;
   }
 }
 @media screen and (min-width: 2000px) {
@@ -630,7 +627,6 @@
     max-width: auto;
     min-height: auto;
     max-height: auto;
-    transition: all 0.1s;
   }
 }
 @media screen and (max-width: 600px) {
