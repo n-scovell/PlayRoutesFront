@@ -47,6 +47,9 @@
     num === 0 ? forms.deleteFormation(selectedFormation) : ''
     areYouSure.value = false
   }
+
+
+  
 </script>
 <template>
     <div class="authDelete" v-if="areYouSure">
@@ -59,12 +62,6 @@
     <h1>Your Formations</h1>
     <section class="playsContainer form" >
       <div class="playRows">
-        <!-- <div class="indPlays" v-if="gst.guestFormations.length === 5">
-            <div class="register">
-              <p>You have reached your formation limit!</p>
-              <button class="primaryBt">REGISTER</button>
-            </div>
-        </div> -->
         <div v-for="(p, index) in myForms" :key="p.id" class="indPlays">
           <h5>{{ p.formationName }}</h5>
           <div class="field">
@@ -72,20 +69,7 @@
               <Player :players="p.grid.players" :num="88" />
             </div>
           </div>
-          <div class="playInfo" v-if="!gst.guest">
-            <div class="btCont">
-              <div class="show" :class="{active: popMenu === index}">
-                <button class="del" @click.self="triggerPrompt(p.id, p.formationName)">
-                  <div class="lid"></div>
-                </button>
-              </div>
-              <button class="menu" @click="showMenu(index)"  :class="{active: popMenu}">
-                <div></div>
-                <div></div>
-                <div></div>
-              </button>
-            </div>
-          </div>
+          <button class="primaryBt b" style="width:100%;" @click="forms.deleteFormation(p.id)">DELETE</button>
         </div>
       </div>
     </section>

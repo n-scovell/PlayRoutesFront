@@ -35,7 +35,6 @@ export const useFormation = defineStore(
         }
         formations.value = data
         addedForm.value = true
-        // console.log('YOU HAVE :' + formations.value.length + ' formations')
       } catch (err: any) {
         error.value = err.message
       } finally {
