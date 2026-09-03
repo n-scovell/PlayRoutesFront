@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@dnd-kit/vue": "^0.5.0",
+    "@stripe/stripe-js": "^9.15.0",
     "@unpic/vue": "^1.0.0",
     "@vue-dnd-kit/core": "^2.4.7",
     "@vueuse/core": "^14.3.0",

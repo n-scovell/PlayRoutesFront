@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { loadStripe } from '@stripe/stripe-js'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/userAuth'
 
@@ -13,15 +14,15 @@ import CoachIcon from '@/assets/icons/ico_coach.svg'
 
 const auth = useAuthStore()
 const showModal = ref<boolean>(false)
-const name = ref('')
-const email = ref('')
-const sport = ref('')
-const team = ref('')
-const pin = ref('')
-const password = ref('')
-const passwordRepeat = ref('')
+const name = ref('Nathan')
+const email = ref('n8scovell@yahoo.com')
+const sport = ref('Tackle Football')
+const team = ref('Raiders')
+const pin = ref('nathan')
+const password = ref('Baggins12345!')
+const passwordRepeat = ref('Baggins12345!')
 const code = ref("")
-const selectedSport = ref("")
+const selectedSport = ref("Tackle Football")
 
 const error = ref<string | null>(null)
 const step = ref<number>(0)
@@ -213,6 +214,10 @@ const registerProcess = async (val: number) => {
       await verifyCode()
       step.value = val
     } else if (step.value === 4) {
+      // await auth.login(email.value, password.value)
+      // clearMe()
+      step.value = val
+    } else if (step.value === 5) {
       await auth.login(email.value, password.value)
       clearMe()
       step.value = val
@@ -232,7 +237,6 @@ const showPinInfo = () => {
 }
 
 async function startCheckout(plan: string) {
-
   const res = await fetch(
     'https://play-route-back.vercel.app/api/stripe',
     {
@@ -241,36 +245,30 @@ async function startCheckout(plan: string) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        action: 'create-checkout',
+        action: 'create-subscription',
         userId: registrationUserId.value,
         plan,
       }),
     }
   )
-
   const data = await res.json()
-
   if (!res.ok) {
     error.value = data.error
     return
   }
-
-  const checkoutWindow = window.open(
-    data.url,
-    '_blank'
-  )
-
-  if (!checkoutWindow) {
-    error.value = 'Please allow popups to complete payment.'
-    return
-  }
+  // const checkoutWindow = window.open(
+  //   data.url,
+  //   '_blank'
+  // )
+  // if (!checkoutWindow) {
+  //   error.value = 'Please allow popups to complete payment.'
+  //   return
+  // }
 }
 
 onMounted(() => {
-  window.addEventListener('message', handlePaymentMessage)
-
+  // window.addEventListener('message', handlePaymentMessage)
   const params = new URLSearchParams(window.location.search)
-
   if (params.get('payment') === 'success' && window.opener) {
     window.opener.postMessage(
       { type: 'STRIPE_PAYMENT_SUCCESS' },
@@ -279,13 +277,6 @@ onMounted(() => {
 
     window.close()
   }
-})
-
-onUnmounted(() => {
-  window.removeEventListener(
-    'message',
-    handlePaymentMessage
-  )
 })
 
 function handlePaymentMessage(event: MessageEvent) {
@@ -302,6 +293,65 @@ function handlePaymentMessage(event: MessageEvent) {
     registerProcess(5)
   }
 }
+
+
+const stripePromise = loadStripe(
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+)
+const selectedPlan = ref<string>('')
+const selectPlan = async (plan: 'COACH' | 'TEAM') => {
+  selectedPlan.value = plan
+  try {
+    await setupStripe()
+    step.value = 5
+  } catch (err: any) {
+    console.log(err)
+  }
+}
+const setupStripe = async () => {
+  console.log('REGISTRATION USER:', registrationUserId.value)
+  console.log('SELECTED PLAN:', selectedPlan.value)
+  const res = await fetch(
+    'https://play-route-back.vercel.app/api/stripe',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        action: 'create-subscription',
+        userId: registrationUserId.value,
+        plan: selectedPlan.value
+      })
+    }
+  )
+  const data = await res.json()
+  if (!res.ok) {
+    throw new Error(
+      data.error || 'Unable to initialize payment'
+    )
+  }
+
+  if (!data.clientSecret) {
+    throw new Error(
+      'Stripe client secret was not returned'
+    )
+  }
+
+  const stripe = await stripePromise
+
+  if (!stripe) {
+    throw new Error(
+      'Stripe failed to initialize'
+    )
+  }
+  const elements = stripe.elements({
+    clientSecret: data.clientSecret
+  })
+  const paymentElement = elements.create('payment')
+  paymentElement.mount('#payment-element')
+}
+
 
 </script>
 <template>
@@ -464,10 +514,17 @@ function handlePaymentMessage(event: MessageEvent) {
             <h4>COACH PLAN</h4>
             <h5>$6.00/monthly</h5>
             <p>So on and so on</p>
-            <button
+            <!-- <button
               class="primaryBt b"
               type="button"
               @click="startCheckout('COACH')"
+            >
+              SELECT
+            </button> -->
+            <button
+              class="primaryBt b"
+              type="button"
+              @click="selectPlan('COACH')"
             >
               SELECT
             </button>
@@ -484,7 +541,7 @@ function handlePaymentMessage(event: MessageEvent) {
             <button
               class="primaryBt b"
               type="button"
-              @click="startCheckout('TEAM')"
+              @click="selectPlan('TEAM')"
             >
               SELECT
             </button>
@@ -500,12 +557,24 @@ function handlePaymentMessage(event: MessageEvent) {
   <div class="userLogin" :class="{active : step === 5}">
     <form  @submit.prevent>
       <img alt="PRArrow" src="@/assets/images/user.png" />
+      <h3>THIS IS WORKING</h3>
+      <p>Your account is now active and good to go!</p>
+      <div id="payment-element"></div>
+      <div class="btCont">
+        <button class="primaryBt b">SUBMIT</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- <div class="userLogin" :class="{active : step === 5}">
+    <form  @submit.prevent>
+      <img alt="PRArrow" src="@/assets/images/user.png" />
       <h3>STEP 5: ALL DONE</h3>
       <p>Your account is now active and good to go!</p>
       <RouterLink to="/create"> 
         <button class="primaryBt b" type="button" style="max-width:200px;">CREATE</button>
       </RouterLink>
     </form>
-  </div>
+  </div> -->
   </main>
 </template>
