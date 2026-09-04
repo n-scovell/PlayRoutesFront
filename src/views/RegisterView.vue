@@ -195,8 +195,8 @@ const submitPayment = async () => {
     if (
       paymentIntent?.status === 'succeeded'
     ) {
-      await auth.login(email.value, password.value)
       step.value = 6
+      await auth.login(email.value, password.value)
     }
   } catch (err: any) {
     console.error(
