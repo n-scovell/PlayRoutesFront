@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
 import { usePlayStore } from '@/stores/playStore'
 import { useFormation } from '@/stores/formStore'
@@ -16,6 +16,8 @@ const forms = useFormation()
 const error = ref<string | null>(null)
 
 
+const initChange = ref<boolean>(false)
+const checkUpdateAccount =  ref<number>(0)
 const showActionForm = ref<boolean>(false)
 const areYouSure = ref<boolean>(false)
 const areYouSurePass = ref<boolean>(false)
@@ -49,9 +51,12 @@ const selectedPlay = ref([
  },
 ])
 
-const images = import.meta.glob<string>('@/assets/images/*.png', { eager: true, query: '?url', import: 'default'})
+// const images = import.meta.glob<string>('@/assets/images/*.png', { eager: true, query: '?url', import: 'default'})
 
 const updateMyAccount = async () => {
+  checkUpdateAccount.value = initChange.value ? 1 : 3
+}
+const yesUpdateAccount = async () => {
   try {
     await auth.updateUser({
       name: name.value,
@@ -59,6 +64,11 @@ const updateMyAccount = async () => {
       teamPin: pin.value,
       team: team.value
     })
+    checkUpdateAccount.value = 2
+    setTimeout(() => {
+      checkUpdateAccount.value = 0
+      initChange.value = false
+    }, 5000)
   } catch  (error:any) {
     console.log('Update not working')
   }
@@ -172,6 +182,12 @@ const updatePin = async () => {
   }
 }
 
+watch(
+  [name, email, team],
+  () => {
+    initChange.value = true
+  }
+)
 
 
 
@@ -214,7 +230,10 @@ const updatePin = async () => {
         <div class="top">
           <h4>Account Information</h4>
           <h5>Keep your profile and team details up to date</h5>
-          <button class="primaryBt" @click="updateMyAccount()">Save Changes</button>
+          <button class="primaryBt" @click="updateMyAccount()" :class="{active : checkUpdateAccount === 0}">Save Changes</button>
+          <button class="primaryBt check" @click="yesUpdateAccount()" :class="{active : checkUpdateAccount === 1}">Are You Sure?</button>
+          <button class="primaryBt success" :class="{active : checkUpdateAccount === 2}">Done</button>
+          <button class="primaryBt nothing" @click="updateMyAccount()" :class="{active : checkUpdateAccount === 3}">Nothing Changed</button>
         </div>
         <form  @submit.prevent>
           <div class="inp">

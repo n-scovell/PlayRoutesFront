@@ -2,8 +2,10 @@
 import { ref, watch, onMounted } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
 import { useGuest } from '../stores/guestStore'
+import { RouterLink } from 'vue-router'
 
 import UserIcon from '@/assets/icons/ico_user.svg'
+import RegisterIcon from '@/assets/icons/ico_register.svg'
 import HelmetIcon from '@/assets/icons/ico_helmet.svg'
 import GuestIcon from '@/assets/icons/ico_guest.svg'
 
@@ -190,6 +192,8 @@ const guestSignIn = async () => {
         </div>
       </div>
 
+      
+
       <div class="selection" @click="chooseLogin('player')">
         <div class="txt">
           <div class="iconCont">
@@ -199,6 +203,21 @@ const guestSignIn = async () => {
           <h3>PLAYER LOGIN</h3>
           <p>Acces your <br>teams playbook!</p>
           <button class="primaryBt b" >Continue as Player</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="selection">
+        <div class="txt">
+          <div class="iconCont">
+            <RegisterIcon />
+          </div>
+          <div>
+          <h3>USER REGISTRATION</h3>
+          <p>Create an account and plan, prepare, perform.</p>
+          <RouterLink to="/register">
+          <button class="primaryBt b" @click="chooseLogin('user')" >Continue as User</button>
+          </RouterLink>
           </div>
         </div>
       </div>

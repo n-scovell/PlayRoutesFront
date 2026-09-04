@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
-import { loadStripe } from '@stripe/stripe-js'
-import type { Stripe, StripeElements } from '@stripe/stripe-js'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/userAuth'
 
@@ -13,9 +11,17 @@ import VerifyIcon from '@/assets/icons/ico_verify.svg'
 import PaymentIcon from '@/assets/icons/ico_payment.svg'
 import CoachIcon from '@/assets/icons/ico_coach.svg'
 
+import { stripeInit } from '@/composables/stripe'
+import { formCheck } from '@/composables/formcheck'
+
 const auth = useAuthStore()
+const strp = stripeInit()
+const fc = formCheck()
+
 const showModal = ref<boolean>(false)
-const name = ref('Nathan')
+
+//Vmods
+const name = ref('')
 const email = ref('')
 const sport = ref('')
 const team = ref('')
@@ -39,111 +45,6 @@ const sportChoice = ref([
   { id: 'tackle', name: 'Tackle Football' },
   { id: 'flag', name: 'Flag Football' },
 ])
-
-
-const stripePromise = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-)
-
-const selectedPlan = ref<'COACH' | 'TEAM' | ''>('')
-
-let stripe: Stripe | null = null
-let elements: StripeElements | null = null
-
-const isProcessing = ref(false)
-const paymentError = ref('')
-
-
-
-//SELECT FROM COACH OR TEAM PLAN
-const selectPlan = async (plan: 'COACH' | 'TEAM') => {
-  selectedPlan.value = plan
-  try {
-    await setupStripe()
-    step.value = 5
-  } catch (err: any) {
-    console.error('STRIPE SETUP ERROR:',err)
-    paymentError.value = err.message || 'Unable to initialize payment'
-  }
-}
-//STRIPE
-const setupStripe = async () => {
-  console.log('REGISTRATION USER:', registrationUserId.value)
-  console.log('SELECTED PLAN:', selectedPlan.value)
-  const res = await fetch(
-    'https://play-route-back.vercel.app/api/stripe',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        action: 'create-subscription',
-        userId: registrationUserId.value,
-        plan: selectedPlan.value
-      })
-    }
-  )
-  const data = await res.json()
-  if (!res.ok) {
-    throw new Error(
-      data.error ||
-      'Unable to initialize payment'
-    )
-  }
-  if (!data.clientSecret) {
-    throw new Error(
-      'Stripe client secret was not returned'
-    )
-  }
-  stripe = await stripePromise
-  if (!stripe) {
-    throw new Error(
-      'Stripe failed to initialize'
-    )
-  }
-  elements = stripe.elements({clientSecret:data.clientSecret})
-  const paymentElement = elements.create('payment')
-  paymentElement.mount('#payment-element')
-}
-//Submit Payment
-const submitPayment = async () => {
-  paymentError.value = ''
-  isProcessing.value = true
-  try {
-    if (!stripe || !elements) {
-      throw new Error(
-        'Stripe has not been initialized'
-      )
-    }
-    const { error, paymentIntent } =
-      await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url:
-            `${window.location.origin}/register`
-        },
-        redirect: 'if_required'
-      })
-    if (error) {
-      paymentError.value =
-        error.message ||
-        'Payment failed'
-      return
-    }
-    if (
-      paymentIntent?.status === 'succeeded'
-    ) {
-      step.value = 6
-      await auth.login(email.value, password.value)
-    }
-  } catch (err: any) {
-    console.error('PAYMENT ERROR:', err)
-    paymentError.value = err.message || 'Unable to process payment'
-  } finally {
-    isProcessing.value = false
-  }
-}
 
 async function checkSignUp() {
   try {
@@ -342,27 +243,6 @@ const showPinInfo = () => {
   showinfo.value = !showinfo.value
 }
 
-async function startCheckout(plan: string) {
-  const res = await fetch(
-    'https://play-route-back.vercel.app/api/stripe',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        action: 'create-subscription',
-        userId: registrationUserId.value,
-        plan,
-      }),
-    }
-  )
-  const data = await res.json()
-  if (!res.ok) {
-    error.value = data.error
-    return
-  }
-}
 
 onMounted(() => {
   // window.addEventListener('message', handlePaymentMessage)
@@ -389,6 +269,23 @@ function handlePaymentMessage(event: MessageEvent) {
     event.data?.type === 'STRIPE_PAYMENT_SUCCESS'
   ) {
     registerProcess(5)
+  }
+}
+
+const yourPick = async (plan: 'COACH' | 'TEAM') => {
+  try {
+    await strp.stripePlan(plan, registrationUserId.value)
+    step.value = 5
+  } catch (err: any) {
+    error.value = err.message || 'Something went wrong'
+  }
+}
+const mainSubmit = async () => {
+  try {
+    await strp.stripePayment(email.value, password.value)
+    step.value = 6
+  } catch (err: any) {
+    error.value = err.message || 'Something went wrong'
   }
 }
 
@@ -553,17 +450,10 @@ function handlePaymentMessage(event: MessageEvent) {
             <h4>COACH PLAN</h4>
             <h5>$6.00/monthly</h5>
             <p>So on and so on</p>
-            <!-- <button
-              class="primaryBt b"
-              type="button"
-              @click="startCheckout('COACH')"
-            >
-              SELECT
-            </button> -->
             <button
               class="primaryBt b"
               type="button"
-              @click="selectPlan('COACH')"
+              @click="yourPick('COACH')"
             >
               SELECT
             </button>
@@ -580,7 +470,7 @@ function handlePaymentMessage(event: MessageEvent) {
             <button
               class="primaryBt b"
               type="button"
-              @click="selectPlan('TEAM')"
+              @click="yourPick('TEAM')"
             >
               SELECT
             </button>
@@ -601,12 +491,12 @@ function handlePaymentMessage(event: MessageEvent) {
         Enter your payment information to activate your account.
       </p>
       <div id="payment-element"></div>
-      <div class="btCont">
-        <button class="primaryBt b" type="submit" :disabled="isProcessing" @click="submitPayment">
-          {{ isProcessing ? 'PROCESSING...' : 'SUBMIT' }}
+      <div class="btCont" style="margin-top:10px">
+        <button class="primaryBt b" type="submit" :disabled="strp.isProcessing.value" @click="mainSubmit">
+          {{ strp.isProcessing.value ? 'PROCESSING...' : 'SUBMIT' }}
         </button>
       </div>
-      <p v-if="paymentError">{{ paymentError }}</p>
+      <p v-if="strp.paymentError">{{ strp.paymentError }}</p>
     </form>
   </div>
 

@@ -48,6 +48,9 @@ h1 {
     @include backColor($blueB);
     color:$white;
   }
+  &.green {
+    background:$penGreen;
+  }
   &.b, &.cancel {
     padding:9px 10px;
     @include font($head, $black, 21px, 400, .02em, 20px, normal, uppercase, $align:center);
@@ -1086,6 +1089,7 @@ form {
       min-width:850px;
       @include flex(flex, column, nowrap, left, stretch, 10px);
       padding:20px;
+      overflow:hidden;
       .top {
         flex:0 0 10%;
         position:relative;
@@ -1098,11 +1102,29 @@ form {
         }
         .primaryBt {
           @include size(auto, 100%);
-          @include pos(absolute, 50%, $right:0px, $trans:translate(0%,-50%));
+          @include pos(absolute, 50%, $right:-300px, $trans:translate(0%,-50%));
           @include font($par, $white, 14px, bold, .05em, 20px, normal, capitalize, none, center);
+          width:200px;
           background:$blueB;
           padding:0px 15px;
           border-radius:8px;
+          outline:1px solid rgba(255,255,255,.2);
+          transition:all .5s;
+          &.nothing {
+            outline:2px solid white;
+            outline-offset:3px;
+            background:rgb(218, 167, 1);
+          }
+          &.check {
+            background:rgb(165, 45, 8);
+          }
+          &.success {
+            background:rgb(21, 150, 43);
+          }
+          &.active {
+            right:0px;
+            transition:all .5s;
+          }
         }
       }
       form {
@@ -1360,7 +1382,7 @@ form {
 }
 .loginChoice { // larged
   @include size(90%, 350px, 200px, 80vw);
-  @include pos(fixed, 120px, 50%, $trans:translate(-50%,0%));
+  @include pos(absolute, 120px, 50%, $trans:translate(-50%,0%));
   @include flex(flex, row, wrap, center, center, 10px);
   transition:all .5s 0s;
   &.profile {
@@ -2076,7 +2098,7 @@ $mobile: 728px;
 @media only screen and (max-width:890px) {
   .userLogin, .playerLogin, .guestLogin {
     @include pos(absolute, 120px, -100%, $trans:translate(0%,0%));
-    @include size(90%, auto, 350px, 50vw);
+    @include size(95%, auto, 380px, 90vw);
     @include boxA();
     padding:20px;
     transition: all .5s 0s;

@@ -15,6 +15,6 @@
       <GuestBanner />
       <InfoBanner />
       <ScreenShot />
-      <CoachShot />
+      <!-- <CoachShot /> -->
     </div>
 </template>
