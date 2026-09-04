@@ -1008,6 +1008,9 @@ form {
   @include boxA();
   padding:20px;
   transition: all .5s 0s;
+  .TermsText {
+    color:$blueB !important;
+  }
   .loggedIn {
     height:auto;
     padding:10px 20px 20px;

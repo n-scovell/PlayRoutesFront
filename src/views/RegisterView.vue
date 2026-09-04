@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { loadStripe } from '@stripe/stripe-js'
+import type { Stripe, StripeElements } from '@stripe/stripe-js'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/userAuth'
 
@@ -38,6 +39,177 @@ const sportChoice = ref([
   { id: 'tackle', name: 'Tackle Football' },
   { id: 'flag', name: 'Flag Football' },
 ])
+
+
+const stripePromise = loadStripe(
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+)
+
+const selectedPlan = ref<'COACH' | 'TEAM' | ''>('')
+
+let stripe: Stripe | null = null
+let elements: StripeElements | null = null
+
+const isProcessing = ref(false)
+const paymentError = ref('')
+
+
+// ==================================================
+// SELECT PLAN
+// ==================================================
+
+const selectPlan = async (
+  plan: 'COACH' | 'TEAM'
+) => {
+  selectedPlan.value = plan
+
+  try {
+    await setupStripe()
+
+    step.value = 5
+  } catch (err: any) {
+    console.error(
+      'STRIPE SETUP ERROR:',
+      err
+    )
+
+    paymentError.value =
+      err.message ||
+      'Unable to initialize payment'
+  }
+}
+
+
+// ==================================================
+// SETUP STRIPE
+// ==================================================
+
+const setupStripe = async () => {
+  console.log(
+    'REGISTRATION USER:',
+    registrationUserId.value
+  )
+
+  console.log(
+    'SELECTED PLAN:',
+    selectedPlan.value
+  )
+
+  const res = await fetch(
+    'https://play-route-back.vercel.app/api/stripe',
+    {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify({
+        action: 'create-subscription',
+        userId: registrationUserId.value,
+        plan: selectedPlan.value
+      })
+    }
+  )
+
+  const data = await res.json()
+
+  if (!res.ok) {
+    throw new Error(
+      data.error ||
+      'Unable to initialize payment'
+    )
+  }
+
+  if (!data.clientSecret) {
+    throw new Error(
+      'Stripe client secret was not returned'
+    )
+  }
+
+  // -----------------------------------------------
+  // GET STRIPE
+  // -----------------------------------------------
+
+  stripe = await stripePromise
+
+  if (!stripe) {
+    throw new Error(
+      'Stripe failed to initialize'
+    )
+  }
+
+  // -----------------------------------------------
+  // CREATE ELEMENTS
+  // -----------------------------------------------
+
+  elements = stripe.elements({
+    clientSecret:
+      data.clientSecret
+  })
+
+  // -----------------------------------------------
+  // CREATE PAYMENT ELEMENT
+  // -----------------------------------------------
+
+  const paymentElement =
+    elements.create('payment')
+
+  paymentElement.mount(
+    '#payment-element'
+  )
+}
+
+
+// ==================================================
+// SUBMIT PAYMENT
+// ==================================================
+
+const submitPayment = async () => {
+  paymentError.value = ''
+  isProcessing.value = true
+
+  try {
+    if (!stripe || !elements) {
+      throw new Error(
+        'Stripe has not been initialized'
+      )
+    }
+
+    const { error, paymentIntent } =
+      await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url:
+            `${window.location.origin}/register`
+        },
+        redirect: 'if_required'
+      })
+    if (error) {
+      paymentError.value =
+        error.message ||
+        'Payment failed'
+
+      return
+    }
+    if (
+      paymentIntent?.status === 'succeeded'
+    ) {
+      await auth.login(email.value, password.value)
+      step.value = 6
+    }
+  } catch (err: any) {
+    console.error(
+      'PAYMENT ERROR:',
+      err
+    )
+    paymentError.value =
+      err.message ||
+      'Unable to process payment'
+  } finally {
+    isProcessing.value = false
+  }
+}
 
 async function checkSignUp() {
   try {
@@ -295,62 +467,93 @@ function handlePaymentMessage(event: MessageEvent) {
 }
 
 
-const stripePromise = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-)
-const selectedPlan = ref<string>('')
-const selectPlan = async (plan: 'COACH' | 'TEAM') => {
-  selectedPlan.value = plan
-  try {
-    await setupStripe()
-    step.value = 5
-  } catch (err: any) {
-    console.log(err)
-  }
-}
-const setupStripe = async () => {
-  console.log('REGISTRATION USER:', registrationUserId.value)
-  console.log('SELECTED PLAN:', selectedPlan.value)
-  const res = await fetch(
-    'https://play-route-back.vercel.app/api/stripe',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        action: 'create-subscription',
-        userId: registrationUserId.value,
-        plan: selectedPlan.value
-      })
-    }
-  )
-  const data = await res.json()
-  if (!res.ok) {
-    throw new Error(
-      data.error || 'Unable to initialize payment'
-    )
-  }
+// const stripePromise = loadStripe(
+//   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+// )
+// const selectedPlan = ref<string>('')
+// const selectPlan = async (plan: 'COACH' | 'TEAM') => {
+//   selectedPlan.value = plan
+//   try {
+//     await setupStripe()
+//     step.value = 5
+//   } catch (err: any) {
+//     console.log(err)
+//   }
+// }
+// const setupStripe = async () => {
+//   console.log('REGISTRATION USER:', registrationUserId.value)
+//   console.log('SELECTED PLAN:', selectedPlan.value)
+//   const res = await fetch(
+//     'https://play-route-back.vercel.app/api/stripe',
+//     {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         action: 'create-subscription',
+//         userId: registrationUserId.value,
+//         plan: selectedPlan.value
+//       })
+//     }
+//   )
+//   const data = await res.json()
+//   if (!res.ok) {
+//     throw new Error(
+//       data.error || 'Unable to initialize payment'
+//     )
+//   }
 
-  if (!data.clientSecret) {
-    throw new Error(
-      'Stripe client secret was not returned'
-    )
-  }
+//   if (!data.clientSecret) {
+//     throw new Error(
+//       'Stripe client secret was not returned'
+//     )
+//   }
 
-  const stripe = await stripePromise
+//   const stripe = await stripePromise
 
-  if (!stripe) {
-    throw new Error(
-      'Stripe failed to initialize'
-    )
-  }
-  const elements = stripe.elements({
-    clientSecret: data.clientSecret
-  })
-  const paymentElement = elements.create('payment')
-  paymentElement.mount('#payment-element')
-}
+//   if (!stripe) {
+//     throw new Error(
+//       'Stripe failed to initialize'
+//     )
+//   }
+//   const elements = stripe.elements({
+//     clientSecret: data.clientSecret
+//   })
+//   const paymentElement = elements.create('payment')
+//   paymentElement.mount('#payment-element')
+// }
+
+
+// const isProcessing = ref(false)
+// const paymentError = ref('')
+
+// const submitPayment = async () => {
+//   paymentError.value = ''
+//   isProcessing.value = true
+
+//   try {
+//     if (!stripe || !elements) {
+//       throw new Error('Stripe has not been initialized')
+//     }
+
+//     const { error } = await stripe.confirmPayment({
+//       elements,
+//       confirmParams: {
+//         return_url: `${window.location.origin}/registration-complete`,
+//       },
+//     })
+
+//     if (error) {
+//       paymentError.value = error.message || 'Payment failed'
+//     }
+//   } catch (err: any) {
+//     paymentError.value =
+//       err.message || 'Unable to process payment'
+//   } finally {
+//     isProcessing.value = false
+//   }
+// }
 
 
 </script>
@@ -554,27 +757,39 @@ const setupStripe = async () => {
     </form>
   </div>
 
-  <div class="userLogin" :class="{active : step === 5}">
-    <form  @submit.prevent>
+  <div class="userLogin" :class="{ active: step === 5 }">
+    <form @submit.prevent>
       <img alt="PRArrow" src="@/assets/images/user.png" />
-      <h3>THIS IS WORKING</h3>
-      <p>Your account is now active and good to go!</p>
+      <h3>COMPLETE YOUR SUBSCRIPTION</h3>
+      <p>
+        Enter your payment information to activate your account.
+      </p>
       <div id="payment-element"></div>
       <div class="btCont">
-        <button class="primaryBt b">SUBMIT</button>
+        <button class="primaryBt b" type="submit" :disabled="isProcessing" @click="submitPayment">
+          {{ isProcessing ? 'PROCESSING...' : 'SUBMIT' }}
+        </button>
+      </div>
+      <p v-if="paymentError">{{ paymentError }}</p>
+    </form>
+  </div>
+
+  <div class="userLogin" :class="{ active: step === 6 }">
+    <form @submit.prevent>
+      <img alt="PRArrow" src="@/assets/images/user.png" />
+      <h3>Your account is completed and paid for! HOORAH!</h3>
+      <p>
+        Let's get started and kick some ass!
+      </p>
+      <div class="btCont">
+        <button class="primaryBt b" ss >
+          CREATE PLAYS
+        </button>
       </div>
     </form>
   </div>
 
-  <!-- <div class="userLogin" :class="{active : step === 5}">
-    <form  @submit.prevent>
-      <img alt="PRArrow" src="@/assets/images/user.png" />
-      <h3>STEP 5: ALL DONE</h3>
-      <p>Your account is now active and good to go!</p>
-      <RouterLink to="/create"> 
-        <button class="primaryBt b" type="button" style="max-width:200px;">CREATE</button>
-      </RouterLink>
-    </form>
-  </div> -->
   </main>
 </template>
+
+

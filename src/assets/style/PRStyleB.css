@@ -2047,6 +2047,9 @@ form .inputCont select option {
   padding: 20px;
   transition: all 0.5s 0s;
 }
+.userLogin .TermsText, .playerLogin .TermsText, .guestLogin .TermsText {
+  color: rgb(1, 121, 190) !important;
+}
 .userLogin .loggedIn, .playerLogin .loggedIn, .guestLogin .loggedIn {
   height: auto;
   padding: 10px 20px 20px;
