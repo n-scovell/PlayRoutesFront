@@ -54,56 +54,29 @@ const isProcessing = ref(false)
 const paymentError = ref('')
 
 
-// ==================================================
-// SELECT PLAN
-// ==================================================
 
-const selectPlan = async (
-  plan: 'COACH' | 'TEAM'
-) => {
+//SELECT FROM COACH OR TEAM PLAN
+const selectPlan = async (plan: 'COACH' | 'TEAM') => {
   selectedPlan.value = plan
-
   try {
     await setupStripe()
-
     step.value = 5
   } catch (err: any) {
-    console.error(
-      'STRIPE SETUP ERROR:',
-      err
-    )
-
-    paymentError.value =
-      err.message ||
-      'Unable to initialize payment'
+    console.error('STRIPE SETUP ERROR:',err)
+    paymentError.value = err.message || 'Unable to initialize payment'
   }
 }
-
-
-// ==================================================
-// SETUP STRIPE
-// ==================================================
-
+//STRIPE
 const setupStripe = async () => {
-  console.log(
-    'REGISTRATION USER:',
-    registrationUserId.value
-  )
-
-  console.log(
-    'SELECTED PLAN:',
-    selectedPlan.value
-  )
-
+  console.log('REGISTRATION USER:', registrationUserId.value)
+  console.log('SELECTED PLAN:', selectedPlan.value)
   const res = await fetch(
     'https://play-route-back.vercel.app/api/stripe',
     {
       method: 'POST',
-
       headers: {
         'Content-Type': 'application/json'
       },
-
       body: JSON.stringify({
         action: 'create-subscription',
         userId: registrationUserId.value,
@@ -111,71 +84,38 @@ const setupStripe = async () => {
       })
     }
   )
-
   const data = await res.json()
-
   if (!res.ok) {
     throw new Error(
       data.error ||
       'Unable to initialize payment'
     )
   }
-
   if (!data.clientSecret) {
     throw new Error(
       'Stripe client secret was not returned'
     )
   }
-
-  // -----------------------------------------------
-  // GET STRIPE
-  // -----------------------------------------------
-
   stripe = await stripePromise
-
   if (!stripe) {
     throw new Error(
       'Stripe failed to initialize'
     )
   }
-
-  // -----------------------------------------------
-  // CREATE ELEMENTS
-  // -----------------------------------------------
-
-  elements = stripe.elements({
-    clientSecret:
-      data.clientSecret
-  })
-
-  // -----------------------------------------------
-  // CREATE PAYMENT ELEMENT
-  // -----------------------------------------------
-
-  const paymentElement =
-    elements.create('payment')
-
-  paymentElement.mount(
-    '#payment-element'
-  )
+  elements = stripe.elements({clientSecret:data.clientSecret})
+  const paymentElement = elements.create('payment')
+  paymentElement.mount('#payment-element')
 }
-
-
-// ==================================================
-// SUBMIT PAYMENT
-// ==================================================
-
+//Submit Payment
 const submitPayment = async () => {
   paymentError.value = ''
   isProcessing.value = true
-
   try {
     if (!stripe || !elements) {
       throw new Error(
         'Stripe has not been initialized'
       )
     }
-
     const { error, paymentIntent } =
       await stripe.confirmPayment({
         elements,
@@ -189,7 +129,6 @@ const submitPayment = async () => {
       paymentError.value =
         error.message ||
         'Payment failed'
-
       return
     }
     if (
@@ -199,13 +138,8 @@ const submitPayment = async () => {
       await auth.login(email.value, password.value)
     }
   } catch (err: any) {
-    console.error(
-      'PAYMENT ERROR:',
-      err
-    )
-    paymentError.value =
-      err.message ||
-      'Unable to process payment'
+    console.error('PAYMENT ERROR:', err)
+    paymentError.value = err.message || 'Unable to process payment'
   } finally {
     isProcessing.value = false
   }
@@ -507,7 +441,7 @@ function handlePaymentMessage(event: MessageEvent) {
         <h3>{{error}}</h3>
       </div>
       <div class="inputCont">
-        <label>Email:<input placeholder="Email" type="email" v-model="email" /></label>
+        <label>Email:<input autocomplete="off" placeholder="Email" type="email" v-model="email" /></label>
       </div>
       <div class="inputCont">
         <button class="infoBt" @click="showPinInfo()">i</button>
@@ -522,7 +456,7 @@ function handlePaymentMessage(event: MessageEvent) {
             <li>1 Special - !@#$%?</li>
           </ul>
         </div>
-        <label>Password:<input placeholder="Password" type="password" v-model="password" /></label>
+        <label>Password:<input autocomplete="off" placeholder="Password" type="password" v-model="password" /></label>
       </div>
       <div class="inputCont" v-if="password.length >= 1" >
         <label v-if="allClear">PASSWORD IS CLEAR!</label>
@@ -535,7 +469,7 @@ function handlePaymentMessage(event: MessageEvent) {
         </ul>
       </div>
       <div class="inputCont" >
-        <label>Repeat Password:<input placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
+        <label>Repeat Password:<input autocomplete="off" placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
       </div>
       <div class="btCont">
         <button class="primaryBt b" @click="registerProcess(2)">NEXT</button>
@@ -555,10 +489,10 @@ function handlePaymentMessage(event: MessageEvent) {
         <h3 v-else>{{error}}</h3>
       </div>
       <div class="inputCont">
-        <label>Team Name:<input placeholder="Team Name" type="text" v-model="team" /></label>
+        <label>Team Name:<input autocomplete="off" placeholder="Team Name" type="text" v-model="team" /></label>
       </div>
       <div class="inputCont">
-        <label>Your Name:<input placeholder="Name" type="text" v-model="name" /></label>
+        <label>Your Name:<input autocomplete="off" placeholder="Name" type="text" v-model="name" /></label>
       </div>
       <div class="inputCont a">
         <label>Sport:
@@ -574,7 +508,7 @@ function handlePaymentMessage(event: MessageEvent) {
           <strong>PIN NUMBER:</strong>
           The pin number is your specific number that allows players/coaches to read the {{ team }} playbook.
         </div>
-        <label>Team Pin:<input placeholder="Team Pin" type="password" v-model="pin" maxlength="15" /></label>
+        <label>Team Pin:<input autocomplete="off" placeholder="Team Pin" type="password" v-model="pin" maxlength="15" /></label>
       </div>
       <div class="btCont">
         <button class="primaryBt b" @click="goBackOne(1)">BACK</button>
