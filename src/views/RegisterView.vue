@@ -428,14 +428,6 @@ async function startCheckout(plan: string) {
     error.value = data.error
     return
   }
-  // const checkoutWindow = window.open(
-  //   data.url,
-  //   '_blank'
-  // )
-  // if (!checkoutWindow) {
-  //   error.value = 'Please allow popups to complete payment.'
-  //   return
-  // }
 }
 
 onMounted(() => {
@@ -465,96 +457,6 @@ function handlePaymentMessage(event: MessageEvent) {
     registerProcess(5)
   }
 }
-
-
-// const stripePromise = loadStripe(
-//   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-// )
-// const selectedPlan = ref<string>('')
-// const selectPlan = async (plan: 'COACH' | 'TEAM') => {
-//   selectedPlan.value = plan
-//   try {
-//     await setupStripe()
-//     step.value = 5
-//   } catch (err: any) {
-//     console.log(err)
-//   }
-// }
-// const setupStripe = async () => {
-//   console.log('REGISTRATION USER:', registrationUserId.value)
-//   console.log('SELECTED PLAN:', selectedPlan.value)
-//   const res = await fetch(
-//     'https://play-route-back.vercel.app/api/stripe',
-//     {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         action: 'create-subscription',
-//         userId: registrationUserId.value,
-//         plan: selectedPlan.value
-//       })
-//     }
-//   )
-//   const data = await res.json()
-//   if (!res.ok) {
-//     throw new Error(
-//       data.error || 'Unable to initialize payment'
-//     )
-//   }
-
-//   if (!data.clientSecret) {
-//     throw new Error(
-//       'Stripe client secret was not returned'
-//     )
-//   }
-
-//   const stripe = await stripePromise
-
-//   if (!stripe) {
-//     throw new Error(
-//       'Stripe failed to initialize'
-//     )
-//   }
-//   const elements = stripe.elements({
-//     clientSecret: data.clientSecret
-//   })
-//   const paymentElement = elements.create('payment')
-//   paymentElement.mount('#payment-element')
-// }
-
-
-// const isProcessing = ref(false)
-// const paymentError = ref('')
-
-// const submitPayment = async () => {
-//   paymentError.value = ''
-//   isProcessing.value = true
-
-//   try {
-//     if (!stripe || !elements) {
-//       throw new Error('Stripe has not been initialized')
-//     }
-
-//     const { error } = await stripe.confirmPayment({
-//       elements,
-//       confirmParams: {
-//         return_url: `${window.location.origin}/registration-complete`,
-//       },
-//     })
-
-//     if (error) {
-//       paymentError.value = error.message || 'Payment failed'
-//     }
-//   } catch (err: any) {
-//     paymentError.value =
-//       err.message || 'Unable to process payment'
-//   } finally {
-//     isProcessing.value = false
-//   }
-// }
-
 
 </script>
 <template>
