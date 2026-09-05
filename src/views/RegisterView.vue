@@ -22,7 +22,7 @@ const showModal = ref<boolean>(false)
 
 //Vmods
 const name = ref('')
-const email = ref('')
+const email = ref('n8scovell@yahoo.com')
 const sport = ref('')
 const team = ref('')
 const pin = ref('')
@@ -119,105 +119,24 @@ const clearMe = () => {
   code.value = ''
 }
 
-const verifyPass = (a: string) => {
-  hasCap.value = !/[A-Z]/.test(a) ? false : true
-  hasLow.value = !/[a-z]/.test(a) ? false : true
-  hasSpec.value = !/[^a-zA-Z0-9]/.test(a) ? false : true
-  hasNumb.value = !/[0-9]/.test(a) ? false : true
-  hasLen.value = a.length < 10 ? false : true
-  return (
-    hasCap.value &&
-    hasLow.value &&
-    hasSpec.value &&
-    hasNumb.value &&
-    hasLen.value
-  )
-}
-
-const checkValue = async (a: string, obj: string) => {
-  if (!a) {
-    if (obj === 'sport') {
-      throw new Error('Select a sport')
-    } else {
-      throw new Error(`Enter a ${obj}`)
-    }
-  }
-}
-const checkPin = async (a: string) => {
-  if (!a) {
-    throw new Error('You need a pin number')
-  }
-  if (a === '12345') {
-    throw new Error(`That's the kind of thing an idiot has on his luggage!`)
-  }
-  if (a === '123456') {
-    throw new Error(`Adding six is pathetic.`)
-  }
-  if (a === '1234567') {
-    throw new Error(`Do... do you not understand what a pin is?`)
-  }
-  if (a === '12345678') {
-    throw new Error(`Oh come on!`)
-  }
-  if (a === '123456789') {
-    throw new Error(`This is getting ridiculous.`)
-  }
-  if (a === '12345678910') {
-    throw new Error(`Now you're just playing with me.`)
-  }
-  if (a.length <= 4) {
-    throw new Error('Pin Number Needs At Least 5 Numbers')
-  }
-  return true
-}
-const  isValidEmail = async (email: string) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    throw new Error('Email is not valid')
-  }
-  return true
-}
-const checkPassword = async (a: string, b: string) => {
-  if (!a || !b) {
-    throw new Error('Please enter and confirm your password')
-  }
-  if (a !== b) {
-    throw new Error('Passwords do not match')
-  }
-  if (!allClear) {
-    throw new Error('Password Needs Work')
-  }
-  return true
-}
-
-
-watch(() => password.value, () => {
-  const valid = verifyPass(password.value)
-  if (valid) {
-    allClear.value = true
-  } else {
-    allClear.value = false
-  }
-})
-
 const registerProcess = async (val: number) => {
   error.value = null
   try {
     if (step.value === 0) {
       step.value = val
     } else if (step.value === 1) {
-      await checkPassword(password.value, passwordRepeat.value)
-      await isValidEmail(email.value)
+      await fc.checkPassword(password.value, passwordRepeat.value)
+      await fc.checkEmail(email.value)
       step.value = val
     } else if (step.value === 2) {
-      await checkValue(team.value, 'team')
-      await checkValue(name.value, 'name')
-      await checkValue(selectedSport.value, 'sport')
-      await checkPin(pin.value)
+      await fc.checkInput(team.value, 'team')
+      await fc.checkInput(name.value, 'name')
+      await fc.checkInput(selectedSport.value, 'sport')
+      await fc.checkPin(pin.value, name.value, team.value)
       checkSignUp()
       step.value = val
     } else if (step.value === 3) {
-      await checkValue(code.value, 'code')
+      await fc.checkInput(code.value, 'code')
       await verifyCode()
       step.value = val
     } else if (step.value === 4) {
@@ -289,6 +208,10 @@ const mainSubmit = async () => {
   }
 }
 
+watch(() => password.value, () => {
+  allClear.value = fc.verifyPass(password.value) ? true : false
+})
+
 </script>
 <template>
   <main style="min-height:100vh">
@@ -358,11 +281,11 @@ const mainSubmit = async () => {
       <div class="inputCont" v-if="password.length >= 1" >
         <label v-if="allClear">PASSWORD IS CLEAR!</label>
         <ul class="processList">
-          <li v-if="hasCap"></li>
-          <li v-if="hasLow"></li>
-          <li v-if="hasSpec"></li>
-          <li v-if="hasNumb"></li>
-          <li v-if="hasLen"></li>
+          <li v-if="fc.hasCap.value"></li>
+          <li v-if="fc.hasLow.value"></li>
+          <li v-if="fc.hasSpec.value"></li>
+          <li v-if="fc.hasNumb.value"></li>
+          <li v-if="fc.hasLen.value"></li>
         </ul>
       </div>
       <div class="inputCont" >
