@@ -33,12 +33,6 @@ const selectedSport = ref("")
 
 const error = ref<string | null>(null)
 const step = ref<number>(0)
-
-const hasCap = ref<boolean>(false)
-const hasLow = ref<boolean>(false)
-const hasSpec = ref<boolean>(false)
-const hasNumb = ref<boolean>(false)
-const hasLen = ref<boolean>(false)
 const allClear = ref<boolean>(false)
 
 const sportChoice = ref([
@@ -162,35 +156,6 @@ const showPinInfo = () => {
   showinfo.value = !showinfo.value
 }
 
-
-onMounted(() => {
-  // window.addEventListener('message', handlePaymentMessage)
-  const params = new URLSearchParams(window.location.search)
-  if (params.get('payment') === 'success' && window.opener) {
-    window.opener.postMessage(
-      { type: 'STRIPE_PAYMENT_SUCCESS' },
-      'https://www.playerroutes.com'
-    )
-
-    window.close()
-  }
-})
-
-function handlePaymentMessage(event: MessageEvent) {
-
-  if (
-    event.origin !== 'https://www.playerroutes.com'
-  ) {
-    return
-  }
-
-  if (
-    event.data?.type === 'STRIPE_PAYMENT_SUCCESS'
-  ) {
-    registerProcess(5)
-  }
-}
-
 const yourPick = async (plan: 'COACH' | 'TEAM') => {
   try {
     await strp.stripePlan(plan, registrationUserId.value)
@@ -208,6 +173,17 @@ const mainSubmit = async () => {
   }
 }
 
+// onMounted(() => {
+//   const params = new URLSearchParams(window.location.search)
+//   if (params.get('payment') === 'success' && window.opener) {
+//     window.opener.postMessage(
+//       { type: 'STRIPE_PAYMENT_SUCCESS' },
+//       'https://www.playerroutes.com'
+//     )
+//     window.close()
+//   }
+// })
+
 watch(() => password.value, () => {
   allClear.value = fc.verifyPass(password.value) ? true : false
 })
@@ -221,7 +197,7 @@ watch(() => password.value, () => {
     <h1>Player Routes Registration</h1>
     <h2>or do you need to login?</h2>
 
-    <div class="selection" @click="registerProcess(1)" >
+    <div class="selection">
       <div class="txt">
         <div class="iconCont">
           <UserIcon />
@@ -229,11 +205,11 @@ watch(() => password.value, () => {
         <div>
         <h3>REGISTER NEW USER</h3>
         <p>Join Player Routes and take<br> your playbook to a new level!</p>
-        <button class="primaryBt b" >NEW USER</button>
+        <button class="primaryBt b" @click="registerProcess(1)">NEW USER</button>
         </div>
       </div>
     </div>
-    
+
     <div class="selection"  >
       <RouterLink to="/login"> 
         <button class="wide">
@@ -296,7 +272,6 @@ watch(() => password.value, () => {
         <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
       </div>
     </form>
-    
   </div>
 
   <div class="userLogin" :class="{active : step === 2}">
@@ -336,12 +311,19 @@ watch(() => password.value, () => {
         <button class="primaryBt b" @click="registerProcess(3)">NEXT</button>
       </div>
     </form>
-    
   </div>
+
+  <!-- <div class="userLogin" :class="{active : step === 2}">
+    <form class="signIn" @submit.prevent>
+      <TeamIcon />
+      <div class="btCont">
+        <button class="primaryBt b" type="button">DO IT</button>
+      </div>
+    </form>
+  </div> -->
 
   <div class="userLogin" :class="{active : step === 3}">
     <form class="signIn" @submit.prevent>
-
       <VerifyIcon />
       <h3>STEP 3: VERIFY ACCOUNT</h3>
       <p>A verification number was sent to: {{email}}</p>
