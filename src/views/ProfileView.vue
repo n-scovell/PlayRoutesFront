@@ -175,8 +175,6 @@ const updatePin = async () => {
     setTimeout(() => {
       pinChangeLocked.value = false
     }, 2 * 60 * 1000)
-
-
   } catch (err: any) {
     error.value = err.message || 'Something went wrong'
   }

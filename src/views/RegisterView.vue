@@ -22,7 +22,7 @@ const showModal = ref<boolean>(false)
 
 //Vmods
 const name = ref('')
-const email = ref('n8scovell@yahoo.com')
+const email = ref('')
 const sport = ref('')
 const team = ref('')
 const pin = ref('')
