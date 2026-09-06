@@ -858,11 +858,15 @@ form {
     .processList {
       width:100%;
       padding-right:8px;
-      @include flex(flex, row, nowrap, center, start, 2px);
+      @include flex(flex, row-reverse, nowrap, center, start, 2px);
       li {
         flex:0 0 20%;
-        height:5px;
-        background:#00e913;
+        height:10px;
+        background:rgba(0,0,0,.5);
+        &.active {
+          order:1;
+          background:$blueB;          
+        }
       }
     }
     &.inline {
@@ -941,6 +945,10 @@ form {
       }
       &:focus {
         @include backColor(rgba(255,255,255,.4));
+      }
+      &.error {
+        outline:1px solid $penRed;
+        outline-offset:2px;
       }
     }
     select option {
@@ -1021,16 +1029,24 @@ form {
     img {
       margin:auto;
     }
+    &.error {
+      padding:0px 20px 5px;
+      h3 {
+        @include font($par, $white, 14px, 400, .01em, 20px, normal, none, none, left);
+        @include flex(flex, row, nowrap, center, center, 10px);
+        &:before {
+          content:' ';
+          $w:40px;
+          @include size($w,$w);
+          @include back(transparent, '@/assets/images/error.png', 100% auto, center center, no-repeat);
+        }
+      }
+    }
     h3 {
       position:relative;
       @include font($par, $white, 14px, 400, .01em, 20px, normal, none, none, center);
       @include flex(flex, column, nowrap, center, start, 10px);
-      &:before {
-        content:' ';
-        $w:20px;
-        @include size($w,$w);
-        @include back(transparent, '@/assets/images/error.png', 100% auto, center center, no-repeat);
-      }
+      
       &.spec {
         padding:0px 10px;
         @include flex(flex, column, nowrap, center, start, 0px);
@@ -1331,7 +1347,6 @@ form {
     margin:10px auto 0px;
     @include flex(flex, column, nowrap, center, center, 10px);
     .selection {
-
       &.a {
         max-width:350px;
         min-width:340px;
@@ -1343,7 +1358,6 @@ form {
         padding:20px;
         .top {
           @include flex(flex, column, nowrap, left, stretch, 30px);
-          
           h4 {
             margin-bottom:-20px;
             text-align:center;
@@ -1356,6 +1370,11 @@ form {
           .primaryBt {
             position:relative;
             padding:10px;
+            display:none;
+            &.active {
+              width:100%;
+              display:block;
+            }
           }
         }
         form {

@@ -22,14 +22,14 @@ const showModal = ref<boolean>(false)
 
 //Vmods
 const name = ref('')
-const email = ref('')
+const email = ref('n8scovell@yahoo.com')
 const sport = ref('')
 const team = ref('')
 const pin = ref('')
 const password = ref('')
 const passwordRepeat = ref('')
 const code = ref("")
-const selectedSport = ref("")
+const selectedSport = ref('')
 
 const error = ref<string | null>(null)
 const step = ref<number>(0)
@@ -95,7 +95,8 @@ async function verifyCode() {
 
 const cancelcode = () => {
   clearMe()
-  step.value = 0
+  fc.resetErrors()
+  currentStep.value = 'init'
 }
 
 const clearMe = () => {
@@ -118,8 +119,8 @@ const processParade = async (val: string) => {
       currentStep.value = val
     } else if (currentStep.value === 'account') {
       // GOES TO TEAM
-      await fc.checkPassword(password.value, passwordRepeat.value)
       await fc.checkEmail(email.value)
+      await fc.checkPassword(password.value, passwordRepeat.value)
       currentStep.value = val
     } else if (currentStep.value === 'team') {
       // GOES TO VERIFY
@@ -144,41 +145,6 @@ const processParade = async (val: string) => {
   }
 }
 
-
-const registerProcess = async (val: number) => {
-  error.value = null
-  try {
-    if (step.value === 0) {
-      currentStep.value = 'account'
-    } else if (step.value === 1) {
-      await fc.checkPassword(password.value, passwordRepeat.value)
-      await fc.checkEmail(email.value)
-      step.value = val
-    } else if (step.value === 2) {
-      await fc.checkInput(team.value, 'team')
-      await fc.checkInput(name.value, 'name')
-      await fc.checkInput(selectedSport.value, 'sport')
-      await fc.checkPin(pin.value, name.value, team.value)
-      checkSignUp()
-      step.value = val
-    } else if (step.value === 3) {
-      await fc.checkInput(code.value, 'code')
-      await verifyCode()
-      step.value = val
-    } else if (step.value === 4) {
-      // await auth.login(email.value, password.value)
-      // clearMe()
-      step.value = val
-    } else if (step.value === 5) {
-      await auth.login(email.value, password.value)
-      clearMe()
-      step.value = val
-    }
-  } catch (err: any) {
-    error.value = err.message || 'Something went wrong'
-    console.log(error.value)
-  }
-}
 const goBackOne = (val: number) => {
   step.value = val
 }
@@ -226,7 +192,8 @@ watch(() => password.value, () => {
     <div class="selection">
       <div class="txt">
         <div class="iconCont">
-          <UserIcon />
+          <RegisterIcon />
+
         </div>
         <div>
         <h3>REGISTER NEW USER</h3>
@@ -240,7 +207,7 @@ watch(() => password.value, () => {
         <button class="wide">
           <div class="txt">
             <div class="iconCont">
-              <RegisterIcon />
+              <UserIcon />
             </div>
             <div>
             <h3>USER LOGIN</h3>
@@ -258,11 +225,11 @@ watch(() => password.value, () => {
       <AccountIcon />
       <h3>ACCOUNT SETUP</h3>
       <p>Create your login information</p>
-      <div class="loggedIn" v-if="error" >
+      <div class="loggedIn error" v-if="error" >
         <h3>{{error}}</h3>
       </div>
       <div class="inputCont">
-        <label>Email:<input autocomplete="off" placeholder="Email" type="email" v-model="email" /></label>
+        <label>Email:<input :class="{error : fc.inpEmail.value}" autocomplete="off" placeholder="Email" type="email" v-model="email" /></label>
       </div>
       <div class="inputCont">
         <button class="infoBt" @click="showPinInfo()">i</button>
@@ -277,20 +244,21 @@ watch(() => password.value, () => {
             <li>1 Special - !@#$%?</li>
           </ul>
         </div>
-        <label>Password:<input autocomplete="off" placeholder="Password" type="password" v-model="password" /></label>
+        <label>Password:<input :class="{error : fc.inpPassword.value || fc.inpPasswordRepeat.value}" autocomplete="off" placeholder="Password" type="password" v-model="password" /></label>
       </div>
-      <div class="inputCont" v-if="password.length >= 1" >
-        <label v-if="allClear">PASSWORD IS CLEAR!</label>
+      <div class="inputCont"  >
+        <label v-if="allClear">Secure password!</label>
+        <label v-else>Password check:</label>
         <ul class="processList">
-          <li v-if="fc.hasCap.value"></li>
-          <li v-if="fc.hasLow.value"></li>
-          <li v-if="fc.hasSpec.value"></li>
-          <li v-if="fc.hasNumb.value"></li>
-          <li v-if="fc.hasLen.value"></li>
+          <li :class="{ active : fc.hasCap.value }"></li>
+          <li :class="{ active : fc.hasLow.value }"></li>
+          <li :class="{ active : fc.hasSpec.value }"></li>
+          <li :class="{ active : fc.hasNumb.value }"></li>
+          <li :class="{ active : fc.hasLen.value }"></li>
         </ul>
       </div>
       <div class="inputCont" >
-        <label>Repeat Password:<input autocomplete="off" placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
+        <label>Repeat Password:<input :class="{error : fc.inpPasswordRepeat.value}"  autocomplete="off" placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
       </div>
       <div class="btCont">
         <button class="primaryBt b" @click="processParade('team')">NEXT</button>
@@ -304,19 +272,19 @@ watch(() => password.value, () => {
       <TeamIcon />
       <h3>TEAM SETUP</h3>
       <p>Create your team information</p>
-      <div class="loggedIn" v-if="error" >
+      <div class="loggedIn error" v-if="error" >
         <h3 v-if="error.includes('luggage')" class="spec"><strong><em>12345?!</em></strong>{{error}}</h3>
         <h3 v-else>{{error}}</h3>
       </div>
       <div class="inputCont">
-        <label>Team Name:<input autocomplete="off" placeholder="Team Name" type="text" v-model="team" /></label>
+        <label>Team Name:<input :class="{error : fc.inpTeam.value}" autocomplete="off" placeholder="Team Name" type="text" v-model="team" /></label>
       </div>
       <div class="inputCont">
-        <label>Your Name:<input autocomplete="off" placeholder="Name" type="text" v-model="name" /></label>
+        <label>Your Name:<input :class="{error : fc.inpName.value}" autocomplete="off" placeholder="Name" type="text" v-model="name" /></label>
       </div>
       <div class="inputCont a">
         <label>Sport:
-          <select id="city-select" v-model="selectedSport" >
+          <select :class="{error : fc.inpSport.value}" id="city-select" v-model="selectedSport" >
             <option value="" disabled>Please select one</option>
             <option v-for="s in sportChoice" :key="s.id" :value="s.id">{{ s.name }}</option>
           </select>
@@ -328,12 +296,11 @@ watch(() => password.value, () => {
           <strong>PIN NUMBER:</strong>
           The pin number is your specific number that allows players/coaches to read the {{ team }} playbook.
         </div>
-        <label>Team Pin:<input autocomplete="off" placeholder="Team Pin" type="password" v-model="pin" maxlength="15" /></label>
+        <label>Team Pin:<input :class="{error : fc.inpPin.value}" autocomplete="off" placeholder="Team Pin" type="password" v-model="pin" maxlength="15" /></label>
       </div>
       <div class="btCont">
-        <button class="primaryBt b" @click="goBackOne(1)">BACK</button>
-        <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
         <button class="primaryBt b" @click="processParade('verify')">NEXT</button>
+        <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
       </div>
     </form>
   </div>
@@ -343,7 +310,7 @@ watch(() => password.value, () => {
       <VerifyIcon />
       <h3>VERIFY ACCOUNT</h3>
       <p>A verification number was sent to: {{email}}</p>
-      <div class="loggedIn" v-if="error" >
+      <div class="loggedIn error" v-if="error" >
         <h3>{{error}}</h3>
       </div>
       <div class="inputCont">
@@ -398,9 +365,9 @@ watch(() => password.value, () => {
           </div>
         </div>
       </div>
-      <!-- <div class="btCont">
-        <button class="primaryBt b" type="button" style="max-width:200px;" @click="registerProcess(2)">BACK</button>
-      </div> -->
+      <div class="btCont">
+        <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
+      </div>
     </form>
   </div>
 

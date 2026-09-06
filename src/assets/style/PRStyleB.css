@@ -1769,7 +1769,7 @@ form .inputCont .processList {
   width: 100%;
   padding-right: 8px;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: start;
@@ -1777,8 +1777,12 @@ form .inputCont .processList {
 }
 form .inputCont .processList li {
   flex: 0 0 20%;
-  height: 5px;
-  background: #00e913;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.5);
+}
+form .inputCont .processList li.active {
+  order: 1;
+  background: rgb(1, 121, 190);
 }
 form .inputCont.inline {
   display: flex;
@@ -1929,6 +1933,10 @@ form .inputCont input::placeholder, form .inputCont .dropDownInd::placeholder, f
 form .inputCont input:focus, form .inputCont .dropDownInd:focus, form .inputCont textarea:focus, form .inputCont select:focus {
   background: rgba(255, 255, 255, 0.4);
 }
+form .inputCont input.error, form .inputCont .dropDownInd.error, form .inputCont textarea.error, form .inputCont select.error {
+  outline: 1px solid #dd1919;
+  outline-offset: 2px;
+}
 form .inputCont select option {
   background: rgba(0, 0, 0, 0.1);
   color: #242222;
@@ -2066,6 +2074,42 @@ form .inputCont select option {
 .userLogin .loggedIn img, .playerLogin .loggedIn img, .guestLogin .loggedIn img {
   margin: auto;
 }
+.userLogin .loggedIn.error, .playerLogin .loggedIn.error, .guestLogin .loggedIn.error {
+  padding: 0px 20px 5px;
+}
+.userLogin .loggedIn.error h3, .playerLogin .loggedIn.error h3, .guestLogin .loggedIn.error h3 {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.userLogin .loggedIn.error h3:before, .playerLogin .loggedIn.error h3:before, .guestLogin .loggedIn.error h3:before {
+  content: " ";
+  width: 40px;
+  height: 40px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/images/error.png");
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+}
 .userLogin .loggedIn h3, .playerLogin .loggedIn h3, .guestLogin .loggedIn h3 {
   position: relative;
   color: #f5f5f5;
@@ -2084,21 +2128,6 @@ form .inputCont select option {
   align-items: center;
   justify-content: start;
   gap: 10px;
-}
-.userLogin .loggedIn h3:before, .playerLogin .loggedIn h3:before, .guestLogin .loggedIn h3:before {
-  content: " ";
-  width: 20px;
-  height: 20px;
-  min-width: 0;
-  max-width: auto;
-  min-height: auto;
-  max-height: auto;
-  background: transparent;
-  background-image: url("@/assets/images/error.png");
-  background-size: 100% auto;
-  background-position: center center;
-  background-repeat: no-repeat;
-  backdrop-filter: blur(none);
 }
 .userLogin .loggedIn h3.spec, .playerLogin .loggedIn h3.spec, .guestLogin .loggedIn h3.spec {
   padding: 0px 10px;
@@ -2775,6 +2804,11 @@ form .inputCont select option {
   .profileCont .selection.b .top .primaryBt {
     position: relative;
     padding: 10px;
+    display: none;
+  }
+  .profileCont .selection.b .top .primaryBt.active {
+    width: 100%;
+    display: block;
   }
   .profileCont .selection.b form .inp {
     flex: 0 0 100%;
