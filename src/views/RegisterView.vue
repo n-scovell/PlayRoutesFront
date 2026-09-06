@@ -21,15 +21,15 @@ const fc = formCheck()
 const showModal = ref<boolean>(false)
 
 //Vmods
-const name = ref('Nathan')
-const email = ref('n8scovell@yahoo.com')
-const sport = ref('Tackle Football')
-const team = ref('Raiders')
-const pin = ref('coolio')
-const password = ref('Baggins12345!')
-const passwordRepeat = ref('Baggins12345!')
+const name = ref('')
+const email = ref('')
+const sport = ref('')
+const team = ref('')
+const pin = ref('')
+const password = ref('')
+const passwordRepeat = ref('')
 const code = ref("")
-const selectedSport = ref("Tackle Football")
+const selectedSport = ref("")
 
 const error = ref<string | null>(null)
 const step = ref<number>(0)
@@ -198,12 +198,18 @@ const planPick = async (plan: 'COACH' | 'TEAM') => {
   }
 }
 const submitPaymntInfo = async () => {
-  try {
-    await strp.stripePayment(email.value, password.value)
-    currentStep.value = 'success'
-  } catch (err: any) {
-    error.value = err.message || 'Something went wrong'
-  }
+    try {
+        await strp.stripePayment()
+
+        console.log('STRIPE SUCCESS — NOW LOGGING IN')
+        await auth.login(email.value, password.value)
+
+        console.log('LOGIN SUCCESS')
+        currentStep.value = 'success'
+    } catch (err: any) {
+        console.error('REGISTRATION ERROR:', err)
+        error.value = err.message || 'Something went wrong'
+    }
 }
 
 watch(() => password.value, () => {
@@ -250,7 +256,7 @@ watch(() => password.value, () => {
   <div class="userLogin" :class="{active: currentStep === 'account'}">
     <form class="signIn" @submit.prevent>
       <AccountIcon />
-      <h3>STEP 1: ACCOUNT SETUP</h3>
+      <h3>ACCOUNT SETUP</h3>
       <p>Create your login information</p>
       <div class="loggedIn" v-if="error" >
         <h3>{{error}}</h3>
@@ -296,7 +302,7 @@ watch(() => password.value, () => {
   <div class="userLogin" :class="{active: currentStep === 'team'}">
     <form class="signIn" @submit.prevent>
       <TeamIcon />
-      <h3>STEP 2: TEAM SETUP</h3>
+      <h3>TEAM SETUP</h3>
       <p>Create your team information</p>
       <div class="loggedIn" v-if="error" >
         <h3 v-if="error.includes('luggage')" class="spec"><strong><em>12345?!</em></strong>{{error}}</h3>
@@ -335,7 +341,7 @@ watch(() => password.value, () => {
   <div class="userLogin" :class="{active: currentStep === 'verify'}">
     <form class="signIn" @submit.prevent>
       <VerifyIcon />
-      <h3>STEP 3: VERIFY ACCOUNT</h3>
+      <h3>VERIFY ACCOUNT</h3>
       <p>A verification number was sent to: {{email}}</p>
       <div class="loggedIn" v-if="error" >
         <h3>{{error}}</h3>
@@ -353,7 +359,7 @@ watch(() => password.value, () => {
   <div class="userLogin" :class="{active: currentStep === 'plan'}">
     <form @submit.prevent>
       <PaymentIcon />
-      <h3>STEP {{step}}: SELECT PAYMENT PLAN</h3>
+      <h3>SELECT PAYMENT PLAN</h3>
       <p>Setup your payment process to access Player Routes!</p>
       <div class="loggedIn" v-if="error" >
         <h3>{{error}}</h3>

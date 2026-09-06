@@ -213,8 +213,8 @@ const guestSignIn = async () => {
             <RegisterIcon />
           </div>
           <div>
-          <h3>USER REGISTRATION</h3>
-          <p>Create an account and plan, prepare, perform.</p>
+          <h3>NEW USER</h3>
+          <p>Register an account and plan, prepare, perform.</p>
           <RouterLink to="/register">
           <button class="primaryBt b" @click="chooseLogin('user')" >Continue as User</button>
           </RouterLink>

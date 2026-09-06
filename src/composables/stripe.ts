@@ -64,7 +64,7 @@ export function stripeInit() {
             strp.paymentElement = strp.elements.create('payment')
             strp.paymentElement.mount('#payment-element')
         },
-        stripePayment: async (email: string, password: string) => {
+        stripePayment: async () => {
             strp.paymentError.value = ''
             strp.isProcessing.value = true
             try {
@@ -80,9 +80,6 @@ export function stripeInit() {
                 if (error) {
                     strp.paymentError.value = error.message || 'Payment failed'
                     return
-                }
-                if (paymentIntent?.status === 'succeeded') {
-                    await auth.login(email, password)
                 }
             } catch (err: any) {
                 console.error('PAYMENT ERROR:', err)
