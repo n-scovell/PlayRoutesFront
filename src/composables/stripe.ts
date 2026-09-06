@@ -24,6 +24,7 @@ export function stripeInit() {
                 await strp.stripeSetup()
             } catch (err: any) {
                 strp.paymentError.value = err.message || 'Unable to initialize payment'
+                throw err
             }
         },
         stripeSetup: async () => {
@@ -38,7 +39,17 @@ export function stripeInit() {
                     })
                 }
             )
-            const data = await res.json()
+            // const data = await res.json()
+            const text = await res.text()
+            console.log('STRIPE STATUS:', res.status)
+            console.log('STRIPE RESPONSE:', text)
+            let data
+            try {
+                data = JSON.parse(text)
+            } catch {
+                throw new Error(`Stripe API returned invalid JSON (${res.status})`)
+            }
+
             if (!res.ok) {
                 throw new Error( data.error || 'Failed to activate payment')
             }

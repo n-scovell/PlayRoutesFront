@@ -1391,9 +1391,6 @@ form {
       max-width:50%;
       min-width:250px;
       .txt {
-        .iconCont {
-          outline:1px solid red;
-        }
         @include flex(flex, column, wrap, left, start, 10px);
         * {text-align:left;}
 
@@ -1401,7 +1398,11 @@ form {
     }
   }
   &.active {
-    left:200%;
+    left:-200%;
+    transition:all .2s .2s ease-in;
+  }
+  &.inactive {
+    left:-200%;
     transition:all .2s .2s ease-in;
   }
   h1 {

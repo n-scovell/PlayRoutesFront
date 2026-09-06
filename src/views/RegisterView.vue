@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted, nextTick  } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/userAuth'
 
@@ -21,18 +21,19 @@ const fc = formCheck()
 const showModal = ref<boolean>(false)
 
 //Vmods
-const name = ref('')
-const email = ref('')
-const sport = ref('')
-const team = ref('')
-const pin = ref('')
-const password = ref('')
-const passwordRepeat = ref('')
+const name = ref('Nathan')
+const email = ref('n8scovell@yahoo.com')
+const sport = ref('Tackle Football')
+const team = ref('Raiders')
+const pin = ref('coolio')
+const password = ref('Baggins12345!')
+const passwordRepeat = ref('Baggins12345!')
 const code = ref("")
-const selectedSport = ref("")
+const selectedSport = ref("Tackle Football")
 
 const error = ref<string | null>(null)
 const step = ref<number>(0)
+const currentStep = ref<string>('init')
 const allClear = ref<boolean>(false)
 
 const sportChoice = ref([
@@ -82,18 +83,13 @@ async function verifyCode() {
       }),
     }
   )
-
   const data = await res.json()
-
   if (!res.ok) {
     if (data.error === 'Server error') {
       throw new Error('Account already assigned to this email.')
     }
-
     throw new Error(data.error || 'Verification failed')
   }
-
-  // NEW
   registrationUserId.value = data.user.id
 }
 
@@ -113,11 +109,47 @@ const clearMe = () => {
   code.value = ''
 }
 
+
+const processParade = async (val: string) => {
+  error.value = null
+  try {
+    if (currentStep.value === 'init') {
+      // GOES TO ACCOUNT
+      currentStep.value = val
+    } else if (currentStep.value === 'account') {
+      // GOES TO TEAM
+      await fc.checkPassword(password.value, passwordRepeat.value)
+      await fc.checkEmail(email.value)
+      currentStep.value = val
+    } else if (currentStep.value === 'team') {
+      // GOES TO VERIFY
+      await fc.checkInput(team.value, 'team')
+      await fc.checkInput(name.value, 'name')
+      await fc.checkInput(selectedSport.value, 'sport')
+      await fc.checkPin(pin.value, name.value, team.value)
+      checkSignUp()
+      currentStep.value = val
+    } else if (currentStep.value === 'verify') {
+      // GOES TO PLAN
+      await fc.checkInput(code.value, 'code')
+      await verifyCode()
+      currentStep.value = val
+    } else if (currentStep.value === 'plan') {
+      await fc.checkInput(code.value, 'code')
+      await verifyCode()
+      currentStep.value = val
+    }
+  } catch (err: any) {
+    error.value = err.message || 'Something went wrong'
+  }
+}
+
+
 const registerProcess = async (val: number) => {
   error.value = null
   try {
     if (step.value === 0) {
-      step.value = val
+      currentStep.value = 'account'
     } else if (step.value === 1) {
       await fc.checkPassword(password.value, passwordRepeat.value)
       await fc.checkEmail(email.value)
@@ -156,33 +188,23 @@ const showPinInfo = () => {
   showinfo.value = !showinfo.value
 }
 
-const yourPick = async (plan: 'COACH' | 'TEAM') => {
+const planPick = async (plan: 'COACH' | 'TEAM') => {
   try {
+    await nextTick()
     await strp.stripePlan(plan, registrationUserId.value)
-    step.value = 5
+    currentStep.value = 'payment'
   } catch (err: any) {
     error.value = err.message || 'Something went wrong'
   }
 }
-const mainSubmit = async () => {
+const submitPaymntInfo = async () => {
   try {
     await strp.stripePayment(email.value, password.value)
-    step.value = 6
+    currentStep.value = 'success'
   } catch (err: any) {
     error.value = err.message || 'Something went wrong'
   }
 }
-
-// onMounted(() => {
-//   const params = new URLSearchParams(window.location.search)
-//   if (params.get('payment') === 'success' && window.opener) {
-//     window.opener.postMessage(
-//       { type: 'STRIPE_PAYMENT_SUCCESS' },
-//       'https://www.playerroutes.com'
-//     )
-//     window.close()
-//   }
-// })
 
 watch(() => password.value, () => {
   allClear.value = fc.verifyPass(password.value) ? true : false
@@ -192,11 +214,9 @@ watch(() => password.value, () => {
 <template>
   <main style="min-height:100vh">
   
-  <div class="loginChoice"  :class="{active: step !== 0}">
-
+  <div class="loginChoice" :class="{inactive: currentStep !== 'init'}">
     <h1>Player Routes Registration</h1>
     <h2>or do you need to login?</h2>
-
     <div class="selection">
       <div class="txt">
         <div class="iconCont">
@@ -205,12 +225,11 @@ watch(() => password.value, () => {
         <div>
         <h3>REGISTER NEW USER</h3>
         <p>Join Player Routes and take<br> your playbook to a new level!</p>
-        <button class="primaryBt b" @click="registerProcess(1)">NEW USER</button>
+        <button class="primaryBt b" @click="processParade('account')">NEW USER</button>
         </div>
       </div>
     </div>
-
-    <div class="selection"  >
+    <div class="selection">
       <RouterLink to="/login"> 
         <button class="wide">
           <div class="txt">
@@ -227,8 +246,8 @@ watch(() => password.value, () => {
       </RouterLink>
     </div>
   </div>
-
-  <div class="userLogin" :class="{active : step === 1}">
+  <!-- ACCOUNT -->
+  <div class="userLogin" :class="{active: currentStep === 'account'}">
     <form class="signIn" @submit.prevent>
       <AccountIcon />
       <h3>STEP 1: ACCOUNT SETUP</h3>
@@ -268,13 +287,13 @@ watch(() => password.value, () => {
         <label>Repeat Password:<input autocomplete="off" placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
       </div>
       <div class="btCont">
-        <button class="primaryBt b" @click="registerProcess(2)">NEXT</button>
+        <button class="primaryBt b" @click="processParade('team')">NEXT</button>
         <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
       </div>
     </form>
   </div>
-
-  <div class="userLogin" :class="{active : step === 2}">
+  <!-- TEAM -->
+  <div class="userLogin" :class="{active: currentStep === 'team'}">
     <form class="signIn" @submit.prevent>
       <TeamIcon />
       <h3>STEP 2: TEAM SETUP</h3>
@@ -308,21 +327,12 @@ watch(() => password.value, () => {
       <div class="btCont">
         <button class="primaryBt b" @click="goBackOne(1)">BACK</button>
         <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
-        <button class="primaryBt b" @click="registerProcess(3)">NEXT</button>
+        <button class="primaryBt b" @click="processParade('verify')">NEXT</button>
       </div>
     </form>
   </div>
-
-  <!-- <div class="userLogin" :class="{active : step === 2}">
-    <form class="signIn" @submit.prevent>
-      <TeamIcon />
-      <div class="btCont">
-        <button class="primaryBt b" type="button">DO IT</button>
-      </div>
-    </form>
-  </div> -->
-
-  <div class="userLogin" :class="{active : step === 3}">
+  <!-- VERIFY -->
+  <div class="userLogin" :class="{active: currentStep === 'verify'}">
     <form class="signIn" @submit.prevent>
       <VerifyIcon />
       <h3>STEP 3: VERIFY ACCOUNT</h3>
@@ -334,13 +344,13 @@ watch(() => password.value, () => {
         <label>Verify:</label><input placeholder="Verify Code" type="text" v-model="code" />
       </div>
       <div class="btCont">
-        <button class="primaryBt b" type="button" @click="registerProcess(4)">VERIFY</button>
+        <button class="primaryBt b" type="button" @click="processParade('plan')">VERIFY</button>
         <button class="primaryBt cancel" type="button" @click="cancelcode">CANCEL</button>
       </div>
     </form>
   </div>
-
-  <div class="userLogin" :class="{active : step === 4}">
+  <!-- PLAN -->
+  <div class="userLogin" :class="{active: currentStep === 'plan'}">
     <form @submit.prevent>
       <PaymentIcon />
       <h3>STEP {{step}}: SELECT PAYMENT PLAN</h3>
@@ -358,7 +368,7 @@ watch(() => password.value, () => {
             <button
               class="primaryBt b"
               type="button"
-              @click="yourPick('COACH')"
+              @click="planPick('COACH')"
             >
               SELECT
             </button>
@@ -375,20 +385,20 @@ watch(() => password.value, () => {
             <button
               class="primaryBt b"
               type="button"
-              @click="yourPick('TEAM')"
+              @click="planPick('TEAM')"
             >
               SELECT
             </button>
           </div>
         </div>
       </div>
-      <div class="btCont">
+      <!-- <div class="btCont">
         <button class="primaryBt b" type="button" style="max-width:200px;" @click="registerProcess(2)">BACK</button>
-      </div>
+      </div> -->
     </form>
   </div>
 
-  <div class="userLogin" :class="{ active: step === 5 }">
+  <div class="userLogin" :class="{active: currentStep === 'payment'}">
     <form @submit.prevent>
       <img alt="PRArrow" src="@/assets/images/user.png" />
       <h3>COMPLETE YOUR SUBSCRIPTION</h3>
@@ -397,7 +407,7 @@ watch(() => password.value, () => {
       </p>
       <div id="payment-element"></div>
       <div class="btCont" style="margin-top:10px">
-        <button class="primaryBt b" type="submit" :disabled="strp.isProcessing.value" @click="mainSubmit">
+        <button class="primaryBt b" type="submit" :disabled="strp.isProcessing.value" @click="submitPaymntInfo">
           {{ strp.isProcessing.value ? 'PROCESSING...' : 'SUBMIT' }}
         </button>
       </div>
@@ -405,7 +415,7 @@ watch(() => password.value, () => {
     </form>
   </div>
 
-  <div class="userLogin" :class="{ active: step === 6 }">
+  <div class="userLogin":class="{active: currentStep === 'success'}">
     <form @submit.prevent>
       <img alt="PRArrow" src="@/assets/images/user.png" />
       <h3>Your account is completed and paid for! HOORAH!</h3>
@@ -413,9 +423,11 @@ watch(() => password.value, () => {
         Let's get started and kick some ass!
       </p>
       <div class="btCont">
-        <button class="primaryBt b" ss >
-          CREATE PLAYS
-        </button>
+        <RouterLink to="/create"> 
+          <button class="primaryBt b" ss >
+            CREATE PLAYS
+          </button>
+        </RouterLink>
       </div>
     </form>
   </div>

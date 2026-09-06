@@ -2831,9 +2831,6 @@ form .inputCont select option {
   max-width: 50%;
   min-width: 250px;
 }
-.loginChoice.profile .selection .txt .iconCont {
-  outline: 1px solid red;
-}
 .loginChoice.profile .selection .txt {
   display: flex;
   flex-direction: column;
@@ -2846,7 +2843,11 @@ form .inputCont select option {
   text-align: left;
 }
 .loginChoice.active {
-  left: 200%;
+  left: -200%;
+  transition: all 0.2s 0.2s ease-in;
+}
+.loginChoice.inactive {
+  left: -200%;
   transition: all 0.2s 0.2s ease-in;
 }
 .loginChoice h1 {
