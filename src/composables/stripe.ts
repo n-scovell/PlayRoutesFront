@@ -45,25 +45,25 @@ export function stripeInit() {
             console.log('STRIPE STATUS:', res.status)
             console.log('STRIPE RESPONSE:', text)
             let data
-            // try {
-            //     data = JSON.parse(text)
-            // } catch {
-            //     throw new Error(`Stripe API returned invalid JSON (${res.status})`)
-            // }
             try {
                 data = JSON.parse(text)
             } catch {
-                console.error('INVALID STRIPE RESPONSE:', {
-                    url: `${import.meta.env.VITE_API_URL}/api/stripe`,
-                    status: res.status,
-                    contentType: res.headers.get('content-type'),
-                    response: text
-                })
-
-                throw new Error(
-                    `Stripe API returned invalid JSON (${res.status}): ${text}`
-                )
+                throw new Error(`Stripe API returned invalid JSON (${res.status})`)
             }
+            // try {
+            //     data = JSON.parse(text)
+            // } catch {
+            //     console.error('INVALID STRIPE RESPONSE:', {
+            //         url: `${import.meta.env.VITE_API_URL}/api/stripe`,
+            //         status: res.status,
+            //         contentType: res.headers.get('content-type'),
+            //         response: text
+            //     })
+
+            //     throw new Error(
+            //         `Stripe API returned invalid JSON (${res.status}): ${text}`
+            //     )
+            // }
 
             if (!res.ok) {
                 throw new Error( data.error || 'Failed to activate payment')
