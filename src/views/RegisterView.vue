@@ -22,7 +22,7 @@ const showModal = ref<boolean>(false)
 
 //Vmods
 const name = ref('')
-const email = ref('n8scovell@yahoo.com')
+const email = ref('')
 const sport = ref('')
 const team = ref('')
 const pin = ref('')
@@ -244,7 +244,11 @@ watch(() => password.value, () => {
             <li>1 Special - !@#$%?</li>
           </ul>
         </div>
-        <label>Password:<input :class="{error : fc.inpPassword.value || fc.inpPasswordRepeat.value}" autocomplete="off" placeholder="Password" type="password" v-model="password" /></label>
+        <label>Password:<input 
+        onpaste="return false;" 
+        oncopy="return false;" 
+        ondrop="return false;"
+        :class="{error : fc.inpPassword.value || fc.inpPasswordRepeat.value}" autocomplete="off" placeholder="Password" type="password" v-model="password" /></label>
       </div>
       <div class="inputCont"  >
         <label v-if="allClear">Secure password!</label>
@@ -258,7 +262,11 @@ watch(() => password.value, () => {
         </ul>
       </div>
       <div class="inputCont" >
-        <label>Repeat Password:<input :class="{error : fc.inpPasswordRepeat.value}"  autocomplete="off" placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
+        <label>Repeat Password:<input 
+        onpaste="return false;" 
+        oncopy="return false;" 
+        ondrop="return false;"
+          :class="{error : fc.inpPasswordRepeat.value}"  autocomplete="off" placeholder="Repeat Password" type="password" v-model="passwordRepeat" /></label>
       </div>
       <div class="btCont">
         <button class="primaryBt b" @click="processParade('team')">NEXT</button>
