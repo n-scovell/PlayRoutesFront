@@ -22,6 +22,7 @@ export function stripeInit() {
             strp.registrationUserId.value = id
             try {
                 await strp.stripeSetup()
+                
             } catch (err: any) {
                 strp.paymentError.value = err.message || 'Unable to initialize payment'
                 throw err
@@ -44,10 +45,24 @@ export function stripeInit() {
             console.log('STRIPE STATUS:', res.status)
             console.log('STRIPE RESPONSE:', text)
             let data
+            // try {
+            //     data = JSON.parse(text)
+            // } catch {
+            //     throw new Error(`Stripe API returned invalid JSON (${res.status})`)
+            // }
             try {
                 data = JSON.parse(text)
             } catch {
-                throw new Error(`Stripe API returned invalid JSON (${res.status})`)
+                console.error('INVALID STRIPE RESPONSE:', {
+                    url: `${import.meta.env.VITE_API_URL}/api/stripe`,
+                    status: res.status,
+                    contentType: res.headers.get('content-type'),
+                    response: text
+                })
+
+                throw new Error(
+                    `Stripe API returned invalid JSON (${res.status}): ${text}`
+                )
             }
 
             if (!res.ok) {
