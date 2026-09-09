@@ -168,9 +168,9 @@ const submitPaymntInfo = async () => {
     try {
         await strp.stripePayment()
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${auth.user?.id}`, {
-          headers: {
-              Authorization: `Bearer ${auth.token}`
-          }
+            headers: {
+                Authorization: `Bearer ${auth.token}`
+            }
         })
         const user = await res.json()
         auth.user = user
