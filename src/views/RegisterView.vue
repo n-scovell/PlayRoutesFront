@@ -167,10 +167,13 @@ const planPick = async (plan: 'COACH' | 'TEAM') => {
 const submitPaymntInfo = async () => {
     try {
         await strp.stripePayment()
-        console.log('STRIPE SUCCESS — NOW LOGGING IN')
-        
-        console.log('LOGIN SUCCESS')
-        currentStep.value = 'success'
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${auth.user?.id}`, {
+          headers: {
+              Authorization: `Bearer ${auth.token}`
+          }
+        })
+        const user = await res.json()
+        auth.user = user
     } catch (err: any) {
         console.error('REGISTRATION ERROR:', err)
         error.value = err.message || 'Something went wrong'
