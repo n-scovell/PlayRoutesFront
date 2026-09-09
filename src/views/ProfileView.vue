@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
 import { usePlayStore } from '@/stores/playStore'
 import { useFormation } from '@/stores/formStore'
@@ -8,15 +8,22 @@ import { stripeInit } from '@/composables/stripe'
 
 const stripe = stripeInit()
 
+
 import UserIcon from '@/assets/icons/ico_user.svg'
 import PinIcon from '@/assets/icons/ico_pin.svg'
 import PasswordIcon from '@/assets/icons/ico_password.svg'
+
+
 
 const auth = useAuthStore()
 const fav = useFavorites()
 const playsStore = usePlayStore()
 const forms = useFormation()
 const error = ref<string | null>(null)
+
+onMounted(async () => {
+    await auth.refreshUser()
+})
 
 
 const initChange = ref<boolean>(false)
@@ -38,6 +45,21 @@ const email = ref<any>(auth.user?.email)
 const team = ref<any>(auth.user?.team)
 const sport = ref<any>(auth.user?.sport)
 const pin = ref<any>()
+
+// const refreshUser = async () => {
+//   try {
+//     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${auth.user?.id}`, {
+//       headers: {
+//         Authorization: `Bearer ${auth.token}`
+//       }
+//     })
+//     if (!res.ok) {throw new Error('Failed to refresh user')}
+//     const user = await res.json()
+//   auth.user = user
+//   } catch (err) {
+//   console.error('Failed to refresh user:', err)
+//   }
+// }
 
 const selectedPlay = ref([
   {

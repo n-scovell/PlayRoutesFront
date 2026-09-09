@@ -181,6 +181,32 @@ function playerLogout() {
     return data
   }
 
+  async function refreshUser() {
+  if (!user.value || !token.value) return
+
+  try {
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/users/${user.value.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token.value}`
+        }
+      }
+    )
+
+    if (!res.ok) {
+      throw new Error('Failed to refresh user')
+    }
+
+    const data = await res.json()
+
+    user.value = data
+
+    return data
+  } catch (err) {
+    console.error('Failed to refresh user:', err)
+  }
+}
 
   async function updatePassword(password: string) {
   if (!user.value) return
@@ -225,7 +251,8 @@ function playerLogout() {
     logout,
     updateUser,
     playerLogin,
-    updatePassword
+    updatePassword,
+    refreshUser
   }
 }, {
   persist: true

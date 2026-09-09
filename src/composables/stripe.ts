@@ -126,6 +126,7 @@ export function stripeInit() {
                     err.message || 'Unable to open subscription management'
             }
         },
+        
     }
     return strp
 }
