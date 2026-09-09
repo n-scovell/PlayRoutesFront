@@ -187,7 +187,7 @@ watch(() => password.value, () => {
   <main style="min-height:100vh">
   
   <div class="loginChoice" :class="{inactive: currentStep !== 'init'}">
-    <h1>Player Routes Registration</h1>
+    <h1>Registration</h1>
     <h2>or do you need to login?</h2>
     <div class="selection">
       <div class="txt">
