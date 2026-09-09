@@ -119,7 +119,8 @@ export function stripeInit() {
                 if (!data.url) {
                     throw new Error('Stripe portal URL was not returned')
                 }
-                window.location.href = data.url
+                // window.location.href = data.url
+                window.open(data.url, '_blank')
             } catch (err: any) {
                 console.error('SUBSCRIPTION MANAGEMENT ERROR:', err)
                 strp.paymentError.value =
