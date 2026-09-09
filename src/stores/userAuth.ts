@@ -186,7 +186,7 @@ function playerLogout() {
 
   try {
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/users/${user.value.id}`,
+      `${import.meta.env.VITE_API_URL}/api/users?userId=${user.value.id}`,
       {
         headers: {
           Authorization: `Bearer ${token.value}`
