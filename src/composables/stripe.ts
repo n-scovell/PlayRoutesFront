@@ -29,10 +29,19 @@ export function stripeInit() {
             }
         },
         stripeSetup: async () => {
+            if (!auth.userId || !auth.token) {
+                return
+            }
+            console.log('AUTH TOKEN:', auth.token)
+            console.log('REGISTRATION STRIPE TOKEN:', auth.token)
+            console.log('REGISTRATION USER ID:', strp.registrationUserId.value)
             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/stripe`,
                 {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${auth.token}`
+                    },
                     body: JSON.stringify({
                         action: 'create-subscription',
                         userId: strp.registrationUserId.value,

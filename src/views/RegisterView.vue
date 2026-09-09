@@ -21,13 +21,13 @@ const fc = formCheck()
 const showModal = ref<boolean>(false)
 
 //Vmods
-const name = ref('')
-const email = ref('')
+const name = ref('Nate')
+const email = ref('n8scovell@yahoo.com')
 const sport = ref('')
-const team = ref('')
-const pin = ref('')
-const password = ref('')
-const passwordRepeat = ref('')
+const team = ref('Raiders')
+const pin = ref('nathan')
+const password = ref('Baggins12345!')
+const passwordRepeat = ref('Baggins12345!')
 const code = ref("")
 const selectedSport = ref('')
 
@@ -156,6 +156,7 @@ const showPinInfo = () => {
 
 const planPick = async (plan: 'COACH' | 'TEAM') => {
   try {
+    await auth.login(email.value, password.value)
     await nextTick()
     await strp.stripePlan(plan, registrationUserId.value)
     currentStep.value = 'payment'
@@ -166,10 +167,8 @@ const planPick = async (plan: 'COACH' | 'TEAM') => {
 const submitPaymntInfo = async () => {
     try {
         await strp.stripePayment()
-
         console.log('STRIPE SUCCESS — NOW LOGGING IN')
-        await auth.login(email.value, password.value)
-
+        
         console.log('LOGIN SUCCESS')
         currentStep.value = 'success'
     } catch (err: any) {
