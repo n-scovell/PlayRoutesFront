@@ -59,7 +59,7 @@ const sortBy = ref<'title' | 'formation' | 'playType'>('title')
 
 
 onMounted(async () => {
-  if (auth.user.id) {
+  if (auth.user?.id) {
     playsStore.fetchPlays()
   }
   if (gst.guest?.id) {

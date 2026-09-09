@@ -3637,11 +3637,6 @@ form .inputCont select option {
   color: #1f2937;
   cursor: pointer;
 }
-.sorters select option:option-checked {
-  background-color: #eff6ff;
-  color: #2563eb;
-  font-weight: bold;
-}
 
 .playsContainer {
   min-height: 100vh;
