@@ -604,7 +604,7 @@ const closeMessage = () => {
 
 <template>
   <main>
-    <h1>CREATE YOUR PLAY {{ plays.playAlreadyExists }}</h1>
+    <h1>CREATE YOUR PLAY</h1>
     <div class="playMaker">
       <section class="a">
         <div class="block a" :class="{active: dropChoiceAll.playInformation}">
@@ -698,6 +698,9 @@ const closeMessage = () => {
               </div>
               <div class="posCont">
                 <button class="yellow" :class="{ active: selectedColor === 'yellow' }" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
+              </div>
+              <div class="posCont">
+                <button class="gray" :class="{ active: selectedColor === 'gray' }" aria-label="Pen Stroke" @pointerdown="changeColor('gray')"></button>
               </div>
             </div>
           </div>

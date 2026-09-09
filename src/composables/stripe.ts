@@ -50,21 +50,6 @@ export function stripeInit() {
             } catch {
                 throw new Error(`Stripe API returned invalid JSON (${res.status})`)
             }
-            // try {
-            //     data = JSON.parse(text)
-            // } catch {
-            //     console.error('INVALID STRIPE RESPONSE:', {
-            //         url: `${import.meta.env.VITE_API_URL}/api/stripe`,
-            //         status: res.status,
-            //         contentType: res.headers.get('content-type'),
-            //         response: text
-            //     })
-
-            //     throw new Error(
-            //         `Stripe API returned invalid JSON (${res.status}): ${text}`
-            //     )
-            // }
-
             if (!res.ok) {
                 throw new Error( data.error || 'Failed to activate payment')
             }
@@ -102,7 +87,36 @@ export function stripeInit() {
             } finally {
                 strp.isProcessing.value = false
             }
-        }
+        },
+        manageSubscription: async () => {
+            if (!auth.userId || !auth.token) {
+                return
+            }
+            try {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/stripe`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${auth.token}`
+                    },
+                    body: JSON.stringify({
+                        action: 'manage-subscription'
+                    })
+                })
+                const data = await res.json()
+                if (!res.ok) {
+                    throw new Error(data.error || 'Unable to open subscription management')
+                }
+                if (!data.url) {
+                    throw new Error('Stripe portal URL was not returned')
+                }
+                window.location.href = data.url
+            } catch (err: any) {
+                console.error('SUBSCRIPTION MANAGEMENT ERROR:', err)
+                strp.paymentError.value =
+                    err.message || 'Unable to open subscription management'
+            }
+        },
     }
     return strp
 }

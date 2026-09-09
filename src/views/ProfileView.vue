@@ -4,6 +4,9 @@ import { useAuthStore } from '../stores/userAuth'
 import { usePlayStore } from '@/stores/playStore'
 import { useFormation } from '@/stores/formStore'
 import { useFavorites } from '@/stores/favStore'
+import { stripeInit } from '@/composables/stripe'
+
+const stripe = stripeInit()
 
 import UserIcon from '@/assets/icons/ico_user.svg'
 import PinIcon from '@/assets/icons/ico_pin.svg'
@@ -188,6 +191,9 @@ watch(
 )
 
 
+const manageSubscription = async () => {
+    await stripe.manageSubscription()
+}
 
 
 
@@ -220,7 +226,7 @@ watch(
         </div>
         <div class="userPlan" :class="auth.user?.plan">
           <h4><div class="icon"></div> Pro {{ auth.user?.plan }} Plan <button>ACTIVE</button></h4>
-          <button class="manage">Manage Subscription</button>
+          <button class="manage" @click="manageSubscription()">Manage Subscription</button>
         </div>
         <button class="primaryBt c">LOG OUT</button>
       </div>

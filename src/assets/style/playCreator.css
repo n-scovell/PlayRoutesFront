@@ -31,7 +31,7 @@
   gap: 10px;
 }
 .playMaker section.a, .playMaker section.c {
-  max-width: 320px;
+  max-width: 210px;
 }
 .playMaker section.d {
   display: none;
@@ -45,6 +45,7 @@
 }
 .playMaker section .block.active {
   flex: 1;
+  height: auto;
 }
 .playMaker section .block.active .makerHeader {
   width: 100%;
@@ -435,6 +436,9 @@
 .playMaker section .block .sectional .pens .posCont button.yellow, .playMaker section .block .sectional .colors .posCont button.yellow {
   background: #f3ff44;
 }
+.playMaker section .block .sectional .pens .posCont button.gray, .playMaker section .block .sectional .colors .posCont button.gray {
+  background: #9b9e9c;
+}
 .playMaker section .block .sectional .pens .posCont button img, .playMaker section .block .sectional .colors .posCont button img {
   height: 50%;
 }
@@ -611,8 +615,8 @@
 }
 @media screen and (min-width: 1200px) {
   .playMaker section .block .field .positionBox .player {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     min-width: 0;
     max-width: auto;
     min-height: auto;
@@ -621,8 +625,8 @@
 }
 @media screen and (min-width: 2000px) {
   .playMaker section .block .field .positionBox .player {
-    width: 55px;
-    height: 55px;
+    width: 40px;
+    height: 40px;
     min-width: 0;
     max-width: auto;
     min-height: auto;

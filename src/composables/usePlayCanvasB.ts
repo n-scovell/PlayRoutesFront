@@ -3,7 +3,7 @@ import type { CSSProperties } from 'vue'
 export const TOOL_TYPES = ['pen', 'chalk', 'dash', 'marker'] as const
 export type ToolType = typeof TOOL_TYPES[number]
 
-export const COLOR_TYPES = ['red', 'blue', 'yellow', 'white'] as const
+export const COLOR_TYPES = ['red', 'blue', 'yellow', 'white', 'gray'] as const
 export type ColorType = typeof COLOR_TYPES[number]
 
 export type Point = { x: number; y: number }

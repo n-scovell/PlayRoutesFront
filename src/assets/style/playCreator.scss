@@ -23,7 +23,7 @@ $fieldSize: 75%;
     flex:1;
     @include flx(column, nowrap, stretch, start, $pagePadding);
     &.a, &.c {
-      max-width:320px;
+      max-width:210px;
     } 
     &.d {
       display:none;
@@ -32,8 +32,10 @@ $fieldSize: 75%;
       flex:1;
       @include boxA();
       position:relative;
+      
       &.active {
         flex:1;
+        height:auto;
         .makerHeader {
           width:100%;
           padding:10px;
@@ -238,6 +240,7 @@ $fieldSize: 75%;
               &.red { background:$penRed; }
               &.blue { background:$penBlue; }
               &.yellow { background:$penYellow; }
+              &.gray { background:$penGray; }
               img {
                 height:50%;
               }
@@ -366,8 +369,8 @@ $fieldSize: 75%;
 $player-sizes: (
   300:  (size: 15px, color: pink),
   550:  (size: 31px, color: green),
-  1200: (size: 45px, color: red),
-  2000: (size: 55px, color: purple)
+  1200: (size: 35px, color: red),
+  2000: (size: 40px, color: purple)
 );
 
 @each $bp, $props in $player-sizes {
