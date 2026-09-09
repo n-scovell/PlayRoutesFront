@@ -174,6 +174,7 @@ const submitPaymntInfo = async () => {
         })
         const user = await res.json()
         auth.user = user
+        currentStep.value = 'success'
     } catch (err: any) {
         console.error('REGISTRATION ERROR:', err)
         error.value = err.message || 'Something went wrong'
