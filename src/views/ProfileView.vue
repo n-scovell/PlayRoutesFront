@@ -4,6 +4,7 @@ import { useAuthStore } from '../stores/userAuth'
 import { usePlayStore } from '@/stores/playStore'
 import { useFormation } from '@/stores/formStore'
 import { useFavorites } from '@/stores/favStore'
+ import { usePlayers } from '@/stores/playerStore'
 import { stripeInit } from '@/composables/stripe'
 
 const stripe = stripeInit()
@@ -16,6 +17,7 @@ import PasswordIcon from '@/assets/icons/ico_password.svg'
 
 
 const auth = useAuthStore()
+const players = usePlayers()
 const fav = useFavorites()
 const playsStore = usePlayStore()
 const forms = useFormation()
@@ -234,7 +236,7 @@ const manageSubscription = async () => {
         <div class="teamInfo">
             <div>
               <h5>{{playsStore.plays.length}}</h5>
-              <p>Total Plays</p>
+              <p>Plays</p>
             </div>
             <div>
               <h5>{{ forms.formations.length }}</h5>
@@ -243,6 +245,10 @@ const manageSubscription = async () => {
             <div>
               <h5>{{ fav.favorites.length }}</h5>
               <p>Favorites</p>
+            </div>
+            <div>
+              <h5>{{  players.players.length }}</h5>
+              <p>Players</p>
             </div>
         </div>
         <div class="userPlan" :class="auth.user?.plan">

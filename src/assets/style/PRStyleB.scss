@@ -1231,7 +1231,7 @@ form {
           @include font($spec, $white, 25px, 300, .02em, 20px, normal, uppercase, none, center);
         }
         p {
-          @include font($par, $white, 12px, 500, .02em, 20px, normal, none, none, center);
+          @include font($par, $white, 11px, 500, .01em, 20px, normal, none, none, center);
         }
       }
     }
@@ -1450,13 +1450,15 @@ form {
       p, ul li {
         flex:1;
         @include font($par, $white, 15px, bold, .02em, 20px, normal, none, none, center);
-        height:30px;
+        height:40px;
+        padding:0px 60px;
+        @include flx(row,nowrap,center,center,0px);
       }
       button {
         position:relative;
         left:50%;
         transform:translateX(-50%);
-        margin-top:20px;
+        margin-top:10px;
       }
     }
   }

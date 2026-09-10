@@ -9,6 +9,8 @@ import RegisterIcon from '@/assets/icons/ico_register.svg'
 import HelmetIcon from '@/assets/icons/ico_helmet.svg'
 import GuestIcon from '@/assets/icons/ico_guest.svg'
 
+import MySel from '@/components/Selection.vue'
+
 const guestAccount = useGuest()
 const auth = useAuthStore()
 
@@ -67,12 +69,14 @@ const userLogin = ref<boolean>(false)
 const playerLogin = ref<boolean>(false)
 const guestLogin = ref<boolean>(false)
 
+
 const chooseLogin = (p: string) => {
   clearChoice.value = true
   if (p === 'user') userLogin.value = true
   if (p === 'player') playerLogin.value = true
   if (p === 'guest') guestLogin.value = true
 }
+
 const closeLogin = () => {
   clearChoice.value = false
   userLogin.value = false
@@ -170,71 +174,49 @@ const guestSignIn = async () => {
   }
 )
 
+const images = import.meta.glob<string>(
+  '@/assets/icons/*.svg', { eager: true, query: '?url', import: 'default'}
+)
+
+interface MyChoice {
+  icon: string,
+  tabSel: string,
+  hdr: string,
+  txt: string,
+  bttxt: string
+}
+const choiceList = ref<MyChoice[]> ([
+  {
+    icon:'user',
+    tabSel: 'user',
+    hdr: 'USER LOGIN',
+    txt: 'Login as the user and create plays, formations!',
+    bttxt: 'Continue as User',
+  },
+  {
+    icon:'player',
+    tabSel: 'player',
+    hdr: 'PLAYER LOGIN',
+    txt: 'Acces your teams playbook!',
+    bttxt: 'Continue as Player',
+  },
+  {
+    icon:'guest',
+    tabSel: 'guest',
+    hdr: 'GUEST LOGIN',
+    txt: 'Go ahead and check out Player Routes!',
+    bttxt: 'Create Login',
+  },
+])
+
 </script>
 
 <template>
   <main style="min-height:90vh; overflow:hidden"> 
     <div class="loginChoice" :class="{active: clearChoice}">
-
       <h1>Choose Your Access</h1>
       <h2>Select how you want to continue</h2>
- 
-      <div class="selection" @click="chooseLogin('user')" >
-        <div class="txt">
-          <div class="iconCont">
-            <UserIcon />
-          </div>
-          <div>
-          <h3>USER LOGIN</h3>
-          <p>Login as the user and create<br> plays, formations!</p>
-          <button class="primaryBt b" >Continue as User</button>
-          </div>
-        </div>
-      </div>
-
-      
-
-      <div class="selection" @click="chooseLogin('player')">
-        <div class="txt">
-          <div class="iconCont">
-            <HelmetIcon class="a" />
-          </div>
-          <div>
-          <h3>PLAYER LOGIN</h3>
-          <p>Acces your <br>teams playbook!</p>
-          <button class="primaryBt b" >Continue as Player</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="selection">
-        <div class="txt">
-          <div class="iconCont">
-            <RegisterIcon />
-          </div>
-          <div>
-          <h3>NEW USER</h3>
-          <p>Register an account and plan, prepare, perform.</p>
-          <RouterLink to="/register">
-          <button class="primaryBt b" @click="chooseLogin('user')" >Continue as User</button>
-          </RouterLink>
-          </div>
-        </div>
-      </div>
-
-      <div class="selection c" @click="chooseLogin('guest')">
-        <div class="txt">
-          <div class="iconCont">
-            <GuestIcon />
-          </div>
-          <div>
-          <h3>GUEST LOGIN</h3>
-          <p>Go ahead and check<br> out Player Routes!</p>
-          <button class="primaryBt b" >Continue as Guest</button>
-          </div>
-        </div>
-      </div>
-
+      <MySel v-for="s in choiceList" :key="`${s.icon}_selection`" :src="s" @click="chooseLogin(s.icon)" />
     </div>
 
     // LOGIN SCREENS

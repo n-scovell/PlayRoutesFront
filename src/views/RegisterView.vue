@@ -3,8 +3,8 @@ import { ref, watch, onMounted, onUnmounted, nextTick  } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/userAuth'
 
-import UserIcon from '@/assets/icons/ico_user.svg'
-import RegisterIcon from '@/assets/icons/ico_register.svg'
+import MySel from '@/components/Selection.vue'
+
 import AccountIcon from '@/assets/icons/ico_account.svg'
 import TeamIcon from '@/assets/icons/ico_team.svg'
 import VerifyIcon from '@/assets/icons/ico_verify.svg'
@@ -21,13 +21,13 @@ const fc = formCheck()
 const showModal = ref<boolean>(false)
 
 //Vmods
-const name = ref('Nate')
-const email = ref('n8scovell@yahoo.com')
+const name = ref('')
+const email = ref('')
 const sport = ref('')
-const team = ref('Raiders')
-const pin = ref('nathan')
-const password = ref('Baggins12345!')
-const passwordRepeat = ref('Baggins12345!')
+const team = ref('')
+const pin = ref('')
+const password = ref('')
+const passwordRepeat = ref('')
 const code = ref("")
 const selectedSport = ref('')
 
@@ -145,10 +145,6 @@ const processParade = async (val: string) => {
   }
 }
 
-const goBackOne = (val: number) => {
-  step.value = val
-}
-
 const showinfo = ref<boolean>(false)
 const showPinInfo = () => {
   showinfo.value = !showinfo.value
@@ -180,6 +176,28 @@ watch(() => password.value, () => {
   allClear.value = fc.verifyPass(password.value) ? true : false
 })
 
+
+const images = import.meta.glob<string>(
+  '@/assets/icons/*.svg', { eager: true, query: '?url', import: 'default'}
+)
+
+interface MyChoice {
+  icon: string,
+  tabSel: string,
+  hdr: string,
+  txt: string,
+  bttxt: string
+}
+const choiceList = ref<MyChoice[]> ([
+  {
+    icon:'user',
+    tabSel: 'account',
+    hdr: 'REGISTER NEW USER',
+    txt: 'Join Player Routes and take your playbook to a new level!',
+    bttxt: 'NEW USER',
+  },
+])
+
 </script>
 <template>
   <main style="min-height:100vh">
@@ -187,35 +205,7 @@ watch(() => password.value, () => {
   <div class="loginChoice" :class="{inactive: currentStep !== 'init'}">
     <h1>Registration</h1>
     <h2>or do you need to login?</h2>
-    <div class="selection">
-      <div class="txt">
-        <div class="iconCont">
-          <RegisterIcon />
-
-        </div>
-        <div>
-        <h3>REGISTER NEW USER</h3>
-        <p>Join Player Routes and take<br> your playbook to a new level!</p>
-        <button class="primaryBt b" @click="processParade('account')">NEW USER</button>
-        </div>
-      </div>
-    </div>
-    <div class="selection">
-      <RouterLink to="/login"> 
-        <button class="wide">
-          <div class="txt">
-            <div class="iconCont">
-              <UserIcon />
-            </div>
-            <div>
-            <h3>USER LOGIN</h3>
-            <p>Login as the user and create<br> plays, formations!</p>
-            <button class="primaryBt b" >Continue as User</button>
-            </div>
-          </div>
-        </button>
-      </RouterLink>
-    </div>
+    <MySel v-for="s in choiceList" :key="`${s.icon}_selection`" :src="s" @click="processParade(s.tabSel)" />
   </div>
   <!-- ACCOUNT -->
   <div class="userLogin" :class="{active: currentStep === 'account'}">
@@ -290,7 +280,7 @@ watch(() => password.value, () => {
       </div>
       <div class="inputCont a">
         <label>Sport:
-          <select :class="{error : fc.inpSport.value}" id="city-select" v-model="selectedSport" >
+          <select :class="{error : fc.inpSport.value}" v-model="selectedSport" >
             <option value="" disabled>Please select one</option>
             <option v-for="s in sportChoice" :key="s.id" :value="s.id">{{ s.name }}</option>
           </select>

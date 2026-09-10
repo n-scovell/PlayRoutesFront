@@ -8,7 +8,7 @@
 }
 .roster {
   width: 95vw;
-  height: 500px;
+  height: 100%;
   min-width: 0;
   max-width: auto;
   min-height: auto;
@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: top;
   justify-content: stretch;
   gap: 10px;
   margin: 10px auto 0px;
@@ -27,34 +27,66 @@
   height: 100%;
 }
 .roster section:nth-child(1) {
+  max-width: 450px;
+  margin-bottom: 0px;
+}
+.roster section:nth-child(1) form {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
   border-radius: 3px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
+  padding: 20px 20px 50px;
+  margin-bottom: 10px;
+}
+.roster section:nth-child(1) .playerCount {
+  height: 250px;
+  padding: 0px;
+}
+.roster section:nth-child(1) .playerCount p {
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  padding: 10px 0px;
 }
 .roster section:nth-child(2) {
-  max-width: 50%;
+  max-width: 80%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: start;
   gap: 10px;
+  padding-bottom: 100px;
 }
 .roster section .player {
-  height: 80px;
+  height: 60px;
   width: 100%;
+  padding: 0px 0px;
   border-radius: 3px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: start;
-  gap: 0px;
+  gap: 10px;
 }
-.roster section .player h2, .roster section .player h3, .roster section .player h4, .roster section .player h5 {
-  height: 100%;
+.roster section .player h2, .roster section .player h4, .roster section .player h5 {
+  height: 95%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -64,38 +96,42 @@
 }
 .roster section .player h2 {
   width: 70px;
-  color: #f5f5f5;
+  margin: 0px 0px;
+  color: #242222;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 300;
-  font-size: 30px;
+  font-weight: 600;
+  font-size: 20px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-shadow: none;
   text-align: center;
+  background-image: url("@/assets/icons/ico_jersey.svg");
+  background-position: center center;
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
 }
 .roster section .player .mid {
-  flex: 0 0 50%;
+  flex: 0 0 auto;
+  min-width: 400px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  align-items: left;
-  justify-content: center;
-  gap: 5px;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
 }
 .roster section .player .mid h3 {
-  outline: 1px solid red;
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 300;
-  font-size: 22px;
+  font-weight: 400;
+  font-size: 25px;
   font-style: normal;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
   text-transform: none;
   text-shadow: none;
-  text-align: left;
   text-align: left;
 }
 .roster section .player .mid p {
@@ -103,7 +139,7 @@
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 20px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -119,15 +155,107 @@
   gap: 0px;
 }
 .roster section .player .grade h4 {
-  width: 40px;
-  height: 40px;
-  background: rgba(42, 151, 20, 0.438);
-  border: 2px solid rgba(42, 151, 20, 0.8);
+  width: 50px;
+  height: 50px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
   gap: 0px;
-  border-radius: 10px;
+  background: rgba(42, 151, 20, 0.438);
+  border: 2px solid rgba(42, 151, 20, 0.8);
+  border-radius: 6px;
+}
+.roster section .player .delete {
+  width: 200px;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: none;
+  bottom: none;
+  right: 0px;
+  transform: translate(0%, -50%);
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  background: rgba(42, 151, 20, 0.5);
+  background: rgb(1, 121, 190);
+  padding: 10px 22px;
+}
+.roster section .player .delete.inactive {
+  display: none;
+}
+.roster section .player .delete:hover {
+  background: rgba(8, 120, 139, 0.8);
+}
+.roster section .player .delete.a {
+  background: white;
+}
+.roster section .player .areYouSure {
+  width: 310px;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: none;
+  bottom: none;
+  right: 0px;
+  transform: translate(0%, -50%);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: stretch;
+  gap: 10px;
+}
+.roster section .player .areYouSure button {
+  flex: 1;
+  height: 100%;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  padding: 10px 12px;
+}
+.roster section .player .areYouSure button.b, .roster section .player .areYouSure button.c {
+  background: rgba(156, 156, 156, 0.5);
+  max-width: 55px;
+}
+.roster section .player .areYouSure button.b:hover, .roster section .player .areYouSure button.c:hover {
+  background: rgba(121, 121, 120, 0.8);
 }/*# sourceMappingURL=teamRoster.css.map */

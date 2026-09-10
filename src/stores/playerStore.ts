@@ -7,6 +7,7 @@ export const usePlayers = defineStore('players', () => {
     const players = ref<any[]>([])
     const loading = ref(false)
     const error = ref<string | null>(null)
+    const playerNumberExists = ref<boolean>(false)
     async function fetchPlayers() {
       const auth = useAuthStore()
       if (!auth.userId || !auth.token) {
@@ -48,49 +49,48 @@ export const usePlayers = defineStore('players', () => {
       }
       fetchPlayers()
     }
-    // async function assignBadge(badgeId: string) {
-    //   const auth = useAuthStore()
-    //   if (!auth.token || !auth.userId) {
-    //   throw new Error("Not authenticated")
-    //   }
-    //   loading.value = true
-    //   const res = await fetch("https://play-route-back.vercel.app/api/userbadge", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${auth.token}`
-    //     },
-    //     body: JSON.stringify({
-    //       userId: auth.userId,
-    //       badgeId
-    //     })
-    //   })
-    //   const data = await res.json()
-    //   if (!res.ok) {
-    //     throw new Error(data.error || "Failed to assign badge")
-    //   }
-    //   return data
-    // }
-    // async function checkFormationBadges() {
-    //   const forms = useFormation()
-    //   await forms.fetchFormations()
-    //   if (forms.formations.length >= 1) {
-    //     await assignBadge("cmshye3c10003k304elikay36")
-    //   }
-    //   if (forms.formations.length >= 10) {
-    //     await assignBadge("cmshyeehn0004k304x3daqai3")
-    //   }
-    //   if (forms.formations.length >= 20) {
-    //     await assignBadge("cmshyemfy0005k3048k34h7dd")
-    //   }
-    // }
+
+    async function addPlayer(payload: any) {
+      const auth = useAuthStore()
+      playerNumberExists.value = false
+      loading.value = true
+      if (!auth.token || !auth.userId) {
+        throw new Error("Not authenticated")
+      }
+
+      const playerNum = players.value.some(p => Number(p.playerNumber) === Number(payload.playerNumber))
+      // const nameExists = players.value.some(p => p.firstName.toLowerCase() === payload.firstName.toLowerCase() && p.lastName.toLowerCase() === payload.lastName.toLowerCase())
+      if (playerNum) {
+        playerNumberExists.value = true
+        error.value = 'Number Already Assigned'
+        return
+      }
+      playerNumberExists.value = false
+      const res = await fetch("https://play-route-back.vercel.app/api/player", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`
+        },
+        body: JSON.stringify(payload)
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to create player")
+      }
+      loading.value = false
+      fetchPlayers()
+      return data
+    }
     return {
       players,
       loading,
       error,
       deleting,
+      playerNumberExists,
       fetchPlayers,
-      deletePlayer
+      deletePlayer,
+      addPlayer
     }
   },
   {

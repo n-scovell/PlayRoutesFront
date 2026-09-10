@@ -9,78 +9,119 @@
 
 
 .roster {
-  @include size(95vw, 500px);
-  @include flx(row, nowrap, center, stretch, 10px);
+  @include size(95vw, 100%);
+  @include flx(row, nowrap, top, stretch, 10px);
   margin:10px auto 0px;
   box-sizing:border-box;
   section {
     flex:1;
-    
     height:100%;
     &:nth-child(1) {
-      
-      @include boxA();
+      max-width:450px;
+      margin-bottom:0px;
+      form {
+        width:100%;
+        min-width:100%;
+        max-width:100%;
+        @include boxA();
+        padding:20px 20px 50px;
+        margin-bottom:10px;
+      }
+      .playerCount {
+        height:250px;
+        padding:0px;
+        p {
+          @include boxA();
+          @include font($head, $white, 15px, 600, .02em, 20px, normal, uppercase, none, center);
+          padding:10px 0px;
+        }
+      }
     }
     &:nth-child(2) {
-      max-width:50%;
+      max-width:80%;
       @include flx(column,nowrap,center,start,10px);
+      padding-bottom:100px;
     }
     .player {
-      height:80px;
+      height:60px;
       width:100%;
+      padding:0px 0px;
       @include boxA();
-      @include flx(row,nowrap,center,start,0px);
-      h2, h3, h4, h5 {
-        height:100%;
+      @include rel();
+      @include flx(row,nowrap,center,start,10px);
+      h2, h4, h5 {
+        height:95%;
         @include flx(row,nowrap,center,center,0px);
-        // @include font($head, $white, 30px, 300, .02em, 20px, normal, uppercase, none, center);
       }
       h2 {
         width:70px;
-        @include font($head, $white, 30px, 300, .02em, 20px, normal, uppercase, none, center);
+        margin:0px 0px;
+        @include font($head, $black, 20px, 600, .02em, 20px, normal, uppercase, none, center);
+        background-image:url('@/assets/icons/ico_jersey.svg');
+        background-position:center center;
+        background-size:80% 80%;
+        background-repeat:no-repeat;
       }
       .mid {
-        flex:0 0 50%;
-        @include flx(column, nowrap, left, center, 5px);
+        flex:0 0 auto;
+        min-width:400px;
+        @include flx(row, nowrap, center, start, 15px);
         h3 {
-          outline:1px solid red;
-          @include font($head, $white, 22px, 300, .02em, 20px, normal, none, none, left);
-          text-align:left;
+          @include font($head, $white, 25px, 400, .05em, 20px, normal, none, none, left);
         }
         p {
-          @include font($head, $gray, 15px, 500, .02em, 20px, normal, uppercase, none, left);
+          @include font($head, $gray, 20px, 500, .02em, 20px, normal, uppercase, none, left);
         }
       }
       .grade {
         @include flx(row, nowrap, center, center, 0px);
         h4 {
-          width:40px;
-          height:40px;
+          $w:50px;
+          @include size($w, $w);
+          @include font($head, $white, 20px, 500, .02em, 20px, normal, uppercase, none, left);
+          @include flx(row, nowrap, center, center, 0px);
           background:rgba(42, 151, 20, 0.438);
           border:2px solid rgba(42, 151, 20, 0.8);
-          @include flx(row, nowrap, center, center, 0px);
-          border-radius:10px;
-          
+          border-radius:6px;
         }
       }
-      // div {
-      //   flex:1;
-      //   height:100%;
-      //   // border-right:1px solid rgba(255,255,255,.8);
-      //   &:nth-child(1) {
-      //     max-width:70px;
-      //     @include flx(row,nowrap,center,center,0px);
-      //     h2 {
-      //     @include font($spec, $white, 30px, 300, .02em, 20px, normal, uppercase, none, center);
-      //     }
-      //   }
-      //   &:nth-child(2) {
-
-      //   }
-      //   &:last-child {
-      //     border-right:none;
-      //   }
-      // }
+      .delete {
+        $w:55px;
+        @include size(200px, 100%);
+        @include pos(absolute, 50%, $right:0px, $trans:translate(0%,-50%));
+        @include font($head, $white, 18px, 500, .1em, 20px, normal, uppercase, none, center);
+        background:rgba(42, 151, 20, 0.5);
+        background:$blueB;
+        padding:10px 22px;
+        &.inactive {
+          display:none;
+        }
+        &:hover {
+          background:rgba(8, 120, 139, 0.8);
+        }
+        &.a {
+          background:white;
+        }
+      }
+      .areYouSure {
+        $w:55px;
+        @include size(310px, 100%);
+        @include pos(absolute, 50%, $right:0px, $trans:translate(0%,-50%));
+        @include flx(row, nowrap, center, stretch, 10px);
+        button {
+          flex:1;
+          height:100%;
+          @include font($head, $white, 18px, 500, .1em, 20px, normal, uppercase, none, center);
+          padding:10px 12px;
+          &.b, &.c {
+            background:rgba(156, 156, 156, 0.5);
+            max-width:55px;
+            &:hover {
+              background:rgba(121, 121, 120, 0.8);
+            }
+          }
+        }
+      }
     }
   }
 }
