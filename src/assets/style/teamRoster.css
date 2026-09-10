@@ -1,0 +1,133 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.roster {
+  width: 95vw;
+  height: 500px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: stretch;
+  gap: 10px;
+  margin: 10px auto 0px;
+  box-sizing: border-box;
+}
+.roster section {
+  flex: 1;
+  height: 100%;
+}
+.roster section:nth-child(1) {
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+.roster section:nth-child(2) {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+.roster section .player {
+  height: 80px;
+  width: 100%;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 0px;
+}
+.roster section .player h2, .roster section .player h3, .roster section .player h4, .roster section .player h5 {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+}
+.roster section .player h2 {
+  width: 70px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 30px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+}
+.roster section .player .mid {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: left;
+  justify-content: center;
+  gap: 5px;
+}
+.roster section .player .mid h3 {
+  outline: 1px solid red;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 22px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  text-align: left;
+}
+.roster section .player .mid p {
+  color: #a3a3a3;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+.roster section .player .grade {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+}
+.roster section .player .grade h4 {
+  width: 40px;
+  height: 40px;
+  background: rgba(42, 151, 20, 0.438);
+  border: 2px solid rgba(42, 151, 20, 0.8);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  border-radius: 10px;
+}/*# sourceMappingURL=teamRoster.css.map */

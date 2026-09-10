@@ -205,16 +205,15 @@ const updatePin = async () => {
   }
 }
 
-watch(
-  [name, email, team],
-  () => {
+const showPlan = ref<boolean>(false)
+watch( [name, email, team], () => {
     initChange.value = true
   }
 )
 
-
 const manageSubscription = async () => {
-    await stripe.manageSubscription()
+  // showPlan.value = !showPlan.value
+  await stripe.manageSubscription()
 }
 
 
@@ -247,10 +246,14 @@ const manageSubscription = async () => {
             </div>
         </div>
         <div class="userPlan" :class="auth.user?.plan">
-          <h4><div class="icon"></div> Pro {{ auth.user?.plan }} Plan <button>ACTIVE</button></h4>
+          <h4><div class="icon"></div> Pro {{ auth.user?.plan }} Plan <div class="active">ACTIVE</div></h4>
           <button class="manage" @click="manageSubscription()">Manage Subscription</button>
+          <div class="subscriptionInfo" v-if="showPlan">
+            <h2>PLAN: {{ auth.user?.plan }}</h2>
+          </div>
         </div>
         <button class="primaryBt c">LOG OUT</button>
+        
       </div>
       <div class="selection b">
         <div class="top">

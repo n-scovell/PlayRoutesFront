@@ -1,0 +1,94 @@
+@import "./mixins";
+
+//MAKER VARS
+
+@keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity: 1; }
+}
+
+
+.roster {
+  @include size(95vw, 500px);
+  @include flx(row, nowrap, center, stretch, 10px);
+  margin:10px auto 0px;
+  box-sizing:border-box;
+  section {
+    flex:1;
+    
+    height:100%;
+    &:nth-child(1) {
+      
+      @include boxA();
+    }
+    &:nth-child(2) {
+      max-width:50%;
+      @include flx(column,nowrap,center,start,10px);
+    }
+    .player {
+      height:80px;
+      width:100%;
+      @include boxA();
+      @include flx(row,nowrap,center,start,0px);
+      h2, h3, h4, h5 {
+        height:100%;
+        @include flx(row,nowrap,center,center,0px);
+        // @include font($head, $white, 30px, 300, .02em, 20px, normal, uppercase, none, center);
+      }
+      h2 {
+        width:70px;
+        @include font($head, $white, 30px, 300, .02em, 20px, normal, uppercase, none, center);
+      }
+      .mid {
+        flex:0 0 50%;
+        @include flx(column, nowrap, left, center, 5px);
+        h3 {
+          outline:1px solid red;
+          @include font($head, $white, 22px, 300, .02em, 20px, normal, none, none, left);
+          text-align:left;
+        }
+        p {
+          @include font($head, $gray, 15px, 500, .02em, 20px, normal, uppercase, none, left);
+        }
+      }
+      .grade {
+        @include flx(row, nowrap, center, center, 0px);
+        h4 {
+          width:40px;
+          height:40px;
+          background:rgba(42, 151, 20, 0.438);
+          border:2px solid rgba(42, 151, 20, 0.8);
+          @include flx(row, nowrap, center, center, 0px);
+          border-radius:10px;
+          
+        }
+      }
+      // div {
+      //   flex:1;
+      //   height:100%;
+      //   // border-right:1px solid rgba(255,255,255,.8);
+      //   &:nth-child(1) {
+      //     max-width:70px;
+      //     @include flx(row,nowrap,center,center,0px);
+      //     h2 {
+      //     @include font($spec, $white, 30px, 300, .02em, 20px, normal, uppercase, none, center);
+      //     }
+      //   }
+      //   &:nth-child(2) {
+
+      //   }
+      //   &:last-child {
+      //     border-right:none;
+      //   }
+      // }
+    }
+  }
+}
+
+
+// @media only screen and (max-width:1000px) {
+// }
+
+// @media screen and (max-width: 600px) {
+
+// }

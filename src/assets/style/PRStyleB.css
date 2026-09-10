@@ -487,47 +487,6 @@ h1 {
 .play-routes header .logo, .play-routes header nav, .play-routes header .userCont {
   flex: 1;
 }
-.play-routes .roster {
-  margin: 20px auto;
-  outline: 1px solid white;
-  width: 95%;
-  height: 100%;
-  max-height: 350px;
-  background-image: url(@/assets/images/bck_chalkboard.jpg);
-  background-size: cover;
-}
-.play-routes .roster .playerRoster {
-  display: flex;
-  flex-direction: row;
-  font-family: "Arial", sans-serif;
-  color: white;
-  text-align: center;
-  padding: 13px 0px;
-}
-.play-routes .roster .playerRoster.a {
-  padding: 10px 0px;
-  border-bottom: 1px solid white;
-  position: relative;
-}
-.play-routes .roster .playerRoster.a:before {
-  content: " ";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-image: url(@/assets/images/bck_chalkboard.jpg);
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-}
-.play-routes .roster .playerRoster div {
-  flex: 1;
-  padding: 10px;
-}
-.play-routes .roster .playerRoster div:first-child {
-  flex: 0 0 50px;
-  text-align: center;
-}
 
 .homePageBanners section {
   height: 350px;
@@ -1918,7 +1877,7 @@ form .inputCont input, form .inputCont .dropDownInd, form .inputCont textarea, f
   max-width: auto;
   min-height: auto;
   max-height: auto;
-  caret-color: #242222;
+  caret-color: #f5f5f5;
   caret-animation: revert;
   caret-shape: bar;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -2438,7 +2397,7 @@ form .inputCont select option {
   max-width: auto;
   min-height: auto;
   max-height: auto;
-  caret-color: #242222;
+  caret-color: #f5f5f5;
   caret-animation: revert;
   caret-shape: bar;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -2694,15 +2653,23 @@ form .inputCont select option {
   background-repeat: no-repeat;
   backdrop-filter: blur(none);
 }
-.profileCont .selection .userPlan.TEAM h4 button {
+.profileCont .selection .userPlan.TEAM h4 .active {
   background: rgb(1, 115, 209);
 }
 .profileCont .selection .userPlan.COACH {
-  background: rgba(0, 128, 0, 0.445);
-  border: 2px solid rgba(0, 128, 0, 0.8);
+  background: rgba(12, 131, 38, 0.5);
+  border: 2px solid rgba(12, 131, 38, 0.8);
 }
-.profileCont .selection .userPlan.COACH h4 button {
-  background: rgba(0, 199, 0, 0.753);
+.profileCont .selection .userPlan.COACH h4 .icon {
+  background: rgba(12, 131, 38, 0.8);
+  background-image: url("@/assets/images/TEAM.png");
+  background-size: 55% 45%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(none);
+}
+.profileCont .selection .userPlan.COACH h4 .active {
+  background: rgb(12, 131, 38);
 }
 .profileCont .selection .userPlan h4 {
   display: flex;
@@ -2731,11 +2698,17 @@ form .inputCont select option {
   border-radius: 50%;
   background: red;
 }
-.profileCont .selection .userPlan h4 button {
+.profileCont .selection .userPlan h4 .active {
   flex: 1;
   height: 100%;
   border-radius: 16px;
   margin-left: 15%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
   color: #f5f5f5;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;

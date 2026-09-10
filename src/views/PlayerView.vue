@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import {useAuthStore} from '@/stores/userAuth'
 import { usePlayers } from '@/stores/playerStore'
 
+import '../assets/style/teamRoster.css'
+
 
 const selectedPlayer = ref<number>()
 const auth = useAuthStore()
@@ -17,19 +19,26 @@ const updateTab = (id: number) => {
 }
 </script>
 <template>
-  <main style="min-height:100vh">
-    <h1>{{auth.teamName }} Roster</h1>
+  <main style="min-height:100vh;">
+    <h1>{{auth.teamName }} Team Roster</h1>
     <div class="roster">
-      <div class="playerRoster a">
-        <div class="ind">#</div>
-        <div>First:</div>
-        <div>Last:</div>
-        <div>Number:</div>
-        <div>Positions</div>
-        <div>Grade</div>
-        <div class="del"></div>
-      </div>
-      <div class="playerRoster" v-for="(b,index) in players.players" :key="'player'+index">
+      <section>
+
+      </section>
+      <section>
+        <div class="player" v-for="(b,index) in players.players" :key="'playerroster_'+index">
+            <h2>{{ b.playerNumber }}</h2>
+            <div class="mid">
+              <h3>{{ b.firstName + ' ' + b.lastName }}</h3>
+              <p>{{ b.playerPositions }}</p>
+            </div> 
+            <div class='grade'>
+              <h4>{{ b.playerGrade  }}</h4>
+            </div>
+            <button>X</button>
+        </div>
+      </section>
+      <!-- <div class="playerRoster" v-for="(b,index) in players.players" :key="'player'+index">
         <div class="ind">{{ index + 1 }}</div>
         <div>{{ b.firstName }}</div>
         <div>{{ b.lastName }}</div>
@@ -37,7 +46,25 @@ const updateTab = (id: number) => {
         <div>{{ b.playerPositions }}</div>
         <div>{{ b.playerGrade }}</div>
         <div class="del"><button @click="deletePlayer(b.id)">X</button></div>
-      </div>
+      </div> -->
+      <!-- <div class="playerRoster a">
+        <div class="ind">#</div>
+        <div>First:</div>
+        <div>Last:</div>
+        <div>Number:</div>
+        <div>Positions</div>
+        <div>Grade</div>
+        <div class="del"></div> 
+      </div>-->
+      <!-- <div class="playerRoster" v-for="(b,index) in players.players" :key="'player'+index">
+        <div class="ind">{{ index + 1 }}</div>
+        <div>{{ b.firstName }}</div>
+        <div>{{ b.lastName }}</div>
+        <div>{{ b.playerNumber }}</div>
+        <div>{{ b.playerPositions }}</div>
+        <div>{{ b.playerGrade }}</div>
+        <div class="del"><button @click="deletePlayer(b.id)">X</button></div>
+      </div> -->
     </div>
   </main>
 </template>
