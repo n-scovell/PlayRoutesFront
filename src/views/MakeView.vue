@@ -603,7 +603,7 @@ const closeMessage = () => {
 const dropPlayInfo = ref<boolean>(false)
 const dropFormations = ref<boolean>(false)
 const dropPositions = ref<boolean>(false)
-const dropPens = ref<boolean>(true)
+const dropPens = ref<boolean>(false)
 const showPlayInfo = () => {
   dropPlayInfo.value = !dropPlayInfo.value
   dropFormations.value = false
@@ -687,7 +687,7 @@ const changePen = () => {
           </form>
         </div>
         <Header title="POSITIONS" icon="helmet" :drop="dropChoiceAll.playInformation" @click="showPositions()" />
-        <div class="undr" v-if="dropPositions">
+        <div class="under" v-if="dropPositions">
           <div class="positionContainer">
             <div class="posCont" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
               <button class="pos" :aria-label="`${p.pos}`" >{{ p.pos.toUpperCase() }}</button>
@@ -728,106 +728,6 @@ const changePen = () => {
             </div>
         </div>
       </section>
-      <!-- <section class="a">
-        <div class="block a" :class="{active: dropChoiceAll.playInformation}">
-          <Header title="PLAY INFORMATION" icon="play" :drop="dropChoiceAll.playInformation" @click="changeDropAll('playInformation')" />
-          <div class="sectional" :class="{active : dropChoiceAll.playInformation }">
-            <form @submit.prevent>
-              <div class="inputCont a"><label>Play Name<input placeholder="Name" type="text" v-model="title" /></label></div>
-              <div class="inputCont a">
-                <div class="selectHolder">
-                  <label>Choose Your Play Type:
-                  <button aria-label="Play Type Drop" class="dropDownInd" @pointerdown="showPlayTypes()">{{ dropDownsPlayType.ptype.newValue }}</button>
-                  <div class="dropDownCase" v-if="showPlayType">
-                  <div>
-                  <button :aria-label="`${f} Option`" v-for="f in dropDownsPlayType.ptype.newLst" :key="f" @pointerdown="playTypeValue('ptype', f)">{{f}}</button>
-                  </div>
-                  </div>
-                  </label>
-                </div>
-              </div>
-              <div class="inputCont a"><label>Description<textarea placeholder="Description" v-model="description"></textarea></label></div>
-              <div class="btCont">
-                <button aria-label="Submit Play" class="primaryBt" @click="submitPlay">Submit Play</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="block a" :class="{active: dropChoiceAll.formations}">
-          <Header title="FORMATIONS" icon="formations" :drop="dropChoiceAll.formations" @click="changeDropAll('formations')" />
-          <div class="sectional" :class="{active : dropChoiceAll.formations }">
-            <form @submit.prevent>
-              <div class="inputCont inline">
-                <p>Add Formation:</p>
-                <button aria-label="Add Formation" @click="addFormation">+NEW</button>
-                <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
-              </div>
-              <div class="inputCont a">
-
-                <ul class="formationBox">
-                  <li v-for="f in forms.formations" :key="f">
-                    <button @click="formationType('formation', f.formationName)">
-                    <div class='formationShow'>
-                      <div class='play' 
-                      v-for="p in f.grid.players" 
-                      :style="{ left: `${p.x * 100}%`, top: `${p.y * 100}%` }"
-                      ></div>
-                      
-                    </div>
-                    {{ f.formationName }}
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="block" :class="{active: dropChoiceAll.positions}" >
-          <Header title="Position Selection" icon="helmet" :drop="dropChoiceAll.positions" @click="changeDropAll('positions')" />
-          <div class="sectional" :class="{active : dropChoiceAll.positions}">
-            <div class="positionContainer">
-              <div class="posCont" v-for="p in positionList" :key="`${p.pos}_bt`" @pointerdown="addPlayer(p.pos, p.x, p.y)">
-                <button class="pos" :aria-label="`${p.pos}`" >{{ p.pos.toUpperCase() }}</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="block smallIcon" :class="{active: dropChoiceAll.pen}">
-          <Header title="Pen Selection" icon="penB" :drop="dropChoiceAll.pen" @click="changeDropAll('pen')" />
-          <div class="sectional" :class="{active : dropChoiceAll.pen}">
-            <div class="pens">
-              <h4>STYLE</h4>
-              <div class="posCont">
-                <button aria-label="Pen Stroke" :class="{ active: selectedTool === 'pen' }" @pointerdown="changeTool('pen')"><img src="@/assets/images/pen.png" /></button>
-              </div>
-              <div class="posCont">
-                <button aria-label="Chalk Stroke" :class="{ active: selectedTool === 'chalk' }" @pointerdown="changeTool('chalk')"><img src="@/assets/images/chalk.png" /></button>
-              </div>
-              <div class="posCont">
-                <button aria-label="Dash Stroke" :class="{ active: selectedTool === 'dash' }" @pointerdown="changeTool('dash')"><img src="@/assets/images/dash.png" /></button>
-              </div>
-            </div> 
-            <div class="colors">
-              <h4>COLORS</h4>
-              <div class="posCont">
-                <button class="white" :class="{ active: selectedColor === 'white' }" aria-label="Pen Stroke" @pointerdown="changeColor('white')"></button>
-              </div>
-              <div class="posCont">
-                <button class="red" :class="{ active: selectedColor === 'red' }" aria-label="Pen Stroke" @pointerdown="changeColor('red')"></button>
-              </div>
-              <div class="posCont">
-                <button class="blue" :class="{ active: selectedColor === 'blue' }" aria-label="Pen Stroke" @pointerdown="changeColor('blue')"></button>
-              </div>
-              <div class="posCont">
-                <button class="yellow" :class="{ active: selectedColor === 'yellow' }" aria-label="Pen Stroke" @pointerdown="changeColor('yellow')"></button>
-              </div>
-              <div class="posCont">
-                <button class="gray" :class="{ active: selectedColor === 'gray' }" aria-label="Pen Stroke" @pointerdown="changeColor('gray')"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> -->
       <section class="b">
         <div class="block topBar">
           <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">
@@ -873,12 +773,6 @@ const changePen = () => {
             </div>
           </div>
         </div>
-      </section>
-      <section class="d">
-        <Header title="PLAY INFORMATION" icon="play" :drop="dropChoiceAll.playInformation" @click="changeDropAll('playInformation')" />
-        <Header title="FORMATIONS" icon="formations" :drop="dropChoiceAll.formations" @click="changeDropAll('formations')" />
-        <Header title="Position Selection" icon="helmet" :drop="dropChoiceAll.positions" @click="changeDropAll('positions')" />
-        <Header title="Pen Selection" icon="penB" :drop="dropChoiceAll.pen" @click="changeDropAll('pen')" />
       </section>
     </div>
   </main>

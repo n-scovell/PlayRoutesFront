@@ -35,8 +35,8 @@
   gap: 10px;
 }
 .playMaker section.b {
-  min-height: 800px;
-  max-height: 800px;
+  min-height: 700px;
+  max-height: 700px;
 }
 .playMaker section.toolShed {
   flex: 1;
@@ -268,6 +268,7 @@
   align-items: left;
   justify-content: center;
   gap: 20px;
+  order: 2;
 }
 .playMaker section .block .positionContainer .posCont {
   width: 50px;
@@ -336,47 +337,38 @@
     align-items: left;
     justify-content: start;
     gap: 10px;
-    height: 85vh;
-    max-height: 90vh;
   }
   .playMaker section.toolShed {
     flex: 1;
-    max-width: 45px;
-    height: auto;
+    max-width: 100%;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 10px;
   }
   .playMaker section.toolShed .under {
+    order: 2;
+    flex: 0 0 100%;
     padding: 20px;
+    width: 100%;
     border-radius: 3px;
     border: 2px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.2);
   }
   .playMaker section.toolShed .makerHeader {
-    width: 50%;
+    order: 1;
+    flex: 1;
     height: 55px;
-    padding: 10px 0px;
-    border-radius: 3px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: start;
-    gap: 10px;
-    color: white;
-    font-family: "Fjalla One", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    font-size: 20px;
-    font-style: normal;
-    letter-spacing: 0.02em;
-    text-transform: none;
-    text-shadow: none;
-    text-align: left;
+  }
+  .playMaker section.toolShed .makerHeader span {
+    display: none;
   }
   .playMaker section.toolShed .makerHeader .iconBox {
     flex: 1;
-    max-width: 55px;
+    max-width: 100%;
     height: 100%;
     text-align: center;
     display: flex;
@@ -390,79 +382,10 @@
     height: 80%;
     margin: auto;
   }
-  .playMaker section.a, .playMaker section.c {
-    flex: 1;
-    min-width: 100%;
-    order: 2;
-    height: 500px;
-  }
-  .playMaker section.a .block, .playMaker section.c .block {
-    display: none;
-  }
-  .playMaker section.a .block.active, .playMaker section.c .block.active {
-    display: block;
-    max-height: 450px;
-  }
-  .playMaker section.a .block .sectional form, .playMaker section.c .block .sectional form {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: left;
-    justify-content: start;
-    gap: 0px;
-  }
-  .playMaker section.a .block .sectional form .inputCont, .playMaker section.c .block .sectional form .inputCont {
-    margin-right: 5%;
-    flex: 0 0 100%;
-  }
-  .playMaker section.a .makerHeader, .playMaker section.c .makerHeader {
-    display: none;
-  }
-  .playMaker section.d {
-    order: 1;
-    display: block;
-    flex: 0 0 100%;
-    max-height: 55px;
-    padding: 0px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  .playMaker section.d .makerHeader {
-    flex: 1;
-    border-radius: 3px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.2);
-    text-align: center;
-    height: 55px;
-    color: transparent;
-  }
-  .playMaker section.d .makerHeader span {
-    display: none;
-  }
-  .playMaker section.d .makerHeader .iconBox {
-    width: 70px;
-    height: 44px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0px;
-  }
-  .playMaker section.d .makerHeader .iconBox img {
-    height: 80%;
-    max-width: 40px;
-  }
   .playMaker section.b {
-    order: 3;
-    flex: 0 0 100%;
-    max-height: 400px;
-  }
-  .playMaker section.b .block.topBar {
-    order: 2;
+    min-height: 350px;
+    max-height: 350px;
+    height: 350px;
   }
 }
 @media screen and (min-width: 300px) {
@@ -575,6 +498,7 @@
   border-right: none;
 }
 .field .positionBox {
+  flex: 1;
   -webkit-user-drag: none;
   user-select: none;
   -moz-user-select: none;
@@ -582,8 +506,8 @@
   -ms-user-select: none;
 }
 .field .positionBox .player {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   min-width: 0;
   max-width: auto;
   min-height: auto;
@@ -708,6 +632,7 @@
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
   padding: 20px;
+  order: 2;
 }
 .positionContainer .posCont {
   width: 50px;
