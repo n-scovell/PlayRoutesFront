@@ -9,6 +9,7 @@
 
 
 .roster {
+
   @include size(95vw, 100%);
   @include flx(row, nowrap, top, stretch, 10px);
   margin:10px auto 0px;
@@ -130,6 +131,78 @@
 // @media only screen and (max-width:1000px) {
 // }
 
-// @media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
+  .roster {
+    @include flx(column, nowrap, center, center, 10px);
+    section {
+      width:100%;
+      &:nth-child(2) {
+        max-width:95%;
+        padding:0px 0px 200px;
+        @include flx(row, wrap, center, stretch, 10px);
+        .player {
+          flex:1;
+          width:30%;
+          height:auto;
+          padding:0px 0px;
+          @include boxA();
+          @include rel();
+          @include flx(column,nowrap,center,start,10px);
+          h2 {
+            min-width:70px;
+            height:70px;
+          }
+          .mid {
+            min-width:100%;
+            max-width:100%;
+            @include flx(column, nowrap, left, start, 5px);
+            h3 {
+              width:100%;
+              font-size:18px;
+              text-align:center;
+            }
+            p {
+              text-align:center;
+              width:100%;
+              font-size:15px;
+            }
+          }
+          .delete {
+            @include size(100%, 30px);
+            @include pos(relative, 0%, $right:0px, $trans:translate(0%,0%));
+            @include font($head, $white, 15px, 500, .1em, 20px, normal, uppercase, none, center);
+            @include flx(row, nowrap, center, center, 0px);
+            &.inactive {
+              display:none;
+            }
+          }
+          .areYouSure {
+            @include size(100%, 30px);
+            @include pos(relative, 0%, $right:0px, $trans:translate(0%,0%));
+            
+            button {
+              flex:1;
+              height:100%;
+              @include font($head, $white, 13px, 500, .1em, 20px, normal, uppercase, none, center);
+              padding:10px 12px;
+              
+              &.a {
+                text-align:right;
+                max-width:100px;
+              }
+              &.b, &.c {
+                background:rgba(156, 156, 156, 0.5);
+                max-width:45px;
+                &:hover {
+                  background:rgba(121, 121, 120, 0.8);
+                }
+              }
+            }
+          }
+        }
+      }
 
-// }
+    }
+    
+  }
+}

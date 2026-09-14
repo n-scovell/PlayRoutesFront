@@ -43,6 +43,7 @@
     <div class="roster">
       <section>
         <form class="signIn" @submit.prevent>
+        
           <div class="inputCont">
             <label>First Name:<input autocomplete="off" placeholder="First Name" type="text" v-model="firstName" /></label>
           </div>
@@ -83,7 +84,7 @@
             </div> 
             <button class="delete" :class="{ inactive : b.id === selectedPlayer }"   @click="choosePlayer(b.id)">Delete Player</button>
             <div class="areYouSure" v-if="b.id === selectedPlayer">
-              <button class="a"  >ARE YOU SURE?</button>
+              <button class="a"  >CONFIRM: </button>
               <button class="b"  @click="deletePlayer()">YES</button>
               <button class="c"  @click="choosePlayer('back')">NO</button>
             </div>
