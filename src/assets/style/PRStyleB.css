@@ -3854,17 +3854,19 @@ form .inputCont select option {
   background: rgba(255, 255, 255, 0.5);
 }
 .playsContainer .playRows .indPlays .playInfo .menuPop {
-  width: 100%;
-  height: auto;
+  width: 280px;
+  height: 20%;
   position: absolute;
-  top: 100%;
-  right: 0px;
+  bottom: 0px;
+  left: 0px;
   display: none;
+  z-index: 99999;
+  background: #242222;
 }
 .playsContainer .playRows .indPlays .playInfo .menuPop.active {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 5px;
 }
 .playsContainer .playRows .indPlays .playInfo .menuPop.active button {

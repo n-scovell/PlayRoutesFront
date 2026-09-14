@@ -181,7 +181,7 @@ const showMenu = (i: number) => {
             <h4> {{ p.formation }} - {{ p.playType }} </h4>
             <button v-if="auth.user" class="menuHam" :class="{active: popMenu === index}" @click="showMenu(index)"><div></div><div></div><div></div></button>
             <div class="menuPop" :class="{active: popMenu === index}" v-if="auth.user">
-              <button class="fav" @click="addFav(p.id)">ADD FAV.</button>
+              <button class="fav" @click="addFav(p.id)">FAVORITE</button>
               <button class="del" @click.self="triggerPrompt(p)">DELETE</button>
             </div>
             <!-- <div class="btCont" :class="{active: popMenu === index}" >

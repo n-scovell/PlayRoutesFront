@@ -1902,16 +1902,18 @@ $playerSize:33px; // the max width and height of the player
         }
         .menuPop {
           $w:50px;
-          width:100%;
-          height:auto;
+          width:280px;
+          height:20%;
           position:absolute;
-          top:100%;
-          right:0px;
+          bottom:0px;
+          left:0px;
           display:none;
+          z-index:99999;
+          background:$black;
           &.active {
             display:flex;
             flex-direction:row;
-            flex-wrap:nowrap;
+            flex-wrap:wrap;
             gap:5px;
             button {
               flex:1;
