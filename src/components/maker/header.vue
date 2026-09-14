@@ -2,7 +2,6 @@
 defineProps<{
   title: string
   icon: string
-  drop: boolean
 }>()
 
 const images = import.meta.glob<string>(
@@ -10,5 +9,5 @@ const images = import.meta.glob<string>(
 )
 </script>
 <template>
-    <button class="makerHeader" :class="{active: drop}"><div class="iconBox"><img :src="images[`/src/assets/icons/ico_${icon}.svg`]" :class="icon" /></div><span>{{title}}</span></button>
+    <button class="makerHeader"><div class="iconBox"><img :src="images[`/src/assets/icons/ico_${icon}.svg`]" :class="icon" /></div><span>{{title}}</span></button>
 </template>

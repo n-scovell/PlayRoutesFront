@@ -10,16 +10,20 @@
   touch-action: none;
 }
 .playMaker {
+  width: 95vw;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: center;
+  align-items: top;
+  justify-content: stretch;
   gap: 10px;
-  padding: 20px;
-  height: 85vh;
-  max-height: 950px;
-  min-height: 550px;
+  margin: 10px auto 0px;
+  box-sizing: border-box;
 }
 .playMaker section {
   flex: 1;
@@ -30,8 +34,63 @@
   justify-content: start;
   gap: 10px;
 }
+.playMaker section.b {
+  min-height: 800px;
+  max-height: 800px;
+}
+.playMaker section.toolShed {
+  flex: 1;
+  max-width: 320px;
+  height: auto;
+}
+.playMaker section.toolShed .under {
+  padding: 20px;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+.playMaker section.toolShed .makerHeader {
+  width: 100%;
+  height: 55px;
+  padding: 10px 0px;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+}
+.playMaker section.toolShed .makerHeader .iconBox {
+  flex: 1;
+  max-width: 55px;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+}
+.playMaker section.toolShed .makerHeader .iconBox img {
+  height: 80%;
+  margin: auto;
+}
 .playMaker section.a, .playMaker section.c {
-  max-width: 300px;
+  max-width: 330px;
 }
 .playMaker section.d {
   display: none;
@@ -151,189 +210,6 @@
   text-align: left;
   margin: 5px;
 }
-.playMaker section .block .field {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: none;
-  right: none;
-  transform: none;
-  width: 100%;
-  height: 100%;
-}
-.playMaker section .block .field .canvas, .playMaker section .block .field .positionBox, .playMaker section .block .field .gridBox {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: none;
-  right: none;
-  transform: none;
-}
-.playMaker section .block .field .canvas {
-  z-index: 2;
-  touch-action: none;
-}
-.playMaker section .block .field .gridBox {
-  z-index: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0px;
-}
-.playMaker section .block .field .gridBox .lineOfScrimmage {
-  position: absolute;
-  top: 65%;
-  left: none;
-  bottom: none;
-  right: none;
-  transform: none;
-  width: 100%;
-  height: 10px;
-  min-width: 0;
-  max-width: auto;
-  min-height: auto;
-  max-height: auto;
-  background: transparent;
-  background-image: url("@/assets/maker/line.png");
-  background-size: contain;
-  background-position: center -5px;
-  background-repeat: repeat-x;
-  backdrop-filter: blur(none);
-}
-.playMaker section .block .field .gridBox .gridLine {
-  flex: 1;
-  height: 100%;
-  border-right: 1px dashed rgba(255, 255, 255, 0.4);
-}
-.playMaker section .block .field .gridBox .gridLine:last-child {
-  border-right: none;
-}
-.playMaker section .block .field .positionBox {
-  -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-.playMaker section .block .field .positionBox .player {
-  width: 30px;
-  height: 30px;
-  min-width: 0;
-  max-width: auto;
-  min-height: auto;
-  max-height: auto;
-  background: rgb(54, 54, 54);
-  color: transparent;
-  font-family: "Racing Sans One", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: bold;
-  font-size: 20px;
-  font-style: normal;
-  letter-spacing: 0.01em;
-  text-transform: none;
-  text-shadow: none;
-  text-align: left;
-  position: absolute;
-  top: none;
-  left: none;
-  bottom: none;
-  right: none;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: wrap;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  border: 2px solid rgba(231, 231, 231, 0.5);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  z-index: 8000;
-  cursor: grab;
-  transition: border 0.5s;
-}
-.playMaker section .block .field .positionBox .player.color {
-  transition: border 0.5s;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0);
-  border: 3px solid rgba(231, 231, 231, 0.2);
-}
-.playMaker section .block .field .positionBox .player.color.c {
-  background: rgb(7, 232, 248);
-}
-.playMaker section .block .field .positionBox .player.color.g {
-  background: rgb(7, 232, 248);
-}
-.playMaker section .block .field .positionBox .player.color.t {
-  background: rgb(7, 232, 248);
-}
-.playMaker section .block .field .positionBox .player.color.qb {
-  background: rgb(240, 4, 4);
-}
-.playMaker section .block .field .positionBox .player.color.rb {
-  background: rgb(201, 240, 28);
-}
-.playMaker section .block .field .positionBox .player.color.fb {
-  background: rgb(238, 236, 152);
-}
-.playMaker section .block .field .positionBox .player.color.tb {
-  background: rgb(233, 179, 1);
-}
-.playMaker section .block .field .positionBox .player.color.te {
-  background: rgb(5, 175, 27);
-}
-.playMaker section .block .field .positionBox .player.color.sl {
-  background: rgb(223, 172, 4);
-}
-.playMaker section .block .field .positionBox .player.color.wr {
-  background: rgb(8, 43, 138);
-}
-.playMaker section .block .field .positionBox .player.color.c:before, .playMaker section .block .field .positionBox .player.color.g:before, .playMaker section .block .field .positionBox .player.color.t:before, .playMaker section .block .field .positionBox .player.color.rb:before, .playMaker section .block .field .positionBox .player.color.tb:before {
-  color: #242222;
-}
-.playMaker section .block .field .positionBox .player.remove:before, .playMaker section .block .field .positionBox .player.remove:after {
-  background: rgb(143, 142, 142);
-  color: #242222;
-  transition: all 0.5s;
-}
-.playMaker section .block .field .positionBox .player:before {
-  content: attr(myText);
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  max-width: auto;
-  min-height: auto;
-  max-height: auto;
-  position: absolute;
-  top: 51%;
-  left: 50%;
-  bottom: none;
-  right: none;
-  transform: translate(-50%, -50%);
-  background: transparent;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  color: #f5f5f5;
-  font-family: "Fjalla One", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-size: 11px;
-  font-style: normal;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-shadow: none;
-  text-align: center;
-  border-radius: 50%;
-  z-index: 1;
-  transition: all 0.5s;
-}
 .playMaker section .block.topBar {
   flex: 0 0 50px;
   display: flex;
@@ -384,64 +260,6 @@
 .playMaker section .block .sectional textarea {
   resize: vertical;
   min-height: 100px;
-}
-.playMaker section .block .sectional .pens, .playMaker section .block .sectional .colors {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-.playMaker section .block .sectional .pens h4, .playMaker section .block .sectional .colors h4 {
-  flex: 0 0 100%;
-  color: #f5f5f5;
-  font-family: "Fjalla One", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-size: 15px;
-  font-style: normal;
-  letter-spacing: 0px;
-  text-transform: uppercase;
-  text-shadow: none;
-  text-align: left;
-}
-.playMaker section .block .sectional .pens .posCont, .playMaker section .block .sectional .colors .posCont {
-  flex: 1;
-  height: 40px;
-}
-.playMaker section .block .sectional .pens .posCont button, .playMaker section .block .sectional .colors .posCont button {
-  width: 100%;
-  height: 100%;
-  border: 2px solid #f5f5f5;
-}
-.playMaker section .block .sectional .pens .posCont button.active, .playMaker section .block .sectional .colors .posCont button.active {
-  outline: 1px solid rgba(255, 255, 255, 0.3);
-  outline-offset: 2px;
-}
-.playMaker section .block .sectional .pens .posCont button.white, .playMaker section .block .sectional .pens .posCont button.red, .playMaker section .block .sectional .pens .posCont button.blue, .playMaker section .block .sectional .pens .posCont button.yellow, .playMaker section .block .sectional .colors .posCont button.white, .playMaker section .block .sectional .colors .posCont button.red, .playMaker section .block .sectional .colors .posCont button.blue, .playMaker section .block .sectional .colors .posCont button.yellow {
-  border: 2px solid transparent;
-}
-.playMaker section .block .sectional .pens .posCont button.white, .playMaker section .block .sectional .colors .posCont button.white {
-  background: #ffffff;
-}
-.playMaker section .block .sectional .pens .posCont button.red, .playMaker section .block .sectional .colors .posCont button.red {
-  background: #dd1919;
-}
-.playMaker section .block .sectional .pens .posCont button.blue, .playMaker section .block .sectional .colors .posCont button.blue {
-  background: #301283;
-}
-.playMaker section .block .sectional .pens .posCont button.yellow, .playMaker section .block .sectional .colors .posCont button.yellow {
-  background: #f3ff44;
-}
-.playMaker section .block .sectional .pens .posCont button.gray, .playMaker section .block .sectional .colors .posCont button.gray {
-  background: #9b9e9c;
-}
-.playMaker section .block .sectional .pens .posCont button img, .playMaker section .block .sectional .colors .posCont button img {
-  height: 50%;
 }
 .playMaker section .block .positionContainer {
   display: flex;
@@ -520,6 +338,57 @@
     gap: 10px;
     height: 85vh;
     max-height: 90vh;
+  }
+  .playMaker section.toolShed {
+    flex: 1;
+    max-width: 45px;
+    height: auto;
+  }
+  .playMaker section.toolShed .under {
+    padding: 20px;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .playMaker section.toolShed .makerHeader {
+    width: 50%;
+    height: 55px;
+    padding: 10px 0px;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    color: white;
+    font-family: "Fjalla One", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size: 20px;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: left;
+  }
+  .playMaker section.toolShed .makerHeader .iconBox {
+    flex: 1;
+    max-width: 55px;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+  }
+  .playMaker section.toolShed .makerHeader .iconBox img {
+    height: 80%;
+    margin: auto;
   }
   .playMaker section.a, .playMaker section.c {
     flex: 1;
@@ -643,4 +512,279 @@
   .playMaker section .block .field .positionBox .player:before {
     display: none;
   }
+}
+.field {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+}
+.field .canvas, .field .positionBox, .field .gridBox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: none;
+  right: none;
+  transform: none;
+}
+.field .canvas {
+  z-index: 2;
+  touch-action: none;
+}
+.field .gridBox {
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+}
+.field .gridBox .lineOfScrimmage {
+  position: absolute;
+  top: 65%;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: none;
+  width: 100%;
+  height: 10px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: transparent;
+  background-image: url("@/assets/maker/line.png");
+  background-size: contain;
+  background-position: center -5px;
+  background-repeat: repeat-x;
+  backdrop-filter: blur(none);
+}
+.field .gridBox .gridLine {
+  flex: 1;
+  height: 100%;
+  border-right: 1px dashed rgba(255, 255, 255, 0.4);
+}
+.field .gridBox .gridLine:last-child {
+  border-right: none;
+}
+.field .positionBox {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.field .positionBox .player {
+  width: 30px;
+  height: 30px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(54, 54, 54);
+  color: transparent;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 2px solid rgba(231, 231, 231, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: 8000;
+  cursor: grab;
+  transition: border 0.5s;
+}
+.field .positionBox .player.color {
+  transition: border 0.5s;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0);
+  border: 3px solid rgba(231, 231, 231, 0.2);
+}
+.field .positionBox .player.color.c {
+  background: rgb(7, 232, 248);
+}
+.field .positionBox .player.color.g {
+  background: rgb(7, 232, 248);
+}
+.field .positionBox .player.color.t {
+  background: rgb(7, 232, 248);
+}
+.field .positionBox .player.color.qb {
+  background: rgb(240, 4, 4);
+}
+.field .positionBox .player.color.rb {
+  background: rgb(201, 240, 28);
+}
+.field .positionBox .player.color.fb {
+  background: rgb(238, 236, 152);
+}
+.field .positionBox .player.color.tb {
+  background: rgb(233, 179, 1);
+}
+.field .positionBox .player.color.te {
+  background: rgb(5, 175, 27);
+}
+.field .positionBox .player.color.sl {
+  background: rgb(223, 172, 4);
+}
+.field .positionBox .player.color.wr {
+  background: rgb(8, 43, 138);
+}
+.field .positionBox .player.color.c:before, .field .positionBox .player.color.g:before, .field .positionBox .player.color.t:before, .field .positionBox .player.color.rb:before, .field .positionBox .player.color.tb:before {
+  color: #242222;
+}
+.field .positionBox .player.remove:before, .field .positionBox .player.remove:after {
+  background: rgb(143, 142, 142);
+  color: #242222;
+  transition: all 0.5s;
+}
+.field .positionBox .player:before {
+  content: attr(myText);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.5s;
+}
+
+.positionContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: left;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+.positionContainer .posCont {
+  width: 50px;
+  height: 50px;
+}
+.positionContainer .posCont .pos {
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #f5f5f5;
+}
+
+.pens, .colors {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.pens h4, .colors h4 {
+  flex: 0 0 100%;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  text-shadow: none;
+  text-align: left;
+}
+.pens .posCont, .colors .posCont {
+  flex: 1;
+  height: 40px;
+}
+.pens .posCont button, .colors .posCont button {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #f5f5f5;
+}
+.pens .posCont button.active, .colors .posCont button.active {
+  outline: 1px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
+}
+.pens .posCont button.white, .pens .posCont button.red, .pens .posCont button.blue, .pens .posCont button.yellow, .colors .posCont button.white, .colors .posCont button.red, .colors .posCont button.blue, .colors .posCont button.yellow {
+  border: 2px solid transparent;
+}
+.pens .posCont button.white, .colors .posCont button.white {
+  background: #ffffff;
+}
+.pens .posCont button.red, .colors .posCont button.red {
+  background: #dd1919;
+}
+.pens .posCont button.blue, .colors .posCont button.blue {
+  background: #301283;
+}
+.pens .posCont button.yellow, .colors .posCont button.yellow {
+  background: #f3ff44;
+}
+.pens .posCont button.gray, .colors .posCont button.gray {
+  background: #9b9e9c;
+}
+.pens .posCont button img, .colors .posCont button img {
+  height: 50%;
 }/*# sourceMappingURL=playCreator.css.map */

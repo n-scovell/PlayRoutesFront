@@ -6,6 +6,7 @@ $pageCellPadding: $pagePadding - 15px;
 $mainHeight: 85vh;
 $menuMarBt: 10px;
 $fieldSize: 75%;
+
 @keyframes fadeIn { 
   from { opacity:0; }
   to { opacity: 1; }
@@ -14,20 +15,55 @@ $fieldSize: 75%;
 
 .playMaker {
   * {touch-action: none;}
-  @include flx(row, nowrap, stretch, center, $pagePadding);
-  padding:$pagePadding + 10px;
-  height:$mainHeight;
-  max-height:950px;
-  min-height:550px;
+  @include size(95vw, 100%);
+  @include flx(row, nowrap, top, stretch, 10px);
+  margin:10px auto 0px;
+  box-sizing:border-box;
   section {
     flex:1;
     @include flx(column, nowrap, stretch, start, $pagePadding);
+    &.b {
+      $h: 800px;
+      min-height:$h;
+      max-height:$h;
+    }
+    &.toolShed {
+      flex:1;
+      max-width:320px;
+      height:auto;
+      .under {
+        padding:20px;
+        @include boxA();
+      }
+      .makerHeader {
+        $h:55px;
+        width:100%;
+        height:$h;
+        padding:10px 0px;
+        @include boxA();
+        @include flx(row,wrap,center,start,10px);
+        @include font($head, $white, 20px, bold, .02em, 20px, normal, none, none, left);
+        .iconBox {
+          flex:1;
+          max-width:$h;
+          height:100%;
+          text-align:center;
+          @include flx(row,wrap,center,center,0px);
+          img {
+            height:80%;
+            margin:auto;
+          }
+        }
+        
+      }
+    }
     &.a, &.c {
-      max-width:300px;
+      max-width:330px;
     } 
     &.d {
       display:none;
     }
+
     .block {
       flex:1;
       @include boxA();
@@ -91,99 +127,7 @@ $fieldSize: 75%;
             margin:5px;
           }
         }
-      }
-
-      .field {
-        @include pos(absolute, 0px, 0px);
-        width:100%;
-        height:100%;
-        .canvas, .positionBox, .gridBox {
-          width:100%;
-          height:100%;
-          @include pos(absolute, 0px, 0px);
-        } 
-        .canvas {
-          z-index:2;
-          touch-action: none;
-        }
-        .gridBox {
-          z-index:0;
-          @include flx(row, nowrap, center, center, 0px);
-          .lineOfScrimmage {
-            @include pos(absolute, 65%);
-            @include size(100%, 10px);
-            @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
-          }
-          .gridLine {
-            flex:1;
-            height:100%;
-            border-right:1px dashed rgba(255,255,255,.4);
-            &:last-child {
-              border-right:none;
-            }
-          }
-        }
-        .positionBox {
-          -webkit-user-drag: none;
-          user-select: none;
-          -moz-user-select: none;
-          -webkit-user-select: none;
-          -ms-user-select: none;
-          .player {
-            $w:30px;
-            @include size($w, $w);
-            @include backColor(rgb(54, 54, 54));
-            @include font($spec, transparent, 20px, bold);
-            @include pos(absolute, $trans: translate(-50%, -50%));
-            @include flex(flex, wrap, nowrap, center, center);
-            border:2px solid rgba(231, 231, 231, 0.5);
-            box-shadow:0 5px 5px rgba(0,0,0,.5);
-            border-radius:50%;
-            z-index:8000;
-            cursor: grab;
-            transition: border .5s;
-            &.color {
-              transition: border .5s;
-              box-shadow:0 5px 5px rgba(0,0,0,0);
-              border:3px solid rgba(231, 231, 231, .2);
-              &.c { background:rgb(7, 232, 248); }
-              &.g { background:rgb(7, 232, 248); }
-              &.t { background:rgb(7, 232, 248); }
-              &.qb { background:rgb(240, 4, 4); }
-              &.rb { background:rgb(201, 240, 28); }
-              &.fb { background:rgb(238, 236, 152); }
-              &.tb { background:rgb(233, 179, 1); }
-              &.te { background:rgb(5, 175, 27); }
-              &.sl { background:rgb(223, 172, 4); }
-              &.wr { background:rgb(8, 43, 138); }
-              &.c, &.g, &.t, &.rb, &.tb {
-                &:before {
-                  color:$black;
-                }
-              }
-            }
-            &.remove {
-              &:before, &:after {
-                @include backColor(rgb(143, 142, 142));
-                color:$black;
-                transition:all .5s;
-              }
-            }
-            &:before {
-              content:attr(myText);
-              @include size(100%, 100%);
-              @include pos(absolute, 51%, 50%, $trans:translate(-50%,-50%) );
-              @include backColor(transparent);
-              @include flex(flex, row, nowrap, center, center);
-              @include font($head, $white, 11px, 100, .05em, 15px,  normal, uppercase,  none,  center );
-              border-radius:50%;
-              z-index:1;
-              transition:all .5s;
-            }
-          }
-        }
-      }
-      
+      }   
       &.topBar {
         flex: 0 0 50px;
         @include flx(row, nowrap, stretch, start, $pagePadding);
@@ -218,38 +162,38 @@ $fieldSize: 75%;
           resize: vertical;
           min-height:100px;
         }
-        .pens, .colors {
-          width:100%;
-          height:auto;
-          @include flx(row, wrap, center, center, 10px);
-          margin-bottom:10px;
-          h4 {
-            flex: 0 0 100%;
-            @include font($head, $white, 15px, 400, .0px, 20px, normal, uppercase, none, left);
-          }
-          .posCont {
-            flex:1;
-            height:40px;
-            button {
-              width:100%;
-              height:100%;
-              border:2px solid $white;
-              &.active {
-                outline:1px solid rgba(255,255,255,.3);
-                outline-offset:2px;
-              }
-              &.white, &.red, &.blue, &.yellow {border:2px solid transparent;}
-              &.white { background:$penWhite; }
-              &.red { background:$penRed; }
-              &.blue { background:$penBlue; }
-              &.yellow { background:$penYellow; }
-              &.gray { background:$penGray; }
-              img {
-                height:50%;
-              }
-            }
-          }
-        }
+        // .pens, .colors {
+        //   width:100%;
+        //   height:auto;
+        //   @include flx(row, wrap, center, center, 10px);
+        //   margin-bottom:10px;
+        //   h4 {
+        //     flex: 0 0 100%;
+        //     @include font($head, $white, 15px, 400, .0px, 20px, normal, uppercase, none, left);
+        //   }
+        //   .posCont {
+        //     flex:1;
+        //     height:40px;
+        //     button {
+        //       width:100%;
+        //       height:100%;
+        //       border:2px solid $white;
+        //       &.active {
+        //         outline:1px solid rgba(255,255,255,.3);
+        //         outline-offset:2px;
+        //       }
+        //       &.white, &.red, &.blue, &.yellow {border:2px solid transparent;}
+        //       &.white { background:$penWhite; }
+        //       &.red { background:$penRed; }
+        //       &.blue { background:$penBlue; }
+        //       &.yellow { background:$penYellow; }
+        //       &.gray { background:$penGray; }
+        //       img {
+        //         height:50%;
+        //       }
+        //     }
+        //   }
+        // }
       }
       .positionContainer {
         @include flx(row, wrap, left, center, 20px);
@@ -300,6 +244,36 @@ $fieldSize: 75%;
     height:$mainHeight;
     max-height:90vh;
     section {
+      &.toolShed {
+        flex:1;
+        max-width:45px;
+        height:auto;
+        .under {
+          padding:20px;
+          @include boxA();
+        }
+        .makerHeader {
+          $h:55px;
+          width:50%;
+          height:$h;
+          padding:10px 0px;
+          @include boxA();
+          @include flx(row,wrap,center,start,10px);
+          @include font($head, white, 20px, bold, .02em, 20px, normal, none, none, left);
+          .iconBox {
+            flex:1;
+            max-width:$h;
+            height:100%;
+            text-align:center;
+            @include flx(row,wrap,center,center,0px);
+            img {
+              height:80%;
+              margin:auto;
+            }
+          }
+          
+        }
+      }
       &.a, &.c {
         flex:1;
         min-width:100%;
@@ -395,3 +369,147 @@ $player-sizes: (
     }
   }
 }
+
+
+//FIELD
+.field {
+  @include pos(absolute, 0px, 0px);
+  width:100%;
+  height:100%;
+  .canvas, .positionBox, .gridBox {
+    width:100%;
+    height:100%;
+    @include pos(absolute, 0px, 0px);
+  } 
+  .canvas {
+    z-index:2;
+    touch-action: none;
+  }
+  .gridBox {
+    z-index:0;
+    @include flx(row, nowrap, center, center, 0px);
+    .lineOfScrimmage {
+      @include pos(absolute, 65%);
+      @include size(100%, 10px);
+      @include back(transparent, '@/assets/maker/line.png', contain, center -5px, repeat-x);
+    }
+    .gridLine {
+      flex:1;
+      height:100%;
+      border-right:1px dashed rgba(255,255,255,.4);
+      &:last-child {
+        border-right:none;
+      }
+    }
+  }
+  .positionBox {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    .player {
+      $w:30px;
+      @include size($w, $w);
+      @include backColor(rgb(54, 54, 54));
+      @include font($spec, transparent, 20px, bold);
+      @include pos(absolute, $trans: translate(-50%, -50%));
+      @include flex(flex, wrap, nowrap, center, center);
+      border:2px solid rgba(231, 231, 231, 0.5);
+      box-shadow:0 5px 5px rgba(0,0,0,.5);
+      border-radius:50%;
+      z-index:8000;
+      cursor: grab;
+      transition: border .5s;
+      &.color {
+        transition: border .5s;
+        box-shadow:0 5px 5px rgba(0,0,0,0);
+        border:3px solid rgba(231, 231, 231, .2);
+        &.c { background:rgb(7, 232, 248); }
+        &.g { background:rgb(7, 232, 248); }
+        &.t { background:rgb(7, 232, 248); }
+        &.qb { background:rgb(240, 4, 4); }
+        &.rb { background:rgb(201, 240, 28); }
+        &.fb { background:rgb(238, 236, 152); }
+        &.tb { background:rgb(233, 179, 1); }
+        &.te { background:rgb(5, 175, 27); }
+        &.sl { background:rgb(223, 172, 4); }
+        &.wr { background:rgb(8, 43, 138); }
+        &.c, &.g, &.t, &.rb, &.tb {
+          &:before {
+            color:$black;
+          }
+        }
+      }
+      &.remove {
+        &:before, &:after {
+          @include backColor(rgb(143, 142, 142));
+          color:$black;
+          transition:all .5s;
+        }
+      }
+      &:before {
+        content:attr(myText);
+        @include size(100%, 100%);
+        @include pos(absolute, 51%, 50%, $trans:translate(-50%,-50%) );
+        @include backColor(transparent);
+        @include flex(flex, row, nowrap, center, center);
+        @include font($head, $white, 11px, 100, .05em, 15px,  normal, uppercase,  none,  center );
+        border-radius:50%;
+        z-index:1;
+        transition:all .5s;
+      }
+    }
+  }
+}
+
+
+.positionContainer {
+  @include flx(row, wrap, left, center, 20px);
+  @include boxA();
+  padding:20px;
+  .posCont {
+    width:50px;
+    height:50px;
+    .pos {
+      @include font($head, $white, 20px, 400, 0px, 20px, normal, uppercase, none, center);
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      border:2px solid $white;
+    }
+  }
+}
+
+.pens, .colors {
+    width:100%;
+    height:auto;
+    @include flx(row, wrap, center, center, 10px);
+    margin-bottom:10px;
+    h4 {
+      flex: 0 0 100%;
+      @include font($head, $white, 15px, 400, .0px, 20px, normal, uppercase, none, left);
+    }
+    .posCont {
+      flex:1;
+      height:40px;
+      button {
+        width:100%;
+        height:100%;
+        border:2px solid $white;
+        &.active {
+          outline:1px solid rgba(255,255,255,.3);
+          outline-offset:2px;
+        }
+        &.white, &.red, &.blue, &.yellow {border:2px solid transparent;}
+        &.white { background:$penWhite; }
+        &.red { background:$penRed; }
+        &.blue { background:$penBlue; }
+        &.yellow { background:$penYellow; }
+        &.gray { background:$penGray; }
+        img {
+          height:50%;
+        }
+      }
+    }
+  }
