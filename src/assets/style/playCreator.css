@@ -19,7 +19,7 @@
   padding: 20px;
   height: 85vh;
   max-height: 950px;
-  min-height: 800px;
+  min-height: 550px;
 }
 .playMaker section {
   flex: 1;
@@ -31,7 +31,7 @@
   gap: 10px;
 }
 .playMaker section.a, .playMaker section.c {
-  max-width: 210px;
+  max-width: 300px;
 }
 .playMaker section.d {
   display: none;
@@ -45,6 +45,7 @@
 }
 .playMaker section .block.active {
   flex: 1;
+  max-height: 80%;
   height: auto;
 }
 .playMaker section .block.active .makerHeader {
@@ -471,18 +472,18 @@
   border: 2px solid #f5f5f5;
 }
 .playMaker section .block .makerHeader {
-  padding: 10px;
+  padding: 0px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 10px;
   color: #f5f5f5;
   font-family: "Fjalla One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 18px;
   font-style: normal;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -496,12 +497,13 @@
   transform: translate(-50%, -50%);
 }
 .playMaker section .block .makerHeader .iconBox {
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   position: relative;
 }
 .playMaker section .block .makerHeader .iconBox img {
-  width: 60%;
+  width: 40%;
+  max-width: 40px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -530,6 +532,7 @@
   }
   .playMaker section.a .block.active, .playMaker section.c .block.active {
     display: block;
+    max-height: 450px;
   }
   .playMaker section.a .block .sectional form, .playMaker section.c .block .sectional form {
     display: flex;
@@ -541,7 +544,7 @@
   }
   .playMaker section.a .block .sectional form .inputCont, .playMaker section.c .block .sectional form .inputCont {
     margin-right: 5%;
-    flex: 0 0 45%;
+    flex: 0 0 100%;
   }
   .playMaker section.a .makerHeader, .playMaker section.c .makerHeader {
     display: none;

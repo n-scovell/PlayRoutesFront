@@ -6,7 +6,7 @@ $pageCellPadding: $pagePadding - 15px;
 $mainHeight: 85vh;
 $menuMarBt: 10px;
 $fieldSize: 75%;
-@keyframes fadeIn {
+@keyframes fadeIn { 
   from { opacity:0; }
   to { opacity: 1; }
 }
@@ -18,12 +18,12 @@ $fieldSize: 75%;
   padding:$pagePadding + 10px;
   height:$mainHeight;
   max-height:950px;
-  min-height:800px;
+  min-height:550px;
   section {
     flex:1;
     @include flx(column, nowrap, stretch, start, $pagePadding);
     &.a, &.c {
-      max-width:210px;
+      max-width:300px;
     } 
     &.d {
       display:none;
@@ -35,10 +35,13 @@ $fieldSize: 75%;
       
       &.active {
         flex:1;
+        max-height:80%;
+
         height:auto;
         .makerHeader {
           width:100%;
           padding:10px;
+          
           @include flx(row, nowrap, center, center, 5px);
           @include font($head, $white, 18px, 500, .02em, 20px, normal, uppercase, none, left);
           display:none;
@@ -263,9 +266,9 @@ $fieldSize: 75%;
         }
       }
       .makerHeader {
-        padding:10px;
-        @include flx(column, nowrap, center, center, 5px);
-        @include font($head, $white, 22px, 500, .02em, 20px, normal, uppercase, none, center);
+        padding:0px;
+        @include flx(row, nowrap, center, center, 10px);
+        @include font($head, $white, 18px, 500, .02em, 20px, normal, uppercase, none, center);
         width:100%;
         height:100%;
         position:absolute;
@@ -273,11 +276,12 @@ $fieldSize: 75%;
         left:50%;
         transform:translate(-50%,-50%);
         .iconBox {
-          width:60px;
-          height:60px;
+          width:30px;
+          height:30px;
           position:relative;
           img {
-            width:60%;
+            width:40%;
+            max-width:40px;
             position:absolute;
             top:50%;
             left:50%;
@@ -305,13 +309,14 @@ $fieldSize: 75%;
           display:none;
           &.active {
             display:block;
+            max-height:450px;
           }
           .sectional {
             form {
               @include flx(row, wrap, left, start, 0px);
               .inputCont {
                 margin-right:5%;
-                flex: 0 0 45%;
+                flex: 0 0 100%;
               }
             }
           }

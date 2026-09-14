@@ -184,19 +184,6 @@ const showMenu = (i: number) => {
               <button class="fav" @click="addFav(p.id)">FAVORITE</button>
               <button class="del" @click.self="triggerPrompt(p)">DELETE</button>
             </div>
-            <!-- <div class="btCont" :class="{active: popMenu === index}" >
-              <div class="show" :class="{active: popMenu === index}" v-if="!gst.guest">
-                <button class="fav" @click="addFav(p.id)" :class="{star: coolness(p.id)}">&#9733</button>
-                <button class="del" @click.self="triggerPrompt(p)">
-                  <div class="lid"></div>
-                </button>
-              </div>
-              <button v-if="!gst.guest" class="menu" @click="showMenu(index)" :class="{active: popMenu}">
-                <div></div>
-                <div></div>
-                <div></div>
-              </button>
-            </div> -->
           </div>
         </div>
       </div>

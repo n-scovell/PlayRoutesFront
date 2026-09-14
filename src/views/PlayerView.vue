@@ -43,7 +43,9 @@
     <div class="roster">
       <section>
         <form class="signIn" @submit.prevent>
-        
+          <div class="inputCont">
+            <h3>Add Player:</h3>
+          </div>
           <div class="inputCont">
             <label>First Name:<input autocomplete="off" placeholder="First Name" type="text" v-model="firstName" /></label>
           </div>
