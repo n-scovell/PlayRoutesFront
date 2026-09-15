@@ -197,7 +197,7 @@ h1 {
         @include size(100%, auto, 350px, 450px);
         @include flex(flex, column, nowrap, $gap:10px);
         @include backColor(rgba(0,0,0, .9));
-        z-index:1000;
+        z-index:99999;
         padding:20px 20px;
         .profileInfo {
           width:100%;
