@@ -415,7 +415,7 @@
   const changeTool = (prop: ToolType) => {
     selectedTool.value = prop
   }
-  const addFormation = async () => {
+  const addFormation = async () => { 
     if (!checkErrors('formation')) return
     let formload
     try {
@@ -441,7 +441,7 @@
       }
       await gst.createGuestFormation(formload)
       gst.getGuestFormations(gst.guest?.id)
-      forms.fetchFormations()
+      // forms.fetchFormations()
     }
     } catch (err: any) {
       if (err.message === 'Guest formation limit reached') {
@@ -455,6 +455,7 @@
     // dropDownsPlayType.value.formation.newLst.push(newFormation.value)
     // dropDownsPlayType.value.formation.newLst.sort((a, b) => a.localeCompare(b))
     newFormation.value = ""
+    forms.fetchFormations()
     router.push('/create')
   }
   const gatherAllFormations = () => {
