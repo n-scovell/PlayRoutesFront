@@ -2120,6 +2120,7 @@ $mobile: 728px;
       .txt {
         flex:1;
         @include flex(flex, row, nowrap, center, start, 20px);
+        text-align:left;
         .iconCont {
           $w:80px;
           @include size($w, $w);
@@ -2138,8 +2139,10 @@ $mobile: 728px;
         }
         p {
           @include font($par, $white, 14px, bold, .02em, 20px, normal, none, none, left);
+          width:100%;
           margin:10px 0px;
           height:30px;
+          padding:0px;
         }
         button {
           font-size:18px;

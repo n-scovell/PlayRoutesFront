@@ -4350,6 +4350,7 @@ form .inputCont select option {
     align-items: center;
     justify-content: start;
     gap: 20px;
+    text-align: left;
   }
   .loginChoice .selection .txt .iconCont {
     width: 80px;
@@ -4396,8 +4397,10 @@ form .inputCont select option {
     text-transform: none;
     text-shadow: none;
     text-align: left;
+    width: 100%;
     margin: 10px 0px;
     height: 30px;
+    padding: 0px;
   }
   .loginChoice .selection .txt button {
     font-size: 18px;
