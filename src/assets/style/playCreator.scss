@@ -9,7 +9,7 @@ $fieldSize: 75%;
 
 @keyframes fadeIn { 
   from { opacity:0; }
-  to { opacity: 1; }
+  to { opacity: 1; } 
 }
 
 
@@ -282,6 +282,11 @@ $fieldSize: 75%;
         max-height:350px;
         height:350px;
         margin-bottom:100px;
+        .block {
+          &.topBar {
+            order:2;
+          }
+        }
       }
     }
   }

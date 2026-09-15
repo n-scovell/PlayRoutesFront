@@ -388,6 +388,9 @@
     height: 350px;
     margin-bottom: 100px;
   }
+  .playMaker section.b .block.topBar {
+    order: 2;
+  }
 }
 @media screen and (min-width: 300px) {
   .playMaker section .block .field .positionBox .player {
