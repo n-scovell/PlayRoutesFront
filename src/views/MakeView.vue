@@ -589,11 +589,11 @@ const closeMessage = () => {
   errorsShow.value = false
 }
 
-const dropPlayInfo = ref<boolean>(false)
+const dropPlayInfo = ref<boolean>(true)
 const dropFormations = ref<boolean>(false)
 const dropPositions = ref<boolean>(false)
 const dropPens = ref<boolean>(false)
-const dropDefense = ref<boolean>(true)
+const dropDefense = ref<boolean>(false)
 
 const showPlayInfo = () => {
   dropPlayInfo.value = !dropPlayInfo.value
