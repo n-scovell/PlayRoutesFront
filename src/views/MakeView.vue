@@ -6,6 +6,11 @@
   import { useGuest } from '@/stores/guestStore' 
   import { usePlayStore } from '@/stores/playStore'
   import { useRouter } from 'vue-router'
+
+
+  import { useDefense } from '@/composables/defense'
+  // import type { FormationDef, PosTypeDef } from '@/composables/defense'
+
   import PlayCanvas from '@/components/PlayCanvas.vue'
   import type { Stroke, ColorType, ToolType } from '@/composables/usePlayCanvasB'
   import '../assets/style/playCreator.css'
@@ -27,6 +32,7 @@
   let activeId: string | null = null
 
   //CONSTS
+  const def = useDefense()
   const router = useRouter()
   const forms = useFormation()
   const plays = usePlayStore()
@@ -78,6 +84,16 @@
   const errorsShow = ref<boolean>(false)
 
   //LISTS
+  const defensePositionList = ref<PosType[]>([
+    {id:0, pos:'c', x:.5, y:.58, name:'center'},
+    {id:0, pos:'g', x:.559, y:.58, name:'guard'},
+    {id:0, pos:'t', x:.62, y:.58, name:'tackle'},
+    {id:0, pos:'g', x:.441, y:.58, name:'guard'},
+    {id:0, pos:'t', x:.379, y:.58, name:'tackle'},
+  ])
+
+  
+
   const positionList = ref<PosType[]>([
     {id:0, pos:'qb', x:.5, y:.74, name:'quarterback'},
     {id:0, pos:'fb', x:.5, y:.83, name:'fullback'},
@@ -323,6 +339,7 @@
   const clearPlayers = () => {
     canvasRef.value?.clearMe()
     players.value = []
+    defChoice.value = []
     clearAllPositionCount()
   }
   const makeActiveTool = (tool: 'erase' | 'select') => {
@@ -332,59 +349,30 @@
       activeTool.value = 'select'
     }
   }
-  // const startDrag = (id: string, pos: string, e: PointerEvent) => {
-  //   noPanel()
-  //     if (activeTool.value === 'erase') {
-  //       players.value = players.value.filter(p => p.id !== id)
-  //       playerCount.value--
-  //       if (pos === 'qb') hasQB.value = 0
-  //       if (pos === 'c') hasC.value = 0
-  //       if (pos === 'g') hasG.value = 0
-  //       if (pos === 't') hasT.value = 0
-  //       if (pos === 'wr') hasWR.value = 0
-  //       if (pos === 'rb') hasRB.value = 0
-  //       if (pos === 'fb') hasFB.value = 0
-  //       if (pos === 'tb') hasTB.value = 0
-  //       if (pos === 'te') hasTE.value = 0
-  //       if (pos === 'sl') hasSL.value = 0
-  //       return
-  //     }
-  //     const el = container.value
-  //     if (!el) return
-  //     el.setPointerCapture(e.pointerId)
-  //     activeId = id
-  //     el.addEventListener('pointermove', onDrag)
-  //     el.addEventListener('pointerup', stopDrag)
-  // }
-
+  
   const startDrag = (id: string, pos: string, e: PointerEvent) => {
-  noPanel()
-
-  if (activeTool.value === 'erase') {
-    players.value = players.value.filter(p => p.id !== id)
-    playerCount.value--
-
-    if (pos === 'qb') hasQB.value = 0
-    if (pos === 'c') hasC.value = 0
-    if (pos === 'g') hasG.value = 0
-    if (pos === 't') hasT.value = 0
-    if (pos === 'wr') hasWR.value = 0
-    if (pos === 'rb') hasRB.value = 0
-    if (pos === 'fb') hasFB.value = 0
-    if (pos === 'tb') hasTB.value = 0
-    if (pos === 'te') hasTE.value = 0
-    if (pos === 'sl') hasSL.value = 0
-
-    return
+    noPanel()
+    if (activeTool.value === 'erase') {
+      players.value = players.value.filter(p => p.id !== id)
+      playerCount.value--
+      if (pos === 'qb') hasQB.value = 0
+      if (pos === 'c') hasC.value = 0
+      if (pos === 'g') hasG.value = 0
+      if (pos === 't') hasT.value = 0
+      if (pos === 'wr') hasWR.value = 0
+      if (pos === 'rb') hasRB.value = 0
+      if (pos === 'fb') hasFB.value = 0
+      if (pos === 'tb') hasTB.value = 0
+      if (pos === 'te') hasTE.value = 0
+      if (pos === 'sl') hasSL.value = 0
+      return
+    }
+    activeId = id
+    const el = container.value
+    if (!el) return
+    el.setPointerCapture(e.pointerId)
   }
 
-  activeId = id
-
-  const el = container.value
-  if (!el) return
-
-  el.setPointerCapture(e.pointerId)
-}
   const onDrag = (e: PointerEvent) => {
     if (!activeId || !container.value) return
     const rect = container.value.getBoundingClientRect()
@@ -605,29 +593,47 @@ const dropPlayInfo = ref<boolean>(false)
 const dropFormations = ref<boolean>(false)
 const dropPositions = ref<boolean>(false)
 const dropPens = ref<boolean>(false)
+const dropDefense = ref<boolean>(true)
+
 const showPlayInfo = () => {
   dropPlayInfo.value = !dropPlayInfo.value
   dropFormations.value = false
   dropPositions.value = false
   dropPens.value = false
+  dropDefense.value = false
 }
 const showFormations = () => {
   dropFormations.value = !dropFormations.value
   dropPlayInfo.value = false
   dropPositions.value = false
   dropPens.value = false
+  dropDefense.value = false
 }
 const showPositions = () => {
   dropPositions.value = !dropPositions.value
   dropPlayInfo.value = false
   dropFormations.value = false
   dropPens.value = false
+  dropDefense.value = false
 }
 const changePen = () => {
   dropPens.value = !dropPens.value
   dropPlayInfo.value = false
   dropFormations.value = false
   dropPositions.value = false
+  dropDefense.value = false
+}
+const changeDefense = () => {
+  dropDefense.value = !dropDefense.value
+  dropPens.value = false
+  dropPlayInfo.value = false
+  dropFormations.value = false
+  dropPositions.value = false
+}
+
+const defChoice = ref<any>([])
+const changeDefenseFormation = (a: number) => {
+  defChoice.value = def.formations.value[a]
 }
 
 
@@ -669,7 +675,6 @@ const changePen = () => {
               <label><input placeholder="New Formation" type="text" v-model="newFormation" /></label>
             </div>
             <div class="inputCont a">
-
               <ul class="formationBox">
                 <li v-for="f in forms.formations" :key="f">
                   <button @click="formationType('formation', f.formationName)">
@@ -728,16 +733,24 @@ const changePen = () => {
               </div>
             </div>
         </div>
+        <Header title="DEFENSE" icon="defense" @click="changeDefense()"  />
+        <div class="under noPad" v-if="dropDefense">
+          <div class="defenseBox">
+            <div class="defenseFormation" :class="{active : defChoice.formName === f.formName }" v-for="(f, findex) in def.formations.value" :key="f.formName" @click="changeDefenseFormation(findex)">
+              {{ f.formName }}
+            </div>
+          </div>
+        </div>
       </section>
       <section class="b">
         <div class="block topBar">
           <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">
             <div class="icon pointer"></div>
-            MOVE
+            MOVE PLAYER
           </button>
           <button :class="{active : activeTool === 'erase'}" @click="makeActiveTool('erase')">
             <div class="icon trash"><div></div><div></div></div>
-            DELETE
+            DELETE PLAYER
           </button>
           <button :class="{color : colorFlip }" @click="changePosColor()">COLOR/B&W</button>
           <button class="clearBt" @click="clearPlayers()">
@@ -756,9 +769,11 @@ const changePen = () => {
               <li v-for="e in errors" :key="e.txt">{{ e.txt }}</li>
             </ul>
           </button>
-          <p class="pc" v-if="playerCount">Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
+          <p class="pc" v-if="playerCount"><small v-if="defChoice.formName != ''">DEFENSE: {{ defChoice.formName }}</small> <br>Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
           <div class="field">
+
             <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
+            
             <div class="positionBox" ref="container" @pointermove="onDrag" @pointerup="stopDrag" @pointercancel="stopDrag">
               <div v-for="p in players" :key="p.id" class="player" :myText="p.pos"
                 :class="[{color: colorFlip }, p.pos, { remove: activeTool === 'erase'} ]"
@@ -768,6 +783,16 @@ const changePen = () => {
               {{ p.pos }}
               </div>
             </div>
+
+            <div class="defensePositionBox">
+              <div 
+              class="player" 
+              v-for="p in defChoice.players" 
+              :key="p.formName" 
+              :style="{ left: `${p.x * 100}%`, top: `${p.y * 100}%` }"
+              ></div>
+            </div>
+
             <div class="gridBox">
               <div class="lineOfScrimmage" />
               <div class="gridLine" v-for="g in 6" :key="g" />

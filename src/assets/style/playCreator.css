@@ -6,6 +6,25 @@
     opacity: 1;
   }
 }
+*::-webkit-scrollbar {
+  width: 11px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(253, 253, 253, 0.432);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(214, 212, 212, 0.692);
+  border-radius: 10px;
+}
+
 .playMaker * {
   touch-action: none;
 }
@@ -48,6 +67,46 @@
   border-radius: 3px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
+}
+.playMaker section.toolShed .under.noPad {
+  background: none;
+  border: none;
+  padding: 0px;
+}
+.playMaker section.toolShed .defenseBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  overflow-y: scroll;
+  max-height: 360px;
+  padding: 8px;
+}
+.playMaker section.toolShed .defenseBox .defenseFormation {
+  height: 90px;
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  color: #f5f5f5;
+  font-family: "Fjalla One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 17px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  cursor: pointer;
+}
+.playMaker section.toolShed .defenseBox .defenseFormation.active {
+  outline: 1px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 3px;
 }
 .playMaker section.toolShed .makerHeader {
   width: 100%;
@@ -383,8 +442,8 @@
     margin: auto;
   }
   .playMaker section.b {
-    min-height: 350px;
-    max-height: 350px;
+    min-height: 380px;
+    max-height: 380px;
     height: 350px;
     margin-bottom: 100px;
   }
@@ -401,6 +460,15 @@
     min-height: auto;
     max-height: auto;
   }
+  .playMaker section .block .field .defensePositionBox .player {
+    width: 15px;
+    height: 15px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    opacity: 0.5;
+  }
 }
 @media screen and (min-width: 550px) {
   .playMaker section .block .field .positionBox .player {
@@ -410,6 +478,15 @@
     max-width: auto;
     min-height: auto;
     max-height: auto;
+  }
+  .playMaker section .block .field .defensePositionBox .player {
+    width: 31px;
+    height: 31px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    opacity: 0.5;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -421,6 +498,15 @@
     min-height: auto;
     max-height: auto;
   }
+  .playMaker section .block .field .defensePositionBox .player {
+    width: 35px;
+    height: 35px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    opacity: 0.5;
+  }
 }
 @media screen and (min-width: 2000px) {
   .playMaker section .block .field .positionBox .player {
@@ -430,6 +516,15 @@
     max-width: auto;
     min-height: auto;
     max-height: auto;
+  }
+  .playMaker section .block .field .defensePositionBox .player {
+    width: 40px;
+    height: 40px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    opacity: 0.5;
   }
 }
 @media screen and (max-width: 600px) {
@@ -500,6 +595,52 @@
 }
 .field .gridBox .gridLine:last-child {
   border-right: none;
+}
+.field .defensePositionBox {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.field .defensePositionBox .player {
+  width: 35px;
+  height: 35px;
+  min-width: 0;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
+  background: rgb(168, 166, 166);
+  color: transparent;
+  font-family: "Racing Sans One", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  position: absolute;
+  top: none;
+  left: none;
+  bottom: none;
+  right: none;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 2px solid rgba(231, 231, 231, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: 7000;
 }
 .field .positionBox {
   flex: 1;

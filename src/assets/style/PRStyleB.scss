@@ -730,6 +730,7 @@ form {
     @include flex(flex, column, wrap, stretch, center, 5px);
     @include rel();
     margin-bottom:15px;
+    
     .formationBox {
       width:100%;
       height:210px;
