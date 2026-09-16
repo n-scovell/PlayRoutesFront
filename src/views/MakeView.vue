@@ -183,47 +183,6 @@
       return true
     }
   }
-  // const submitPlay = () => {
-  //   if (!checkErrors('play')) return
-
-  //   const grid = {
-  //     strokes: myStrokes.value,
-  //     players: players.value
-  //   }
-  //   let payload
-  //   if (auth.user) {
-  //      payload = {
-  //       title: title.value,
-  //       formation: dropDownsPlayType.value.formation.newValue,
-  //       playType: dropDownsPlayType.value.ptype.newValue,
-  //       description: 'this is a default description for now',
-  //       grid: {
-  //         strokes: myStrokes.value,
-  //         players: players.value
-  //       },
-  //       ownerId: auth.user?.id
-  //     }
-  //     plays.createPlay(payload) 
-  //   }
-  //   if (gst.guest) {
-  //      payload = {
-  //       title: title.value,
-  //       formation: dropDownsPlayType.value.formation.newValue,
-  //       playType: dropDownsPlayType.value.ptype.newValue,
-  //       description: 'this is a default description for now',
-  //       grid: {
-  //         strokes: myStrokes.value,
-  //         players: players.value
-  //       },
-  //       guestId: gst.guest?.id
-  //     }
-  //     gst.createGuestPlay(payload)
-  //   }
-  //   playSuccess.value = true
-  //   clearPlayers()
-  //   title.value = ''
-  // }
-
   const submitPlay = async () => {
     if (!checkErrors('play')) return
     const grid = {
@@ -390,7 +349,6 @@
       showPlayTypes()
   }
   const formationType = (key: DropKeys, value: string) => {
-
     dropDownsPlayType.value[key].newValue = value
     dropDownsPlayType.value[key].showDrop = false
     showFormations()
