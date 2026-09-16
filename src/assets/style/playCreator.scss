@@ -74,6 +74,11 @@ $fieldSize: 75%;
           @include boxA();
           @include flx(row, nowrap, center, center, 0px);
           @include font($head, $white, 17px, 500, .08em, 20px, normal, none, none, center);
+          cursor:pointer;
+          &.active {
+            outline:1px solid rgba(255,255,255,.7);
+            outline-offset:3px;
+          }
         }
       }
       .makerHeader {

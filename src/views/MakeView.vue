@@ -736,7 +736,7 @@ const changeDefenseFormation = (a: number) => {
         <Header title="DEFENSE" icon="defense" @click="changeDefense()"  />
         <div class="under noPad" v-if="dropDefense">
           <div class="defenseBox">
-            <div class="defenseFormation" v-for="(f, findex) in def.formations.value" :key="f.formName" @click="changeDefenseFormation(findex)">
+            <div class="defenseFormation" :class="{active : defChoice.formName === f.formName }" v-for="(f, findex) in def.formations.value" :key="f.formName" @click="changeDefenseFormation(findex)">
               {{ f.formName }}
             </div>
           </div>
