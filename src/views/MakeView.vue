@@ -339,6 +339,7 @@
   const clearPlayers = () => {
     canvasRef.value?.clearMe()
     players.value = []
+    defChoice.value = []
     clearAllPositionCount()
   }
   const makeActiveTool = (tool: 'erase' | 'select') => {
@@ -745,11 +746,11 @@ const changeDefenseFormation = (a: number) => {
         <div class="block topBar">
           <button :class="{active : activeTool === 'select'}" @click="makeActiveTool('select')">
             <div class="icon pointer"></div>
-            MOVE
+            MOVE PLAYER
           </button>
           <button :class="{active : activeTool === 'erase'}" @click="makeActiveTool('erase')">
             <div class="icon trash"><div></div><div></div></div>
-            DELETE
+            DELETE PLAYER
           </button>
           <button :class="{color : colorFlip }" @click="changePosColor()">COLOR/B&W</button>
           <button class="clearBt" @click="clearPlayers()">

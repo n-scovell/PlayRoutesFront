@@ -437,8 +437,8 @@
     margin: auto;
   }
   .playMaker section.b {
-    min-height: 350px;
-    max-height: 350px;
+    min-height: 380px;
+    max-height: 380px;
     height: 350px;
     margin-bottom: 100px;
   }
@@ -455,6 +455,15 @@
     min-height: auto;
     max-height: auto;
   }
+  .playMaker section .block .field .defensePositionBox .player {
+    width: 15px;
+    height: 15px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    opacity: 0.5;
+  }
 }
 @media screen and (min-width: 550px) {
   .playMaker section .block .field .positionBox .player {
@@ -464,6 +473,15 @@
     max-width: auto;
     min-height: auto;
     max-height: auto;
+  }
+  .playMaker section .block .field .defensePositionBox .player {
+    width: 31px;
+    height: 31px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    opacity: 0.5;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -475,6 +493,15 @@
     min-height: auto;
     max-height: auto;
   }
+  .playMaker section .block .field .defensePositionBox .player {
+    width: 35px;
+    height: 35px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    opacity: 0.5;
+  }
 }
 @media screen and (min-width: 2000px) {
   .playMaker section .block .field .positionBox .player {
@@ -484,6 +511,15 @@
     max-width: auto;
     min-height: auto;
     max-height: auto;
+  }
+  .playMaker section .block .field .defensePositionBox .player {
+    width: 40px;
+    height: 40px;
+    min-width: 0;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+    opacity: 0.5;
   }
 }
 @media screen and (max-width: 600px) {

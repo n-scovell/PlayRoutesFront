@@ -319,8 +319,8 @@ $fieldSize: 75%;
         }
       }
       &.b {
-        min-height:350px;
-        max-height:350px;
+        min-height:380px;
+        max-height:380px;
         height:350px;
         margin-bottom:100px;
         .block {
@@ -344,8 +344,11 @@ $player-sizes: (
   @media screen and (min-width: #{$bp}px) {
     .playMaker section .block .field .positionBox .player {
       @include size(map-get($props, size), map-get($props, size));
-      // transition: all .1s;
     }
+    .playMaker section .block .field .defensePositionBox .player {
+      @include size(map-get($props, size), map-get($props, size));
+      opacity:.5;
+    } 
   }
 }
 
@@ -390,6 +393,7 @@ $player-sizes: (
       }
     }
   }
+
   .defensePositionBox {
     -webkit-user-drag: none;
     user-select: none;

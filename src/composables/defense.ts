@@ -120,6 +120,31 @@ export function useDefense() {
         { id: 11, pos: 's', x: 0.56, y: .25, name: 'tackle' },
       ],
     },
+    {
+      formName: 'Goaline',
+      id:'goaline',
+      players: [
+        { id: 0, pos: 'c', x: 0.5, y: onTheLine, name: 'guard' },
+        { id: 0, pos: 't', x: 0.559, y: onTheLine, name: 'guard' },
+        { id: 1, pos: 'de', x: 0.62, y: onTheLine, name: 'tackle' },
+        { id: 2, pos: 't', x: 0.441, y: onTheLine, name: 'guard' },
+        { id: 3, pos: 'de', x: 0.379, y: onTheLine, name: 'tackle' },
+
+        { id: 4, pos: 'cb', x: 0.323, y: onTheLine, name: 'tackle' },
+        { id: 7, pos: 'cb', x: .678, y: onTheLine, name: 'tackle' },
+
+        { id: 4, pos: 'lb', x: 0.411, y: 0.48, name: 'tackle' },
+        { id: 4, pos: 'lb', x: 0.5, y: 0.48, name: 'tackle' },
+        { id: 6, pos: 'lb', x: 0.59, y: 0.48, name: 'tackle' },
+
+        { id: 11, pos: 's', x: 0.5, y: .35, name: 'tackle' },
+        // { id: 7, pos: 'cb', x: cbC, y: onTheLine, name: 'tackle' },
+        // { id: 8, pos: 'cb', x: cbB, y: threeMan, name: 'tackle' },
+        // { id: 7, pos: 'cb', x: cbD, y: onTheLine, name: 'tackle' },
+        // { id: 10, pos: 's', x: 0.435, y: onTheLine, name: 'tackle' },
+        // { id: 11, pos: 's', x: 0.56, y: onTheLine, name: 'tackle' },
+      ],
+    },
     
   ])
   
