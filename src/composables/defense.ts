@@ -23,7 +23,7 @@ export function useDefense() {
   const cbD = 0.70
   const formations = ref<FormationDef[]>([
     {
-      formName: '',
+      formName: 'NONE',
       id:'',
       players: [
 
