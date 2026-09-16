@@ -769,7 +769,7 @@ const changeDefenseFormation = (a: number) => {
               <li v-for="e in errors" :key="e.txt">{{ e.txt }}</li>
             </ul>
           </button>
-          <p class="pc" v-if="playerCount">Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
+          <p class="pc" v-if="playerCount"><small v-if="defChoice.formName != ''">DEFENSE: {{ defChoice.formName }}</small> <br>Player Count: <span class="complete" v-if="playerCount === 11">COMPLETE</span><span v-else>{{ playerCount }}</span></p>
           <div class="field">
 
             <PlayCanvas ref="canvasRef" makerMode="maker" class="canvas" @update:strokes="myStrokes = $event" :color="selectedColor" :tool="selectedTool" />
