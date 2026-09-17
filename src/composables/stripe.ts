@@ -32,7 +32,7 @@ export function stripeInit() {
             if (!auth.userId || !auth.token) {
                 return
             }
-            console.log('AUTH TOKEN:', auth.token)
+            console.log('AUTH TOKENS:', auth.token)
             console.log('REGISTRATION STRIPE TOKEN:', auth.token)
             console.log('REGISTRATION USER ID:', strp.registrationUserId.value)
             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/stripe`,
