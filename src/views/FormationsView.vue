@@ -57,7 +57,7 @@ const yesDelete = () => {
     <h1>Your Formations</h1>
     <div class="areYouSure" v-if="areYouSure">
       <h3>ARE YOU SURE?</h3>
-      <button class="primaryBt" @click="areYouSure = false">X</button>
+      <button class="close" @click="areYouSure = false">X</button>
       <button class="primaryBt" @click="yesDelete()">DELETE</button>
       <button class="primaryBt" @click="areYouSure = false">CANCEL</button>
     </div>
@@ -83,18 +83,43 @@ const yesDelete = () => {
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
+  z-index:99999;
   width:80%;
   max-width:500px;
   min-width:250px;
   height:auto;
+  padding:50px;
   background:black;
   outline:1px solid rgba(255,255,255,.5);
   color:white;
   font-size:20px;
   display:flex;
   flex-direction:row;
+  flex-wrap:wrap;
+  gap:11px;
+  h3 {
+    flex: 0 0 100%;
+    font-size:35px;
+    text-align:center;
+  }
   button {
     flex:1;
+    height:50px;
+    &.close {
+      $w:30px;
+      width:$w;
+      height:$w;
+      background:white;
+      color:black;
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:5px;
+      right:5px;
+      border-radius:50%;
+    }
   }
 }
 </style>

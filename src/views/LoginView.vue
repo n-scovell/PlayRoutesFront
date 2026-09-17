@@ -2,10 +2,10 @@
 import { ref, watch, onMounted } from 'vue'
 import { useAuthStore } from '../stores/userAuth'
 import { useGuest } from '../stores/guestStore'
-import { RouterLink } from 'vue-router'
+// import { RouterLink } from 'vue-router'
 
 import UserIcon from '@/assets/icons/ico_user.svg'
-import RegisterIcon from '@/assets/icons/ico_register.svg'
+// import RegisterIcon from '@/assets/icons/ico_register.svg'
 import HelmetIcon from '@/assets/icons/ico_helmet.svg'
 import GuestIcon from '@/assets/icons/ico_guest.svg'
 

@@ -9,8 +9,30 @@ $fieldSize: 75%;
 
 @keyframes fadeIn { 
   from { opacity:0; }
-  to { opacity: 1; }
+  to { opacity: 1; } 
 }
+
+
+
+*::-webkit-scrollbar {
+  width: 11px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(253, 253, 253, 0.432);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(214, 212, 212, 0.692);
+  border-radius: 10px;
+}
+
 
 
 .playMaker {
@@ -23,7 +45,7 @@ $fieldSize: 75%;
     flex:1;
     @include flx(column, nowrap, stretch, start, $pagePadding);
     &.b {
-      $h: 800px;
+      $h: 700px;
       min-height:$h;
       max-height:$h;
     }
@@ -34,6 +56,30 @@ $fieldSize: 75%;
       .under {
         padding:20px;
         @include boxA();
+        &.noPad {
+          background:none;
+          border:none;
+          padding:0px;
+        }
+      }
+      .defenseBox {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        overflow-y:scroll;
+        max-height:360px;
+        padding:8px;
+        .defenseFormation {
+          height: 90px;
+          @include boxA();
+          @include flx(row, nowrap, center, center, 0px);
+          @include font($head, $white, 17px, 500, .08em, 20px, normal, none, none, center);
+          cursor:pointer;
+          &.active {
+            outline:1px solid rgba(255,255,255,.7);
+            outline-offset:3px;
+          }
+        }
       }
       .makerHeader {
         $h:55px;
@@ -197,6 +243,7 @@ $fieldSize: 75%;
       }
       .positionContainer {
         @include flx(row, wrap, left, center, 20px);
+        order:2;
         .posCont {
           width:50px;
           height:50px;
@@ -241,28 +288,30 @@ $fieldSize: 75%;
 @media only screen and (max-width:1000px) {
   .playMaker {
     @include flx(column, nowrap, left, start, 10px);
-    height:$mainHeight;
-    max-height:90vh;
     section {
       &.toolShed {
         flex:1;
-        max-width:45px;
-        height:auto;
+        max-width:100%;
+        height:55px;
+        @include flx(row, wrap, stretch, center, $pagePadding);
         .under {
+          order:2;
+          flex:0 0 100%;
           padding:20px;
+          width:100%;
           @include boxA();
         }
         .makerHeader {
           $h:55px;
-          width:50%;
+          order:1;
+          flex:1;
           height:$h;
-          padding:10px 0px;
-          @include boxA();
-          @include flx(row,wrap,center,start,10px);
-          @include font($head, white, 20px, bold, .02em, 20px, normal, none, none, left);
+          span {
+            display:none;
+          }
           .iconBox {
             flex:1;
-            max-width:$h;
+            max-width:100%;
             height:100%;
             text-align:center;
             @include flx(row,wrap,center,center,0px);
@@ -274,67 +323,11 @@ $fieldSize: 75%;
           
         }
       }
-      &.a, &.c {
-        flex:1;
-        min-width:100%;
-        order:2;
-        height:500px;
-        .block {
-          display:none;
-          &.active {
-            display:block;
-            max-height:450px;
-          }
-          .sectional {
-            form {
-              @include flx(row, wrap, left, start, 0px);
-              .inputCont {
-                margin-right:5%;
-                flex: 0 0 100%;
-              }
-            }
-          }
-        }
-        .makerHeader {
-          display:none;
-        }
-      }
-      &.d {
-        $w: 55px;
-        order:1;
-        display:block;
-        flex: 0 0 100%;
-        max-height:$w;
-        padding:0px;
-        @include flx(row, nowrap, center, center, 10px);
-        .makerHeader {
-          flex:1;
-          @include boxA();
-          text-align:center;
-          height:$w;
-          color:transparent;
-          span {
-            display:none;
-          }
-          .iconBox {
-            width:70px;
-            height:44px;
-            margin:auto;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:0px;
-            img {
-              height:80%;
-              max-width:40px;
-            }
-          }
-        }
-      }
       &.b {
-        order:3;
-        flex: 0 0 100%;
-        max-height:400px;
+        min-height:380px;
+        max-height:380px;
+        height:350px;
+        margin-bottom:100px;
         .block {
           &.topBar {
             order:2;
@@ -356,8 +349,11 @@ $player-sizes: (
   @media screen and (min-width: #{$bp}px) {
     .playMaker section .block .field .positionBox .player {
       @include size(map-get($props, size), map-get($props, size));
-      // transition: all .1s;
     }
+    .playMaker section .block .field .defensePositionBox .player {
+      @include size(map-get($props, size), map-get($props, size));
+      opacity:.5;
+    } 
   }
 }
 
@@ -402,14 +398,39 @@ $player-sizes: (
       }
     }
   }
+
+  .defensePositionBox {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    flex:1;
+    width:100%;
+    height:100%;
+    position:relative;
+    .player {
+      $w:35px;
+      @include size($w, $w);
+      @include backColor(rgb(168, 166, 166));
+      @include font($spec, transparent, 20px, bold);
+      @include pos(absolute, $trans: translate(-50%, -50%));
+      @include flex(flex, wrap, nowrap, center, center);
+      border:2px solid rgba(231, 231, 231, 0.5);
+      box-shadow:0 5px 5px rgba(0,0,0,.5);
+      border-radius:50%;
+      z-index:7000;
+    }
+  }
   .positionBox {
+    flex:1;
     -webkit-user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     .player {
-      $w:30px;
+      $w:20px;
       @include size($w, $w);
       @include backColor(rgb(54, 54, 54));
       @include font($spec, transparent, 20px, bold);
@@ -468,6 +489,7 @@ $player-sizes: (
   @include flx(row, wrap, left, center, 20px);
   @include boxA();
   padding:20px;
+  order:2;
   .posCont {
     width:50px;
     height:50px;

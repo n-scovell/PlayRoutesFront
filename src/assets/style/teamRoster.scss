@@ -141,8 +141,8 @@
         padding:0px 0px 200px;
         @include flx(row, wrap, center, stretch, 10px);
         .player {
-          flex:1;
-          width:30%;
+          flex:0 0 45%;
+          width:50%;
           height:auto;
           padding:0px 0px;
           @include boxA();
@@ -178,12 +178,13 @@
           }
           .areYouSure {
             @include size(100%, 30px);
-            @include pos(relative, 0%, $right:0px, $trans:translate(0%,0%));
-            
+            @include pos(relative, 0%, $left: 0px, $right:none, $trans:translate(0%,0%));
+            gap:2px;
+            border:none;
             button {
               flex:1;
               height:100%;
-              @include font($head, $white, 13px, 500, .1em, 20px, normal, uppercase, none, center);
+              @include font($head, $white, 11px, 500, .1em, 20px, normal, uppercase, none, center);
               padding:10px 12px;
               
               &.a {

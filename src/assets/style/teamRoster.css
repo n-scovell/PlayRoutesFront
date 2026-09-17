@@ -283,8 +283,8 @@
     gap: 10px;
   }
   .roster section:nth-child(2) .player {
-    flex: 1;
-    width: 30%;
+    flex: 0 0 45%;
+    width: 50%;
     height: auto;
     padding: 0px 0px;
     border-radius: 3px;
@@ -364,10 +364,12 @@
     max-height: auto;
     position: relative;
     top: 0%;
-    left: none;
+    left: 0px;
     bottom: none;
-    right: 0px;
+    right: none;
     transform: translate(0%, 0%);
+    gap: 2px;
+    border: none;
   }
   .roster section:nth-child(2) .player .areYouSure button {
     flex: 1;
@@ -376,7 +378,7 @@
     font-family: "Fjalla One", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 11px;
     font-style: normal;
     letter-spacing: 0.1em;
     text-transform: uppercase;

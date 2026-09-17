@@ -12,7 +12,6 @@ export const useFormation = defineStore(
     const error = ref<string | null>(null)
     const addedForm = ref(false)
     const alreadyExists = ref<boolean>(false)
-
     async function fetchFormations() {
       const auth = useAuthStore()
       if (!auth.userId || !auth.token) {
