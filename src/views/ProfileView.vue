@@ -86,9 +86,9 @@ const updateMyAccount = async () => {
 const yesUpdateAccount = async () => {
   try {
     await auth.updateUser({
+      id: auth.user?.id,
       name: name.value,
       sport: sport.value,
-      teamPin: pin.value,
       team: team.value
     })
     checkUpdateAccount.value = 2
@@ -96,8 +96,9 @@ const yesUpdateAccount = async () => {
       checkUpdateAccount.value = 0
       initChange.value = false
     }, 5000)
-  } catch  (error:any) {
-    console.log('Update not working')
+  } catch (error: any) {
+    alert('not working')
+    console.error('Update not working:', error)
   }
 }
 
@@ -195,7 +196,8 @@ const updatePin = async () => {
   error.value = null
   try {
     await checkPin(pin.value)
-    await auth.updateUser( { teamPin: pin.value, } )
+    await auth.updatePin(pin.value)
+    // await auth.updateUser( { teamPin: pin.value, } )
     error.value = `Team Pin Number Has Been Changed for the ${team.value}`
     areYouSure.value = false
     pinChangeLocked.value = true
@@ -208,7 +210,7 @@ const updatePin = async () => {
 }
 
 const showPlan = ref<boolean>(false)
-watch( [name, email, team], () => {
+watch( [name, team, sport], () => {
     initChange.value = true
   }
 )
@@ -275,7 +277,7 @@ const manageSubscription = async () => {
             <label>Full Name:</label><input :placeholder="auth.user?.name" type="text" v-model="name" />
           </div>
           <div class="inp">
-            <label>Email:</label><input :placeholder="auth.user?.email" type="email" v-model="email" />
+            <label>Email:</label><input :placeholder="auth.user?.email" type="email" disabled />
           </div>
           <div class="inp">
             <label>Team Name:</label><input :placeholder="auth.user?.team" type="text" v-model="team" />

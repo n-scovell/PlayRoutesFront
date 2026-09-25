@@ -157,8 +157,7 @@ function playerLogout() {
       password?: string
     }) {
     if (!user.value) return
-    const res = await fetch(
-      'https://play-route-back.vercel.app/api/users',
+    const res = await fetch('https://play-route-back.vercel.app/api/users',
       {
         method: 'PUT',
         headers: {
@@ -167,6 +166,7 @@ function playerLogout() {
         body: JSON.stringify({
           id: user.value.id,
           ...updates,
+          action: 'update'
         }),
       }
     )
@@ -206,6 +206,30 @@ function playerLogout() {
   } catch (err) {
     console.error('Failed to refresh user:', err)
   }
+}
+
+async function updatePin(pin: string) {
+  if (!user.value) return
+  const res = await fetch(
+    'https://play-route-back.vercel.app/api/users',
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'update-pin',
+        id: user.value.id,
+        teamPin: pin
+      }),
+    }
+  )
+  const data = await res.json()
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to update password')
+  }
+
+  return data
 }
 
   async function updatePassword(password: string) {
@@ -251,6 +275,7 @@ function playerLogout() {
     logout,
     updateUser,
     playerLogin,
+    updatePin,
     updatePassword,
     refreshUser
   }

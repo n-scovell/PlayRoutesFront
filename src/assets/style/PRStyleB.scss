@@ -1361,7 +1361,7 @@ form {
       }
     }
   }
-}
+} 
 .loginChoice { // larged
   @include size(90%, 350px, 200px, 80vw);
   @include pos(absolute, 120px, 50%, $trans:translate(-50%,0%));
@@ -1452,9 +1452,10 @@ form {
       p, ul li {
         flex:1;
         @include font($par, $white, 15px, bold, .02em, 20px, normal, none, none, center);
-        height:40px;
-        padding:0px 60px;
+        height:auto;
+        padding:5px 60px;
         @include flx(row,nowrap,center,center,0px);
+
       }
       button {
         position:relative;
