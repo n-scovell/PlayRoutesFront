@@ -1,42 +1,92 @@
-# vue-recall
+# Player Routes
 
-This template should help get you started developing with Vue 3 in Vite.
+The frontend application for [Player Routes](https://playerroutes.com), a football playbook builder designed for coaches to create, organize, and manage football plays.
 
-## Recommended IDE Setup
+Player Routes allows coaches to build visual plays, manage offensive formations, maintain team rosters, organize playbooks, and manage their subscriptions.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Tech Stack
 
-## Recommended Browser Setup
+* **Vue 3**
+* **TypeScript**
+* **Pinia**
+* **Vite**
+* **Vue Router**
+* **HTML Canvas**
+* **Stripe**
+* **CSS / SCSS**
+* **Vercel**
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Features
 
-## Type Support for `.vue` Imports in TS
+### Play Designer
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+* Visual football field and play creation
+* Player positioning
+* Pass, Run, and Special play types
+* Multiple stroke styles for play routes
+* Custom route colors and thickness
+* Play editing and deletion
+* Offensive and defensive formation guides
+* Playbook organization and sorting
+* Favorite plays
 
-## Customize configuration
+### Team Management
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+* Coach registration and authentication
+* Team profiles
+* Player roster management
+* Player positions
+* Player login
+* Profile management
 
-## Project Setup
+### Authentication
 
-```sh
-npm install
+* JWT-based authentication
+* Coach and player login
+* Guest access
+* Protected application routes
+* Persistent authentication state using Pinia
+
+### Subscriptions
+
+* Stripe subscription integration
+* Coach and Team plans
+* Subscription management
+* Stripe Customer Portal integration
+* Subscription status handling
+
+## Application Architecture
+
+The application uses Vue 3 with TypeScript and separates reusable application logic into composables and Pinia stores.
+
+```text
+src/
+├── components/
+├── composables/
+├── router/
+├── stores/
+├── views/
+└── ...
 ```
 
-### Compile and Hot-Reload for Development
+Application state is managed with Pinia, while reusable functionality and application logic are extracted into composables to keep components focused on presentation and interaction.
 
-```sh
-npm run dev
-```
+## Backend
 
-### Type-Check, Compile and Minify for Production
+Player Routes uses a separate REST API for authentication, user management, roster management, playbooks, and subscription functionality.
 
-```sh
-npm run build
-```
+**Backend repository:**
+https://github.com/n-scovell/PlayRouteBack
+
+## Deployment
+
+The production application is deployed on Vercel.
+
+**Live application:**
+https://playerroutes.com
+
+## Project
+
+Player Routes is a personal product project built from the ground up as a production-oriented SaaS application.
+
+The project covers the full application stack, including frontend development, API integration, authentication, database-backed features, subscription billing, and deployment.
